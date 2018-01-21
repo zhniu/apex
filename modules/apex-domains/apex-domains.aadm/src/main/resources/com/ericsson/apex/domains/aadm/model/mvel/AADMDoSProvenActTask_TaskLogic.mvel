@@ -1,0 +1,61 @@
+import com.ericsson.apex.domains.aadm.concepts.ENodeBStatus;
+import com.ericsson.apex.domains.aadm.concepts.IMSIStatus;
+
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+logger.debug(inFields);
+
+outFields["ACTTASK"] = "act";
+outFields["TRIGGER_SPEC"] = "XSTREAM_AADM_ACT_EVENT";
+outFields["MAJ_MIN_MAINT_VERSION"] = "0.0.1";
+outFields["PROBE_ON"] = true;
+outFields["TCP_ON"] = false;
+outFields["IMSI"] = inFields["IMSI"];
+
+if (inFields["IMSI_IP"] != null) {
+	outFields["IMSI_IP"] = inFields["IMSI_IP"];
+}
+else{
+	outFields["IMSI_IP"] = inFields["UE_IP_ADDRESS"];
+}
+
+if (inFields["NW_IP"] != null) {
+	outFields["NW_IP"] = inFields["NW_IP"];
+}
+else{
+	outFields["NW_IP"] = inFields["SGW_IP_ADDRESS"];
+}
+
+IMSIStatus imsiStatus = getContextAlbum("IMSIStatusAlbum").get((String)inFields["IMSI"]);
+logger.debug(imsiStatus);
+
+ENodeBStatus eNodeBStatus = getContextAlbum("ENodeBStatusAlbum").get(imsiStatus.getENodeBID());
+eNodeBStatus.setBeingProbed(false);
+
+leaveProbingOn = false;
+for (ENodeBStatus enbStatus : getContextAlbum("ENodeBStatusAlbum").values) {
+	if (enbStatus.getBeingProbed()) {
+		leaveProbingOn = true;
+	}
+}
+
+if (!leaveProbingOn) {
+	outFields["PROBE_ON"] = false;
+	outFields["TCP_ON"] = false;
+}
+
+eNodeBStatus.decrementDOSCount();
+logger.debug(eNodeBStatus.getENodeB() + ": dosCount is " + eNodeBStatus.getDOSCount());
+
+imsiStatus.setAnomalous(false);
+
+logger.debug("imsi: " + imsiStatus.getIMSI() + " anamalous " + imsiStatus.getAnomalous());
+
+getContextAlbum("IMSIStatusAlbum")  .put(imsiStatus.getIMSI(),     imsiStatus);
+getContextAlbum("ENodeBStatusAlbum").put(eNodeBStatus.getENodeB(), eNodeBStatus);
+
+outFields["THRESHOLD"]    = 0;
+outFields["PROFILE"]      = "";
+outFields["VERSION"]      = "0.0.1";
+outFields["BLACKLIST_ON"] = false;
+
+return true;

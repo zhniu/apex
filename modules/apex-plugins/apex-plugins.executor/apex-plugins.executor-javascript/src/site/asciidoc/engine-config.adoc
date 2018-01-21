@@ -1,0 +1,1 @@
+include::{apex-plugins-executor-javascript-dir}/docs/asciidoc/fragments/javascript-config.adoc[]

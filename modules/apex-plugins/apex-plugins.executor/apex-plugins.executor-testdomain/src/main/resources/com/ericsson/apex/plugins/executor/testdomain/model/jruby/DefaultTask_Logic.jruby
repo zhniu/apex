@@ -1,0 +1,14 @@
+require 'java'
+
+executor.logger.debug("id: " + executor.subject.id)
+executor.logger.debug("ctxt name: " + executor.getContextAlbum("GlobalContextAlbum").name)
+executor.logger.debug("inFields: " + executor.inFields.toString())
+
+executor.outFields.put("Test<STATE_NAME>CaseSelected", <RANDOM_BYTE_VALUE>.to_java(:byte))
+
+timeNow = java.util.Date.new()
+executor.outFields.put("Test<STATE_NAME>StateTime", timeNow.getTime())
+executor.logger.debug("outFields: " + executor.outFields.toString())
+
+return true
+			

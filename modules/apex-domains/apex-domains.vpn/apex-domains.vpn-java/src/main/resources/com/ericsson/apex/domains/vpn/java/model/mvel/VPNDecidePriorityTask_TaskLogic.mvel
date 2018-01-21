@@ -1,0 +1,17 @@
+import com.ericsson.apex.domains.vpn.java.concepts.VPNCustomerArray;
+
+logger.debug(subject.id + ":" + subject.taskName);
+
+logger.debug("VPNDecidePriorityTask execution logic-Praveen");
+logger.debug(inFields);
+outFields["Link"] = inFields["Link"];
+outFields["Action"] = "Disconnect customers based on Priority";
+
+VPNCustomerArray affectedCustomersArray = new VPNCustomerArray();
+affectedCustomersArray.addCustomer("A");
+outFields["AffectedCustomers"] = affectedCustomersArray;
+
+System.err.println("outFields: " + outFields);
+
+return true;
+

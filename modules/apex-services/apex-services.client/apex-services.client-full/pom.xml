@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>apex-services.client-full</artifactId>
+	<packaging>jar</packaging>
+	<name>${project.artifactId}</name>
+	<url>${apex.site.prefix}/site/modules/apex-services/${project.parent.artifactId}/${project.artifactId}/</url>
+	<description>Web client for managing Apex engines</description>
+	<inceptionYear>2015</inceptionYear>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-services.client</artifactId>
+		<version>0.7.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	
+	<properties>
+		<jersey.version>2.25.1</jersey.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-services.client-editor</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-services.client-monitoring</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-services.client-deployment</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-http</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+		<resources>
+			<resource>
+	            <directory>src/main/resources</directory>
+	            <includes>
+	                <include>webapp/**/*.*</include>
+	            </includes>
+	        </resource>
+	        <resource>
+	            <directory>../apex-services.client-monitoring/src/main/resources/webapp</directory>
+	            <includes>
+	                <include>**/*.*</include>
+	            </includes>
+	            <targetPath>webapp/monitoring</targetPath>
+	        </resource>
+	        <resource>
+	            <directory>../apex-services.client-editor/src/main/resources/webapp</directory>
+	            <includes>
+	                <include>**/*.*</include>
+	            </includes>
+	            <targetPath>webapp/editor</targetPath>
+	        </resource>
+	        <resource>
+	            <directory>../apex-services.client-deployment/src/main/resources/webapp</directory>
+	            <includes>
+	                <include>**/*.*</include>
+	            </includes>
+	            <targetPath>webapp/deployment</targetPath>
+	        </resource>
+		</resources>
+		
+		<defaultGoal>install</defaultGoal>
+		<outputDirectory>${project.build.directory}/classes</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<finalName>${project.artifactId}-uber-${project.version}</finalName>
+					<shadedArtifactAttached>true</shadedArtifactAttached>
+					<shadedClassifierName>full</shadedClassifierName>
+					<artifactSet>
+						<includes>
+							<include>*:*</include>
+						</includes>
+					</artifactSet>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>META-INF/*.SF</exclude>
+								<exclude>META-INF/*.DSA</exclude>
+								<exclude>META-INF/*.RSA</exclude>
+							</excludes>
+						</filter>
+					</filters>
+					<transformers>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+						<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>reference.conf</resource>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
+							<resource>log4j.properties</resource>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							<mainClass>com.ericsson.apex.services.client.full.rest.ApexServicesRestMain</mainClass>
+						</transformer>
+					</transformers>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<warSourceDirectory>target/classes/webapp</warSourceDirectory>
+					<webXml>src/main/resources/webapp/WEB-INF/web.xml</webXml>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/${project.artifactId}-${project.version}.war</file>
+                                    <type>war</type>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/${project.artifactId}-uber-${project.version}.jar</file>
+                                    <type>uber.jar</type>
+                                </artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

@@ -1,0 +1,45 @@
+path { 
+    //stroke: #5fbadd;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 90px;					
+    height: 42px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: white;	
+    border: 2px solid grey;
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+.apexChart {
+    display: inline-block;
+    position: relative;
+    width: 45%;
+    padding-bottom: 21%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.apexChart:nth-child(even) {
+    margin-left: 50px;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}

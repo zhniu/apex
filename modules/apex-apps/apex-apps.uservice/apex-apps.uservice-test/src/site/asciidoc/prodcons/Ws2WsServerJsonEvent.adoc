@@ -1,0 +1,4 @@
+[source%nowrap,json,subs="attributes+"]
+----
+include::{apex-apps-uservice-test-dir}/test/resources/prodcons/Ws2WsServerJsonEvent.json[]
+----

@@ -1,0 +1,8 @@
+== Scope
+
+
+[source,xtext,options="nowrap"]
+----
+include::{apex-auth-xtext-notepad-dir}/com/ericsson/apex/auth/xtext/apexnotepad/ApexNotepad.xtext[tags=contextalbumdeclscope,indent=0]
+----
+

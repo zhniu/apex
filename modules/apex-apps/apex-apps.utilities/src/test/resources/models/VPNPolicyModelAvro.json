@@ -1,0 +1,4022 @@
+{
+   "apexPolicyModel" : {
+      "key" : {
+         "name" : "VPNPolicyModelAvro",
+         "version" : "0.0.1"
+      },
+      "keyInformation" : {
+         "key" : {
+            "name" : "VPNKeyInformation",
+            "version" : "0.0.1"
+         },
+         "keyInfoMap" : {
+            "entry" : [ {
+               "key" : {
+                  "name" : "Action",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "Action",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "fbc5a40f-7f4b-4f5d-9fad-6c35cf59c451",
+                  "description" : "Generated description for concept referred to by key \"Action:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "AffectedCustomers",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "AffectedCustomers",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "fe4eb143-73fb-48fd-af6f-0710cb2831cf",
+                  "description" : "Generated description for concept referred to by key \"AffectedCustomers:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "CustomerMap",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "CustomerMap",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "9b415f93-6ddf-4a21-a292-4eef60609024",
+                  "description" : "Generated description for concept referred to by key \"CustomerMap:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "CustomerName",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "CustomerName",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "e284aa35-fb8c-4b82-acd6-1f9b49f4d2e1",
+                  "description" : "Generated description for concept referred to by key \"CustomerName:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "Link",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "Link",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "76d9c4b6-3f45-46b9-8734-84692072bd5f",
+                  "description" : "Generated description for concept referred to by key \"Link:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "LinkList",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "LinkList",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "727cb758-5454-4384-97fc-1c94380ae0c3",
+                  "description" : "Generated description for concept referred to by key \"LinkList:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "LinkMap",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "LinkMap",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "c5c40e85-ccd2-4ee1-92c6-03fea24cf5ec",
+                  "description" : "Generated description for concept referred to by key \"LinkMap:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "LinkUp",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "LinkUp",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "0380d89e-67bd-4a51-8b6b-3982dd359ea3",
+                  "description" : "Generated description for concept referred to by key \"LinkUp:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "ProblemStatus",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "ProblemStatus",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "763f269b-105e-429a-87c2-8ae4f24fdf27",
+                  "description" : "Generated description for concept referred to by key \"ProblemStatus:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "SlaDT",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "SlaDT",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "63b7d2e4-6948-421d-8ae3-c29561f3fb02",
+                  "description" : "Generated description for concept referred to by key \"SlaDT:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "Status",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "Status",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "4c3b766c-1f62-4417-b44b-f27aef2c6878",
+                  "description" : "Generated description for concept referred to by key \"Status:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "StatusChanged",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "StatusChanged",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "f7daaf69-25de-4b41-bcc1-612f49b052e2",
+                  "description" : "Generated description for concept referred to by key \"StatusChanged:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNActEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNActEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "e9158835-c742-4fbb-9b9a-b324c6a3d262",
+                  "description" : "Generated description for concept referred to by key \"VPNActEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNActTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNActTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "9be65623-f93d-4d92-8665-4327aff11c8c",
+                  "description" : "Generated description for concept referred to by key \"VPNActTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNContext",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNContext",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "eb61c3dc-2e6c-43ad-9fd6-a5d3452a761b",
+                  "description" : "Generated description for concept referred to by key \"VPNContext:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomer",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomer",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "465a607b-3255-48cc-848c-0902ca723e3c",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomer:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerAlbum",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "d2f8a9c6-1fb5-4eb9-a4eb-4cddf2f38522",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerAlbum:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtActEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtActEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "2bec9294-b7db-4eee-b478-4ccc8fbb687b",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtActEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtActTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtActTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "37085a10-dc06-4d6d-a4b0-7250be2388c6",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtActTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtDecideEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtDecideEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "b3b2ad44-1fa4-497d-a4aa-36c030831db2",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtDecideEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtDecideTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtDecideTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "82683aac-c864-455f-9470-681f760ac76d",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtDecideTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtEstablishEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtEstablishEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "8ca2927a-1935-4ac1-8694-08d3f7ace528",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtEstablishEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtEstablishTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtEstablishTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "37f225bb-d379-4bdf-8003-a91a51eca62c",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtEstablishTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtMatchEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtMatchEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "fc5fa063-9b65-4db5-8d52-425a674cd89d",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtMatchEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtMatchTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtMatchTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "35540989-d789-4d88-9dc0-c6667ee1bf7a",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtMatchTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtPolicy",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtPolicy",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "04f42cdc-80cb-4105-8d33-209c2e8724cb",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtPolicy:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtTriggerEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtTriggerEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "7adccebc-8b38-4d96-b997-82bf9c08d161",
+                  "description" : "Generated description for concept referred to by key \"VPNCustomerCtxtTriggerEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDatatypes",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDatatypes",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "ec24f150-ef01-4982-b826-ca303eb6efd1",
+                  "description" : "Generated description for concept referred to by key \"VPNDatatypes:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "42734d81-696f-4f01-849b-c22181026b0f",
+                  "description" : "Generated description for concept referred to by key \"VPNDecideEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecidePriorityTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecidePriorityTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "746c438a-248f-4e7b-af3f-30542446d05e",
+                  "description" : "Generated description for concept referred to by key \"VPNDecidePriorityTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideSLATask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideSLATask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "e7254bc6-f5c4-4834-8647-d7c58ccc94fa",
+                  "description" : "Generated description for concept referred to by key \"VPNDecideSLATask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideSolvedTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideSolvedTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "79b56e8e-00df-4fe3-95c1-9f36069ebd34",
+                  "description" : "Generated description for concept referred to by key \"VPNDecideSolvedTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "34ad50ae-9a9b-4021-ad03-7c583ec1f7c0",
+                  "description" : "Generated description for concept referred to by key \"VPNDecideTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNEstablishEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNEstablishEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "2853a43c-03a7-44e0-b7d4-0be625f994f0",
+                  "description" : "Generated description for concept referred to by key \"VPNEstablishEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNEstablishTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNEstablishTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "880d2666-59bb-453b-8bb5-72d5097f19d2",
+                  "description" : "Generated description for concept referred to by key \"VPNEstablishTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNEvents",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNEvents",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "f2b52dc8-b716-4d1c-b6f8-14417c59c0aa",
+                  "description" : "Generated description for concept referred to by key \"VPNEvents:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNKeyInformation",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNKeyInformation",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "95dd0733-b050-4709-91ac-5e7cb0f9da5e",
+                  "description" : "Generated description for concept referred to by key \"VPNKeyInformation:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLink",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLink",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "888ba2b7-f652-4321-b4ed-31d6bf9b9d64",
+                  "description" : "Generated description for concept referred to by key \"VPNLink:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkAlbum",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "1e0ca502-28bf-4216-b65e-fc5ae492aae7",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkAlbum:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtActEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtActEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "8852cb6b-375c-4a35-90ba-718c2b2d448c",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtActEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtActTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtActTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "64842d71-73b7-49a0-b0a9-64ada8fb326e",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtActTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtDecideEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtDecideEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "513de850-1632-4d34-8010-7483ef66c05b",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtDecideEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtDecideTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtDecideTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "4c57f936-d4de-4710-be48-05c749730d5f",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtDecideTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtEstablishEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtEstablishEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "912ea7d2-d9bf-4a8a-a70e-9a03fb0e13ac",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtEstablishEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtEstablishTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtEstablishTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "6ca7533b-34e1-44a2-abb4-a94bc6272ff6",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtEstablishTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtMatchEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtMatchEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "b2390652-dbe3-4d16-8f0b-b542e482b961",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtMatchEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtMatchTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtMatchTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "5ef9bb0b-d288-44d2-b48e-8488d2f7167f",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtMatchTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtPolicy",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtPolicy",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "b75b0680-2119-4bc4-8c87-52cfce2b30a8",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtPolicy:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtTriggerEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtTriggerEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "51729a3e-8321-40a7-a894-361cdb4cd057",
+                  "description" : "Generated description for concept referred to by key \"VPNLinkCtxtTriggerEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNMatchEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNMatchEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "1e9e7b84-8e6e-4ec9-bd03-c586ca14417e",
+                  "description" : "Generated description for concept referred to by key \"VPNMatchEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNMatchTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNMatchTask",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "dbb2ddba-e101-40e8-8a26-045adcc9d121",
+                  "description" : "Generated description for concept referred to by key \"VPNMatchTask:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNPolicies",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNPolicies",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "f67a0c3d-7da3-41d2-b977-db47c63fba42",
+                  "description" : "Generated description for concept referred to by key \"VPNPolicies:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNPolicy",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNPolicy",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "c4de535a-5f1b-4e3f-93e4-55eaa52b864b",
+                  "description" : "Generated description for concept referred to by key \"VPNPolicy:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNPolicyModelAvro",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNPolicyModelAvro",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "c9760747-bdd5-47fd-bf6b-37f094d33825",
+                  "description" : "Generated description for concept referred to by key \"VPNPolicyModelAvro:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNProblem",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNProblem",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "bd05b8e2-8549-48d5-9e99-654a89151a81",
+                  "description" : "Generated description for concept referred to by key \"VPNProblem:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNProblemAlbum",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "e632f06c-7971-49f7-8765-fea5b638cee6",
+                  "description" : "Generated description for concept referred to by key \"VPNProblemAlbum:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNTasks",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNTasks",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "513cb0a8-c2f6-4aec-8456-ab120e5c92d1",
+                  "description" : "Generated description for concept referred to by key \"VPNTasks:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNTriggerEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNTriggerEvent",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "cf380924-5e7f-4f85-b271-55097a99290c",
+                  "description" : "Generated description for concept referred to by key \"VPNTriggerEvent:0.0.1\""
+               }
+            }, {
+               "key" : {
+                  "name" : "YtdDT",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "YtdDT",
+                     "version" : "0.0.1"
+                  },
+                  "UUID" : "05522c72-fc3f-4da4-8c51-3694e23e58d9",
+                  "description" : "Generated description for concept referred to by key \"YtdDT:0.0.1\""
+               }
+            } ]
+         }
+      },
+      "policies" : {
+         "key" : {
+            "name" : "VPNPolicies",
+            "version" : "0.0.1"
+         },
+         "policyMap" : {
+            "entry" : [ {
+               "key" : {
+                  "name" : "VPNCustomerCtxtPolicy",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "policyKey" : {
+                     "name" : "VPNCustomerCtxtPolicy",
+                     "version" : "0.0.1"
+                  },
+                  "template" : "MEDA",
+                  "state" : {
+                     "entry" : [ {
+                        "key" : "Act",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNCustomerCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Act"
+                           },
+                           "trigger" : {
+                              "name" : "VPNCustomerCtxtDecideEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Act_NULL",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "Act_NULL"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNCustomerCtxtActEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "NULL",
+                                       "parentKeyVersion" : "0.0.0",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "NULL"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNCustomerCtxtActTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNCustomerCtxtActTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "VPNCustomerCtxtActTask_DIRECT_Act_NULL"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "Act_NULL"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Decide",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNCustomerCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Decide"
+                           },
+                           "trigger" : {
+                              "name" : "VPNCustomerCtxtEstablishEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Decide_Act",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNCustomerCtxtDecideEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Act"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNCustomerCtxtDecideTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNCustomerCtxtDecideTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "VPNCustomerCtxtDecideTask_DIRECT_Decide_Act"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Establish",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNCustomerCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Establish"
+                           },
+                           "trigger" : {
+                              "name" : "VPNCustomerCtxtMatchEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Establish_Decide",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "Establish_Decide"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNCustomerCtxtEstablishEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Decide"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNCustomerCtxtEstablishTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNCustomerCtxtEstablishTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "VPNCustomerCtxtEstablishTask_DIRECT_Establish_Decide"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "Establish_Decide"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Match",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNCustomerCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Match"
+                           },
+                           "trigger" : {
+                              "name" : "VPNCustomerCtxtTriggerEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Match_Establish",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "Match_Establish"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNCustomerCtxtMatchEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Establish"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNCustomerCtxtMatchTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNCustomerCtxtMatchTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "VPNCustomerCtxtMatchTask_DIRECT_Match_Establish"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNCustomerCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "Match_Establish"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     } ]
+                  },
+                  "firstState" : "Match"
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtPolicy",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "policyKey" : {
+                     "name" : "VPNLinkCtxtPolicy",
+                     "version" : "0.0.1"
+                  },
+                  "template" : "MEDA",
+                  "state" : {
+                     "entry" : [ {
+                        "key" : "Act",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNLinkCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Act"
+                           },
+                           "trigger" : {
+                              "name" : "VPNLinkCtxtDecideEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Act_NULL",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "Act_NULL"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNLinkCtxtActEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "NULL",
+                                       "parentKeyVersion" : "0.0.0",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "NULL"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNLinkCtxtActTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNLinkCtxtActTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "VPNLinkCtxtActTask_DIRECT_Act_NULL"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "Act_NULL"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Decide",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNLinkCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Decide"
+                           },
+                           "trigger" : {
+                              "name" : "VPNLinkCtxtEstablishEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Decide_Act",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNLinkCtxtDecideEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Act"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNLinkCtxtDecideTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNLinkCtxtDecideTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "VPNLinkCtxtDecideTask_DIRECT_Decide_Act"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Establish",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNLinkCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Establish"
+                           },
+                           "trigger" : {
+                              "name" : "VPNLinkCtxtMatchEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Establish_Decide",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "Establish_Decide"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNLinkCtxtEstablishEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Decide"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNLinkCtxtEstablishTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNLinkCtxtEstablishTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "VPNLinkCtxtEstablishTask_DIRECT_Establish_Decide"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "Establish_Decide"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Match",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNLinkCtxtPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Match"
+                           },
+                           "trigger" : {
+                              "name" : "VPNLinkCtxtTriggerEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Match_Establish",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "Match_Establish"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNLinkCtxtMatchEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Establish"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "NULL",
+                              "logicFlavour" : "UNDEFINED",
+                              "logic" : ""
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNLinkCtxtMatchTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNLinkCtxtMatchTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "VPNLinkCtxtMatchTask_DIRECT_Match_Establish"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNLinkCtxtPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "Match_Establish"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     } ]
+                  },
+                  "firstState" : "Match"
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNPolicy",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "policyKey" : {
+                     "name" : "VPNPolicy",
+                     "version" : "0.0.1"
+                  },
+                  "template" : "MEDA",
+                  "state" : {
+                     "entry" : [ {
+                        "key" : "Act",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Act"
+                           },
+                           "trigger" : {
+                              "name" : "VPNDecideEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Act_NULL",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "Act_NULL"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNActEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "NULL",
+                                       "parentKeyVersion" : "0.0.0",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "NULL"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "TaskSelectionLogic",
+                              "logicFlavour" : "MVEL",
+                              "logic" : "logger.debug(subject.id + \":\" + subject.stateName);\nsubject.defaultTaskKey.copyTo(selectedTask)\nlogger.debug(subject.id + \":\" + subject.stateName + \", using default task\" + subject.defaultTaskKey);\nreturn true;"
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNActTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNActTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "VPNActTask_DIRECT_Act_NULL"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Act",
+                                       "localName" : "Act_NULL"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Decide",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Decide"
+                           },
+                           "trigger" : {
+                              "name" : "VPNEstablishEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Decide_Act",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNDecideEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Act"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "TaskSelectionLogic",
+                              "logicFlavour" : "MVEL",
+                              "logic" : "logger.debug(subject.id + \":\" + subject.stateName);\nlogger.debug(inFields);\n\nString incomingLink = inFields[\"Link\"];\nString incomingProblemStatus = inFields[\"ProblemStatus\"];\n\n/* 0 label=VPNDecideTask */\n\nif (incomingLink.equals(\"L09\") && incomingProblemStatus.equals(\"NEWPROBLEM\")) {\n\tSystem.err.println(\"l9 NEWPROBLEM\");\n\tsubject.getTaskKey(\"VPNDecideSLATask\").copyTo(selectedTask);\n\treturn true;\n}\nelse if (incomingLink.equals(\"L09\") && inFields[\"ProblemStatus\"].equals(\"NEWSOLVED\")) {\n\tSystem.err.println(\"l9 NEWSOLVED\");\n\tsubject.getTaskKey(\"VPNDecideSolvedTask\").copyTo(selectedTask);\n\treturn true;\n}\nelse if (incomingLink.equals(\"L10\") && incomingProblemStatus.equals(\"NEWPROBLEM\")) {\n\tSystem.err.println(\"l10 NEWPROBLEM\");\n\tsubject.getTaskKey(\"VPNDecidePriorityTask\").copyTo(selectedTask);\n\treturn true;\n}\nelse if (incomingLink.equals(\"L10\") && incomingProblemStatus.equals(\"NEWSOLVED\")) {\n\tSystem.err.println(\"l10 NEWSOLVED\");\n\tsubject.getTaskKey(\"VPNDecideSolvedTask\").copyTo(selectedTask);\n\treturn true;\n}\nelse {\n\tsubject.defaultTaskKey.copyTo(selectedTask);\n\treturn true;\n}"
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNDecideTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNDecidePriorityTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "VPNDecidePriorityTask_DIRECT_Decide_Act"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    }
+                                 }
+                              }, {
+                                 "key" : {
+                                    "name" : "VPNDecideSLATask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "VPNDecideSLATask_DIRECT_Decide_Act"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    }
+                                 }
+                              }, {
+                                 "key" : {
+                                    "name" : "VPNDecideSolvedTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "VPNDecideSolvedTask_DIRECT_Decide_Act"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    }
+                                 }
+                              }, {
+                                 "key" : {
+                                    "name" : "VPNDecideTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "VPNDecideTask_DIRECT_Decide_Act"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Decide",
+                                       "localName" : "Decide_Act"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Establish",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Establish"
+                           },
+                           "trigger" : {
+                              "name" : "VPNMatchEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Establish_Decide",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "Establish_Decide"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNEstablishEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Decide"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "TaskSelectionLogic",
+                              "logicFlavour" : "MVEL",
+                              "logic" : "logger.debug(subject.id + \":\" + subject.stateName);\nsubject.defaultTaskKey.copyTo(selectedTask)\nlogger.debug(subject.id + \":\" + subject.stateName + \", using default task\" + subject.defaultTaskKey);\nreturn true;"
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNEstablishTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNEstablishTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "VPNEstablishTask_DIRECT_Establish_Decide"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Establish",
+                                       "localName" : "Establish_Decide"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     }, {
+                        "key" : "Match",
+                        "value" : {
+                           "stateKey" : {
+                              "parentKeyName" : "VPNPolicy",
+                              "parentKeyVersion" : "0.0.1",
+                              "parentLocalName" : "NULL",
+                              "localName" : "Match"
+                           },
+                           "trigger" : {
+                              "name" : "VPNTriggerEvent",
+                              "version" : "0.0.1"
+                           },
+                           "stateOutputs" : {
+                              "entry" : [ {
+                                 "key" : "Match_Establish",
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "Match_Establish"
+                                    },
+                                    "outgoingEvent" : {
+                                       "name" : "VPNMatchEvent",
+                                       "version" : "0.0.1"
+                                    },
+                                    "nextState" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "NULL",
+                                       "localName" : "Establish"
+                                    }
+                                 }
+                              } ]
+                           },
+                           "contextAlbumReference" : [ ],
+                           "taskSelectionLogic" : {
+                              "key" : "TaskSelectionLogic",
+                              "logicFlavour" : "MVEL",
+                              "logic" : "logger.debug(subject.id + \":\" + subject.stateName);\nsubject.defaultTaskKey.copyTo(selectedTask)\nlogger.debug(subject.id + \":\" + subject.stateName + \", using default task\" + subject.defaultTaskKey);\nreturn true;"
+                           },
+                           "stateFinalizerLogicMap" : {
+                              "entry" : [ ]
+                           },
+                           "defaultTask" : {
+                              "name" : "VPNMatchTask",
+                              "version" : "0.0.1"
+                           },
+                           "taskReferences" : {
+                              "entry" : [ {
+                                 "key" : {
+                                    "name" : "VPNMatchTask",
+                                    "version" : "0.0.1"
+                                 },
+                                 "value" : {
+                                    "key" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "VPNMatchTask_DIRECT_Match_Establish"
+                                    },
+                                    "outputType" : "DIRECT",
+                                    "output" : {
+                                       "parentKeyName" : "VPNPolicy",
+                                       "parentKeyVersion" : "0.0.1",
+                                       "parentLocalName" : "Match",
+                                       "localName" : "Match_Establish"
+                                    }
+                                 }
+                              } ]
+                           }
+                        }
+                     } ]
+                  },
+                  "firstState" : "Match"
+               }
+            } ]
+         }
+      },
+      "tasks" : {
+         "key" : {
+            "name" : "VPNTasks",
+            "version" : "0.0.1"
+         },
+         "taskMap" : {
+            "entry" : [ {
+               "key" : {
+                  "name" : "VPNActTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNActTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Action",
+                        "value" : {
+                           "key" : "Action",
+                           "fieldSchemaKey" : {
+                              "name" : "Action",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerMap",
+                        "value" : {
+                           "key" : "CustomerMap",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerMap",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkMap",
+                        "value" : {
+                           "key" : "LinkMap",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkMap",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import java.util.HashMap;\nimport org.apache.avro.generic.GenericRecord;\n\nlogger.debug(subject.id + \":\" + subject.taskName);\n\nSystem.err.println(inFields);\nlogger.debug(subject.id);\n\nSystem.err.println(\"*** Links ***\");\nfor (GenericRecord link: getContextAlbum(\"VPNLinkAlbum\").values()) {\n    System.err.println(link.get(\"linkName\") + \"\\t\" + link.get(\"active\"));\n}\n\nSystem.err.println(\"*** Customers ***\");\nfor (GenericRecord customer: getContextAlbum(\"VPNCustomerAlbum\").values()) {\n    System.err.println(\n    \t       customer.get(\"customerName\")  + \"\\t\" +\n\t\t       customer.get(\"slaDT\") + \"\\t\" +\n\t\t       customer.get(\"ytdDT\") + \"\\t\" + \n\t\t       customer.get(\"linksInUse\"));\n}\n\nHashMap linkMap = subject.getOutFieldSchemaHelper(\"LinkMap\").createNewInstance();\nlinkMap.putAll(getContextAlbum(\"VPNLinkAlbum\"));\noutFields[\"LinkMap\"] = linkMap;\n\nHashMap customerMap = subject.getOutFieldSchemaHelper(\"CustomerMap\").createNewInstance();\ncustomerMap.putAll(getContextAlbum(\"VPNCustomerAlbum\"));\noutFields[\"CustomerMap\"] = customerMap;\n\nSystem.err.println(\"outFields: \" + outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtActTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtActTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericData.Array;\nimport org.apache.avro.generic.GenericRecord;\nimport org.apache.avro.Schema;\n\nlogger.debug(subject.id);\nSystem.err.println(inFields);\n\nString vpnCustomerName = inFields[\"CustomerName\"];\nGenericRecord vpnCustomer = getContextAlbum(\"VPNCustomerAlbum\").get(vpnCustomerName);\nif (vpnCustomer == null) {\n\tvpnCustomer = getContextAlbum(\"VPNCustomerAlbum\").getSchemaHelper.createNewInstance();\n\tvpnCustomer.put(\"customerName\", vpnCustomerName)\n\tvpnCustomer.put(\"slaDT\",      0);\n\tvpnCustomer.put(\"ytdDT\",      0);\n\tvpnCustomer.put(\"linksInUse\", new Array(0, Schema.createArray(vpnCustomer.getSchema().getField(\"linksInUse\").schema())));\n}\nvpnCustomer.put(\"slaDT\", inFields[\"SlaDT\"]);\nvpnCustomer.put(\"ytdDT\", inFields[\"YtdDT\"]);\n\nfor (String usedLinkName: inFields[\"LinkList\"].split(\" \")) {\n\tGenericRecord vpnLink = getContextAlbum(\"VPNLinkAlbum\").get(usedLinkName);\n\tif (vpnLink != null) {\n\t\tvpnCustomer.get(\"linksInUse\").add(vpnLink.get(\"linkName\"));\n\t}\n\telse {\n\t\tSystem.err.println(\"unknown link \\\"\" + usedLinkName + \"\\\" specified on customer \\\"\" + vpnCustomerName + \"\\\"\");\n\t}\n}\n\ngetContextAlbum(\"VPNCustomerAlbum\").put(vpnCustomer.get(\"customerName\"), vpnCustomer);\n\nSystem.err.println(\"*** Customers ***\");\nfor (GenericRecord customer: getContextAlbum(\"VPNCustomerAlbum\").values()) {\n\tSystem.err.println(\n\t\t\tcustomer.get(\"customerName\")  + \"\\t\" +\n\t\t\tcustomer.get(\"slaDT\") + \"\\t\" +\n\t\t\tcustomer.get(\"ytdDT\") + \"\\t\" + \n\t\t\tcustomer.get(\"linksInUse\"));\n}\n\nString outLinkList = \"\";\nfor (String link : vpnCustomer.get(\"linksInUse\")) {\n\toutLinkList += link + \" \";\n}\n\noutFields[\"CustomerName\"] = vpnCustomer.get(\"customerName\");\noutFields[\"LinkList\"]     = outLinkList.trim();\noutFields[\"SlaDT\"]        = vpnCustomer.get(\"slaDT\");\noutFields[\"YtdDT\"]        = vpnCustomer.get(\"ytdDT\");\n\nSystem.err.println(\"outFields: \" + outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtDecideTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtDecideTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtEstablishTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtEstablishTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtMatchTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtMatchTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecidePriorityTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecidePriorityTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Action",
+                        "value" : {
+                           "key" : "Action",
+                           "fieldSchemaKey" : {
+                              "name" : "Action",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericRecord;\n\nlogger.debug(subject.id + \":\" + subject.taskName);\n\nlogger.debug(\"VPNDecidePriorityTask execution logic-Praveen\");\nlogger.debug(inFields);\noutFields[\"Link\"] = inFields[\"Link\"];\noutFields[\"Action\"] = \"Disconnect customers based on Priority\";\n\nArray affectedCustomersArray = subject.getOutFieldSchemaHelper(\"AffectedCustomers\").createNewInstance();\naffectedCustomersArray.add(\"A\");\noutFields[\"AffectedCustomers\"] = affectedCustomersArray;\n\nSystem.err.println(\"outFields: \" + outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideSLATask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideSLATask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Action",
+                        "value" : {
+                           "key" : "Action",
+                           "fieldSchemaKey" : {
+                              "name" : "Action",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericData.Array;\nimport org.apache.avro.generic.GenericRecord;\n\nlogger.debug(subject.id + \":\" + subject.taskName);\n\nSystem.err.println(inFields);\n\noutFields[\"Link\"] = inFields[\"Link\"];\noutFields[\"Action\"] = \"Disconnect customers based on SLA Agreement\";\n\nArray slaViolatedCustomerArray = subject.getOutFieldSchemaHelper(\"AffectedCustomers\").createNewInstance();\n\nSystem.err.println(\"cust\\tslaDT\\tytdDT\");\nfor (GenericRecord customer: getContextAlbum(\"VPNCustomerAlbum\").values()) {\n\tSystem.err.println(customer.get(\"customerName\") + \"\\t\" + customer.get(\"slaDT\") + \"\\t\" + customer.get(\"ytdDT\"));\n\n\tif (customer.get(\"ytdDT\") > customer.get(\"slaDT\")) {\n\t\tslaViolatedCustomerArray.add(customer.get(\"customerName\"));\n\t}\n}\n\nSystem.err.println(\"Customers whose SLAs are violated are:\" + slaViolatedCustomerArray);\n\noutFields[\"AffectedCustomers\"] = slaViolatedCustomerArray;\n\nSystem.err.println(\"outFields: \" + outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideSolvedTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideSolvedTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Action",
+                        "value" : {
+                           "key" : "Action",
+                           "fieldSchemaKey" : {
+                              "name" : "Action",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericRecord;\n\nlogger.debug(subject.id + \":\" + subject.taskName);\n\nSystem.err.println(inFields);\noutFields[\"Action\"] = \"Rebuild VPN for customers\";\noutFields[\"Link\"] = inFields[\"Link\"];\noutFields[\"AffectedCustomers\"] = inFields[\"AffectedCustomers\"];\n\n/* Get the problem-link-object for this link */\nString incomingLink = inFields[\"Link\"];\n\nGenericRecord vpnProblem = getContextAlbum(\"VPNProblemAlbum\").get(incomingLink);\n\nif (null != vpnProblem) {\n    /* Calculate the total down time from the problem-link-object */\n    long linkDownTimeinSecs = vpnProblem.get(\"endTime\") - vpnProblem.get(\"startTime\")/1000;\n    /* Get customers from Policy context and add to ytdDT */\n    for (GenericRecord customerName : vpnProblem.get(\"affectedCustomers\")) {\n    \tGenericRecord customer = getContextAlbum(\"VPNCustomerAlbum\").get(customerName);\n\t\tcustomer.put(\"ytdDT\", customer.get(\"ytdDT\") + linkDownTimeinSecs);\n    }\n}\n\n/* Remove the problem-link-object */\ngetContextAlbum(\"VPNProblemAlbum\").remove(incomingLink);\n\nSystem.err.println(\"outFields: \" + outFields);\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Action",
+                        "value" : {
+                           "key" : "Action",
+                           "fieldSchemaKey" : {
+                              "name" : "Action",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNEstablishTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNEstablishTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Status",
+                        "value" : {
+                           "key" : "Status",
+                           "fieldSchemaKey" : {
+                              "name" : "Status",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "StatusChanged",
+                        "value" : {
+                           "key" : "StatusChanged",
+                           "fieldSchemaKey" : {
+                              "name" : "StatusChanged",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericData.Array;\nimport org.apache.avro.generic.GenericRecord;\nimport org.apache.avro.Schema;\n\nlogger.debug(subject.getId() + \":\" + subject.getTaskName());\n\nSystem.err.println(inFields);\nString vpnLinkName = inFields[\"Link\"];\n\nGenericRecord vpnLink    = getContextAlbum(\"VPNLinkAlbum\")   .get(vpnLinkName);\nGenericRecord vpnProblem = getContextAlbum(\"VPNProblemAlbum\").get(vpnLinkName);\n\nString incomingStatus = inFields[\"Status\"];\nBoolean incomingStatusChanged = (Boolean)inFields[\"StatusChanged\"];\n\nif (incomingStatus.equalsIgnoreCase(\"DOWN\")) {\n\tvpnLink.put(\"active\", false);\n}\nelse {\n\tvpnLink.put(\"active\", true);\n}\n\nlong now = System.currentTimeMillis();\n\nArray affectedCustomerArray = subject.getOutFieldSchemaHelper(\"AffectedCustomers\").createNewInstance();\n\nif (incomingStatusChanged == false) {\n\toutFields[\"Link\"] = vpnLinkName;\n\tif (incomingStatus.equalsIgnoreCase(\"UP\")) {\n\t\toutFields[\"ProblemStatus\"] = \"NOPROBLEM\";\n\t\toutFields[\"AffectedCustomers\"] = affectedCustomerArray;\n\t}\n\telse if (incomingStatus.equalsIgnoreCase(\"DOWN\")) {\n\t\tfor (String customerName: vpnProblem.get(\"affectedCustomers\")) {\n\t\t\taffectedCustomerArray.add(customerName);\n\t\t}\n\t\toutFields[\"ProblemStatus\"] = \"STILLPROBLEM\";\n\t\toutFields[\"AffectedCustomers\"] = affectedCustomerArray;\n\t}\n\telse {\n\t\tSystem.err.println(\"VpnEstablishLogic: Unsupported link type!!!\" + vpnLinkName + \" \" + incomingStatus);\n\t}\n}\nelse if (incomingStatusChanged == true) {\n\t/* indicates new problem or new solution */\n\tif\t(incomingStatus.equalsIgnoreCase(\"UP\")) {\n\t\t/* A link that was down is now up */\n\t\tif (vpnProblem != null) {\n\t\t\tvpnProblem.put(\"endTime\", now);\n\t\t}\n\t\telse {\n\t\t\tSystem.err.println(\"VpnEstablishLogic: Link change to UP, but with no report of a previous problem!!!\" + vpnLinkName);\n\t\t}\n\t\tfor (String customerName: vpnProblem.get(\"affectedCustomers\")) {\n\t\t\taffectedCustomerArray.add(customerName);\n\t\t}\n\t\toutFields[\"Link\"] = vpnLinkName;\n\t\toutFields[\"AffectedCustomers\"] = affectedCustomerArray;\n\t\toutFields[\"ProblemStatus\"] = \"NEWSOLVED\";\n\t}\n\telse if (incomingStatus.equalsIgnoreCase(\"DOWN\")) {\n\t\t/* A link that was up is now down */\n\t\tif (vpnProblem == null) {\n\t\t\tvpnProblem = getContextAlbum(\"VPNProblemAlbum\").getSchemaHelper().createNewInstance();\n\t\t\tvpnProblem.put(\"problemName\", vpnLinkName);\n\t\t\tvpnProblem.put(\"startTime\",   now);\n\t\t\tvpnProblem.put(\"affectedCustomers\", new Array(0, Schema.createArray(vpnProblem.getSchema().getField(\"affectedCustomers\").schema())));\n\t\t\tgetContextAlbum(\"VPNProblemAlbum\").put(vpnLinkName, vpnProblem);\n\n\t\t\tfor (GenericRecord vpnCustomer : getContextAlbum(\"VPNCustomerAlbum\").values()) {\n\t\t\t\tif (vpnCustomer.get(\"linksInUse\").contains(vpnLinkName)) {\n\t\t\t\t\tvpnProblem.get(\"affectedCustomers\").add(vpnCustomer.get(\"customerName\"));\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tgetContextAlbum(\"VPNProblemAlbum\").put(vpnLinkName, vpnProblem);\n\n\t\t\tfor (String customerName: vpnProblem.get(\"affectedCustomers\")) {\n\t\t\t\taffectedCustomerArray.add(customerName);\n\t\t\t}\n\t\t\toutFields[\"Link\"] = vpnLinkName;\n\t\t\toutFields[\"AffectedCustomers\"] = affectedCustomerArray;\n\t\t\toutFields[\"ProblemStatus\"] = \"NEWPROBLEM\";\n\t\t}\n\t\telse {\n\t\t\tSystem.err.println(\"VpnEstablishLogic: Link change to DOWN, but with a report of a previous problem: \" + vpnLinkName + \" Not updating problem: \" + vpnProblem);\n\t\t\tfor (String customerName: vpnProblem.get(\"affectedCustomers\")) {\n\t\t\t\taffectedCustomerArray.add(customerName);\n\t\t\t}\n\t\t\toutFields[\"Link\"] = vpnLinkName;\n\t\t\toutFields[\"AffectedCustomers\"] = affectedCustomerArray;\n\t\t\toutFields[\"ProblemStatus\"] = \"STILLPROBLEM\";\n\t\t}\n\t}\n\telse {\n\t\tSystem.err.println(\"VpnEstablishLogic: Unsupported link type!!!\" +  vpnLinkName + \" \" + incomingStatus);\n\t}\n}\nelse {\n\tthrow new IllegalArgumentException(\"MatchEvent down time cannot be less than 0\");\n}\n\nSystem.err.println(\"outFields: \" + outFields);\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtActTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtActTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericRecord;\n\nlogger.debug(subject.id);\nSystem.err.println(inFields);\n\nString vpnLinkName = inFields[\"Link\"];\nGenericRecord vpnLink = getContextAlbum(\"VPNLinkAlbum\").get(vpnLinkName);\n\nif (vpnLink == null) {\n\tvpnLink = getContextAlbum(\"VPNLinkAlbum\").getSchemaHelper().createNewInstance();\n\tvpnLink.put(\"linkName\", vpnLinkName);\n\tvpnLink.put(\"active\",   true);\n\tgetContextAlbum(\"VPNLinkAlbum\").put(vpnLinkName, vpnLink);\n}\nvpnLink.put(\"active\", inFields[\"LinkUp\"])\n\nSystem.err.println(\"*** Links ***\");\nfor (GenericRecord link: getContextAlbum(\"VPNLinkAlbum\").values()) {\n\tSystem.err.println(link.get(\"linkName\") + \"\\t\" + link.get(\"active\"));\n}\n\noutFields[\"Link\"] = vpnLink.get(\"linkName\");\noutFields[\"LinkUp\"] = vpnLink.get(\"active\");\nSystem.err.println(\"outFields: \" + outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtDecideTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtDecideTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtEstablishTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtEstablishTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtMatchTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtMatchTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "logger.debug(subject.id + \":\" + subject.taskName);\nlogger.debug(inFields);\nlogger.debug(outFields);\n\nreturn true;"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNMatchTask",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNMatchTask",
+                     "version" : "0.0.1"
+                  },
+                  "inputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Status",
+                        "value" : {
+                           "key" : "Status",
+                           "fieldSchemaKey" : {
+                              "name" : "Status",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "outputFields" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Status",
+                        "value" : {
+                           "key" : "Status",
+                           "fieldSchemaKey" : {
+                              "name" : "Status",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "StatusChanged",
+                        "value" : {
+                           "key" : "StatusChanged",
+                           "fieldSchemaKey" : {
+                              "name" : "StatusChanged",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  },
+                  "taskParameters" : {
+                     "entry" : [ ]
+                  },
+                  "contextAlbumReference" : [ {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  }, {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  } ],
+                  "taskLogic" : {
+                     "key" : "TaskLogic",
+                     "logicFlavour" : "MVEL",
+                     "logic" : "import org.apache.avro.generic.GenericRecord;\n\nlogger.debug(subject.id + \":\" + subject.taskName);\nSystem.err.println(inFields);\n\nString vpnLinkName   = inFields[\"Link\"];\nString vpnLinkStatus = inFields[\"Status\"];\n\nGenericRecord vpnLink = getContextAlbum(\"VPNLinkAlbum\").get(vpnLinkName);\n\nif (vpnLink == null) {\n\tvpnLink = getContextAlbum(\"VPNLinkAlbum\").createItem();\n\tvpnLink.put(\"linkName\", vpnLinkName);\n\tgetContextAlbum(\"VPNLinkAlbum\").put(vpnLinkName, vpnLink);\n\n\t\n\tvpnLink = new VPNLink(vpnLinkName);\n\tgetContextAlbum(\"VPNLinkAlbum\").put(vpnLinkName, vpnLink);\n\tif (vpnLinkStatus.equalsIgnoreCase(\"DOWN\")) {\n\t\tvpnLink.put(\"active\", true);\n\t}\n\telse {\n\t\tvpnLink.put(\"active\", false);\n\t}\n}\n\nif (vpnLinkStatus.equalsIgnoreCase(\"DOWN\")) {\n\tif (vpnLinkName != null) {\n\t\tif (vpnLink.get(\"active\")) {\n\t\t\toutFields[\"StatusChanged\"] = true;\n\t\t}\n\t\telse {\n\t\t\toutFields[\"StatusChanged\"] = false;\n\t\t}\n\t\toutFields[\"Link\"]   = vpnLinkName;\n\t\toutFields[\"Status\"] = vpnLinkStatus;\n\t}\n\telse {\n\t\tSystem.err.println(\"match: trigger context error: link is null\");\n\t}\n}\nelse if (vpnLinkStatus.equalsIgnoreCase(\"UP\")) {\n\tif (vpnLinkName != null) {\n\t\tif (!vpnLink.get(\"active\")) {\n\t\t\toutFields[\"StatusChanged\"] = true;\n\t\t}\n\t\telse {\n\t\t\toutFields[\"StatusChanged\"] = false;\n\t\t}\n\t\toutFields[\"Link\"]   = vpnLinkName;\n\t\toutFields[\"Status\"] = vpnLinkStatus;\n\t}\n\telse {\n\t\tSystem.err.println(\"match: trigger context error: link is null\");\n\t}\n}\nelse {\n\tSystem.err.println(\"match: trigger context error: status neither UP nor DOWN\");\n}\n\nSystem.err.println(\"outFields: \" + outFields);\nreturn true;"
+                  }
+               }
+            } ]
+         }
+      },
+      "events" : {
+         "key" : {
+            "name" : "VPNEvents",
+            "version" : "0.0.1"
+         },
+         "eventMap" : {
+            "entry" : [ {
+               "key" : {
+                  "name" : "VPNActEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNActEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "CustomerMap",
+                        "value" : {
+                           "key" : "CustomerMap",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerMap",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkMap",
+                        "value" : {
+                           "key" : "LinkMap",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkMap",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtActEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtActEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtDecideEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtDecideEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtEstablishEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtEstablishEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtMatchEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtMatchEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomerCtxtTriggerEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerCtxtTriggerEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "CustomerName",
+                        "value" : {
+                           "key" : "CustomerName",
+                           "fieldSchemaKey" : {
+                              "name" : "CustomerName",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkList",
+                        "value" : {
+                           "key" : "LinkList",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkList",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "SlaDT",
+                        "value" : {
+                           "key" : "SlaDT",
+                           "fieldSchemaKey" : {
+                              "name" : "SlaDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "YtdDT",
+                        "value" : {
+                           "key" : "YtdDT",
+                           "fieldSchemaKey" : {
+                              "name" : "YtdDT",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNDecideEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNDecideEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Action",
+                        "value" : {
+                           "key" : "Action",
+                           "fieldSchemaKey" : {
+                              "name" : "Action",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNEstablishEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNEstablishEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "AffectedCustomers",
+                        "value" : {
+                           "key" : "AffectedCustomers",
+                           "fieldSchemaKey" : {
+                              "name" : "AffectedCustomers",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "ProblemStatus",
+                        "value" : {
+                           "key" : "ProblemStatus",
+                           "fieldSchemaKey" : {
+                              "name" : "ProblemStatus",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtActEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtActEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtDecideEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtDecideEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtEstablishEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtEstablishEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtMatchEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtMatchEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkCtxtTriggerEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkCtxtTriggerEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "LinkUp",
+                        "value" : {
+                           "key" : "LinkUp",
+                           "fieldSchemaKey" : {
+                              "name" : "LinkUp",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNMatchEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNMatchEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Status",
+                        "value" : {
+                           "key" : "Status",
+                           "fieldSchemaKey" : {
+                              "name" : "Status",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "StatusChanged",
+                        "value" : {
+                           "key" : "StatusChanged",
+                           "fieldSchemaKey" : {
+                              "name" : "StatusChanged",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNTriggerEvent",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNTriggerEvent",
+                     "version" : "0.0.1"
+                  },
+                  "nameSpace" : "com.ericsson.apex.domains.vpn.events",
+                  "source" : "Source",
+                  "target" : "Target",
+                  "parameter" : {
+                     "entry" : [ {
+                        "key" : "Link",
+                        "value" : {
+                           "key" : "Link",
+                           "fieldSchemaKey" : {
+                              "name" : "Link",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     }, {
+                        "key" : "Status",
+                        "value" : {
+                           "key" : "Status",
+                           "fieldSchemaKey" : {
+                              "name" : "Status",
+                              "version" : "0.0.1"
+                           }
+                        }
+                     } ]
+                  }
+               }
+            } ]
+         }
+      },
+      "albums" : {
+         "key" : {
+            "name" : "VPNContext",
+            "version" : "0.0.1"
+         },
+         "albums" : {
+            "entry" : [ {
+               "key" : {
+                  "name" : "VPNCustomerAlbum",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomerAlbum",
+                     "version" : "0.0.1"
+                  },
+                  "scope" : "GLOBAL",
+                  "isWritable" : true,
+                  "itemSchema" : {
+                     "name" : "VPNCustomer",
+                     "version" : "0.0.1"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLinkAlbum",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLinkAlbum",
+                     "version" : "0.0.1"
+                  },
+                  "scope" : "GLOBAL",
+                  "isWritable" : true,
+                  "itemSchema" : {
+                     "name" : "VPNLink",
+                     "version" : "0.0.1"
+                  }
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNProblemAlbum",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNProblemAlbum",
+                     "version" : "0.0.1"
+                  },
+                  "scope" : "GLOBAL",
+                  "isWritable" : true,
+                  "itemSchema" : {
+                     "name" : "VPNProblem",
+                     "version" : "0.0.1"
+                  }
+               }
+            } ]
+         }
+      },
+      "schemas" : {
+         "key" : {
+            "name" : "VPNDatatypes",
+            "version" : "0.0.1"
+         },
+         "schemas" : {
+            "entry" : [ {
+               "key" : {
+                  "name" : "Action",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "Action",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.String"
+               }
+            }, {
+               "key" : {
+                  "name" : "AffectedCustomers",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "AffectedCustomers",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Avro",
+                  "schemaDefinition" : "{\n\t\"type\": \"array\", \"items\": \"string\"}\n}"
+               }
+            }, {
+               "key" : {
+                  "name" : "CustomerMap",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "CustomerMap",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Avro",
+                  "schemaDefinition" : "{\n\t\"type\": \"map\", \"values\": {\n\t\t\"type\" : \"record\",\n\t\t\"name\" : \"VPNCustomer\",\n\t\t\"fields\" : [\n\t\t\t{\"name\" : \"customerName\", \"type\" : \"string\"},\n\t\t\t{\"name\" : \"slaDT\"       , \"type\" : \"int\"},\n\t\t\t{\"name\" : \"ytdDT\"       , \"type\" : \"int\"}\n\t\t\t]\n\t}\n}"
+               }
+            }, {
+               "key" : {
+                  "name" : "CustomerName",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "CustomerName",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.String"
+               }
+            }, {
+               "key" : {
+                  "name" : "Link",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "Link",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.String"
+               }
+            }, {
+               "key" : {
+                  "name" : "LinkList",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "LinkList",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.String"
+               }
+            }, {
+               "key" : {
+                  "name" : "LinkMap",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "LinkMap",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Avro",
+                  "schemaDefinition" : "{\n\t\"type\": \"map\", \"values\": {\n\t\t\"type\" : \"record\",\n\t\t\"name\" : \"VPNLink\",\n\t\t\"fields\" : [\n\t\t\t{\"name\": \"linkName\", \"type\": \"string\"},\n\t\t\t{\"name\": \"active\",   \"type\": \"boolean\"}\n\t\t\t]\n\t}\n}"
+               }
+            }, {
+               "key" : {
+                  "name" : "LinkUp",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "LinkUp",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.Boolean"
+               }
+            }, {
+               "key" : {
+                  "name" : "ProblemStatus",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "ProblemStatus",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.String"
+               }
+            }, {
+               "key" : {
+                  "name" : "SlaDT",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "SlaDT",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.Integer"
+               }
+            }, {
+               "key" : {
+                  "name" : "Status",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "Status",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.String"
+               }
+            }, {
+               "key" : {
+                  "name" : "StatusChanged",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "StatusChanged",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.Boolean"
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNCustomer",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNCustomer",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Avro",
+                  "schemaDefinition" : "{\n\t\"type\" : \"record\",\n\t\"name\" : \"VPNCustomer\",\n\t\"fields\" : [\n\t\t{\"name\" : \"customerName\", \"type\" : \"string\"},\n\t\t{\"name\" : \"slaDT\"       , \"type\" : \"int\"},\n\t\t{\"name\" : \"ytdDT\"       , \"type\" : \"int\"},\n\t\t{\n\t\t\t\"name\": \"linksInUse\",\n\t\t\t\"doc\": \"Links used by this customer\",\n\t\t\t\"type\": {\"type\"  : \"array\", \"items\" : \"string\"}\n\t\t}\n\t\t]\n}"
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNLink",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNLink",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Avro",
+                  "schemaDefinition" : "{\n\t\"type\" : \"record\",\n\t\"name\" : \"VPNLink\",\n\t\"fields\" : [\n\t\t{\"name\": \"linkName\", \"type\": \"string\"},\n\t\t{\"name\": \"active\",   \"type\": \"boolean\"}\n\t\t]\n}"
+               }
+            }, {
+               "key" : {
+                  "name" : "VPNProblem",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "VPNProblem",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Avro",
+                  "schemaDefinition" : "{\n\t\"type\" : \"record\",\n\t\"name\" : \"VPNProblem\",\n\t\"fields\" : [\n\t\t{\"name\": \"problemName\", \"type\": \"string\"},\n\t\t{\"name\": \"startTime\"  , \"type\": \"long\"},\n\t\t{\"name\": \"endTime\"    , \"type\": \"long\"},\n\t\t{\n\t\t\t\"name\": \"affectedCustomers\",\n\t\t\t\"doc\": \"customers affected by this problem\",\n\t\t\t\"type\": {\"type\"  : \"array\", \"items\" : \"string\"}\n\t\t}\n\t\t]\n}"
+               }
+            }, {
+               "key" : {
+                  "name" : "YtdDT",
+                  "version" : "0.0.1"
+               },
+               "value" : {
+                  "key" : {
+                     "name" : "YtdDT",
+                     "version" : "0.0.1"
+                  },
+                  "schemaFlavour" : "Java",
+                  "schemaDefinition" : "java.lang.Integer"
+               }
+            } ]
+         }
+      }
+   }
+}

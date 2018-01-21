@@ -1,0 +1,3 @@
+include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/event-protocols.adoc[]
+
+include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/ep-json.adoc[]

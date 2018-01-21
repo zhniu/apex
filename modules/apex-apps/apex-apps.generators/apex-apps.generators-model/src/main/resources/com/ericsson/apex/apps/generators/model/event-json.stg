@@ -1,0 +1,77 @@
+/*******************************************************************************
+ * COPYRIGHT (C) Ericsson 2016-2018
+ * 
+ * The copyright to the computer program(s) herein is the property of
+ * Ericsson Inc. The programs may be used and/or copied only with written
+ * permission from Ericsson Inc. or in accordance with the terms and
+ * conditions stipulated in the agreement/contract under which the
+ * program(s) have been supplied.
+ ******************************************************************************/
+
+
+/*
+ * Template for creating a template JSON event.
+ *
+ * @package    com.ericsson.apex.apps.generators.model
+ * @author     Sven van der Meer &lt;sven.van.der.meer@ericsson.com&gt;
+ */
+
+typeMap ::= [
+	"BOOLEAN":"###boolean: true, false###",
+	"BYTES":"###bytes###",
+	"DOUBLE":"###double: 0.0###",
+	"FLOAT":"###float: 0.0###",
+	"INT":"###integer: 0###",
+	"LONG":"###long: 0###",
+	"STRING":"\"###string###\"",
+	default:key
+]
+
+events(event) ::= <<
+<event:{e|<e>}; separator="\n\n">
+>>
+
+event(name, nameSpace, version, source, target, fields) ::= <<
+{
+	"name" : "<name>",
+	"nameSpace" : "<nameSpace>",
+	"version" : "<version>",
+	"source" : "<source>",
+	"target" : "<target>",
+	<fields:{field|<field>}; separator=",\n">
+}
+>>
+
+field(name, type) ::= <<
+"<name>" : <type>
+>>
+
+fieldTypeAtomic(type) ::= <<
+<typeMap.(type)>
+>>
+
+fieldTypeArray(array) ::= <<
+[
+	<typeMap.(array)>,
+	<typeMap.(array)>
+]
+>>
+
+fieldTypeEnum(symbols) ::= <<
+###Enum, one of <symbols>###
+>>
+
+fieldTypeMap(map) ::= <<
+{
+	"ID#1":
+		<map>,
+	"ID#n":
+		<map>
+}
+>>
+
+fieldTypeRecord(fields) ::= <<
+{
+	<fields:{field|<field>}; separator=",\n">
+}
+>>

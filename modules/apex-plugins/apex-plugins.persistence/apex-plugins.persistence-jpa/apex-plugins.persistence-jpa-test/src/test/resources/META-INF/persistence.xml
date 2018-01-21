@@ -1,0 +1,158 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+	<persistence-unit name="EclipselinkTest" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.CDATAConditioner</class>
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxReferenceKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.plugins.persistence.jpa.test.concepts.TestEntity</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex_test" />
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.logging.level"  value="INFO" />
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="HibernateTest">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.CDATAConditioner</class>
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxReferenceKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.plugins.persistence.test.concepts.TestEntity</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex_test" />
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="100" />
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="DAOTestEclipselink" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.CDATAConditioner</class>
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextSchema</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextSchemas</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextAlbum</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextAlbums</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxInputField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxOutputField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskSelectionLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateFinalizerLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateOutput</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateTaskReference</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicyModel</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex_test" />
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.logging.level"  value="INFO" />
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="DAOTestHibernate" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.CDATAConditioner</class>
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextSchema</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextSchemas</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextAlbum</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextAlbums</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxInputField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxOutputField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskSelectionLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateFinalizerLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateOutput</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateTaskReference</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicyModel</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex_test" />
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="100" />
+		</properties>
+	</persistence-unit>
+</persistence>
+

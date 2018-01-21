@@ -1,0 +1,8 @@
+== Policy in General
+
+The following publications discuss general policy aspects, such as
+
+* Policy as part of Autonomic Networks
+* Policy as part of a closed control loop, mainly COMPA
+* Policy and Semantics
+

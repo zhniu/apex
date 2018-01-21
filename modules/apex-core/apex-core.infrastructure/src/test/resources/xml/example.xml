@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testSchemaTypes xmlns="http://www.ericsson.com/testexampleschema">
+
+	<!-- Configuration for schemas. Schema revisions should increase lexically, 
+		with the highest schema revision being the highest lexically; Mappings will 
+		be generated towards the highest lexical schema from other schemas -->
+
+	<eventNamespace>http://www.ericsson.com/TestExampleSchema</eventNamespace>
+	<eventSchemaFile>xml/EventFormat.xsd</eventSchemaFile>
+
+	<!-- Cell Trace -->
+	<schemaType>
+		<name>celltrace</name>
+		<idLength>24</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>    <!-- in bits -->
+		<idInEvent>false</idInEvent>  <!-- true if the event ID is included in the event as a field -->
+		<paramPreamble>EVENT_PARAM_</paramPreamble>
+		<valuePreamble>EVENT_VALUE_</valuePreamble>
+		<schemaVersion>
+			<name>celltrace_11a_N11</name>
+			<xmlFile>xml/PmEvents_N11-L11A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>celltrace_12a_v3</name>
+			<xmlFile>xml/PmEvents_V3-L12A-R4A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+            <name>celltrace_12a_v5</name>
+            <xmlFile>xml/PmEvents_V5-L12A-R4A.xml</xmlFile>
+        </schemaVersion>
+		<schemaVersion>
+			<name>celltrace_12a_v7</name>
+			<xmlFile>xml/PmEvents_V7-L12A-R4B.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>celltrace_13a_aa11</name>
+			<xmlFile>xml/PmEvents_AA11_L13A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>celltrace_13a_ab3</name>
+			<xmlFile>xml/PmEvents_AB3-L13A.xml</xmlFile>
+		</schemaVersion>
+        <schemaVersion>
+            <name>celltrace_13b_ab8</name>
+            <xmlFile>xml/PmEvents_AB8-L13B.xml</xmlFile>
+        </schemaVersion>
+        <schemaVersion>
+            <name>celltrace_13b_ab10</name>
+            <xmlFile>xml/PmEvents_AB10-L13B.xml</xmlFile>
+        </schemaVersion>
+        <schemaVersion>
+            <name>celltrace_13b_ab11</name>
+            <xmlFile>xml/PmEvents_AB11-L13B_RenumberedAB10.xml</xmlFile>
+        </schemaVersion>
+	</schemaType>
+
+	<!-- CTUM -->
+	<schemaType>
+		<name>ctum</name>
+		<idLength>0</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>   <!-- in bits -->
+		<idInEvent>true</idInEvent>  <!-- true if the event ID is included in the event as a field -->
+		<schemaVersion>
+			<name>ctum_l11a</name>
+			<xmlFile>xml/CTUM_B-L11A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>ctum_ffv4_fiv13</name>
+			<xmlFile>xml/CTUM_B-FFV4_FIV13.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!-- EBM -->
+	<schemaType>
+		<name>ebm</name>
+		<idLength>8</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>   <!-- in bits -->
+		<idInEvent>true</idInEvent>  <!-- true if the event ID is included in the event as a field -->
+ 		<schemaVersion>
+			<name>ebm_10b</name>
+			<xmlFile>xml/EBM_E-L10B.xml</xmlFile>
+		</schemaVersion>
+<!--		<schemaVersion>
+			<name>ebm_11</name>
+			<xmlFile>xml/EBM_G-L11.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>ebm_11a</name>
+			<xmlFile>xml/EBM_H-L11A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>ebm_11b</name>
+			<xmlFile>xml/EBM_J-L11B.xml</xmlFile>
+		</schemaVersion>-->
+		<schemaVersion>
+			<name>ebm_12a</name>
+			<xmlFile>xml/EBM_K-L12A.xml</xmlFile>
+		</schemaVersion> 
+		<schemaVersion>
+			<name>ebm_13al</name>
+			<xmlFile>xml/EBM_L-L13A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>ebm_13a</name>
+			<xmlFile>xml/EBM_L1-L13A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>ebm_13am</name>
+			<xmlFile>xml/EBM_M-L13A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>ebm_13b</name>
+			<xmlFile>xml/EBM_N1-L13B.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!-- SGW -->
+	<schemaType>
+		<name>sgw</name>
+		<idLength>8</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>   <!-- in bits -->
+		<idInEvent>true</idInEvent>  <!-- true if the event ID is included in the event as a field -->
+<!-- 		<schemaVersion>
+			<name>sgw_10a</name>
+			<xmlFile>xml/SGW_A-L10A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>sgw_11b</name>
+			<xmlFile>xml/SGW_D-L11B.xml</xmlFile>
+		</schemaVersion> -->
+		<schemaVersion>
+			<name>sgw_12a</name>
+			<xmlFile>xml/SGW_D-L12A.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>sgw_13a</name>
+			<xmlFile>xml/SGW_E-L13A.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!-- GPEH -->
+	<schemaType>
+		<name>gpeh</name>
+		<idLength>11</idLength>      <!-- in bits -->
+		<idStartPos>52</idStartPos>  <!-- in bits -->
+		<idInEvent>true</idInEvent>  <!-- true if the event ID is included in the event as a field -->
+		<paramPreamble>EVENT_PARAM_</paramPreamble>
+		<valuePreamble>EVENT_VALUE_</valuePreamble>
+<!-- 		<schemaVersion>
+			<name>gpeh_10b</name>
+			<xmlFile>xml/GPEH_BU-L10B_transformed.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>gpeh_11b</name>
+			<xmlFile>xml/GPEH_CH-L11B_transformed.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>gpeh_11hk</name>
+			<xmlFile>xml/GPEH_CF2-L11HK_transformed.xml</xmlFile>
+		</schemaVersion> -->
+		<schemaVersion>
+			<name>gpeh_W12b</name>
+			<xmlFile>xml/GPEH_CH4_W12B_transformed.xml</xmlFile>
+		</schemaVersion> 
+		<schemaVersion>
+			<name>gpeh_W11a</name>
+			<xmlFile>xml/GPEH_BY4-W11A_transformed.xml</xmlFile>
+		</schemaVersion>
+        <schemaVersion>
+            <name>gpeh_W13a</name>
+            <xmlFile>xml/GPEH_CN1_W13A_transformed.xml</xmlFile>
+        </schemaVersion>
+		<schemaVersion>
+			<name>gpeh_W12b</name>
+			<xmlFile>xml/GPEH_CH4_W12B_transformed.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>gpeh_W13a</name>
+			<xmlFile>xml/GPEH_CN1_W13A_transformed.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>gpeh_W13b</name>
+			<xmlFile>xml/GPEH_CV_W13B_transformed.xml</xmlFile>
+		</schemaVersion>
+        <schemaVersion>
+            <name>gpeh_W13bcx</name>
+            <xmlFile>xml/GPEH_CX1_W13B_transformed.xml</xmlFile>
+        </schemaVersion>
+	</schemaType>
+
+	<!-- Correlation -->
+	<schemaType>
+		<name>correlation</name>
+		<idLength>0</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>   <!-- in bits -->
+		<idInEvent>false</idInEvent> <!-- true if the event ID is included in the event as a field -->
+		<schemaVersion>
+			<name>correlation_11b</name>
+			<xmlFile>xml/CorrelatedEvents_PA1.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!-- PECT -->
+	<schemaType>
+		<name>pect</name>
+		<idLength>24</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>    <!-- in bits -->
+		<idInEvent>false</idInEvent>  <!-- true if the event ID is included in the event as a field -->
+		<paramPreamble>EVENT_PARAM_</paramPreamble>
+		<valuePreamble>EVENT_VALUE_</valuePreamble>
+		<schemaVersion>
+			<name>pect_pa2_L14B</name>
+			<xmlFile>xml/PECT_PA2_L14B.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>pect_pa3</name>
+			<xmlFile>xml/PECT_PA3.xml</xmlFile>
+		</schemaVersion>
+		<schemaVersion>
+			<name>pect_pa4</name>
+			<xmlFile>xml/PECT_PA4.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!-- Correlation Internal -->
+	<schemaType>
+		<name>internal</name>
+		<idLength>0</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>   <!-- in bits -->
+		<idInEvent>false</idInEvent> <!-- true if the event ID is included in the event as a field -->
+		<schemaVersion>
+			<name>internal_pa1</name>
+			<xmlFile>xml/Internal_Correlation_PA1.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!-- KPI-UTRAN -->
+	<schemaType>
+		<name>utran_r_kpi</name>
+		<idLength>0</idLength>       <!-- in bits -->
+		<idStartPos>0</idStartPos>   <!-- in bits -->
+		<idInEvent>false</idInEvent> <!-- true if the event ID is included in the event as a field -->
+		<schemaVersion>
+			<name>utran_r_kpi_pa1</name>
+			<xmlFile>xml/KPIEvents_PA1.xml</xmlFile>
+		</schemaVersion>
+	</schemaType>
+
+	<!--  Delimiter Separated Variable -->
+    <schemaType>
+        <name>dsv</name>
+        <idLength>0</idLength>       <!-- in bits -->
+        <idStartPos>0</idStartPos>   <!-- in bits -->
+        <idInEvent>false</idInEvent> <!-- true if the event ID is included in the event as a field -->
+        <schemaVersion>
+            <name>dsv_pa1</name>
+            <xmlFile>xml/DSVEvents_PA1.xml</xmlFile>
+        </schemaVersion>
+    </schemaType>
+</testSchemaTypes>

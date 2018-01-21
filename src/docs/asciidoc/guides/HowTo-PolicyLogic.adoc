@@ -1,0 +1,24 @@
+= APEX HowTo: Policy Logic
+John Keeney <john.keeney@ericsson.com>
+
+:revdate: 2017-08-10
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A HowTo write policy logic
+:keywords: APEX, documentation, policy, logic, task, task selection
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/task-logic.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/task-selection-logic.adoc[]

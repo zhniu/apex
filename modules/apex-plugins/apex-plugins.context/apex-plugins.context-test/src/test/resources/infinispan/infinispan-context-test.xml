@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan xmlns="urn:infinispan:config:8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:infinispan:config:8.0 http://infinispan.org/schemas/infinispan-config-8.0.xsd">
+	<jgroups>
+		<stack-file name="tcpStack" path="infinispan/apex-jgroups-tcp.xml" />
+	</jgroups>
+
+	<cache-container name="ApexCacheContainer" default-cache="LTypeContextAlbum_0.0.1">
+        <transport cluster="apexCluster" stack="tcpStack" />
+		<jmx />
+		<replicated-cache name="LTypeContextAlbum_0.0.1" mode="SYNC" statistics="true">
+			<state-transfer enabled="true" />
+		</replicated-cache>
+	</cache-container>
+</infinispan>

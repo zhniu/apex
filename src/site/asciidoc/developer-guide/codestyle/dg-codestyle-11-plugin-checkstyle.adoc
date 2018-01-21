@@ -1,0 +1,1 @@
+include::{apex-model-buildtools-dir}/site/asciidoc/11-plugin-checkstyle.adoc[]

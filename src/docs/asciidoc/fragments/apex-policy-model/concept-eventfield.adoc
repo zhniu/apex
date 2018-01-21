@@ -1,0 +1,9 @@
+== Concept: EventField
+
+The incoming context and outgoing context of an event are the fields of the event.
+Each field representing a single piece of incoming or outgoing context.
+Each field of an __Event__ is represented by an instance of the __EventField__ concept.
+Each __EventField__ concept instance in an event is keyed with a `ReferenceKey` key, which references the event.
+The __LocalName__ field of the `ReferenceKey` holds the name of the field
+A reference to a __DataType__ concept defines the data type that values of this parameter have at run time.
+

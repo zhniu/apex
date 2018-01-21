@@ -1,0 +1,21 @@
+logger.debug("AutoLearnDecideTask5: inFields:" + inFields);
+java.util.Random rand = new java.util.Random(System.currentTimeMillis());
+double MIN = -100.0;
+double MAX = 100.0;
+double WANT = 50.0;
+
+double inval = (Double)(inFields["MonitoredValue"]);
+double ret = inval;
+///////////////
+double diff = (-1.0/5.0) * (Math.abs(inval - WANT));
+///////////////
+ret = inval + diff;
+if (ret > MAX)
+	ret = MAX;
+if (ret < MIN)
+	ret = MIN;
+
+outFields["MonitoredValue"] = ret;
+outFields["LastMonitoredValue"] = inval;
+logger.debug("AutoLearnDecideTask5: outFields:" + outFields);
+return true;

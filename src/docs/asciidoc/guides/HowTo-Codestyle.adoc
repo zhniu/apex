@@ -1,0 +1,52 @@
+= APEX HowTo: Codestyle for Java Projects
+Liam Fallon <liam.fallon@ericsson.com>, Sven van_der_Meer <sven.van.der.meer@ericsson.com>
+
+:revdate: 2017-07-31
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A HowTo on codestyle and Eclipse/Maven configuration for checks
+:keywords: APEX, documentation, codestyle, javadoc, codecheck, jautodoc, Eclipse, Maven
+:experimental:
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/01-introduction.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/02-rules.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/10-plugin-jautodoc.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/11-plugin-checkstyle.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/20-configure-eclipse-templates.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/21-configure-jautodoc-templates.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/30-configure-checkstyle-maven.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/31-run-checkstyle-maven.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/32-configure-checkstyle-eclipse.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/33-configure-checkstyle-blueprint.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/40-use-eclipse-source-operations.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/41-using-jautodoc.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/42-using-checkstyle.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/50-disable-eclispe-formatting.adoc[]
+
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/51-supress-checkstyle.adoc[]
+	

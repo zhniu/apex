@@ -1,0 +1,291 @@
+/*******************************************************************************
+ * COPYRIGHT (C) Ericsson 2016-2018
+ * 
+ * The copyright to the computer program(s) herein is the property of
+ * Ericsson Inc. The programs may be used and/or copied only with written
+ * permission from Ericsson Inc. or in accordance with the terms and
+ * conditions stipulated in the agreement/contract under which the
+ * program(s) have been supplied.
+ ******************************************************************************/
+
+package com.ericsson.apex.service.engine.main;
+
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+
+import com.ericsson.apex.core.infrastructure.messaging.impl.ws.RawMessageHandler;
+import com.ericsson.apex.core.infrastructure.threading.ApplicationThreadFactory;
+import com.ericsson.apex.core.infrastructure.threading.ThreadUtilities;
+import com.ericsson.apex.model.basicmodel.concepts.ApexException;
+import com.ericsson.apex.service.engine.event.ApexEvent;
+import com.ericsson.apex.service.engine.event.ApexEventConsumer;
+import com.ericsson.apex.service.engine.event.ApexEventException;
+import com.ericsson.apex.service.engine.event.ApexEventProtocolConverter;
+import com.ericsson.apex.service.engine.event.ApexEventReceiver;
+import com.ericsson.apex.service.engine.event.SynchronousEventCache;
+import com.ericsson.apex.service.engine.event.impl.EventConsumerFactory;
+import com.ericsson.apex.service.engine.event.impl.EventProtocolFactory;
+import com.ericsson.apex.service.parameters.engineservice.EngineServiceParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+
+/**
+ * This event unmarshaler handles events coming into Apex, handles threading, event queuing, transformation and receiving using the configured receiving
+ * technology.
+ *
+ * @author Liam Fallon (liam.fallon@ericsson.com)
+ */
+public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
+    // Get a reference to the logger
+    private static final XLogger LOGGER = XLoggerFactory.getXLogger(RawMessageHandler.class);
+
+    // Interval to wait between thread shutdown checks
+    private static final int UNMARSHALLER_SHUTDOWN_WAIT_INTERVAL = 10;
+
+    // The amount of time to wait between polls of the event queue in milliseconds
+    private static final long EVENT_QUEUE_POLL_INTERVAL = 20;
+
+    // The name of the unmarshaler
+    private final String name;
+
+    // The engine service and consumer parameters
+    private final EngineServiceParameters engineServiceParameters;
+    private final EventHandlerParameters consumerParameters;
+
+    // The engine service handler to use for forwarding on of unmarshalled events
+    private ApexEngineServiceHandler engineServiceHandler;
+
+    // Apex event producer and event converter, all events are sent as string representations
+    private ApexEventConsumer consumer;
+    private ApexEventProtocolConverter converter;
+
+    // Temporary event holder for events going into Apex
+    private final BlockingQueue<ApexEvent> queue = new LinkedBlockingQueue<>();
+
+    // The unmarshaler thread and stopping flag
+    private Thread unmarshallerThread = null;
+    private boolean stopOrderedFlag = false;
+
+    /**
+     * Create the unmarshaler.
+     *
+     * @param name the name of the unmarshaler
+     * @param engineServiceParameters the engine service parameters for this Apex engine
+     * @param consumerParameters the consumer parameters for this specific unmarshaler
+     */
+    public ApexEventUnmarshaller(final String name, final EngineServiceParameters engineServiceParameters, final EventHandlerParameters consumerParameters) {
+        this.name = name;
+        this.engineServiceParameters = engineServiceParameters;
+        this.consumerParameters = consumerParameters;
+    }
+
+    /**
+     * Configure the consumer and initialize the thread for event sending.
+     *
+     * @param incomingEngineServiceHandler the Apex engine service handler for passing events to Apex
+     * @throws ApexActivatorException on errors initializing the producer
+     * @throws ApexEventException on errors initializing event handling
+     */
+    public void init(final ApexEngineServiceHandler incomingEngineServiceHandler) throws ApexActivatorException, ApexEventException {
+        this.engineServiceHandler = incomingEngineServiceHandler;
+
+        // Create the consumer for sending events and the converter for transforming events
+        consumer = new EventConsumerFactory().createConsumer(name, consumerParameters);
+        consumer.init(this.name, this.consumerParameters, this);
+
+        converter = new EventProtocolFactory().createConverter(name, consumerParameters.getEventProtocolParameters());
+    }
+
+    /**
+     * Start the unmarshaler and consumer threads.
+     */
+    public void start() {
+        // Start the consumer
+        consumer.start();
+
+        // Configure and start the event reception thread
+        final String threadName = engineServiceParameters.getEngineKey().getName() + ":" + this.getClass().getName() + ":" + name;
+        unmarshallerThread = new ApplicationThreadFactory(threadName).newThread(this);
+        unmarshallerThread.setDaemon(true);
+        unmarshallerThread.start();
+    }
+
+    /**
+     * Gets the name of the unmarshaler.
+     *
+     * @return the unmarshaler name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets the technology specific consumer for this unmarshaler.
+     *
+     * @return the consumer
+     */
+    public ApexEventConsumer getConsumer() {
+        return consumer;
+    }
+
+    /**
+     * Gets the event protocol converter for this unmarshaler.
+     *
+     * @return the event protocol converter
+     */
+    public ApexEventProtocolConverter getConverter() {
+        return converter;
+    }
+
+    /**
+     * Connect a synchronous unmarshaler with a synchronous marshaler.
+     * 
+     * @param synchronousMarshaller the synchronous marshaler to connect with
+     */
+    public void connectSynchronousMarshaler(final ApexEventMarshaller synchronousMarshaller) {
+        // To connect a synchronous unmarshaler and marshaler, we create a synchronous event cache on the consumer/producer pair
+        new SynchronousEventCache(consumer, synchronousMarshaller.getProducer(), consumerParameters.getSynchronousTimeout());
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.ericsson.apex.service.engine.event.ApexEventReceiver#receiveEvent(java.lang.String, java.lang.Object)
+     */
+    @Override
+    public void receiveEvent(final String eventName, final Object event) throws ApexEventException {
+        receiveEvent(0, eventName, event, true);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.ericsson.apex.service.engine.event.ApexEventReceiver#receiveEvent(long, java.lang.String, java.lang.Object)
+     */
+    @Override
+    public void receiveEvent(final long executionId, final String eventName, final Object event) throws ApexEventException {
+        receiveEvent(executionId, eventName, event, false);
+    }
+
+    /**
+     * Receive an event from a consumer, convert its protocol and forward it to Apex.
+     *
+     * @param executionId the execution id the incoming execution ID
+     * @param eventName the user's event name, not used by Apex
+     * @param event the event in its native format
+     * @param generateExecutionId if true, let Apex generate the execution ID, if false, use the incoming execution ID
+     * @throws ApexEventException on unmarshaling errors on events
+     */
+    private void receiveEvent(final long executionId, final String eventName, final Object event, final boolean generateExecutionId) throws ApexEventException {
+        // Push the event onto the queue
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("onMessage(): event {} received: {}", eventName, event.toString());
+        }
+
+        // Convert the incoming events to Apex events
+        try {
+            final List<ApexEvent> apexEventList = converter.toApexEvent(event);
+            for (ApexEvent apexEvent : apexEventList) {
+                // Check if we are filtering events on this unmarshaler, if so check the event name against the filter
+                if (consumerParameters.isSetEventNameFilter() && !apexEvent.getName().matches(consumerParameters.getEventNameFilter())) {
+                    if (LOGGER.isTraceEnabled()) {
+                        LOGGER.trace("onMessage(): event {} not processed, filtered  out by filter", apexEvent, consumerParameters.getEventNameFilter());
+                    }
+
+                    // Ignore this event
+                    continue;
+                }
+
+                if (!generateExecutionId) {
+                    apexEvent.setExecutionID(executionId);
+                }
+
+                // Enqueue the event
+                queue.add(apexEvent);
+
+                // Cache synchronized events that are sent
+                if (consumerParameters.isSynchronousMode()) {
+                    consumer.getSynchronousEventCache().cacheSynchronizedEventToApex(apexEvent.getExecutionID(), apexEvent);
+                }
+            }
+        }
+        catch (ApexException e) {
+            String errorMessage = "Error while converting event \"" + eventName + "\" into an ApexEvent for " + name + ": " + e.getMessage() + ", Event="
+                    + event;
+            LOGGER.warn(errorMessage, e);
+            throw new ApexEventException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Run a thread that runs forever (well until system termination anyway) and listens for incoming events on the queue.
+     */
+    @Override
+    public void run() {
+        // Run until interruption
+        while (unmarshallerThread.isAlive() && !stopOrderedFlag) {
+            try {
+                // Take the next event from the queue
+                final ApexEvent apexEvent = queue.poll(EVENT_QUEUE_POLL_INTERVAL, TimeUnit.MILLISECONDS);
+                if (apexEvent == null) {
+                    continue;
+                }
+
+                if (LOGGER.isTraceEnabled()) {
+                    LOGGER.trace("event received {}", apexEvent.toString());
+                }
+
+                // Pass the event to the activator for forwarding to Apex
+                engineServiceHandler.forwardEvent(apexEvent);
+            }
+            catch (final InterruptedException e) {
+                LOGGER.warn("BatchProcessor thread interrupted, Reason {}", e.getMessage());
+                break;
+            }
+            catch (final Exception e) {
+                LOGGER.warn("Error while forwarding events for " + unmarshallerThread.getName(), e);
+                continue;
+            }
+        }
+
+        // Stop event production
+        consumer.stop();
+    }
+
+    /**
+     * Get the unmarshaler thread.
+     *
+     * @return the unmarshaler thread
+     */
+    public Thread getThread() {
+        return unmarshallerThread;
+    }
+
+    /**
+     * Stop the Apex event unmarshaller's event producer using its termination mechanism.
+     */
+    public void stop() {
+        LOGGER.entry("shutting down Apex event unmarshaller . . .");
+
+        // Order the stop
+        stopOrderedFlag = true;
+
+        // Order a stop on the synchronous cache if one exists
+        if (consumerParameters != null && consumerParameters.isSynchronousMode()) {
+            if (consumer.getSynchronousEventCache() != null) {
+                consumer.getSynchronousEventCache().stop();
+            }
+        }
+
+        // Wait for thread shutdown
+        while (unmarshallerThread != null && unmarshallerThread.isAlive()) {
+            ThreadUtilities.sleep(UNMARSHALLER_SHUTDOWN_WAIT_INTERVAL);
+        }
+
+        LOGGER.exit("shut down Apex event unmarshaller");
+    }
+}

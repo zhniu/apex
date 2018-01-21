@@ -1,0 +1,17 @@
+== Configure the Javascript Executor
+
+The Javascript executor is added to the configuration as follows:
+
+[source%nowrap,json]
+----
+"engineServiceParameters":{
+  "engineParameters":{
+    "executorParameters":{
+      "JAVASCRIPT":{
+        "parameterClassName" :
+        "com.ericsson.apex.plugins.executor.javascript.JavascriptExecutorParameters"
+      }
+    }
+  }
+}
+----

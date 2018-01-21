@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+	<body>
+		<menu name="APEX Domains: My First Policy">
+			<item href="MyFirstPolicyHowto.html" name="HowTo: My First Policy" collapse="true">
+				<item href="02-data-models.html" name="Data Models">
+					<item href="021-data-models-input-event.html" name="Sales Input Event" />
+					<item href="022-data-models-decision-event.html" name="Sales Decision Event" />
+					<item href="023-data-models-stock-items.html" name="Stock Items" />
+					<item href="024-data-models-assistants.html" name="Assistants" />
+					<item href="025-data-models-location-branches.html" name="Location: Branches" />
+				</item>
+				<item href="03-policy-step1.html" name="Policy Step 1">
+					<item href="031-s1-scenario.html" name="Scenario" />
+					<item href="032-s1-new-model.html" name="New Policy Model" />
+					<item href="033-s1-new-events.html" name="Events" />
+					<item href="034-s1-new-policy.html" name="New Policy" />
+					<item href="035-s1-test-policy.html" name="Test the Policy" />
+					<item href="036-s1-clieditor.html" name="CLI Editor File" />
+				</item>
+				<item href="04-policy-step2.html" name="Policy Step 2">
+					<item href="041-s2-scenario.html" name="Scenario" />
+					<item href="042-s2-extend-model.html" name="Extend Policy Model" />
+					<item href="043-s2-test-policy.html" name="Test the Policy" />
+					<item href="044-s2-clieditor.html" name="CLI Editor File" />
+				</item>
+			</item>
+			<item href="javadocs/index.html" name="API Doc" />
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="My First Policy" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

@@ -1,0 +1,59 @@
+{
+    "nameSpace": "com.ericsson.apex.domains.vpn.events",
+    "name": "VPNTriggerEvent",
+    "version": "0.0.1",
+    "source": "VPNSLA",
+    "target" : "Apex",
+    "Link": "L10",
+    "Status": "DOWN"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.vpn.events",
+    "name": "VPNTriggerEvent",
+    "version": "0.0.1",
+    "source": "VPNSLA",
+    "target" : "Apex",
+    "Link": "L10",
+    "Status": "DOWN"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.vpn.events",
+    "name": "VPNTriggerEvent",
+    "version": "0.0.1",
+    "source": "VPNSLA",
+    "target" : "Apex",
+    "Link": "L10",
+    "Status": "UP"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.vpn.events",
+    "name": "VPNTriggerEvent",
+    "version": "0.0.1",
+    "source": "VPNSLA",
+    "target" : "Apex",
+    "Link": "L10",
+    "Status": "UP"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.vpn.events",
+    "name": "VPNTriggerEvent",
+    "version": "0.0.1",
+    "source": "VPNSLA",
+    "target" : "Apex",
+    "Link": "L10",
+    "Status": "DOWN"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.vpn.events",
+    "name": "VPNTriggerEvent",
+    "version": "0.0.1",
+    "source": "VPNSLA",
+    "target" : "Apex",
+    "Link": "L10",
+    "Status": "UP"
+}

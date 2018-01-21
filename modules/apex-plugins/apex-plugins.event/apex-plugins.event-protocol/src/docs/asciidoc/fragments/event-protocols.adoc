@@ -1,0 +1,21 @@
+== Event Protocols, Format and Encoding
+
+Event protocols define what event formats APEX can receive (input) and should send (output).
+They can be used in any combination for input and output, unless further restricted by a carrier technology plugin (for instance for JMS output).
+There can only be 1 event protocol per event plugin.
+
+Supported _input_ event protocols are:
+
+- XML, the event as an XML string
+- JSON, the event as a JSON string
+- JMS object, the event as a JMS object,
+- JMS text, the event as a JMS text
+
+Supported _output_ event protocols are:
+
+- XML, the event as an XML string
+- JSON, the event as a JSON string
+- JMS object, the event as a JMS object,
+- JMS text, the event as a JMS text
+
+New event protocols can be added as plugins to APEX or developed outside APEX and added to an APEX deployment.

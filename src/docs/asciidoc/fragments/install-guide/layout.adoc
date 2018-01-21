@@ -1,0 +1,43 @@
+== Installation Layout
+A full installation of APEX comes with the following layout.
+
+----
+$APEX_HOME
+    ├───bin					<1>
+    ├───etc					<2>
+    │   ├───editor
+    │   ├───hazelcast
+    │   ├───infinispan
+    │   └───META-INF
+    ├───examples			<3>
+    │   ├───config			<4>
+    │   │   ├───AADM
+    │   │   ├───Adaptive
+    │   │   ├───SampleDomain
+    │   │   └───VPN
+    │   ├───events			<5>
+    │   │   ├───AADM
+    │   │   ├───Adaptive
+    │   │   ├───SampleDomain
+    │   │   └───VPN
+    │   ├───models			<6>
+    │   │   ├───AADM
+    │   │   ├───Adaptive
+    │   │   ├───SampleDomain
+    │   │   └───VPN
+    │   └───scripts			<7>
+    ├───lib					<8>
+    │   └───applications	<9>
+    └───war					<10>
+----
+<1> binaries, mainly scripts (bash and bat) to start the APEX engine and applications
+<2> configuration files, such as loGback (logging) and third party library configurations
+<3> example policy models to get started: AADM use case, Adaptive Policy, simple Sample Domain, and a VPN policy
+<4> configurations for the examples
+<5> example events for the examples
+<6> the policy models, generated for each example
+<7> some scripts for the examples
+<8> the library folder with all Java JAR files
+<9> applications, also known as jar with dependencies (or fat jars), individually deployable
+<10> WAR files for web applications
+

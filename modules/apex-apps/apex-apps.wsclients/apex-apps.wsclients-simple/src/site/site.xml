@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Apps WS Simple">
+	<body>
+		<menu name="APEX Apps WS Simple">
+			<item href="clients.html" name="Simple Websocket Clients" />
+			<item href="run-console.html" name="Run Console Client" />
+			<item href="run-echo.html" name="Run Echo Client" />
+
+			<item href="javadocs/index.html" name="API Doc" />
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Simple" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

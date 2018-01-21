@@ -1,0 +1,3 @@
+= HowTo: My First Policy
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/01-introduction.adoc[]

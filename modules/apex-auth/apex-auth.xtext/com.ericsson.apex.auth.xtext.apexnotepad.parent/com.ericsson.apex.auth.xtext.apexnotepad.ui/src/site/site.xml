@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Auth XText Notepad - UI">
+	<body>
+		<menu name="APEX Auth XText Notepad - UI">
+			<item href="javadocs/index.html" name="API Doc" />
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Notepad - UI" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

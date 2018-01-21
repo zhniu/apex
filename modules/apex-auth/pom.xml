@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>apex-auth</artifactId>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<url>${apex.site.prefix}/site/modules/${project.artifactId}</url>
+	<description>Policy, state, and task authoring for Apex.</description>
+	<inceptionYear>2015</inceptionYear>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex</artifactId>
+		<version>0.7.0</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>apexDefault</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>apex-auth.cli-editor</module>
+				<module>apex-auth.cli-codegen</module>
+				<module>apex-auth.xtext-utilities</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>apexXtext</id>
+			<activation>
+				<property>
+					<name>apexXtext</name>
+				</property>
+			</activation>
+			<modules>
+				<module>apex-auth.cli-editor</module>
+				<module>apex-auth.cli-codegen</module>
+				<module>apex-auth.xtext-utilities</module>
+				<module>apex-auth.xtext/com.ericsson.apex.auth.xtext.apexnotepad.parent</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

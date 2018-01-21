@@ -1,0 +1,5 @@
+== Resources
+
+* The full link:https://ericsson.github.io/apex/site[APEX Documentation including Installation Guide, User Guide and API documentation]
+* The link:https://github.com/Ericsson/apex[APEX source code on Github]
+* List of link:https://ericsson.github.io/apex/site/apex-technical/apex-publications.html[APEX related publications]

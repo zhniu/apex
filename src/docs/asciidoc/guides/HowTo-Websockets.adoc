@@ -1,0 +1,42 @@
+= APEX HowTo: Websockets
+Sven van_der_Meer <sven.van.der.meer@ericsson.com>
+
+:revdate: 2017-07-25
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A HowTo connect Websocket Consumer and Producer to APEX
+:keywords: APEX, documentation, Websocket
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ws-intro.adoc[]
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ws-java.adoc[]
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ws-foss.adoc[]
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/engine-config-bcp.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-00.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-01-vpn-wsconfig.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-02-start-engine.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-03-start-echo-client.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-04-start-console-client.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-05-send-events.adoc[]
+

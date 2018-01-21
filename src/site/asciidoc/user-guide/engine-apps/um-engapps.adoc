@@ -1,0 +1,1 @@
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/introduction.adoc[]

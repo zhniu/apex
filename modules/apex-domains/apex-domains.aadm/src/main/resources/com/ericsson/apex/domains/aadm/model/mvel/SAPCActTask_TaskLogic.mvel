@@ -1,0 +1,60 @@
+import com.ericsson.apex.domains.aadm.concepts.IMSIStatus;
+
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+logger.debug(inFields);
+
+if (inFields["IMSI"] == null) {
+	outFields["IMSI"] = 0;
+}
+else {
+	outFields["IMSI"] = inFields["IMSI"];
+}
+
+if (outFields["IMSI"] == 0 && inFields["IMSI_IP"] != null && inFields["IMSI_IP"].equals("0")) {
+	// no action arrived
+	outFields["IMSI"] = 0;
+	outFields["PROFILE"] = "none";
+	outFields["BLACKLIST_ON"] = false;
+	outFields["PROBE_ON"]     = false;
+	return true;
+}
+
+IMSIStatus imsiStatus = getContextAlbum("IMSIStatusAlbum").get((String)inFields["IMSI"]);
+logger.debug(imsiStatus);
+
+if (imsiStatus.getBlockingCount() > 1) {
+	outFields["IMSI"] = 0;
+	outFields["PROFILE"] = "none";
+	outFields["BLACKLIST_ON"] = false;
+	outFields["PROBE_ON"]     = false;
+
+	return true;
+}
+
+if (imsiStatus.getBlockingCount() > 0 && imsiStatus.getBlacklistedTime() != 0) {
+	outFields["IMSI"] = 0;
+	outFields["PROFILE"] = "none";
+	outFields["BLACKLIST_ON"] = false;
+	outFields["PROBE_ON"]     = false;
+
+	return true;
+}
+
+imsiStatus.incrementBlockingCount();
+imsiStatus.setBlacklistedTime(System.currentTimeMillis());
+
+logger.debug("Bocking count for IMSI: " + imsiStatus.getIMSI() + " is: " + imsiStatus.getBlockingCount());
+getContextAlbum("IMSIStatusAlbum").put(imsiStatus.getIMSI(), imsiStatus);
+
+outFields["PROFILE"] = "ServiceA";
+outFields["BLACKLIST_ON"] = true;
+outFields["PROBE_ON"]     = false;
+
+if (imsiStatus.getBlockingCount() > 1) {
+	logger.debug("POLICY SAPCPolicy - blacklisting imsi: " + outFields["IMSI"] + " permanently");
+}
+else {
+	logger.debug("POLICY SAPCPolicy - blacklisting imsi: " + outFields["IMSI"] + " temporary for 120000 ms");
+}
+
+return true;

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE configuration>
+<configuration debug="false">
+    <contextName>Apex</contextName>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+    <property name="VAR_LOG" value="/var/log/ericsson/apex/" />
+
+    <!-- USE FOR STD OUT ONLY -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d %contextName [%t] %level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${VAR_LOG}/apex.log</file>
+        <encoder>
+            <pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+                %logger{26} - %msg %n %ex{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CTXT_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${VAR_LOG}/apex_ctxt.log</file>
+        <encoder>
+            <pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+                %logger{26} - %msg %n %ex{full}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.ericsson.apex" level="info" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="com.ericsson.apex" level="info" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="com.ericsson.apex.core.context.monitoring" level="TRACE"
+        additivity="false">
+        <appender-ref ref="CTXT_FILE" />
+    </logger>
+</configuration>

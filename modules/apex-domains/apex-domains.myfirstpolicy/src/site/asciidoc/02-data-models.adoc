@@ -1,0 +1,1 @@
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/02-data-models.adoc[]

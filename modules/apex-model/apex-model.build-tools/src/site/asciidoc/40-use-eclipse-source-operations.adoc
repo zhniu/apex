@@ -1,0 +1,1 @@
+include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/40-use-eclipse-source-operations.adoc[]

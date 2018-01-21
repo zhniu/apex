@@ -1,0 +1,1 @@
+include::{apex-plugins-executor-dir}/docs/asciidoc/fragments/executors.adoc[]

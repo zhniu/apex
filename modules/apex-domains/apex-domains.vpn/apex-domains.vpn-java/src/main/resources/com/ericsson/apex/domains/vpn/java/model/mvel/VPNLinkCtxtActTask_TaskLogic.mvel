@@ -1,0 +1,24 @@
+import com.ericsson.apex.domains.vpn.java.concepts.VPNLink;
+
+logger.debug(subject.id);
+System.err.println(inFields);
+
+String vpnLinkName = inFields["Link"];
+VPNLink vpnLink = getContextAlbum("VPNLinkAlbum").get(vpnLinkName);
+if (vpnLink == null) {
+    vpnLink = new VPNLink(vpnLinkName);
+    getContextAlbum("VPNLinkAlbum").put(vpnLinkName, vpnLink);
+}
+vpnLink.setActive(inFields["LinkUp"]);
+
+System.err.println("*** Links ***");
+for (VPNLink link: getContextAlbum("VPNLinkAlbum").values()) {
+    System.err.println(link.getName() + "\t" + link.getActive());
+}
+
+outFields["Link"] = vpnLink.getName();
+outFields["LinkUp"] = vpnLink.getActive();
+System.err.println("outFields: " + outFields);
+
+return true;
+	

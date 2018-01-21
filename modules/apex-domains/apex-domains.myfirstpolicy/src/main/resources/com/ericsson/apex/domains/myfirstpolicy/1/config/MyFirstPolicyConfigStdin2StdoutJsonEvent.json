@@ -1,0 +1,35 @@
+{
+	"engineServiceParameters":{
+		"name"          : "MyFirstPolicyApexEngine",
+		"version"        : "0.0.1",
+		"id"             :  101,
+		"instanceCount"  : 4,
+		"deploymentPort" : 12345,
+		"policyModelFileName" : "MyFirstPolicyModel_0.0.1.json",
+		"engineParameters"    : {
+			"executorParameters":{
+				"MVEL" : {
+					"parameterClassName" : "com.ericsson.apex.plugins.executor.mvel.MVELExecutorParameters"
+				}
+			}
+		}
+	},
+	"producerCarrierTechnologyParameters":{
+		"carrierTechnology" : "FILE",
+		"parameters" : {
+			"standardIO" : true
+		}
+	},
+	"producerEventProtocolParameters":{
+		"eventProtocol" : "JSON"
+	},
+	"consumerCarrierTechnologyParameters":{
+		"carrierTechnology" : "FILE",
+		"parameters" : {
+			"standardIO" : true
+		}
+	},
+	"consumerEventProtocolParameters":{
+		"eventProtocol" : "JSON"
+	}
+}

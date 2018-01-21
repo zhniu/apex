@@ -1,0 +1,42 @@
+= APEX HowTo: Engine and Applications
+Sven van_der_Meer <sven.van.der.meer@ericsson.com>
+
+:revdate: 2017-07-26
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A HowTo use the APEX engine and the APEX applications
+:keywords: APEX, documentation, engine, applications, editors
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/introduction.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/engine.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/cli-editor.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/rest-editor.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/eng-monitoring.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/eng-deployment.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/full-client.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/application-launcher.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-tpl-event-json.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-model-2-cli.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-ws.adoc[]

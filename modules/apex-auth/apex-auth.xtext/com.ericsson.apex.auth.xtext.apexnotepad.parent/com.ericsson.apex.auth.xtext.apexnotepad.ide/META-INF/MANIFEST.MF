@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.ericsson.apex.auth.xtext.apexnotepad.ide
+Bundle-Vendor: Ericsson NM-Lab
+Bundle-Version: 0.7.0
+Bundle-SymbolicName: com.ericsson.apex.auth.xtext.apexnotepad.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.ericsson.apex.auth.xtext.apexnotepad,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.ericsson.apex.auth.xtext.apexnotepad.ide.contentassist.antlr.internal,
+ com.ericsson.apex.auth.xtext.apexnotepad.ide.contentassist.antlr
+

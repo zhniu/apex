@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<url>${apex.site.prefix}/site/modules/apex-plugins/apex-plugins.executor/${project.parent.artifactId}/${project.artifactId}/</url>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-plugins.executor-test</artifactId>
+		<version>0.7.0</version>
+	</parent>
+
+	<artifactId>apex-plugins.executor-test-script</artifactId>
+	<name>${project.artifactId}</name>
+	<description>[${project.parent.artifactId}] module to run executor tests using various executor script plugins</description>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-core.infrastructure</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-context.test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-testdomain</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-mvel</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-jruby</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-jython</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-javascript</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-java</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.13.1.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

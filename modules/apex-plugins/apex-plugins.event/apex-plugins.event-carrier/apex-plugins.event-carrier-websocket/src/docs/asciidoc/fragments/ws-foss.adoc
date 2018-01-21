@@ -1,0 +1,15 @@
+== Websocket Example Code for Websocket clients (FOSS)
+
+There are a lot of implementations and examples available on Github for Websocket clients.
+If one is using Java EE 7, then one can also use the native Websocket implementation.
+Good examples for clients using simply Java SE are here:
+
+- link:https://github.com/TooTallNate/Java-WebSocket[Websocket implementation]
+- link:https://github.com/TooTallNate/Java-WebSocket/blob/master/src/main/example/ChatClient.java[Websocket sending client example, using AWT]
+- link:https://github.com/TooTallNate/Java-WebSocket/blob/master/src/main/example/ExampleClient.java[Websocket receiving client example (simple echo client)]
+
+For Java EE, the native Websocket API is explained here:
+
+- link:http://www.oracle.com/technetwork/articles/java/jsr356-1937161.html[Oracle docs]
+- link: http://www.programmingforliving.com/2013/08/jsr-356-java-api-for-websocket-client-api.html[An example]
+

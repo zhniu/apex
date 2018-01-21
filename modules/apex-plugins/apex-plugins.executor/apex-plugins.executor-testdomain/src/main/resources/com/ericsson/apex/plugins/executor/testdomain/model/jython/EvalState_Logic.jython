@@ -1,0 +1,5 @@
+executor.logger.debug('id: ' + executor.subject.id);
+
+executor.subject.defaultTaskKey.copyTo(executor.selectedTask);
+
+returnValue = executor.TRUE;

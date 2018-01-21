@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:annox="http://annox.dev.java.net"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+	version="2.1">
+
+	<!--jaxb:globalBindings generateIsSetMethod="true">
+		<xjc:serializable uid="1" />
+		<xjc:javaType name="java.lang.String" xmlType="xs:string"
+			adapter="com.ericsson.apex.core.model.xml.StringTrimAdapter" />
+	</jaxb:globalBindings-->
+
+	<jaxb:bindings schemaLocation="apex-event.xsd" node="/xs:schema">
+		<jaxb:bindings node="xs:complexType[@name='XMLApexEvent']"> <annox:annotate> 
+			<annox:annotate annox:class="java.lang.SuppressWarnings" value="all" /> </annox:annotate> 
+			</jaxb:bindings>
+	</jaxb:bindings>
+</jaxb:bindings>

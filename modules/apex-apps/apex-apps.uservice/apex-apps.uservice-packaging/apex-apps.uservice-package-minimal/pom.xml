@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<url>${apex.site.prefix}/site/modules/apex-apps/apex-apps.uservice/${project.parent.artifactId}/${project.artifactId}/</url>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-apps.uservice-packaging</artifactId>
+		<version>0.7.0</version>
+	</parent>
+
+	<artifactId>apex-apps.uservice-package-minimal</artifactId>
+	<name>${project.artifactId}</name>
+	<description>[${project.parent.artifactId}] packaging, a bare bones Apex package</description>
+
+	<properties>
+		<install.package.name>apex-uservice-minimal</install.package.name>
+	</properties>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-services.engine</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- For the packaging, we'll include all these optional dependencies so that everything is included in the package, a more refined packaging strategy can be taken later -->
+
+		<!-- Plugins for Context Schemas -->
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.context-schema-avro</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Plugins for Executors -->
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.executor-mvel</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Build the tar ball -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-complete-tar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/package/tarball/assembly.xml</descriptor>
+							</descriptors>
+							<finalName>${install.package.name}-${project.version}</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<untar src="${project.build.directory}/${install.package.name}-${project.version}-tarball.tar.gz" dest="${project.build.directory}/install_hierarchy" compression="gzip" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>fix-permissions</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<chmod file="${project.build.directory}/install_hierarchy/bin/*" perm="755" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Build the dpkg distribution -->
+			<plugin>
+				<groupId>org.vafer</groupId>
+				<artifactId>jdeb</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jdeb</goal>
+						</goals>
+						<configuration>
+							<deb>${project.build.directory}/${install.package.name}-${project.version}.deb</deb>
+							<controlDir>${basedir}/src/main/package/control</controlDir>
+							<dataSet>
+								<!-- Copy the Apex run time configuration -->
+								<data>
+									<src>${project.build.directory}/install_hierarchy/lib</src>
+									<type>directory</type>
+									<dst>lib</dst>
+									<mapper>
+										<type>perm</type>
+										<prefix>/opt/ericsson/apex/${install.package.name}-${project.version}/lib</prefix>
+										<filemode>755</filemode>
+									</mapper>
+								</data>
+								<data>
+									<src>${project.build.directory}/install_hierarchy/bin</src>
+									<type>directory</type>
+									<dst>etc</dst>
+									<mapper>
+										<type>perm</type>
+										<prefix>/opt/ericsson/apex/${install.package.name}-${project.version}/bin</prefix>
+									</mapper>
+								</data>
+								<data>
+									<src>${project.build.directory}/install_hierarchy/etc</src>
+									<type>directory</type>
+									<dst>etc</dst>
+									<mapper>
+										<type>perm</type>
+										<prefix>/opt/ericsson/apex/${install.package.name}-${project.version}/etc</prefix>
+									</mapper>
+								</data>
+							</dataSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>Linux</id>
+			<activation>
+				<os>
+					<family>Linux</family>
+				</os>
+			</activation>
+			<build>
+				<plugins>
+					<!-- Build the rpm distribution -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>rpm-maven-plugin</artifactId>
+						<version>2.1-alpha-3</version>
+						<extensions>true</extensions>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>rpm</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<name>${install.package.name}</name>
+							<copyright>2015 Ericsson AB All rights reserved</copyright>
+							<distribution>${project.parent.artifactId}</distribution>
+							<group>ERI-APEX</group>
+							<packager>Ericsson</packager>
+							<prefix>/opt/ericsson/apex</prefix>
+							<changelogFile>src/rpm/changelog</changelogFile>
+							<needarch>noarch</needarch>
+							<targetVendor>redhat</targetVendor>
+							<targetOS>linux</targetOS>
+							<version>${project.version}</version>
+							<defineStatements>
+								<defineStatement>install_dir /opt/ericsson/apex</defineStatement>
+							</defineStatements>
+							<mappings>
+								<mapping>
+									<directory>/opt/ericsson/apex/${install.package.name}-${project.version}/lib</directory>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<location>${project.build.directory}/install_hierarchy/lib</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/ericsson/apex/${install.package.name}-${project.version}/bin</directory>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<location>${project.build.directory}/install_hierarchy/bin</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/ericsson/apex/${install.package.name}-${project.version}/etc</directory>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<location>${project.build.directory}/install_hierarchy/etc</location>
+										</source>
+									</sources>
+								</mapping>
+							</mappings>
+							<preinstallScriptlet>
+								<scriptFile>src/main/package/control/preinst</scriptFile>
+							</preinstallScriptlet>
+							<postinstallScriptlet>
+								<scriptFile>src/main/package/control/postinst</scriptFile>
+							</postinstallScriptlet>
+							<preremoveScriptlet>
+								<scriptFile>src/main/package/control/prerm</scriptFile>
+							</preremoveScriptlet>
+							<postremoveScriptlet>
+								<scriptFile>src/main/package/control/postrm</scriptFile>
+							</postremoveScriptlet>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.4.0</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>sh</executable>
+							<arguments>
+								<argument>-c</argument>
+								<argument>cp \
+									${project.build.directory}/rpm/${install.package.name}/RPMS/noarch/${install.package.name}-${project.version}*.noarch.rpm \
+									\
+									${project.build.directory}/${install.package.name}-${project.version}.rpm</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+                         <version>3.0.0</version>
+						<executions>
+							<execution>
+								<id>attach-artifacts</id>
+								<phase>package</phase>
+								<goals>
+									<goal>attach-artifact</goal>
+								</goals>
+								<configuration>
+									<artifacts>
+										<artifact>
+											<file>${project.build.directory}/${install.package.name}-${project.version}.rpm</file>
+											<type>rpm</type>
+										</artifact>
+									</artifacts>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

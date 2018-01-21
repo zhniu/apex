@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Plugins Context Distribution">
+	<body>
+		<menu name="APEX Plugins Context Distribution">
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Distribution" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

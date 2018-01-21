@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Plugins Persistence">
+	<body>
+		<menu name="APEX Plugins Persistence">
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Persistence" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

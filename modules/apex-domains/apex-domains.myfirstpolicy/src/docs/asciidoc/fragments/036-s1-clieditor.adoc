@@ -1,0 +1,10 @@
+=== Policy 1 in CLI Editor
+
+An equivalent version of the `MyFirstPolicyModel` policy model can again be generated using the Apex CLI editor.
+A sample Apex CLI script is shown below:
+
+.APEX CLI Editor code for Policy 1
+[source,apex,options="nowrap"]
+----
+include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/models/MyFirstPolicy/1/MyFirstPolicyModel_0.0.1.apex[APEX CLI Editor code for Policy 1]
+----

@@ -1,0 +1,1 @@
+include::{apex-model-buildtools-dir}/site/asciidoc/51-supress-checkstyle.adoc[]

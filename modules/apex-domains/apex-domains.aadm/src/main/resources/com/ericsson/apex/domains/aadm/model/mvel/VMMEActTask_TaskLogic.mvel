@@ -1,0 +1,25 @@
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+logger.debug(inFields);
+
+outFields["TRIGGER_SPEC"] = "vMMEThresholdEvent";
+outFields["MAJ_MIN_MAINT_VERSION"] = "0.0.1";
+
+if (outFields["IMSI"] == null) {
+	outFields["IMSI"] = 0;
+}
+
+if (outFields["ENODEB_ID"] == null) {
+	outFields["ENODEB_ID"] = 0;
+}
+
+if (outFields["IMSI_IP"] == null) {
+	outFields["IMSI_IP"] = "";
+}
+
+if (outFields["NW_IP"] == null) {
+	outFields["NW_IP"] = "";
+}
+
+outFields["PROFILE"] = "ServiceA";
+outFields["THRESHOLD"] = 20;
+return true;

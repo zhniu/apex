@@ -1,0 +1,1 @@
+include::{apex-plugins-executor-jython-dir}/docs/asciidoc/fragments/jython-config.adoc[]

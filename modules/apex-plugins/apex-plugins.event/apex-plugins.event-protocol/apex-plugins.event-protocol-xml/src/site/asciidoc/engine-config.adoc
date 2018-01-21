@@ -1,0 +1,1 @@
+include::{apex-plugins-event-protocol-xml-dir}/docs/asciidoc/fragments/ep-xml.adoc[]

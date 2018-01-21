@@ -1,0 +1,9 @@
+== All Grammar Rules
+
+
+[source,xtext,options="nowrap"]
+----
+include::{apex-auth-xtext-notepad-dir}/com/ericsson/apex/auth/xtext/apexnotepad/ApexNotepad.xtext[tags=lexer,indent=0]
+----
+
+

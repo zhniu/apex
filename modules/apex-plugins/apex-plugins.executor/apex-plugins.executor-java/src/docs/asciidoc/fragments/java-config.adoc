@@ -1,0 +1,17 @@
+== Configure the Java Executor
+
+The Java executor is added to the configuration as follows:
+
+[source%nowrap,json]
+----
+"engineServiceParameters":{
+  "engineParameters":{
+    "executorParameters":{
+      "JAVA":{
+        "parameterClassName" :
+        "com.ericsson.apex.plugins.executor.java.JavaExecutorParameters"
+      }
+    }
+  }
+}
+----

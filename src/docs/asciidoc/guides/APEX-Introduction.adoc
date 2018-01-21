@@ -1,0 +1,32 @@
+= A short Introduction to APEX
+Sven van_der_Meer <sven.van.der.meer@ericsson.com>; Liam Fallon <liam.fallon@ericsson.com>; John Keeney <john.keeney@ericsson.com>
+
+:revdate: 2017-09-05
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A short introduction to the APEX policy Engine and System
+:keywords: APEX, documentation, engine, applications, editors
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-intro/introduction.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-intro/configuration-matrix.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-intro/policy-matrix.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-intro/upee-deployment.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-intro/upee-clustering.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-intro/resources.adoc[]

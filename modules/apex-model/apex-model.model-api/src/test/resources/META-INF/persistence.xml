@@ -1,0 +1,48 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+	<persistence-unit name="DAOTest" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.CDATAConditioner</class>
+		<class>com.ericsson.apex.model.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.model.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextSchema</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextSchemas</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextAlbum</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextAlbums</class>
+		<class>com.ericsson.apex.model.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxInputField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxOutputField</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.model.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxTaskSelectionLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateFinalizerLogic</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateOutput</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxStateTaskReference</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.model.policymodel.concepts.AxPolicyModel</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:apex_test" />
+			<property name="javax.persistence.target-database" value="Derby" />
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+      
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+			<property name="eclipselink.logging.level"  value="INFO" />
+		</properties>
+	</persistence-unit>
+</persistence>

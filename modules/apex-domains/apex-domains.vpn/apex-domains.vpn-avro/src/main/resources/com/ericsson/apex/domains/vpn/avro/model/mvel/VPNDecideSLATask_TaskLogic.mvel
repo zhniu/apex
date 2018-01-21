@@ -1,0 +1,28 @@
+import org.apache.avro.generic.GenericData.Array;
+import org.apache.avro.generic.GenericRecord;
+
+logger.debug(subject.id + ":" + subject.taskName);
+
+System.err.println(inFields);
+
+outFields["Link"] = inFields["Link"];
+outFields["Action"] = "Disconnect customers based on SLA Agreement";
+
+Array slaViolatedCustomerArray = subject.getOutFieldSchemaHelper("AffectedCustomers").createNewInstance();
+
+System.err.println("cust\tslaDT\tytdDT");
+for (GenericRecord customer: getContextAlbum("VPNCustomerAlbum").values()) {
+	System.err.println(customer.get("customerName") + "\t" + customer.get("slaDT") + "\t" + customer.get("ytdDT"));
+
+	if (customer.get("ytdDT") > customer.get("slaDT")) {
+		slaViolatedCustomerArray.add(customer.get("customerName"));
+	}
+}
+
+System.err.println("Customers whose SLAs are violated are:" + slaViolatedCustomerArray);
+
+outFields["AffectedCustomers"] = slaViolatedCustomerArray;
+
+System.err.println("outFields: " + outFields);
+
+return true;

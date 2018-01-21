@@ -1,0 +1,1 @@
+include::{apex-plugins-executor-jruby-dir}/docs/asciidoc/fragments/jruby-config.adoc[]

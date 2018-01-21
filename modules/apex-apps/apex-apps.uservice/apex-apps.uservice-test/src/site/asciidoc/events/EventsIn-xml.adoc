@@ -1,0 +1,4 @@
+[source%nowrap,xml,subs="attributes+"]
+----
+include::{apex-apps-uservice-test-dir}/test/resources/events/EventsIn.xmlfile[]
+----

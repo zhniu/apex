@@ -1,0 +1,1 @@
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/04-policy-step2.adoc[]

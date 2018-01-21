@@ -1,0 +1,14 @@
+{
+	"type" : "record",
+	"name" : "VPNProblem",
+	"fields" : [
+		{"name": "problemName", "type": "string"},
+		{"name": "startTime"  , "type": "long"},
+		{"name": "endTime"    , "type": "long"},
+		{
+			"name": "affectedCustomers",
+			"doc": "customers affected by this problem",
+			"type": {"type"  : "array", "items" : "string"}
+		}
+		]
+}

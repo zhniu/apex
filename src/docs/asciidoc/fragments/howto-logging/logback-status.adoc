@@ -1,0 +1,18 @@
+== Adding Logback Status and Debug
+
+To activate logback status messages change the status listener from 'NOP' to for instance console.
+
+[source%nowrap,xml]
+----
+<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+----
+
+To activate all logback debugging, for instance to debug a new logback configuration, activate the debug attribute in the configuration.
+
+[source%nowrap,xml]
+----
+<configuration debug="true">
+...
+</configuration>
+----
+

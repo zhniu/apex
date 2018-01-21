@@ -1,0 +1,37 @@
+= APEX HowTo: Logging
+Sven van_der_Meer <sven.van.der.meer@ericsson.com>
+
+:revdate: 2017-07-25
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A HowTo configure APEX logging
+:keywords: APEX, documentation, logging, SLF4j
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/introduction.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/standard-configuration.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/logback-status.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/logging-3pps.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/logging-policy-logic.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/rolling-file-appenders.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/example-logic.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/example-server.adoc[]
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.ericsson.com/testexampleschema"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.ericsson.com/testexampleschema"
+	elementFormDefault="qualified">
+	<element name="testSchemaTypes" type="tns:TestSchemaTypes"></element>
+
+	<complexType name="TestSchemaType">
+		<sequence>
+			<element name="name" minOccurs="1" maxOccurs="1">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="1"></minLength>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="idLength" maxOccurs="1" minOccurs="1">
+				<simpleType>
+					<restriction base="integer">
+						<minInclusive value="0"></minInclusive>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="idStartPos" type="integer" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="idInEvent" type="boolean" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="reo" type="boolean" maxOccurs="1" minOccurs="0"></element>
+			<element name="paramPreamble" maxOccurs="1" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="1"></minLength>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="valuePreamble" maxOccurs="1" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="1"></minLength>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="schemaVersion" type="tns:TestSchemaVersion"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+		</sequence>
+
+	</complexType>
+
+	<complexType name="TestSchemaVersion">
+		<sequence>
+			<element name="name" maxOccurs="1" minOccurs="1">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="1"></minLength>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="xmlFile" maxOccurs="1" minOccurs="1">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="1"></minLength>
+					</restriction>
+				</simpleType>
+			</element>
+                        <element name="causeCodeXMLFile" maxOccurs="1" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="1"></minLength>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+
+    <complexType name="TestSchemaTypes">
+    	<sequence>
+            <element name="eventNamespace" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="string">
+    					<minLength value="1"></minLength>
+    				</restriction>
+    			</simpleType>
+    		</element>
+            <element name="eventSchemaFile" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="string">
+    					<minLength value="1"></minLength>
+    				</restriction>
+    			</simpleType>
+    		</element>
+            <element name="schemaType" type="tns:TestSchemaType"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="TestEventDefinition">
+    	<sequence>
+    	</sequence>
+    </complexType>
+</schema>

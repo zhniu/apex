@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>apex-services.client</artifactId>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<url>${apex.site.prefix}/site/modules/${project.parent.artifactId}/${project.artifactId}/</url>
+	<description>Web client for managing Apex engines</description>
+	<inceptionYear>2015</inceptionYear>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-services</artifactId>
+		<version>0.7.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<jersey.version>2.25.1</jersey.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<modules>
+		<module>apex-services.client-monitoring</module>
+		<module>apex-services.client-deployment</module>
+		<module>apex-services.client-editor</module>
+		<module>apex-services.client-full</module>
+	</modules>
+
+</project>

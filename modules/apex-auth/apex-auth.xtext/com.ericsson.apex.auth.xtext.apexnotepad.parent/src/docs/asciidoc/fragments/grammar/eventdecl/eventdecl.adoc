@@ -1,0 +1,8 @@
+== Event Declaration
+
+
+[source,xtext,options="nowrap"]
+----
+include::{apex-auth-xtext-notepad-dir}/com/ericsson/apex/auth/xtext/apexnotepad/ApexNotepad.xtext[tags=eventdecl,indent=0]
+----
+

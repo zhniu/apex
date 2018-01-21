@@ -1,0 +1,8 @@
+== Concept: DataType
+
+Data types are tightly controlled in APEX in order to provide a very high degree of consistency in policies and to facilitate tracking of changes to context as policies execute.
+All context is modeled as a __DataType__ concept.
+Each DataType concept instance is keyed with an `ArtifactKey` key.
+The DataType field identifies the Java class of objects that is used to represent concept instances that use this data type.
+All context has a __DataType__; incoming and outgoing context is represented by __EventField__ concepts and all other context is represented by __ContextItem__ concepts.
+

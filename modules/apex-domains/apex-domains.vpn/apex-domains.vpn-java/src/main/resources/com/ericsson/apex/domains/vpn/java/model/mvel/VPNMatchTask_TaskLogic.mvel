@@ -1,0 +1,57 @@
+import com.ericsson.apex.domains.vpn.java.concepts.VPNLink;
+
+logger.debug(subject.id + ":" + subject.taskName);
+System.err.println(inFields);
+
+String vpnLinkName   = inFields["Link"];
+String vpnLinkStatus = inFields["Status"];
+
+VPNLink vpnLink = getContextAlbum("VPNLinkAlbum").get(vpnLinkName);
+if (vpnLink == null) {
+	vpnLink = new VPNLink(vpnLinkName);
+	getContextAlbum("VPNLinkAlbum").put(vpnLinkName, vpnLink);
+	if (vpnLinkStatus.equalsIgnoreCase("DOWN")) {
+		vpnLink.setActive(true);
+	}
+	else {
+		vpnLink.setActive(false);
+	}
+}
+
+if (vpnLinkStatus.equalsIgnoreCase("DOWN")) {
+	if (vpnLinkName != null) {
+		if (vpnLink.getActive()) {
+			outFields["StatusChanged"] = true;
+		}
+		else {
+			outFields["StatusChanged"] = false;
+		}
+		outFields["Link"]   = vpnLinkName;
+		outFields["Status"] = vpnLinkStatus;
+	}
+	else {
+		System.err.println("match: trigger context error: link is null");
+	}
+}
+else if (vpnLinkStatus.equalsIgnoreCase("UP")) {
+	if (vpnLinkName != null) {
+		if (!vpnLink.getActive()) {
+			outFields["StatusChanged"] = true;
+		}
+		else {
+			outFields["StatusChanged"] = false;
+		}
+		outFields["Link"]   = vpnLinkName;
+		outFields["Status"] = vpnLinkStatus;
+	}
+	else {
+		System.err.println("match: trigger context error: link is null");
+	}
+}
+else {
+	System.err.println("match: trigger context error: status neither UP nor DOWN");
+}
+
+System.err.println("outFields: " + outFields);
+return true;
+

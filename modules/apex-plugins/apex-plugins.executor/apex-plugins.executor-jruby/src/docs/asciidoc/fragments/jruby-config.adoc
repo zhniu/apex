@@ -1,0 +1,17 @@
+== Configure the JRuby Executor
+
+The JRuby executor is added to the configuration as follows:
+
+[source%nowrap,json]
+----
+"engineServiceParameters":{
+  "engineParameters":{
+    "executorParameters":{
+      "JRUBY":{
+        "parameterClassName" :
+        "com.ericsson.apex.plugins.executor.jruby.JrubyExecutorParameters"
+      }
+    }
+  }
+}
+----

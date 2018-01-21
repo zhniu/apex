@@ -1,0 +1,1 @@
+schema create name=Another_Test_type flavour=Java schema=java.lang.String

@@ -1,0 +1,10 @@
+== Using JAutodoc
+
+Similar to Eclipse Source Operations, JAutodoc operations  can be carried out on individual files or on all the files in a package but do not recurse into sub-packages.
+The JAutodoc operations are available by selecting a file or package and right clicking on __JAutodoc__:
+
+. To add a `package-info.java` file to a package, select the package and right-click menu:Jautodoc[Add Package Javadoc]
+. To add headers to files select on a file (or on the package to do all files) and right click menu:JAutodoc[Add Header]
+. To add JAutodoc stubs to a files, select on a file (or on the package to do all files) and right click menu:JAutodoc[Add Javadoc]
+
+

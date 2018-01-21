@@ -1,0 +1,35 @@
+== APEX Engine (NOMS'16)
+
+[width="100%",cols="15%,90%"]
+|===
+
+h| Title
+e| Apex: An Engine for Dynamic Adaptive Policy Execution
+
+h| Venue
+| IEEE NOMS, Istanbul, April 2016
+
+h| Abstract
+| The advent of " Soft Networking " , where networks are composed of virtual nodes and links, promises to dramatically ease the definition and deployment of networks whilst allowing network applications that are limited only by the imagination of the developers of those applications. In such a dynamic environment, the Autonomic Management pattern supervised by policies has been recognized as holding more promise for management of Soft Networks than traditional techniques. We have proposed Dynamic Adaptive Policies as an approach to give classic policies the dynamicity and flexibility to manage such networks and whatever applications are running on them. In this paper, we describe our ongoing work on Apex, an engine that executes and administers Dynamic Adaptive Policies in a scalable and distributed manner.
+
+h| Links
+| link:https://www.researchgate.net/publication/303564082_Apex_An_Engine_for_Dynamic_Adaptive_Policy_Execution[Research Gate] [accessed Aug 11, 2017]
+
+h| BibTeX
+a|
+[source,bibtex]
+----
+@inproceedings{Fallon2016,
+	Author = {L. Fallon and S. van der Meer and J. Keeney},
+	Booktitle = {NOMS 2016 - 2016 IEEE/IFIP Network Operations and Management Symposium},
+	Doi = {10.1109/NOMS.2016.7502880},
+	Keywords = {computer network management;Apex;autonomic management pattern;dynamic adaptive policy execution;dynamic environment;soft networks;Adaptive systems;Context;Context modeling;Decision making;Engines;Metadata;Runtime;Adaptive Automation;Adaptive Policy;Automation;Control Loop;Multi-domain;Policy},
+	Month = {April},
+	Pages = {699-702},
+	Title = {Apex: An engine for dynamic adaptive policy execution},
+	Year = {2016},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/NOMS.2016.7502880}}
+----
+
+|===
+

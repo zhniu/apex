@@ -1,0 +1,11 @@
+{
+	"type": "map", "values": {
+		"type" : "record",
+		"name" : "VPNCustomer",
+		"fields" : [
+			{"name" : "customerName", "type" : "string"},
+			{"name" : "slaDT"       , "type" : "int"},
+			{"name" : "ytdDT"       , "type" : "int"}
+			]
+	}
+}

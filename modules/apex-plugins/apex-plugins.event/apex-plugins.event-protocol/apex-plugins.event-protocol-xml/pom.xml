@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<url>${apex.site.prefix}/site/modules/apex-plugins/apex-plugins.event/${project.parent.artifactId}/${project.artifactId}/</url>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-plugins.event-protocol</artifactId>
+		<version>0.7.0</version>
+	</parent>
+
+	<properties>
+		<apex-plugins-event-protocol-xml-dir>${project.basedir}/src</apex-plugins-event-protocol-xml-dir>
+	</properties>
+
+	<artifactId>apex-plugins.event-protocol-xml</artifactId>
+	<name>${project.artifactId}</name>
+	<description>[${project.parent.artifactId}] Plugin for handling events that are being transported in XML format</description>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.jaxb2.maven2</groupId>
+			<artifactId>maven-jaxb2-plugin</artifactId>
+			<version>0.13.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+			<version>1.11.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.13.2</version>
+				<configuration>
+					<schemaDirectory>src/main/resources/xml</schemaDirectory>
+					<schemaFiles>apex-event.xsd</schemaFiles>
+					<bindingDirectory>src/main/resources/xml</bindingDirectory>
+					<bindingFiles>apex-event.xjb</bindingFiles>
+					<generatePackage>com.ericsson.apex.plugins.event.protocol.xml.jaxb</generatePackage>
+					<extension>true</extension>
+					<addGeneratedAnnotation>true</addGeneratedAnnotation>
+					<readOnly>true</readOnly>
+					<verbose>true</verbose>
+					<plugins>
+						<plugin>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-basics</artifactId>
+							<version>1.11.1</version>
+						</plugin>
+						<plugin>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-basics-annotate</artifactId>
+							<version>1.0.2</version>
+						</plugin>
+						<plugin>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-value-constructor</artifactId>
+							<version>3.0</version>
+						</plugin>
+					</plugins>
+					<args>
+						<arg>-Xannotate</arg>
+						<arg>-XtoString</arg>
+						<arg>-Xmergeable</arg>
+						<arg>-Xcopyable</arg>
+						<arg>-Xequals</arg>
+						<arg>-XhashCode</arg>
+						<arg>-Xvalue-constructor</arg>
+					</args>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

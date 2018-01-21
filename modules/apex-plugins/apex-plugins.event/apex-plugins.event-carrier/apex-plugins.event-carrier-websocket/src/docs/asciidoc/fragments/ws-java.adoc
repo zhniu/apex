@@ -1,0 +1,8 @@
+== Websocket in Java
+
+In Java, link:http://www.oracle.com/technetwork/articles/java/jsr356-1937161.html[JSR 356] defines the standard Websocket API.
+This JSR is part of Jave EE 7 standard.
+For Java SE, several implementations exist in open source.
+Since Websockets are a stable standard and simple, most implementations are stable and ready to use.
+A lot of products support Websockets, like Spring, JBoss, Netty, … there are also Kafka extensions for Websockets.
+

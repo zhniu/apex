@@ -1,0 +1,1 @@
+include::{apex-model-buildtools-dir}/site/asciidoc/20-configure-eclipse-templates.adoc[]

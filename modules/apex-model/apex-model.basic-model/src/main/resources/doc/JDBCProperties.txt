@@ -1,0 +1,15 @@
+		Properties jdbcProperties = new Properties();
+		jdbcProperties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/apex_test");
+		jdbcProperties.put("eclipselink.ddl-generation", "drop-and-create-tables");
+
+		Properties jdbcProperties = new Properties();
+		jdbcProperties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/apex_test");
+		jdbcProperties.put("hibernate.hbm2ddl.auto",     "create-drop");
+
+		Properties jdbcProperties = new Properties();
+		jdbcProperties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/apex");
+		jdbcProperties.put("eclipselink.ddl-generation", "create-or-extend-tables");
+
+		Properties jdbcProperties = new Properties();
+		jdbcProperties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/apex");
+		jdbcProperties.put("hibernate.hbm2ddl.auto",     "update");

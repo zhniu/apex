@@ -1,0 +1,36 @@
+<configuration>
+
+	<contextName>Apex</contextName>
+	<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+	<property name="VAR_LOG" value="/var/log/ericsson/apex/" />
+
+	<!-- USE FOR STD OUT ONLY -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %contextName [%t] %level %logger{36} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+<!-- 
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+-->
+
+	<root level="trace">
+		<appender-ref ref="STDOUT" />
+	</root>
+	
+<!--
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${VAR_LOG}/apex.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+-->
+	<logger name="com.ericsson.apex" level="warn" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+</configuration>

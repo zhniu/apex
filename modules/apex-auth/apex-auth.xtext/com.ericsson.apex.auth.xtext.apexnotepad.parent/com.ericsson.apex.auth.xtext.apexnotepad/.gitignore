@@ -1,0 +1,15 @@
+.launch
+.classpath
+.project
+.settings/
+
+.antlr*
+
+model/generated/
+bin/
+target/
+src-gen/
+xtend-gen/
+
+plugin.xml_gen
+WebRoot/xtext-resources/generated

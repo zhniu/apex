@@ -1,0 +1,36 @@
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+
+outFields["ACTTASK"] = "no";
+outFields["TRIGGER_SPEC"] = "XSTREAM_AADM_ACT_EVENT";
+outFields["MAJ_MIN_MAINT_VERSION"] = "0.0.1";
+
+if (inFields["PROBE_ON"] != null) {
+	outFields["PROBE_ON"] = inFields["PROBE_ON"];
+}
+else{
+	outFields["PROBE_ON"] = false;
+}
+
+if (inFields["TCP_ON"] != null) {
+	outFields["TCP_ON"] = inFields["TCP_ON"];
+}
+else {
+	outFields["TCP_ON"] = false;
+}
+
+outFields["IMSI"] = inFields["IMSI"];
+if (inFields["IMSI_IP"] != null) {
+	outFields["IMSI_IP"] = inFields["IMSI_IP"];
+}
+else {
+	outFields["IMSI_IP"] = inFields["UE_IP_ADDRESS"];
+}
+
+if (inFields["NW_IP"] != null) {
+	outFields["NW_IP"] = inFields["NW_IP"];
+}
+else{
+	outFields["NW_IP"] = inFields["SGW_IP_ADDRESS"];
+}
+
+return true;

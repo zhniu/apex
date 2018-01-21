@@ -1,0 +1,5 @@
+logger.debug(subject.id + ":" + subject.taskName);
+logger.debug(inFields);
+logger.debug(outFields);
+
+return true;

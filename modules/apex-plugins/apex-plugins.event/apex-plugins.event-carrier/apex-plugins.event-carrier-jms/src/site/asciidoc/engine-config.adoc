@@ -1,0 +1,1 @@
+include::{apex-plugins-event-carrier-jms-dir}/docs/asciidoc/fragments/ct-jms-io.adoc[]

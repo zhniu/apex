@@ -1,0 +1,10 @@
+{
+	"type": "map", "values": {
+		"type" : "record",
+		"name" : "VPNLink",
+		"fields" : [
+			{"name": "linkName", "type": "string"},
+			{"name": "active",   "type": "boolean"}
+			]
+	}
+}

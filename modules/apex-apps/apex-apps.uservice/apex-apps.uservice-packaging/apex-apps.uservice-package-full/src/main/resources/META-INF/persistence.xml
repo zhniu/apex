@@ -1,0 +1,240 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	version="2.0">
+	<persistence-unit name="com.ericsson.apex.core.model.eclipselink.runtime"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>com.ericsson.apex.core.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxDataType</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItem</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItemTemplate</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextScope</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextMap</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContext</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventParameter</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicyModel</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineStats</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineModel</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.ENodeBStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IMSIStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IPAddressStatus</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AnomalyDetection</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AutoLearn</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNCustomer</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNLink</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNProblem</class>
+
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+			<property name="eclipselink.logging.level" value="INFO" />
+
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="com.ericsson.apex.core.model.eclipselink.test"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<class>com.ericsson.apex.core.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxDataType</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItem</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItemTemplate</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextScope</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextMap</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContext</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventParameter</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicyModel</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineStats</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineModel</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.ENodeBStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IMSIStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IPAddressStatus</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AnomalyDetection</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AutoLearn</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNCustomer</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNLink</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNProblem</class>
+
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex_test" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.logging.level" value="INFO" />
+
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="com.ericsson.apex.core.model.hibernate.runtime">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>com.ericsson.apex.core.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxDataType</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItem</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItemTemplate</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextScope</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextMap</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContext</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventParameter</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicyModel</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineStats</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineModel</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.ENodeBStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IMSIStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IPAddressStatus</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AnomalyDetection</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AutoLearn</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNCustomer</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNLink</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNProblem</class>
+
+		<properties>
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="100" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="com.ericsson.apex.core.model.hibernate.test">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>com.ericsson.apex.core.basicmodel.dao.converters.UUID2String</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxArtifactKey</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxConcept</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxDataType</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInfo</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxKeyInformation</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.AxModel</class>
+		<class>com.ericsson.apex.core.basicmodel.concepts.TestEntity</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItem</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextItemTemplate</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextScope</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextType</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextMap</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContext</class>
+		<class>com.ericsson.apex.core.contextmodel.concepts.AxContextModel</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventParameter</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvent</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEvents</class>
+		<class>com.ericsson.apex.core.eventmodel.concepts.AxEventModel</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxLogic</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTaskParameter</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTask</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxTasks</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxState</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicy</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicies</class>
+		<class>com.ericsson.apex.core.policymodel.concepts.AxPolicyModel</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineStats</class>
+		<class>com.ericsson.apex.core.enginemodel.concepts.AxEngineModel</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.ENodeBStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IMSIStatus</class>
+		<class>com.ericsson.apex.domains.aadm.concepts.IPAddressStatus</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AnomalyDetection</class>
+		<class>com.ericsson.apex.domains.adaptive.concepts.AutoLearn</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNCustomer</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNLink</class>
+		<class>com.ericsson.apex.domains.vpn.concepts.VPNProblem</class>
+
+		<properties>
+			<property name="javax.persistence.target-database" value="PostgreSQL" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/apex_test" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="100" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

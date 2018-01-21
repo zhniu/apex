@@ -1,0 +1,34 @@
+import java.util.HashMap;
+import org.apache.avro.generic.GenericRecord;
+
+logger.debug(subject.id + ":" + subject.taskName);
+
+System.err.println(inFields);
+logger.debug(subject.id);
+
+System.err.println("*** Links ***");
+for (GenericRecord link: getContextAlbum("VPNLinkAlbum").values()) {
+    System.err.println(link.get("linkName") + "\t" + link.get("active"));
+}
+
+System.err.println("*** Customers ***");
+for (GenericRecord customer: getContextAlbum("VPNCustomerAlbum").values()) {
+    System.err.println(
+    	       customer.get("customerName")  + "\t" +
+		       customer.get("slaDT") + "\t" +
+		       customer.get("ytdDT") + "\t" + 
+		       customer.get("linksInUse"));
+}
+
+HashMap linkMap = subject.getOutFieldSchemaHelper("LinkMap").createNewInstance();
+linkMap.putAll(getContextAlbum("VPNLinkAlbum"));
+outFields["LinkMap"] = linkMap;
+
+HashMap customerMap = subject.getOutFieldSchemaHelper("CustomerMap").createNewInstance();
+customerMap.putAll(getContextAlbum("VPNCustomerAlbum"));
+outFields["CustomerMap"] = customerMap;
+
+System.err.println("outFields: " + outFields);
+
+return true;
+

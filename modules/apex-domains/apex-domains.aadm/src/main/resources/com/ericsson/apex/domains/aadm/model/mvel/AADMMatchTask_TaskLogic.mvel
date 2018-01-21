@@ -1,0 +1,56 @@
+import com.ericsson.apex.domains.aadm.concepts.ENodeBStatus;
+import com.ericsson.apex.domains.aadm.concepts.IPAddressStatus;
+import com.ericsson.apex.domains.aadm.concepts.IMSIStatus;
+
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+logger.debug(inFields);
+
+ipAddress = inFields["UE_IP_ADDRESS"];
+if (ipAddress == null ) {
+	ipAddress = inFields["IMSI_IP"];
+
+	if (ipAddress == null ) {
+		logger.debug("Incoming event must specify parameter UE_IP_ADDRESS or parameter IMSI_IP");
+		return false;
+	}
+}
+
+imsi = inFields["IMSI"];
+if (imsi == null ) {
+	logger.debug("Incoming event must specify parameter IMSI");
+	return false;
+}
+
+eNodeBID = inFields["ENODEB_ID"];
+if (eNodeBID == null ) {
+	logger.debug("Incoming event must specify parameter ENODEB_ID");
+	return false;
+}
+
+IPAddressStatus ipAddressStatus = getContextAlbum("IPAddressStatusAlbum").get(ipAddress);
+if (ipAddressStatus == null) {
+	ipAddressStatus = new IPAddressStatus(ipAddress); 
+	ipAddressStatus.setIMSI(imsi);
+	getContextAlbum("IPAddressStatusAlbum").put(ipAddressStatus.getIPAddress(), ipAddressStatus);
+	logger.debug("added new IP address " + getContextAlbum("IPAddressStatusAlbum").get(ipAddress));
+}
+else {
+	logger.debug("found IP address " + ipAddressStatus);
+}
+
+IMSIStatus imsiStatus = getContextAlbum("IMSIStatusAlbum").get((String)imsi);
+if (imsiStatus == null) {
+	imsiStatus = new IMSIStatus(imsi);
+	imsiStatus.setENodeBID(eNodeBID);
+	getContextAlbum("IMSIStatusAlbum").put(imsiStatus.getIMSI(), imsiStatus);
+	logger.debug("added new IMSI " + imsi + " to IMSI status map")
+}
+
+ENodeBStatus eNodeBStatus = getContextAlbum("ENodeBStatusAlbum").get((String)eNodeBID);
+if (eNodeBStatus == null) {
+	eNodeBStatus = new ENodeBStatus(eNodeBID);
+	getContextAlbum("ENodeBStatusAlbum").put(eNodeBStatus.getENodeB(), eNodeBStatus);
+	logger.debug("added new ENodeB " + eNodeBID + " to ENodeB status map")
+}
+
+return true;

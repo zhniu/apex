@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Services Client">
+	<body>
+		<menu name="APEX Services Client">
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Client" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

@@ -1,0 +1,50 @@
+= APEX Policy Model
+Sven van_der_Meer <sven.van.der.meer@ericsson.com>; Liam Fallon <liam.fallon@ericsson.com>; John Keeney <john.keeney@ericsson.com>
+
+:revdate: 2017-09-05
+:revremark: for APEX {release-version}
+:version-label!:
+:description: The APEX Policy Model
+:keywords: APEX, documentation, engine, policy model
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 5
+:icons: font
+
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/introduction.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concepts-keys.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-policymodel.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-datatype.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-event.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-eventfield.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-contextmap.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-contextitem.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-contextitemtemplate.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-task.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-taskparameter.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-logic.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-policy.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/apex-policy-model/concept-state.adoc[]
+
+

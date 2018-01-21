@@ -1,0 +1,39 @@
+= APEX Installation Guide
+Sven van_der_Meer <sven.van.der.meer@ericsson.com>; Liam Fallon <liam.fallon@ericsson.com>; John Keeney <john.keeney@ericsson.com>
+
+:revdate: 2017-07-25
+:revremark: for APEX {release-version}
+:version-label!:
+:description: A short guide to install the APEX policy engine
+:keywords: APEX, documentation, install
+
+Version: {release-version}
+
+Version Date: {revdate}
+
+Version Notes: {revremark}
+
+:pygments-linenums-mode: table
+:toc:
+:toclevels: 4
+:icons: font
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/requirements.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/get-source.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/build-apex.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/install.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/layout.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/configure.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/verify.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/install-monitoring.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/install-resteditor.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/docker.adoc[]

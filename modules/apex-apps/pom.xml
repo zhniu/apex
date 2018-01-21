@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>apex-apps</artifactId>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<url>${apex.site.prefix}/site/modules/${project.artifactId}</url>
+	<description>The Apex applications, implementation dependent wrappers and mediation for Apex in various technologies.</description>
+	<inceptionYear>2014</inceptionYear>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex</artifactId>
+		<version>0.7.0</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<modules>
+		<module>apex-apps.utilities</module>
+		<module>apex-apps.wsclients</module>
+		<module>apex-apps.generators</module>
+		<module>apex-apps.uservice</module>
+		<module>apex-apps.servlet</module>
+	</modules>
+</project>

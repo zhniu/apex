@@ -1,0 +1,5 @@
+== Code Examples
+
+- APEX Applications (apex-apps)
+  ** Utilities: link:../modules/apex-apps/apex-apps.utilities/example-cli.html[CLI Options and Parser Example]
+  ** Utilities: link:../modules/apex-apps/apex-apps.utilities/example-cli-version.html[Autoversion for Applications Example]

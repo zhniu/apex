@@ -1,0 +1,11 @@
+include::{apex-plugins-executor-dir}/docs/asciidoc/fragments/executors.adoc[]
+
+include::{apex-plugins-executor-javascript-dir}/docs/asciidoc/fragments/javascript-config.adoc[leveloffset=+1]
+
+include::{apex-plugins-executor-jython-dir}/docs/asciidoc/fragments/jython-config.adoc[leveloffset=+1]
+
+include::{apex-plugins-executor-jruby-dir}/docs/asciidoc/fragments/jruby-config.adoc[leveloffset=+1]
+
+include::{apex-plugins-executor-java-dir}/docs/asciidoc/fragments/java-config.adoc[leveloffset=+1]
+
+include::{apex-plugins-executor-mvel-dir}/docs/asciidoc/fragments/mvel-config.adoc[leveloffset=+1]

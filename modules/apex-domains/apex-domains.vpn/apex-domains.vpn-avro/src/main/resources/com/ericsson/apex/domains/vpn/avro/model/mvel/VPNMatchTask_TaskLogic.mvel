@@ -1,0 +1,63 @@
+import org.apache.avro.generic.GenericRecord;
+
+logger.debug(subject.id + ":" + subject.taskName);
+System.err.println(inFields);
+
+String vpnLinkName   = inFields["Link"];
+String vpnLinkStatus = inFields["Status"];
+
+GenericRecord vpnLink = getContextAlbum("VPNLinkAlbum").get(vpnLinkName);
+
+if (vpnLink == null) {
+	vpnLink = getContextAlbum("VPNLinkAlbum").createItem();
+	vpnLink.put("linkName", vpnLinkName);
+	getContextAlbum("VPNLinkAlbum").put(vpnLinkName, vpnLink);
+
+	
+	vpnLink = new VPNLink(vpnLinkName);
+	getContextAlbum("VPNLinkAlbum").put(vpnLinkName, vpnLink);
+	if (vpnLinkStatus.equalsIgnoreCase("DOWN")) {
+		vpnLink.put("active", true);
+	}
+	else {
+		vpnLink.put("active", false);
+	}
+}
+
+if (vpnLinkStatus.equalsIgnoreCase("DOWN")) {
+	if (vpnLinkName != null) {
+		if (vpnLink.get("active")) {
+			outFields["StatusChanged"] = true;
+		}
+		else {
+			outFields["StatusChanged"] = false;
+		}
+		outFields["Link"]   = vpnLinkName;
+		outFields["Status"] = vpnLinkStatus;
+	}
+	else {
+		System.err.println("match: trigger context error: link is null");
+	}
+}
+else if (vpnLinkStatus.equalsIgnoreCase("UP")) {
+	if (vpnLinkName != null) {
+		if (!vpnLink.get("active")) {
+			outFields["StatusChanged"] = true;
+		}
+		else {
+			outFields["StatusChanged"] = false;
+		}
+		outFields["Link"]   = vpnLinkName;
+		outFields["Status"] = vpnLinkStatus;
+	}
+	else {
+		System.err.println("match: trigger context error: link is null");
+	}
+}
+else {
+	System.err.println("match: trigger context error: status neither UP nor DOWN");
+}
+
+System.err.println("outFields: " + outFields);
+return true;
+

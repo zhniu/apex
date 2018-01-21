@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Apps WS Clients">
+	<body>
+		<menu name="APEX Apps WS Clients">
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="WS Clients" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

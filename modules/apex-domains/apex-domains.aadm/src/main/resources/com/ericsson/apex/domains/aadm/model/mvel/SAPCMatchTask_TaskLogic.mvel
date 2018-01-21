@@ -1,0 +1,33 @@
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+logger.debug(inFields);
+
+if (inFields["ACTTASK"] != null && inFields["ACTTASK"].equals("no")) {
+	outFields["IMSI"] = 0;
+	outFields["IMSI_IP"] = "0";
+	return true;
+}
+
+if (inFields["PROBE_ON"] != null) {
+	outFields["PROBE_ON"] = inFields["PROBE_ON"];
+}
+else{
+	outFields["PROBE_ON"] = false;
+}
+
+if (inFields["TCP_ON"] != null) {
+	outFields["TCP_ON"] = inFields["TCP_ON"];
+}
+else{
+	outFields["TCP_ON"] = false;
+}
+
+outFields["IMSI"] = inFields["IMSI"];
+if (inFields["IMSI_IP"] != null) {
+	outFields["IMSI_IP"] = inFields["IMSI_IP"];
+}
+
+if (inFields["NW_IP"] != null) {
+	outFields["NW_IP"] = inFields["NW_IP"];
+}
+
+return true;

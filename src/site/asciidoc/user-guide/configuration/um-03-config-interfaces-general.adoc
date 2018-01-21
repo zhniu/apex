@@ -1,0 +1,1 @@
+include::{apex-services-engine-dir}/docs/asciidoc/fragments/config-interfaces-general.adoc[]

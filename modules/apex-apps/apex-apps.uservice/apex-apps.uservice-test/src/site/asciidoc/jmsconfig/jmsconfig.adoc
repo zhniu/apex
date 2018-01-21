@@ -1,0 +1,1 @@
+== JMS Configurations used in Tests

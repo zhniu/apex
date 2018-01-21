@@ -1,0 +1,1 @@
+include::{apex-apps-wsclients-simple-dir}/docs/asciidoc/fragments/run-echo.adoc[]

@@ -1,0 +1,4 @@
+logger.debug(subject.id + ":" + subject.taskName + " execution logic");
+logger.debug(inFields);
+logger.debug(outFields);
+return true;

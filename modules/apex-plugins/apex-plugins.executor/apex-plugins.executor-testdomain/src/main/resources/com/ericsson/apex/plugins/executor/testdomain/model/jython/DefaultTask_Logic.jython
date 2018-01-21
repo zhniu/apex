@@ -1,0 +1,15 @@
+from java.lang import Byte
+from java.lang import Long
+from java.util import Date
+
+executor.logger.debug('id: ' + executor.subject.id)
+
+executor.logger.debug('ctxt name: ' + executor.getContextAlbum("GlobalContextAlbum").name)
+executor.logger.debug('inFields: ' + executor.inFields.toString())
+
+executor.outFields["Test<STATE_NAME>CaseSelected"] = Byte("<RANDOM_BYTE_VALUE>")
+
+timeValue = Long(Date().getTime());
+executor.outFields["Test<STATE_NAME>StateTime"] = timeValue
+executor.logger.debug('outFields: ' + executor.outFields.toString())
+returnValue = executor.TRUE

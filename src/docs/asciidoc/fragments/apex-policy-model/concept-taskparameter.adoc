@@ -1,0 +1,7 @@
+== Concept: TaskParameter
+
+Each configuration parameter of a task are represented as a __Taskparameter__ concept keyed with a `ReferenceKey` key, which references the task.
+The __LocalName__ field of the `ReferenceKey` holds the name of the parameter.
+The __DefaultValue__ field defines the default value that the task parameter is set to.
+The value of __TaskParameter__ instances can be overridden at deployment time by specifying their values in the configuration information passed to APEX engines.
+

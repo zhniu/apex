@@ -1,0 +1,3 @@
+include::{apex-plugins-context-dir}/docs/asciidoc/fragments/context.adoc[]
+
+include::{apex-plugins-context-schema-avro-dir}/docs/asciidoc/fragments/ctx-schema-avro-config.adoc[leveloffset=+1]

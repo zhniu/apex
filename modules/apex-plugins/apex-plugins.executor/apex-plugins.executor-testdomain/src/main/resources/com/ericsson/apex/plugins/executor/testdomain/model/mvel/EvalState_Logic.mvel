@@ -1,0 +1,3 @@
+logger.debug(subject.id + ":" + subject.stateName);
+subject.defaultTaskKey.copyTo(selectedTask);
+return true;

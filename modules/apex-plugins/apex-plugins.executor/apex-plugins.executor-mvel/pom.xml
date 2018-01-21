@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<url>${apex.site.prefix}/site/modules/apex-plugins/${project.parent.artifactId}/${project.artifactId}/</url>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-plugins.executor</artifactId>
+		<version>0.7.0</version>
+	</parent>
+
+	<properties>
+		<apex-plugins-executor-mvel-dir>${project.basedir}/src</apex-plugins-executor-mvel-dir>
+	</properties>
+
+	<artifactId>apex-plugins.executor-mvel</artifactId>
+	<name>${project.artifactId}</name>
+	<description>[${project.parent.artifactId}] Plugin for execution of Mvel logic in Apex</description>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>2.3.1.Final</version>
+		</dependency>
+	</dependencies>
+</project>

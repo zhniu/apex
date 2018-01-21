@@ -1,0 +1,1 @@
+include::{apex-plugins-event-carrier-restserver-dir}/docs/asciidoc/fragments/ct-restserver-io.adoc[]

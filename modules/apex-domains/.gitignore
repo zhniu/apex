@@ -1,0 +1,12 @@
+.DS_Store
+.classpath
+.project
+.settings
+.mvn
+target
+cachedir
+*.episode
+.checkstyle
+.pmd*
+**/derby.log
+

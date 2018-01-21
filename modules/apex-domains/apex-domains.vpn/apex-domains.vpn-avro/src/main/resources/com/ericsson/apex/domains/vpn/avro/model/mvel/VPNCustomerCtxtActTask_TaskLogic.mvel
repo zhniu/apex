@@ -1,0 +1,53 @@
+import org.apache.avro.generic.GenericData.Array;
+import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.Schema;
+
+logger.debug(subject.id);
+System.err.println(inFields);
+
+String vpnCustomerName = inFields["CustomerName"];
+GenericRecord vpnCustomer = getContextAlbum("VPNCustomerAlbum").get(vpnCustomerName);
+if (vpnCustomer == null) {
+	vpnCustomer = getContextAlbum("VPNCustomerAlbum").getSchemaHelper.createNewInstance();
+	vpnCustomer.put("customerName", vpnCustomerName)
+	vpnCustomer.put("slaDT",      0);
+	vpnCustomer.put("ytdDT",      0);
+	vpnCustomer.put("linksInUse", new Array(0, Schema.createArray(vpnCustomer.getSchema().getField("linksInUse").schema())));
+}
+vpnCustomer.put("slaDT", inFields["SlaDT"]);
+vpnCustomer.put("ytdDT", inFields["YtdDT"]);
+
+for (String usedLinkName: inFields["LinkList"].split(" ")) {
+	GenericRecord vpnLink = getContextAlbum("VPNLinkAlbum").get(usedLinkName);
+	if (vpnLink != null) {
+		vpnCustomer.get("linksInUse").add(vpnLink.get("linkName"));
+	}
+	else {
+		System.err.println("unknown link \"" + usedLinkName + "\" specified on customer \"" + vpnCustomerName + "\"");
+	}
+}
+
+getContextAlbum("VPNCustomerAlbum").put(vpnCustomer.get("customerName"), vpnCustomer);
+
+System.err.println("*** Customers ***");
+for (GenericRecord customer: getContextAlbum("VPNCustomerAlbum").values()) {
+	System.err.println(
+			customer.get("customerName")  + "\t" +
+			customer.get("slaDT") + "\t" +
+			customer.get("ytdDT") + "\t" + 
+			customer.get("linksInUse"));
+}
+
+String outLinkList = "";
+for (String link : vpnCustomer.get("linksInUse")) {
+	outLinkList += link + " ";
+}
+
+outFields["CustomerName"] = vpnCustomer.get("customerName");
+outFields["LinkList"]     = outLinkList.trim();
+outFields["SlaDT"]        = vpnCustomer.get("slaDT");
+outFields["YtdDT"]        = vpnCustomer.get("ytdDT");
+
+System.err.println("outFields: " + outFields);
+
+return true;

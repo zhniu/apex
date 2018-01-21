@@ -1,0 +1,1 @@
+include::{apex-model-buildtools-dir}/site/asciidoc/32-configure-checkstyle-eclipse.adoc[]

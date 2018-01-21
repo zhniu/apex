@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Apps &micro;Services Tests">
+	<body>
+		<menu name="APEX Apps &micro;Services Tests">
+			<item href="prodcons/prodcons.html" name="Test Configurations" collapse="true">
+				<item href="prodcons/Context_AvroEventAlbum_file2file.html" name="Avro Event Album File-File" />
+				<item href="prodcons/Context_JavaEventAlbum_file2file.html" name="Java Event Album File-File" />
+				<item href="prodcons/File2FileJsonEvent.html" name="File-File JSON" />
+				<item href="prodcons/File2FileXmlEvent.html" name="File-File XML" />
+				<item href="prodcons/JMS2JMSJsonEvent.html" name="JMS-JSM JSON" />
+				<item href="prodcons/JMS2JMSObjectEvent.html" name="JMS-JMS Object" />
+				<item href="prodcons/Kafka2KafkaJsonEvent.html" name="Kafka-Kafka JSON" />
+				<item href="prodcons/Kafka2KafkaXmlEvent.html" name="Kafka-Kafka XML" />
+				<item href="prodcons/Ws2WsClientJsonEvent.html" name="WS-WS Client JSON" />
+				<item href="prodcons/Ws2WsClientXMLEvent.html" name="WS-WS Client XML" />
+				<item href="prodcons/Ws2WsServerJsonEvent.html" name="WS-WS Server JSON" />
+				<item href="prodcons/Ws2WsServerXMLEvent.html" name="WS-WS Server XML" />
+			</item>
+
+			<item href="events/events.html" name="Test Events" collapse="true">
+				<item href="events/Context_AvroEventAlbum_EventIn.html" name="Avro Event Album In" />
+				<item href="events/Context_AvroEventAlbum_EventOutCompare.html" name="Avro Event Album Output Compare" />
+				<item href="events/Context_JavaEventAlbum_EventIn.html" name="Java Event Album In" />
+				<item href="events/Context_JavaEventAlbum_EventOutCompare.html" name="Java Event Album Output Compare" />
+				<item href="events/EventsIn-json.html" name="Input Events JSON" />
+				<item href="events/EventsIn-xml.html" name="Input Events XML" />
+				<item href="events/EventsOutExpected.html" name="Expected Output Events" />
+			</item>
+
+			<item href="policymodels/policymodels.html" name="Policy Models" collapse="true">
+				<item href="policymodels/SamplePolicyModelMVEL.html" name="Sample Policy Model MVEL" />
+				<item href="policymodels/JMSTestModel.html" name="JMS Test Model" />
+			</item>
+
+			<item href="jmsconfig/jmsconfig.html" name="JMS Configurations" collapse="true">
+				<item href="jmsconfig/hornetq-configuration.html" name="HornetQ Configuration" />
+				<item href="jmsconfig/hornetq-jms.html" name="HornetQ JMS" />
+			</item>
+
+			<item href="javadocs/index.html" name="API Doc" />
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Tests" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

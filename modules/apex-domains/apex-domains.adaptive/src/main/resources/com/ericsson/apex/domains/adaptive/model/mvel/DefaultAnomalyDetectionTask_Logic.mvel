@@ -1,0 +1,6 @@
+logger.debug(subject.getTaskName() + " execution logic");
+logger.debug("inFields : " + inFields);
+outFields["MonitoredValue"] = inFields["MonitoredValue"];
+outFields["Iteration"] = inFields["Iteration"];
+logger.debug("outFields : "+outFields);
+return true;

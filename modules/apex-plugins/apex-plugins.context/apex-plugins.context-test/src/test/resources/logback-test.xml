@@ -1,0 +1,55 @@
+<configuration>
+	<contextName>Apex</contextName>
+	<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+	<property name="LOG_DIR" value="${java.io.tmpdir}/apex_logging/" />
+
+	<!-- USE FOR STD OUT ONLY -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %contextName [%t] %level %logger{36} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.apache.zookeeper.ClientCnxn" level="OFF" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<appender name="FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR}/apex.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CTXT_FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR}/apex_ctxt.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+
+    <logger name="org.infinispan" level="info" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="com.ericsson.apex.context.monitoring" level="TRACE" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    
+    <logger name="com.ericsson.apex.context.monitoring" level="TRACE" additivity="false">
+        <appender-ref ref="CTXT_FILE" />
+    </logger>
+    
+    <logger name="org.jgroups" level="off" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

@@ -1,0 +1,16 @@
+=== Sales Decision Event
+After a `SALE_INPUT` event is emitted by the PoS system _HyperM_'s policy-based controlled sales checking system emits a Sale Authorization Event indicating whether the sale is authorized or denied.
+The PoS system can then listen for this event before continuing with the sale.
+
+.Sale Authorisation Event
+[width="100%",options="header"]
+|====================
+|Event| Fields | Description
+| SALE_AUTH | sale_ID, time, authorized, amount, item_ID, quantity, assistant_ID, branch_ID, notes, message... |  Event indicating a sale of an item is authorized or denied
+|====================
+
+In each `SALE_AUTH` event the `sale_ID` field is copied from the `SALE_INPUT` event that trigger the decision request.
+The `SALE_AUTH` event is also timestamped using the `time` field, and a field called `authorised` is set to `true` or `false` depending on whether the sale is authorized or denied.
+The `message` field carries an optional message about why a sale was not authorized.
+The other fields from the `SALE_INPUT` event are also included for completeness.
+

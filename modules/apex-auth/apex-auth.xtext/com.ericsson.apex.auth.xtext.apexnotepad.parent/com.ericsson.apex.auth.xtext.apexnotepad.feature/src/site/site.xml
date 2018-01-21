@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Auth XText Notepad - Feature">
+	<body>
+		<menu name="APEX Auth XText Notepad - Feature">
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Notepad - Feature" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

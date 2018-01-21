@@ -1,0 +1,14 @@
+=== Personnel System: Assistants
+
+.Assistants Database
+[width="100%",options="header"]
+|====================
+|Table| Fields | Description
+| ASSISTANTS | assistant_ID, surname, firstname, middlename, age, grade, phone_number, ... |  Database table describing each _HyperM_ sales assistant
+|====================
+
+The database table `ASSISTANTS` has a row for each sales assistant employed by _HyperM_.
+Each assistant is identified by an `assistant_ID` value, with their name given in the `firstname`, `middlename` and `surname` fields.
+The assistant's age in years is given in `age`, while their phone number is contained in the `phone_number` field.
+The assistant's grade is encoded in `grade`.
+Useful values for `grade` might include: `trainee`, `operator`, `supervisor`, etc..

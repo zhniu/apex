@@ -1,0 +1,8 @@
+= HowTo: Building an APEX System with Websockets
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ws-intro.adoc[]
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ws-java.adoc[]
+
+include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ws-foss.adoc[]
+

@@ -1,0 +1,27 @@
+import org.apache.avro.generic.GenericRecord;
+
+logger.debug(subject.id);
+System.err.println(inFields);
+
+String vpnLinkName = inFields["Link"];
+GenericRecord vpnLink = getContextAlbum("VPNLinkAlbum").get(vpnLinkName);
+
+if (vpnLink == null) {
+	vpnLink = getContextAlbum("VPNLinkAlbum").getSchemaHelper().createNewInstance();
+	vpnLink.put("linkName", vpnLinkName);
+	vpnLink.put("active",   true);
+	getContextAlbum("VPNLinkAlbum").put(vpnLinkName, vpnLink);
+}
+vpnLink.put("active", inFields["LinkUp"])
+
+System.err.println("*** Links ***");
+for (GenericRecord link: getContextAlbum("VPNLinkAlbum").values()) {
+	System.err.println(link.get("linkName") + "\t" + link.get("active"));
+}
+
+outFields["Link"] = vpnLink.get("linkName");
+outFields["LinkUp"] = vpnLink.get("active");
+System.err.println("outFields: " + outFields);
+
+return true;
+

@@ -1,0 +1,2 @@
+include::{apex-apps-wsclients-simple-dir}/docs/asciidoc/fragments/run-console.adoc[leveloffset=+1]
+

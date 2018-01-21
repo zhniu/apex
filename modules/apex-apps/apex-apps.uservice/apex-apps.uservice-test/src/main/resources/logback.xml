@@ -1,0 +1,59 @@
+<configuration debug="false">
+
+	<contextName>Apex</contextName>
+	<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+	<property name="VAR_LOG" value="/var/log/ericsson/apex/" />
+
+	<!-- USE FOR STD OUT ONLY -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %contextName [%t] %level %logger{36} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${VAR_LOG}/apex.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<!-- <fileNamePattern>xstream-%d{yyyy-MM-dd}.%i.txt</fileNamePattern> -->
+			<fileNamePattern>${VAR_LOG}/apex_%d{yyyy-MM-dd}.%i.log.gz
+			</fileNamePattern>
+			<maxHistory>4</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level %logger{26} - %msg %ex{full} %n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CTXT-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${VAR_LOG}/apex_ctxt.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${VAR_LOG}/apex_ctxt_%d{yyyy-MM-dd}.%i.log.gz
+			</fileNamePattern>
+			<maxHistory>4</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level %logger{26} - %msg %ex{full} %n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.ericsson.apex.core.context.impl.monitoring.ContextMonitor" level="trace" additivity="false">
+		<appender-ref ref="CTXT-FILE" />
+	</logger>
+
+	<logger name="com.ericsson.apex.apps" level="debug" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

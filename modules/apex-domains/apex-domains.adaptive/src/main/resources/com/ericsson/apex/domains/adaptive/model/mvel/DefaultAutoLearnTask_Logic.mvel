@@ -1,0 +1,7 @@
+logger.debug("AutoLearnActTask execution logic");
+logger.debug("inFields : " + inFields);
+outFields["MonitoredValue"] = inFields["MonitoredValue"];
+outFields["LastMonitoredValue"] = inFields["LastMonitoredValue"];
+logger.debug("outFields : " + outFields);
+return true;
+

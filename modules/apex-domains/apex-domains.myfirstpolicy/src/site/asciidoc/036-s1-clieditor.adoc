@@ -1,0 +1,1 @@
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/036-s1-clieditor.adoc[]

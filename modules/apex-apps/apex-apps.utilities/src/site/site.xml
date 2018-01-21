@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="APEX Apps Utilities">
+	<body>
+		<menu name="APEX Apps - Utilities">
+			<item href="example-cli.html" name="CLI Example" />
+			<item href="example-cli-version.html" name="Autoversion Example" />
+			<item href="javadocs/index.html" name="API Doc" />
+		</menu>
+		<menu ref="reports" inherit="top"/>
+		<menu ref="modules"/> 
+
+		<breadcrumbs>
+			<item name="Utilities" href="index.html"/>
+		</breadcrumbs>
+	</body>
+</project>

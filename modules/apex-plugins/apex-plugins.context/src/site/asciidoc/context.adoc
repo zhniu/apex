@@ -1,0 +1,1 @@
+include::{apex-plugins-context-dir}/docs/asciidoc/fragments/context.adoc[]

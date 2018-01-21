@@ -1,0 +1,17 @@
+== Configure the Jython Executor
+
+The Jython executor is added to the configuration as follows:
+
+[source%nowrap,json]
+----
+"engineServiceParameters":{
+  "engineParameters":{
+    "executorParameters":{
+      "JYTHON":{
+        "parameterClassName" :
+        "com.ericsson.apex.plugins.executor.jython.JythonExecutorParameters"
+      }
+    }
+  }
+}
+----

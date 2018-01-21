@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.ericsson.apex.auth.xtext.apexnotepad
+Bundle-Vendor: Ericsson NM-Lab
+Bundle-Version: 0.7.0
+Bundle-SymbolicName: com.ericsson.apex.auth.xtext.apexnotepad; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.ericsson.apex.auth.xtext.apexnotepad.validation,
+ com.ericsson.apex.auth.xtext.apexnotepad,
+ com.ericsson.apex.auth.xtext.apexnotepad.apexNotepad.impl,
+ com.ericsson.apex.auth.xtext.apexnotepad.apexNotepad,
+ com.ericsson.apex.auth.xtext.apexnotepad.generator,
+ com.ericsson.apex.auth.xtext.apexnotepad.serializer,
+ com.ericsson.apex.auth.xtext.apexnotepad.parser.antlr,
+ com.ericsson.apex.auth.xtext.apexnotepad.parser.antlr.internal,
+ com.ericsson.apex.auth.xtext.apexnotepad.services,
+ com.ericsson.apex.auth.xtext.apexnotepad.apexNotepad.util,
+ com.ericsson.apex.auth.xtext.apexnotepad.scoping
+Import-Package: org.apache.log4j
+Bundle-ClassPath: target/dependencies/apex-auth.xtext-utilities-0.7.0.jar,target/dependencies/apex-model.basic-model-0.7.0.jar,target/dependencies/apex-model.context-model-0.7.0.jar,target/dependencies/apex-model.event-model-0.7.0.jar,target/dependencies/apex-model.model-api-0.7.0.jar,target/dependencies/apex-model.policy-model-0.7.0.jar,target/dependencies/apex-model.utilities-0.7.0.jar,target/dependencies/antlr4-runtime-4.6.jar,target/dependencies/logback-classic-1.2.3.jar,target/dependencies/logback-co
+ re-1.2.3.jar,target/dependencies/slf4j-api-1.7.25.jar,target/dependencies/slf4j-ext-1.7.25.jar,target/dependencies/validation-api-1.1.0.Final.jar,target/dependencies/eclipselink-2.6.2.jar,target/dependencies/javax.json-1.0.4.jar,target/dependencies/javax.persistence-2.1.1.jar,.
+

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>apex-plugins.context</artifactId>
+	<name>${project.artifactId}</name>
+	<url>${apex.site.prefix}/site/modules/${project.parent.artifactId}/${project.artifactId}/</url>
+	<description>Plugins for 3pps that distribute context</description>
+	<inceptionYear>2017</inceptionYear>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-plugins</artifactId>
+		<version>0.7.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<apex-plugins-context-dir>${project.basedir}/src</apex-plugins-context-dir>
+	</properties>
+
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.url}</url>
+		</site>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-context.context</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>apexDefault</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>apex-plugins.context-schema</module>
+                <module>apex-plugins.context-distribution</module>
+				<module>apex-plugins.context-locking</module>
+				<module>apex-plugins.context-persistence</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>apexTests</id>
+			<activation>
+				<property>
+					<name>apexTests</name>
+				</property>
+			</activation>
+			<modules>
+				<module>apex-plugins.context-schema</module>
+				<module>apex-plugins.context-distribution</module>
+				<module>apex-plugins.context-locking</module>
+				<module>apex-plugins.context-persistence</module>
+				<module>apex-plugins.context-test</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>apexMetrics</id>
+			<activation>
+				<property>
+					<name>apexMetrics</name>
+				</property>
+			</activation>
+			<modules>
+				<module>apex-plugins.context-schema</module>
+				<module>apex-plugins.context-distribution</module>
+				<module>apex-plugins.context-locking</module>
+				<module>apex-plugins.context-persistence</module>
+				<module>apex-plugins.context-metrics</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>apexAll</id>
+			<activation>
+				<property>
+					<name>apexAll</name>
+				</property>
+			</activation>
+			<modules>
+				<module>apex-plugins.context-schema</module>
+				<module>apex-plugins.context-distribution</module>
+				<module>apex-plugins.context-locking</module>
+				<module>apex-plugins.context-persistence</module>
+				<module>apex-plugins.context-test</module>
+				<module>apex-plugins.context-metrics</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>
