@@ -15,12 +15,5 @@ h| Abstract
 h| Links
 | link:https://www.researchgate.net/publication/279527537_HetNets_Big_Data_Cloud_SDNall_problems_solved_and_your_lunch_served_right[Research Gate] [accessed Aug 11, 2017]
 
-h| BibTeX
-a|
-[source,bibtex]
-----
-###
-----
-
 |===
 

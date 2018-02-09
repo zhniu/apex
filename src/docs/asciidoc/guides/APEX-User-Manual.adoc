@@ -45,6 +45,8 @@ include::{apex-main-dir}/docs/asciidoc/fragments/install-guide/docker.adoc[level
 
 == APEX Configurations Explained
 
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-config/introduction.adoc[leveloffset=+1]
+
 include::{apex-services-engine-dir}/docs/asciidoc/fragments/config-general-format.adoc[leveloffset=+1]
 
 include::{apex-services-engine-dir}/docs/asciidoc/fragments/config-service-parameters.adoc[leveloffset=+1]
@@ -98,6 +100,58 @@ include::{apex-plugins-event-protocol-jms-dir}/docs/asciidoc/fragments/ep-jms.ad
 include::{apex-services-engine-dir}/docs/asciidoc/fragments/config-example.adoc[leveloffset=+1]
 
 
+== Engine and Applications of the APEX System
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/introduction.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/engine.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/cli-editor.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/rest-editor.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/eng-monitoring.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/eng-deployment.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/full-client.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/application-launcher.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-tpl-event-json.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-model-2-cli.adoc[leveloffset=+1]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-ws.adoc[leveloffset=+1]
+
+
+== My First Policy
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/01-introduction.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/02-data-models.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/03-policy-step1.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/031-s1-new-model.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/032-s1-new-events.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/033-s1-new-policy.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/034-s1-test-policy.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/035-s1-clieditor.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/04-policy-step2.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/041-s2-extend-model.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/042-s2-test-policy.adoc[leveloffset=+1]
+
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/043-s2-clieditor.adoc[leveloffset=+1]
+
+
 == APEX Logging
 
 include::{apex-main-dir}/docs/asciidoc/fragments/howto-logging/introduction.adoc[leveloffset=+1]
@@ -139,71 +193,4 @@ include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-03-start-
 include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-04-start-console-client.adoc[leveloffset=+1]
 
 include::{apex-main-dir}/docs/asciidoc/fragments/howto-websockets/demo-05-send-events.adoc[leveloffset=+1]
-
-
-
-== Engine and Applications of the APEX System
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/introduction.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/engine.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/cli-editor.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/rest-editor.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/eng-monitoring.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/eng-deployment.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/full-client.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/application-launcher.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-tpl-event-json.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-model-2-cli.adoc[leveloffset=+1]
-
-include::{apex-main-dir}/docs/asciidoc/fragments/howto-apex/app-ws.adoc[leveloffset=+1]
-
-
-== My First Policy
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/01-introduction.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/02-data-models.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/021-data-models-input-event.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/022-data-models-decision-event.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/023-data-models-stock-items.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/024-data-models-assistants.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/025-data-models-location-branches.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/03-policy-step1.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/031-s1-scenario.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/032-s1-new-model.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/033-s1-new-events.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/034-s1-new-policy.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/035-s1-test-policy.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/036-s1-clieditor.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/04-policy-step2.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/041-s2-scenario.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/042-s2-extend-model.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/043-s2-test-policy.adoc[leveloffset=+1]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/044-s2-clieditor.adoc[leveloffset=+1]
 

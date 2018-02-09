@@ -1,1 +1,1 @@
-include::{apex-model-buildtools-dir}/site/asciidoc/33-configure-checkstyle-blueprint.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/33-configure-checkstyle-blueprint.adoc[]

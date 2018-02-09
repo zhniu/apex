@@ -5,9 +5,9 @@ Use Maven to build the APEX Site.
 Stage the APEX web site.
 The target folder for the staged site is
 
-- Unix: `/tmp/apex-site`
-- Windows: `C:\tmp\apex-site`
-- Cygwin: `/cygwin/c/tmp/apex-site`
+- Unix: `/usr/local/src/apex/target/gh-pages`
+- Windows: `C:\dev\apex\target\gh-pages`
+- Cygwin: `/cygdrive/c/dev/apex/target/gh-pages`
 
 Once the web site is staged, copy the full site to a folder of choice or into a web server.
 
@@ -22,18 +22,6 @@ The sites for all modules and projects and the main APEX site can take between 1
 ====
 
 
-[IMPORTANT]
-.Requires Asciidoctor-Maven-Plugin 1.5.6
-====
-There is a bug in the plugin up to at least version 1.5.5 that prevents multi-projects being build correctly.
-The original link:https://github.com/asciidoctor/asciidoctor-maven-plugin/issues/281[bug report] explains the details.
-A longer discussion can be found on link:http://maven.40175.n5.nabble.com/Injecting-MavenProject-td5899466.html[Doxia].
-The current discussion is in this link:https://github.com/asciidoctor/asciidoctor-maven-plugin/pull/282[bug report].
-Solution: clone the latest version of the link:https://github.com/asciidoctor/asciidoctor-maven-plugin.git[plugin],
-apply link:https://github.com/asciidoctor/asciidoctor-maven-plugin/pull/282/commits/60444cc330515d4f7dedc8ff3c26a08d326993cc[patch], build and install locally.
-====
-
-
 Start the build deleting the staging directory that might have been created by a previous site build.
 Then go to the APEX packaging directory.
 
@@ -43,21 +31,21 @@ Then go to the APEX packaging directory.
 |
 [source%nowrap,sh]
 ----
-rm -fr /tmp/apex-site
 cd /usr/local/src/apex
+rm -fr target/gh-pages
 ----
 |
 [source%nowrap,bat]
 ----
 c:
-rmdir /s /q \tmp\apex-site
 cd \dev\apex
+rmdir /s /q target\gh-pages
 ----
 |
 [source%nowrap,sh]
 ----
-rm -fr /cygdrive/c/tmp/apex-site # assuming you build on C drive
-cd /cygdrive/c/dev/apex # assuming you build on C drive
+cd /cygdrive/c/dev/apex
+rm -fr target/gh-pages
 ----
 |====================
 
@@ -65,15 +53,15 @@ the workflow for building a complete site then is as follows:
 
 [source%nowrap,sh]
 ----
-mvn clean -DapexXtext #<1>
-mvn install -DskipTests -DapexXtext #<2>
+mvn clean -DapexAll #<1>
+mvn install -DskipTests #<2>
 mvn generate-resources -N -DapexDocs #<3>
-mvn initialize site:attach-descriptor site site:stage -DapexSite -DapexXtext #<4>
+mvn initialize site:attach-descriptor site site:stage -DapexSite #<4>
 ----
 . First clean all modules to remove any site artifacts, use the _apexXtext_ profile to make sure these modules are processed as well
-. Next run a simple install without tests but with the XText modules
+. Next run a simple install without tests
 . Now generate the APEX stand -alone documentation, they are in the local package only so we can use the _-N_ switch
-. Last build the actual sites and stage (copy to the staging directory) with the profile _apexSite_ and including the XText projects with _apexXtext_ (do not forget the initialize goal, otherwise the staging directory will not be correctly set and sites are staged in every model in a directory called `docs`).
+. Last build the actual sites and stage (copy to the staging directory) with the profile _apexSite_ (do not forget the initialize goal, otherwise the staging directory will not be correctly set and sites are staged in every model in a directory called `docs`).
 
 If you want to build the site for a particular project for testing, the Maven command is simpler.
 Since only the main project has APEX documentation (stand-alone), you can use Maven as follow.
@@ -87,6 +75,6 @@ If you want to stage the tested site, then use
 
 [source%nowrap,sh]
 ----
-mvn clean site site:stage -DapexSite
+mvn clean initialize site:attach-descriptor site site:stage -DapexSite
 ----
 

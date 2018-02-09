@@ -1,0 +1,13 @@
+== Logic: Policy Decide State
+
+The decide state can select between different algorithms depending on the situation.
+So it needs a Task Selection Logic (TSL).
+This TSL select a task in the current policy execution (i.e. potentially a different one per execution).
+
+.JS Logic Policy Decide State - TSL
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/tsl-decide.js[JS Logic Policy Decide State - TSL]
+----
+
+The actual task logic are then `none`, `solved`, `sla`, and `priority`.

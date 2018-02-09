@@ -10,7 +10,7 @@
 
 
 /**
- * Containts the model for My-First-Policy..
+ * Contains the model for My-First-Policy.
  * 
  * @author John Keeney (john.keeney@ericsson.com)
  */

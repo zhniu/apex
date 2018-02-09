@@ -25,7 +25,7 @@ function taskTab_activate() {
 				task.taskLogic.logicFlavour             +
 				"</td>";
 
-			taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th></tr></thead><tbody>";
+			taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
 			for (var f = 0; f < task.inputFields.entry.length; f++) {
 				var fieldEntry = task.inputFields.entry[f];
 
@@ -35,11 +35,13 @@ function taskTab_activate() {
 					"</td>"                           +
 					"<td>"                            +
 					fieldEntry.value.fieldSchemaKey.name + ":"  + fieldEntry.value.fieldSchemaKey.version +
+					"<td>"                            +
+					fieldEntry.value.optional	 	  +
 					"</td></tr>";
 			}
 			taskTableRow += "</tbody></table></td>";
 			
-			taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th></tr></thead><tbody>";
+			taskTableRow += "<td><table class='ebTable'><thead><tr class='headerRow'><th>Field Name</th><th>Field Type/Schema</th><th>Optional</th></tr></thead><tbody>";
 			for (var f = 0; f < task.outputFields.entry.length; f++) {
 				var fieldEntry = task.outputFields.entry[f];
 
@@ -49,6 +51,8 @@ function taskTab_activate() {
 					"</td>"                           +
 					"<td>"                            +
 					fieldEntry.value.fieldSchemaKey.name + ":"  + fieldEntry.value.fieldSchemaKey.version +
+					"<td>"                            +
+					fieldEntry.value.optional	 	  +
 					"</td></tr>";
 			}
 			taskTableRow += "</tbody></table></td>";

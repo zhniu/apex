@@ -1,0 +1,1 @@
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/032-s1-new-events.adoc[]

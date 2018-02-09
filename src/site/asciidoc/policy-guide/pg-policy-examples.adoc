@@ -1,0 +1,3 @@
+== Policy Examples
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/policy-examples.adoc[]

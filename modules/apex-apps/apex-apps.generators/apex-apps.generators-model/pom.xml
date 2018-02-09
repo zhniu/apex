@@ -14,7 +14,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apex-apps.generators-model</artifactId>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/apex-apps/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/apex-apps/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>[${project.parent.artifactId}] Apex generators from policy models</description>
 	<inceptionYear>2017</inceptionYear>
 

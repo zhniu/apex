@@ -1,1 +1,0 @@
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/041-s2-scenario.adoc[]

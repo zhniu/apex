@@ -1,0 +1,11 @@
+== Schema for Trigger Event Status
+
+The trigger event provides a status as `UP` or `DOWN`.
+To avoid tests for these strings in the logic, we defined an Avro schema for an enumeration.
+This does not impact the trigger system (it can still send the strings), but makes the task logic simpler.
+
+.AVRO Schema Link Status
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/link-status.avsc[AVRO Schema Link Status]
+----

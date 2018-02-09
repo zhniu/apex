@@ -53,23 +53,9 @@
 						</td>
 						<td>
 							<ul>
-								<li><a href="user-guide/install/um-install.html">APEX Site</a></li>
+								<li><a href="user-manual/install/um-install.html">APEX Site</a></li>
 								<li><a href="docs-apex/html/APEX-Install-Guide.html">stand-alone HTML</a></li>
 								<li><a href="docs-apex/pdf/APEX-Install-Guide.pdf">stand-alone PDF</a></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<td>HowTo: Logging</td>
-						<td>
-							The APEX system uses SLF4j for logging with logback as backend.
-							This HowTo explains how the logging can be configured for a number of use cases.
-						</td>
-						<td>
-							<ul>
-								<li><a href="user-guide/logging/um-logging.html">APEX Site</a></li>
-								<li><a href="docs-apex/html/HowTo-Logging.html">stand-alone HTML</a></li>
-								<li><a href="docs-apex/pdf/HowTo-Logging.pdf">stand-alone PDF</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -80,24 +66,9 @@
 						</td>
 						<td>
 							<ul>
-								<li><a href="user-guide/configuration/um-config.html">APEX Site</a></li>
+								<li><a href="user-manual/configuration/um-00-introduction.html">APEX Site</a></li>
 								<li><a href="docs-apex/html/HowTo-Configuration.html">stand-alone HTML</a></li>
 								<li><a href="docs-apex/pdf/HowTo-Configuration.pdf">stand-alone PDF</a></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<td>HowTo: APEX and Websockets as Carrier Technology</td>
-						<td>
-							This HowTo starts with a brief introduction into Websockets in general, including links to open source Java implementations.
-							Then it explains the different configuration options for an APEX engine when using Websockets.
-							It finishes with an example configuration using the simple Websocket clients (applications).
-						</td>
-						<td>
-							<ul>
-								<li><a href="user-guide/websockets/um-websocket-introduction.html">APEX Site</a></li>
-								<li><a href="docs-apex/html/HowTo-Websockets.html">stand-alone HTML</a></li>
-								<li><a href="docs-apex/pdf/HowTo-Websockets.pdf">stand-alone PDF</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -109,7 +80,7 @@
 						</td>
 						<td>
 							<ul>
-								<li><a href="user-guide/engine-apps/um-engapps.html">APEX Site</a></li>
+								<li><a href="user-manual/engine-apps/um-engapps.html">APEX Site</a></li>
 								<li><a href="docs-apex/html/HowTo-APEX.html">stand-alone HTML</a></li>
 								<li><a href="docs-apex/pdf/HowTo-APEX.pdf">stand-alone PDF</a></li>
 							</ul>
@@ -125,9 +96,38 @@
 						</td>
 						<td>
 							<ul>
-								<li><a href="user-guide/my-first-policy/um-mfp-01-introduction.html">APEX Site</a></li>
+								<li><a href="user-manual/my-first-policy/um-mfp-01-introduction.html">APEX Site</a></li>
 								<li><a href="docs-apex/html/HowTo-MyFirstPolicy.html">stand-alone HTML</a></li>
 								<li><a href="docs-apex/pdf/HowTo-MyFirstPolicy.pdf">stand-alone PDF</a></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>HowTo: Logging</td>
+						<td>
+							The APEX system uses SLF4j for logging with logback as backend.
+							This HowTo explains how the logging can be configured for a number of use cases.
+						</td>
+						<td>
+							<ul>
+								<li><a href="user-manual/logging/um-logging.html">APEX Site</a></li>
+								<li><a href="docs-apex/html/HowTo-Logging.html">stand-alone HTML</a></li>
+								<li><a href="docs-apex/pdf/HowTo-Logging.pdf">stand-alone PDF</a></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>HowTo: APEX and Websockets as Carrier Technology</td>
+						<td>
+							This HowTo starts with a brief introduction into Websockets in general, including links to open source Java implementations.
+							Then it explains the different configuration options for an APEX engine when using Websockets.
+							It finishes with an example configuration using the simple Websocket clients (applications).
+						</td>
+						<td>
+							<ul>
+								<li><a href="user-manual/websockets/um-websocket-introduction.html">APEX Site</a></li>
+								<li><a href="docs-apex/html/HowTo-Websockets.html">stand-alone HTML</a></li>
+								<li><a href="docs-apex/pdf/HowTo-Websockets.pdf">stand-alone PDF</a></li>
 							</ul>
 						</td>
 					</tr>

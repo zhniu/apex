@@ -16,7 +16,7 @@
 	<artifactId>apex-services.client-monitoring</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/apex-services/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/apex-services/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>Web client for managing Apex engines</description>
 	<inceptionYear>2015</inceptionYear>
 

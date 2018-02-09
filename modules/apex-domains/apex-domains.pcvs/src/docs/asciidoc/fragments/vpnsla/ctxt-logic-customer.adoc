@@ -1,0 +1,10 @@
+== Logic: Customer Context
+
+The customer context logic simply takes the trigger event (for context) and creates a new customer in the local context topology.
+
+.JS Logic Customer Context
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/ctxt-customer.js[JS Logic Customer Context]
+----
+

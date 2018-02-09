@@ -1,0 +1,10 @@
+== Mininet Topology
+
+The topology is realized using Mininet.
+The following script is use to estalish the topology and to realize network configurations.
+
+.Mininet Topology
+[source,python,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/examples/scripts/PCVS/vpnsla/MininetTopology.py[Mininet Topology]
+----

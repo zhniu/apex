@@ -17,11 +17,15 @@ import com.ericsson.apex.model.utilities.ResourceUtils;
 
 /**
  * A factory for creating MFPDomainModel objects.
+ * 
+ * @author John Keeney (john.keeney@ericsson.com)
  */
 public class MFPDomainModelFactory {
-    private static final String MFP1PATH = "examples/models/MyFirstPolicy/1/MyFirstPolicyModel_0.0.1.json";
+
+	private static final String MFP1PATH = "examples/models/MyFirstPolicy/1/MyFirstPolicyModel_0.0.1.json";
     private static final String MFP1_ALT_PATH = "examples/models/MyFirstPolicy/1/MyFirstPolicyModel_0.0.1.alt.json";
     private static final String MFP2PATH = "examples/models/MyFirstPolicy/2/MyFirstPolicyModel_0.0.1.json";
+
     /**
      * Gets the MyFirstPolicy#1 policy model.
      *

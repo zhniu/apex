@@ -1,0 +1,1 @@
+include::{apex-domains-pcvs-dir}/docs/asciidoc/fragments/vpnsla/logic-establish.adoc[]

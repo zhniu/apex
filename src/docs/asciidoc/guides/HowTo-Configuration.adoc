@@ -18,6 +18,7 @@ Version Notes: {revremark}
 :toclevels: 5
 :icons: font
 
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-config/introduction.adoc[]
 
 include::{apex-services-engine-dir}/docs/asciidoc/fragments/config-general-format.adoc[]
 

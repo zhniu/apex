@@ -73,9 +73,6 @@ The third logger captures context monitoring classes, appends logs to `CTXT_FILE
 ----
 <logger name="com.ericsson.apex" level="info" additivity="false">
   <appender-ref ref="STDOUT" />
-</logger>
-
-<logger name="com.ericsson.apex" level="info" additivity="false">
   <appender-ref ref="FILE" />
 </logger>
 

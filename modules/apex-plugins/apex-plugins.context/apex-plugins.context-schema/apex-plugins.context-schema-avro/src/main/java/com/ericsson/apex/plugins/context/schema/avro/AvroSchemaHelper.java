@@ -47,12 +47,6 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
     // The mapper that translates between Java and Avro objects
     private AvroObjectMapper avroObjectMapper;
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.impl.schema.AbstractSchemaHelper#init(com.ericsson.apex.model.basicmodel.concepts.AxKey,
-     * com.ericsson.apex.model.contextmodel.concepts.AxContextSchema)
-     */
     @Override
     public void init(final AxKey userKey, final AxContextSchema schema) throws ContextRuntimeException {
         super.init(userKey, schema);
@@ -84,27 +78,17 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
         return avroSchema;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#getSchemaObject()
-     */
     @Override
     public Object getSchemaObject() {
         return avroSchema;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#createNewInstance()
-     */
     @Override
     public Object createNewInstance() {
         // Create a new instance using the Avro object mapper
         final Object newInstance = avroObjectMapper.createNewInstance(avroSchema);
 
-        // If no new instance is created, use default schema handler behaviour
+        // If no new instance is created, use default schema handler behavior
         if (newInstance != null) {
             return newInstance;
         }
@@ -113,21 +97,11 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#createNewInstance(java.lang.String)
-     */
     @Override
     public Object createNewInstance(final String stringValue) {
         return unmarshal(stringValue);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#createNewInstance(com.google.gson.JsonElement)
-     */
     @Override
     public Object createNewInstance(final JsonElement jsonElement) {
         final Gson gson = new GsonBuilder().serializeNulls().create();
@@ -136,11 +110,6 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
         return createNewInstance(elementJsonString);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#unmarshal(java.lang.Object)
-     */
     @Override
     public Object unmarshal(final Object object) {
         // If an object is already in the correct format, just carry on
@@ -203,11 +172,6 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
         return avroObjectMapper.mapFromAvro(decodedObject);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#marshal2Json(java.lang.Object)
-     */
     @Override
     public String marshal2Json(final Object object) {
         // Condition the object for Avro encoding
@@ -230,11 +194,6 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
         return AvroSchemaKeyTranslationUtilities.translateIllegalKeys(new String(output.toByteArray()), true);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.context.SchemaHelper#marshal2JsonElement(java.lang.Object)
-     */
     @Override
     public JsonElement marshal2JsonElement(final Object schemaObject) {
         // Get the object as a Json string
@@ -250,7 +209,7 @@ public class AvroSchemaHelper extends AbstractSchemaHelper {
     }
 
     /**
-     * Check if we can pass this object straight through encoding or decoding, is it an object native to the schema>.
+     * Check if we can pass this object straight through encoding or decoding, is it an object native to the schema.
      *
      * @param object the object to check
      * @return true if it's a straight pass through

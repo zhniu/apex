@@ -1,0 +1,9 @@
+== Logic: Node Context
+
+The node context logic simply takes the trigger event (for context) and creates a new node in the local context topology.
+
+.JS Logic Node Context
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/ctxt-nodes.js[JS Logic Node Context]
+----

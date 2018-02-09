@@ -1,0 +1,7 @@
+== Logic: Decide SLA
+
+.JS Logic Policy Decide State - SLA
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-decide-sla.js[JS Logic Policy Decide State - SLA]
+----

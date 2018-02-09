@@ -22,3 +22,10 @@ Version Notes: {revremark}
 include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/task-logic.adoc[]
 
 include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/task-selection-logic.adoc[]
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/logic-cheatsheet.adoc[]
+
+== Policy Examples
+
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-write-logic/policy-examples.adoc[leveloffset=+1]
+

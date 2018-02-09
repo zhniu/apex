@@ -16,16 +16,18 @@ import com.ericsson.apex.model.policymodel.concepts.AxPolicyModel;
 
 /**
  * The Class MFPDomainModelSaver.
+ * 
  * @author John Keeney (john.keeney@ericsson.com)
  */
 public final class MFPDomainModelSaver {
 
     /** Private constructor to prevent instantiation. */
     private MFPDomainModelSaver() { }
+
     /**
      * Write the MyFirstPolicy model to args[0].
      *
-     * @param args Not used
+     * @param args uses <code>arg[0]</code> for directory information
      * @throws ApexException the apex exception
      */
     public static void main(final String[] args) throws ApexException {

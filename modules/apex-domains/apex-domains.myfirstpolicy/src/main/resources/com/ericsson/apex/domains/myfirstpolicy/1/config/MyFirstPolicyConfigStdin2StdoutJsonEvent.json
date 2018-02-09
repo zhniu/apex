@@ -1,35 +1,46 @@
 {
-	"engineServiceParameters":{
-		"name"          : "MyFirstPolicyApexEngine",
-		"version"        : "0.0.1",
-		"id"             :  101,
-		"instanceCount"  : 4,
-		"deploymentPort" : 12345,
-		"policyModelFileName" : "MyFirstPolicyModel_0.0.1.json",
+	"engineServiceParameters" : {
+		"name"                : "MyFirstPolicyApexEngine",
+		"version"             : "0.0.1",
+		"id"                  : 101,
+		"instanceCount"       : 4,
+		"deploymentPort"      : 12345,
+		"policyModelFileName" : "examples/models/MyFirstPolicy/1/MyFirstPolicyModel_0.0.1.json",
 		"engineParameters"    : {
-			"executorParameters":{
+			"executorParameters" : {
 				"MVEL" : {
 					"parameterClassName" : "com.ericsson.apex.plugins.executor.mvel.MVELExecutorParameters"
+				},
+				"JAVASCRIPT" : {
+					"parameterClassName" : "com.ericsson.apex.plugins.executor.javascript.JavascriptExecutorParameters"
 				}
 			}
 		}
 	},
-	"producerCarrierTechnologyParameters":{
-		"carrierTechnology" : "FILE",
-		"parameters" : {
-			"standardIO" : true
+	"eventOutputParameters": {
+		"FirstProducer": {
+			"carrierTechnologyParameters" : {
+				"carrierTechnology" : "FILE",
+				"parameters" : {
+					"standardIO" : true
+				}
+			},
+			"eventProtocolParameters" : {
+				"eventProtocol" : "JSON"
+			}
 		}
 	},
-	"producerEventProtocolParameters":{
-		"eventProtocol" : "JSON"
-	},
-	"consumerCarrierTechnologyParameters":{
-		"carrierTechnology" : "FILE",
-		"parameters" : {
-			"standardIO" : true
+	"eventInputParameters": {
+		"FirstConsumer": {
+			"carrierTechnologyParameters" : {
+				"carrierTechnology" : "FILE",
+				"parameters" : {
+					"standardIO" : true
+				}
+			},
+			"eventProtocolParameters" : {
+				"eventProtocol" : "JSON"
+			}
 		}
-	},
-	"consumerEventProtocolParameters":{
-		"eventProtocol" : "JSON"
 	}
 }

@@ -1,0 +1,121 @@
+== Install Demo
+
+Requirements:
+
+* Ubuntu server: 1.4 GB
+* Ubuntu with Xubuntu Desktop, git, Firefox: 2.3 GB
+* Ubuntu with all, system updated: 3 GB
+* With ZK, Kafka, VLC, Mininet, Floodlight, Python: 4.4 GB
+* APEX Build (M2 and built): M2 ~ 2 GB, APEX ~3.5 GB
+* APEX install (not build locally): ~ 300 MB
+
+
+On a Ubuntu OS (install a stable or LTS server first)
+
+----
+# pre for Ubuntu, tools and X
+sudo apt-get  -y install --no-install-recommends software-properties-common
+sudo apt-get  -y install --no-install-recommends build-essential
+sudo apt-get  -y install --no-install-recommends git
+sudo aptitude -y install --no-install-recommends xubuntu-desktop
+sudo apt-get  -y install --no-install-recommends firefox
+
+
+# install Java
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get -y install --no-install-recommends oracle-java8-installer
+java -version
+
+
+# reboot system, run system update, then continue
+
+# if VBox additions are needed, install and reboot
+sudo (cd /usr/local/share; wget https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_5.2.7-120528.iso)
+sudo mount /usr/local/share/VBoxGuestAdditions_5.2.7-120528.iso /media/cdrom
+sudo (cd /media/cdrom;VBoxLinuxAdditions.run)
+
+
+# update apt-get DB
+sudo apt-get update
+
+# if APEX is build from source, install maven and rpm
+sudo apt-get install maven rpm
+
+# install ZooKeeper
+sudo apt-get install zookeeperd
+
+# install Kafka
+(cd /tmp;wget http://ftp.heanet.ie/mirrors/www.apache.org/dist/kafka/1.0.0/kafka_2.12-1.0.0.tgz --show-progress)
+sudo mkdir /opt/Kafka
+sudo tar -xvf /tmp/kafka_2.12-1.0.0.tgz -C /opt/Kafka/
+
+# install mininet
+cd /usr/local/src
+git clone https://github.com/mininet/mininet.git
+(cd mininet;util/install.sh -a)
+
+# install floodlight, requires ant
+sudo apt-get install ant
+cd /usr/loca/src
+wget --no-check-certificate https://github.com/floodlight/floodlight/archive/master.zip
+unzip floodlight-master.zip
+cd floodlight-master; ant
+mkdir /var/lib/floodlight
+chmod 777 /var/lib/floodlight
+
+# install python pip
+sudo apt-get install python-pip
+
+# install kafka-python (need newer version from github)
+cd /usr/local/src
+git clone https://github.com/dpkp/kafka-python
+sudo pip install ./kafka-python
+
+# install vlc
+sudo apt-get install vlc
+----
+
+Install APEX either from source or from a distribution package.
+See the APEX documentation for details.
+We assume that APEX is installed in `/opt/ericsson/apex/apex`
+
+Copy the LinkMonitor file to Kafka-Python
+
+----
+cp /opt/ericsson/apex/apex/examples/scripts/PCVS/vpnsla/LinkMonitor.py /usr/local/src/kafka-python
+----
+
+Change the Logback configuration in APEX to logic logging
+
+----
+cd /opt/ericsson/apex/apex/etc
+cp logback-logic.xml logback.xml
+----
+
+
+== Get the Demo Video
+
+* For all download options of the movie please visit link:http://bbb3d.renderfarming.net/download.html[]
+* For lower-res downloads and mirrors see link:https://peach.blender.org/download[]
+
+----
+cd /usr/local/src
+mkdir videos
+----
+
+
+Standard 720p (recommended)
+
+----
+(cd /usr/local/src/videos; curl -o big_buck_bunny_480p_surround.avi http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_surround-fix.avi)
+----
+
+
+Full HD video
+
+----
+(cd videos; curl -o bbb_sunflower_1080p_60fps_normal.mp4 http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4)
+----
+
+

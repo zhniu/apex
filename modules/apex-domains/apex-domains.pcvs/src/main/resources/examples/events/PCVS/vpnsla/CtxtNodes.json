@@ -1,0 +1,101 @@
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "A1",
+    "mininetName": "nn"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "A2",
+    "mininetName": "nn"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "B1",
+    "mininetName": "nn"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "B2",
+    "mininetName": "nn"
+}
+
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "A1CO",
+    "mininetName": "s1"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "A2CO",
+    "mininetName": "s2"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "B1CO",
+    "mininetName": "s3"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "B2CO",
+    "mininetName": "s4"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "BBL",
+    "mininetName": "s5"
+}
+
+{
+    "nameSpace": "com.ericsson.apex.domains.pcvs.vpnsla",
+    "name": "NodeContextEventIn",
+    "version": "1.0.0",
+    "source": "CtxtManagement",
+    "target" : "VpnSlaPolicy_NodeContext",
+    "nodeName": "BBR",
+    "mininetName": "s6"
+}
+

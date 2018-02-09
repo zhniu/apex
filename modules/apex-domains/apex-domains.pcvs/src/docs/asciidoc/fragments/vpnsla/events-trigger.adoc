@@ -1,0 +1,10 @@
+== Example Trigger Events
+
+The following events are examples for trigger events
+
+.Trigger Examples
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/examples/events/PCVS/vpnsla/Trigger_Edge09.json[Trigger Examples]
+----
+

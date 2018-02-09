@@ -1,1 +1,1 @@
-include::{apex-model-buildtools-dir}/site/asciidoc/50-disable-eclispe-formatting.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/50-disable-eclispe-formatting.adoc[]

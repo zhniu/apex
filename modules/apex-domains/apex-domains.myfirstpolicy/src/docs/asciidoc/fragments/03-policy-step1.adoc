@@ -1,2 +1,10 @@
 == Policy Step 1
 
+=== Scenario
+For the first version of our policy, let's start with something simple.
+Let us assume that there exists some restriction that alcohol products cannot be sold before 11:30am.
+In this section we will go through the necessary steps to define a policy that can enforce this for _HyperM_.
+
+* Alcohol cannot be sold before 11:30am.
+
+

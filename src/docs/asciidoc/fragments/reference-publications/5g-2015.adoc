@@ -28,7 +28,6 @@ a|
 	Title = {{5G \& Autonomic Networking - Challenges in closing the Loop}},
 	Url = {https://ieeetv.ieee.org/mobile/video/princeton-5g-summit-sven-van-der-meer-keynote-automatic-automation},
 	Year = {2015},
-	Bdsk-Url-1 = {https://ieeetv.ieee.org/mobile/video/princeton-5g-summit-sven-van-der-meer-keynote-automatic-automation}}
 ----
 
 |===

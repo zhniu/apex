@@ -1,0 +1,10 @@
+== Context Events: Customers
+
+The following events create all customers of the topology.
+
+.Context Events Customers
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/examples/events/PCVS/vpnsla/CtxtCustomers.json[Context Events Customers]
+----
+

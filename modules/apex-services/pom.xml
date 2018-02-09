@@ -16,7 +16,7 @@
 	<artifactId>apex-services</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.artifactId}</url>
+	<url>${apex.site.prefix}/modules/${project.artifactId}</url>
 	<description>The main services of Apex, deployment independent.</description>
 	<inceptionYear>2014</inceptionYear>
 

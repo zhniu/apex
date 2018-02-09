@@ -240,6 +240,10 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 	inputfieldstable_head_tr.appendChild(inputfieldstable_head_th);
 	inputfieldstable_head_th.innerHTML = "Input Field Type/Schema: ";
 	inputfieldstable_head_th.setAttribute("class", "table-taskinputfield-heading form-heading");
+	inputfieldstable_head_th = document.createElement("th");
+	inputfieldstable_head_tr.appendChild(inputfieldstable_head_th);
+	inputfieldstable_head_th.innerHTML = "Optional: ";
+	inputfieldstable_head_th.setAttribute("class", "table-eventparam-heading form-heading");
 	var inputfieldstable_body = document.createElement("tbody");
 	inputfieldstable.appendChild(inputfieldstable_body);
 	//Add the inputfields
@@ -248,7 +252,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 			var inputfieldEntry = task.inputFields.entry[p];
 			var contextSchema = inputfieldEntry.value.fieldSchemaKey;
 			contextSchema["displaytext"] = contextSchema.name+":"+contextSchema.version;
-			editTaskForm_addTaskInputField(inputfieldstable_body, (createEditOrView == "VIEW"), inputfieldEntry.key, contextSchema, contextSchemas);
+			editTaskForm_addTaskInputField(inputfieldstable_body, (createEditOrView == "VIEW"), inputfieldEntry.key, inputfieldEntry.value.optional, contextSchema, contextSchemas);
 		}
 	}
 	//add the New Input Field button
@@ -261,7 +265,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 		inputfieldTR.appendChild(inputfieldTD); 
 		var addInputFieldInput = createAddFormButton();
 		inputfieldTD.appendChild(addInputFieldInput);
-		addInputFieldInput.onclick = function(){editTaskForm_addTaskInputField(inputfieldstable_body, false,null,null,contextSchemas);};
+		addInputFieldInput.onclick = function(){editTaskForm_addTaskInputField(inputfieldstable_body, false,null,false,null,contextSchemas);};
 	}
 	 
 	//output fields
@@ -289,6 +293,10 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 	outputfieldstable_head_tr.appendChild(outputfieldstable_head_th);
 	outputfieldstable_head_th.innerHTML = "Output Field Type/Schema: ";
 	outputfieldstable_head_th.setAttribute("class", "table-taskoutputfield-heading form-heading");
+	outputfieldstable_head_th = document.createElement("th");
+	outputfieldstable_head_tr.appendChild(outputfieldstable_head_th);
+	outputfieldstable_head_th.innerHTML = "Optional: ";
+	outputfieldstable_head_th.setAttribute("class", "table-eventparam-heading form-heading");
 	var outputfieldstable_body = document.createElement("tbody");
 	outputfieldstable.appendChild(outputfieldstable_body);
 	//Add the outputfields
@@ -297,7 +305,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 			var outputfieldEntry = task.outputFields.entry[p];
 			var contextSchema = outputfieldEntry.value.fieldSchemaKey;
 			contextSchema["displaytext"] = contextSchema.name+":"+contextSchema.version;
-			editTaskForm_addTaskOutputField(outputfieldstable_body, (createEditOrView == "VIEW"), outputfieldEntry.key, contextSchema, contextSchemas);
+			editTaskForm_addTaskOutputField(outputfieldstable_body, (createEditOrView == "VIEW"), outputfieldEntry.key, outputfieldEntry.value.optional, contextSchema, contextSchemas);
 		}
 	}
 	//add the New Output Field button
@@ -310,7 +318,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 		outputfieldTR.appendChild(outputfieldTD);
 		var addOutputFieldInput = createAddFormButton();
 		outputfieldTD.appendChild(addOutputFieldInput);
-		addOutputFieldInput.onclick = function(){editTaskForm_addTaskOutputField(outputfieldstable_body, false,null,null,contextSchemas);};
+		addOutputFieldInput.onclick = function(){editTaskForm_addTaskOutputField(outputfieldstable_body, false,null,false,null,contextSchemas);};
 	}
 
 	//tasklogic
@@ -503,7 +511,7 @@ function editTaskForm_activate(parent, operation, task, contextSchemas, contextA
 	scrollToTop();
 }
 
-function editTaskForm_addTaskInputField(parentTBody, disabled, name, contextSchema, contextSchemas) {
+function editTaskForm_addTaskInputField(parentTBody, disabled, name, optional, contextSchema, contextSchemas) {
 	var random_suffix = formUtils_generateUUID();
 
 	var inputfieldTR = parentTBody.insertRow(parentTBody.rows.length-1);
@@ -551,9 +559,29 @@ function editTaskForm_addTaskInputField(parentTBody, disabled, name, contextSche
 	var selectDiv = dropdownList("editTaskFormInputFieldContextSchema"+"_"+random_suffix, 
 			contextSchemas, contextSchema, disabled, null)
 	contextSchemaTD.appendChild(selectDiv);
+	
+	var inputOptionalTD = document.createElement("td");
+	inputOptionalTD.setAttribute("class", "field-checkbox-center");
+	inputfieldTR.appendChild(inputOptionalTD);
+	var inputOptional = document.createElement("input");
+	inputOptional.setAttribute("type",      "checkbox");
+	inputOptional.setAttribute("id",          "editTaskFormInputFieldOptional"+"_"+random_suffix);
+	inputOptional.setAttribute("name",        "editTaskFormInputFieldOptional"+"_"+random_suffix);
+	inputOptional.setAttribute("class",       "field-eventparam-optional");
+	if(name == null && contextSchema == null && !disabled){
+		inputOptional.setAttribute("class",       "field-eventparam-optional.new");
+	}
+	if (optional == true){
+		inputOptional.checked = true;
+	}
+	else{
+		inputOptional.checked = false;
+	}
+	inputOptional.disabled = disabled;
+	inputOptionalTD.appendChild(inputOptional);
 }
 
-function editTaskForm_addTaskOutputField(parentTBody, disabled, name, contextSchema, contextSchemas) {
+function editTaskForm_addTaskOutputField(parentTBody, disabled, name, optional, contextSchema, contextSchemas) {
 	var random_suffix = formUtils_generateUUID();
 
 	var outputfieldTR =  parentTBody.insertRow(parentTBody.rows.length-1);
@@ -601,6 +629,26 @@ function editTaskForm_addTaskOutputField(parentTBody, disabled, name, contextSch
 	var selectDiv = dropdownList("editTaskFormOutputFieldContextSchema"+"_"+random_suffix, 
 			contextSchemas, contextSchema, disabled, null)
 	contextSchemaTD.appendChild(selectDiv);
+	
+	var outputOptionalTD = document.createElement("td");
+	outputOptionalTD.setAttribute("class", "field-checkbox-center");
+	outputfieldTR.appendChild(outputOptionalTD);
+	var outputOptional = document.createElement("input");
+	outputOptional.setAttribute("type",      "checkbox");
+	outputOptional.setAttribute("id",          "editTaskFormOutputFieldOptional"+"_"+random_suffix);
+	outputOptional.setAttribute("name",        "editTaskFormOutputFieldOptional"+"_"+random_suffix);
+	outputOptional.setAttribute("class",       "field-eventparam-optional");
+	if(name == null && contextSchema == null && !disabled){
+		outputOptional.setAttribute("class",       "field-eventparam-optional.new");
+	}
+	if (optional == true){
+		outputOptional.checked = true;
+	}
+	else{
+		outputOptional.checked = false;
+	}
+	outputOptional.disabled = disabled;
+	outputOptionalTD.appendChild(outputOptional);
 }
 
 function editTaskForm_addTaskParameter(parentTBody, disabled, name, value) {
@@ -734,6 +782,7 @@ function editTaskForm_submitPressed() {
 			if(inputfieldTR && inputfieldTR.getAttribute("inputfield_id")){
 				var inputfield_id = inputfieldTR.getAttribute("inputfield_id");
 				var inputfieldname = document.getElementById("editTaskFormInputFieldName"+"_"+inputfield_id).value;
+				var inputfield_optional = document.getElementById("editTaskFormInputFieldOptional"+"_"+inputfield_id).checked;
 				var inputfield_dt = document.getElementById("editTaskFormInputFieldContextSchema"+"_"+inputfield_id+"_dropdownList").selectedOption;
 				if(taskbean_inputfields[inputfieldname]){
 					alert("Task \""+name+"\" contains more than one Input Field called \""+inputfieldname+"\"");
@@ -745,7 +794,7 @@ function editTaskForm_submitPressed() {
 				}
 				var inputfield_dt_name =   inputfield_dt.name;
 				var inputfield_dt_version =  inputfield_dt.version;
-				taskbean_inputfields[inputfieldname] = {"localName":inputfieldname,"name":inputfield_dt_name,"version":inputfield_dt_version,"optional":"false"};
+				taskbean_inputfields[inputfieldname] = {"localName":inputfieldname,"name":inputfield_dt_name,"version":inputfield_dt_version,"optional": inputfield_optional};
 			}
 		}
 	}
@@ -759,6 +808,7 @@ function editTaskForm_submitPressed() {
 			if(outputfieldTR && outputfieldTR.getAttribute("outputfield_id")){
 				var outputfield_id = outputfieldTR.getAttribute("outputfield_id");
 				var outputfieldname = document.getElementById("editTaskFormOutputFieldName"+"_"+outputfield_id).value;
+				var outputfield_optional = document.getElementById("editTaskFormOutputFieldOptional"+"_"+outputfield_id).checked;
 				var outputfield_dt = document.getElementById("editTaskFormOutputFieldContextSchema"+"_"+outputfield_id+"_dropdownList").selectedOption;
 				if(taskbean_outputfields[outputfieldname]){
 					alert("Task \""+name+"\" contains more than one Output Field called \""+outputfieldname+"\"");
@@ -770,7 +820,7 @@ function editTaskForm_submitPressed() {
 				}
 				var outputfield_dt_name =     outputfield_dt.name;
 				var outputfield_dt_version =  outputfield_dt.version;
-				taskbean_outputfields[outputfieldname] = {"localName":outputfieldname,"name":outputfield_dt_name,"version":outputfield_dt_version,"optional":"false"};
+				taskbean_outputfields[outputfieldname] = {"localName":outputfieldname,"name":outputfield_dt_name,"version":outputfield_dt_version,"optional": outputfield_optional};
 			}
 		}
 	}

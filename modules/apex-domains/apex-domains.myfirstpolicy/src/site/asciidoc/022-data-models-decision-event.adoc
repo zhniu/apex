@@ -1,1 +1,0 @@
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/022-data-models-decision-event.adoc[]

@@ -16,7 +16,7 @@
 	<artifactId>apex-auth</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.artifactId}</url>
+	<url>${apex.site.prefix}/modules/${project.artifactId}</url>
 	<description>Policy, state, and task authoring for Apex.</description>
 	<inceptionYear>2015</inceptionYear>
 
@@ -43,22 +43,6 @@
 			<modules>
 				<module>apex-auth.cli-editor</module>
 				<module>apex-auth.cli-codegen</module>
-				<module>apex-auth.xtext-utilities</module>
-			</modules>
-		</profile>
-
-		<profile>
-			<id>apexXtext</id>
-			<activation>
-				<property>
-					<name>apexXtext</name>
-				</property>
-			</activation>
-			<modules>
-				<module>apex-auth.cli-editor</module>
-				<module>apex-auth.cli-codegen</module>
-				<module>apex-auth.xtext-utilities</module>
-				<module>apex-auth.xtext/com.ericsson.apex.auth.xtext.apexnotepad.parent</module>
 			</modules>
 		</profile>
 	</profiles>

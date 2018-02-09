@@ -16,7 +16,7 @@
 	<artifactId>apex-apps</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.artifactId}</url>
+	<url>${apex.site.prefix}/modules/${project.artifactId}</url>
 	<description>The Apex applications, implementation dependent wrappers and mediation for Apex in various technologies.</description>
 	<inceptionYear>2014</inceptionYear>
 

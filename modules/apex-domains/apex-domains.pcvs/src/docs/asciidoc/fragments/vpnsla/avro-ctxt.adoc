@@ -1,0 +1,23 @@
+== Context Schemas
+
+The context schemas are for the local context.
+We model edges and nodes for the topology, customers, and problems with all information on detected problems.
+
+.AVRO Schema Edges
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/topology-edges.avsc[AVRO Schema Edges]
+----
+
+
+.AVRO Schema Nodes
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/topology-nodes.avsc[AVRO Schema Nodes]
+----
+
+.AVRO Schema Customers
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/customers.avsc[AVRO Schema Customers]
+----

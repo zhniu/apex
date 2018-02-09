@@ -53,15 +53,33 @@
 						<th style="white-space:nowrap; font-weight: bold; font-size: 1.25em">Description</th>
 					</tr>
 					<tr>
-						<td><a href="apex-docs.html">General APEX Documents</a></td>
+						<td><a href="apex-intro/intro-introduction.html">APEX Introduction</a></td>
 						<td>
-							The APEX general documents are a set of documents with background on policy, the APEX engine, and the APEX eco-system.
-							These documents are provided as integrated documentation in the APEX site.
-							Furthermore, we provide stand-alone documents in HTML and PDF.
+							This is a short introduction to APEX to show its features and capabilities.
+
+							<br /><br />
+							Also available as
+								<a href="docs-apex/html/APEX-Introduction.html">stand-alone HTML</a> and
+								<a href="docs-apex/pdf/APEX-Introduction.pdf">stand-alone PDF</a>.
+						</td>
+					</tr>
+
+					<tr>
+						<td><a href="apex-publications.html">Publications</a></td>
+						<td>
+							APEX is based on a theor called Unifying Policy Theory (UPT).
+							Over the years, we have published a number of papers on APEX, context management, policy in general, and control loops.
+							This is the list of all APEX and the most relevant other publications.
+							We provide links to full text versions if possible.
+
+							<br /><br />
+							Also available as
+								<a href="docs-apex/html/APEX-Publications.html">stand-alone HTML</a> and
+								<a href="docs-apex/pdf/APEX-Publications.pdf">stand-alone PDF</a>.
 						</td>
 					</tr>
 					<tr>
-						<td><a href="user-manual.html">APEX User Guide</a></td>
+						<td><a href="user-manual.html">APEX User Manual</a></td>
 						<td>
 							The APEX user manual combines a set of guides and howto documents, all supporting the use of APEX.
 							The guides and howto documents are provided as integrated documentation in the APEX site.
@@ -101,7 +119,6 @@
 							The APEX applications, implementation dependent wrappers and mediation for APEX in various technologies.
 							Important projects here are:
 							<ul>
-								<li><a href="modules/apex-apps/apex-apps/apex-apps.uservice/apex-apps.uservice-packaging/apex-apps.uservice-package-full/index.html">apex-apps.uservice-package-full</a> - complete APEX distribution package</li>
 								<li><a href="modules/apex-apps/apex-apps.generators/apex-apps.generators-model/index.html">apex-apps.generators-model</a> - Generators from/to the APEX policy mode</li>
 								<li><a href="modules/apex-apps/apex-apps.utilities/index.html">apex-apps.utilities</a> - Utilities for APEX application developers</li>
 								<li><a href="modules/apex-apps/apex-apps.wsclients/apex-apps.wsclients-simple/index.html">apex-apps.wsclients-simple</a> - Simple Websocket clients (console and echo) for trigger/actioning systems</li>
@@ -117,7 +134,6 @@
 							Important projects here are:
 							<ul>
 								<li><a href="modules/apex-auth/apex-auth.cli-editor/index.html">apex-auth.cli-editor</a> - The APEX CLI Editor</li>
-								<li><a href="modules/apex-auth/com.ericsson.apex.auth.xtext.apexnotepad.parent/index.html">apexnotepad</a> - The APEX XText Notepad (Eclipse Plugin based on XText)</li>
 							</ul>
 						</td>
 						<td>Policy Designers</td>
@@ -129,11 +145,11 @@
 							Here one can find complete implementations, examples, and tests for APEX policies.
 							Important projects here are:
 							<ul>
-								<li><a href="modules/apex-domains/apex-domains.vpn/index.html">apex-domains.vpn</a> - An example policy for managing customers and link failures for a somple VPN scenario</li>
+								<li><a href="modules/apex-domains/apex-domains.decisionmaker/index.html">apex-domains.decisionmaker</a> - A simple decision maker demo, with REST interface for interactions deployed in a Docker container</li>
+								<li><a href="modules/apex-domains/apex-domains.myfirstpolicy/index.html">apex-domains.myfirstpolicy</a> - My First Policy, a step-by-step tutorial for defining a policy</li>
+								<li><a href="modules/apex-domains/apex-domains.pcvs/index.html">apex-domains.pcvs</a> - An example policy for managing customers and link failures showing video streaming for a simple VPN scenario</li>
 								<li><a href="modules/apex-domains/apex-domains.adaptive/index.html">apex-domains.adaptive</a> - A simple adaptive policy</li>
 								<li><a href="modules/apex-domains/apex-domains.aadm/index.html">apex-domains.aadm</a> - A policy realizing a complex scenario for Autonomic Anomaly Detection and Mitigation (AADM)</li>
-								<li><a href="modules/apex-domains/apex-domains.myfirstpolicy/index.html">apex-domains.myfirstpolicy</a> - My First Policy, a step-by-step tutorial for defining a policy</li>
-								<li><a href="modules/apex-domains/apex-domains.net3/index.html">apex-domains.net3</a> - An implementation of a 3-Graph Network model in Xtend</li>
 							</ul>
 						</td>
 						<td>Policy Designers, Testers</td>
@@ -209,7 +225,6 @@
 								<li><a href="modules/apex-model/apex-model.engine-model/index.html">apex-model.engine-model</a> - Engine Models used in APEX</li>
 								<li><a href="modules/apex-model/apex-model.context-model/index.html">apex-model.context-model</a> - Context Models used in APEX</li>
 								<li><a href="modules/apex-model/apex-model.utilities/index.html">apex-model.utilities</a> - Common non-functional Apex Model Utilities</li>
-								<li><a href="modules/apex-model/apex-model.build-tools/index.html">apex-model.build-tools</a> -  Build tool configurations (Eclipse and Maven) and Java Coding Rules</li>
 							</ul>
 						</td>
 						<td>Core APEX developers, Application developers (Model API)</td>

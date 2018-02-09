@@ -1,1 +1,1 @@
-include::{apex-model-buildtools-dir}/site/asciidoc/21-configure-jautodoc-templates.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/21-configure-jautodoc-templates.adoc[]

@@ -1,4 +1,0 @@
-logger.debug(subject.id + ":" + subject.stateName);
-subject.defaultTaskKey.copyTo(selectedTask)
-logger.debug(subject.id + ":" + subject.stateName + ", using default task" + subject.defaultTaskKey);
-return true;

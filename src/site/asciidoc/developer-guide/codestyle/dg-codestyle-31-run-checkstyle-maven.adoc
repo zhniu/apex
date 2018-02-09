@@ -1,1 +1,1 @@
-include::{apex-model-buildtools-dir}/site/asciidoc/31-run-checkstyle-maven.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/31-run-checkstyle-maven.adoc[]

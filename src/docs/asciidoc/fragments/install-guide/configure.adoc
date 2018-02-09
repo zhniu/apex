@@ -63,7 +63,7 @@ The last row explains how to set those variables permanently.
 [source%nowrap,sh,numbered]
 ----
 # env \| grep APEX
-APEX_USER=esvevan
+APEX_USER=apexuser
 APEX_HOME=/opt/ericsson/apex/apex
 ----
 |

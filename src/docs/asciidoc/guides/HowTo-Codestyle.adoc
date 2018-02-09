@@ -20,33 +20,33 @@ Version Notes: {revremark}
 :icons: font
 
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/01-introduction.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/01-introduction.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/02-rules.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/02-rules.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/10-plugin-jautodoc.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/10-plugin-jautodoc.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/11-plugin-checkstyle.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/11-plugin-checkstyle.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/20-configure-eclipse-templates.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/20-configure-eclipse-templates.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/21-configure-jautodoc-templates.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/21-configure-jautodoc-templates.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/30-configure-checkstyle-maven.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/30-configure-checkstyle-maven.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/31-run-checkstyle-maven.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/31-run-checkstyle-maven.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/32-configure-checkstyle-eclipse.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/32-configure-checkstyle-eclipse.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/33-configure-checkstyle-blueprint.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/33-configure-checkstyle-blueprint.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/40-use-eclipse-source-operations.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/40-use-eclipse-source-operations.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/41-using-jautodoc.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/41-using-jautodoc.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/42-using-checkstyle.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/42-using-checkstyle.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/50-disable-eclispe-formatting.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/50-disable-eclispe-formatting.adoc[]
 
-include::{apex-model-buildtools-dir}/docs/asciidoc/fragments/51-supress-checkstyle.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/51-supress-checkstyle.adoc[]
 	

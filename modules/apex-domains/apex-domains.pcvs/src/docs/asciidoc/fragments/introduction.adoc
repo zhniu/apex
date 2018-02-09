@@ -1,0 +1,12 @@
+
+This module contains several demos for Policy-controlled Video Streaming (PCVS).
+Each demo defines a policy using AVRO and Javascript (or other scripting languages for the policy logic).
+To run the demo, a vanilla Ubuntu server with some extra software packages is required:
+
+* Mininet as network simulator
+* Floodlight as SDN controller
+* Kafka as messaging system
+* Zookeeper for Kafka configuration
+* APEX for policy control
+
+

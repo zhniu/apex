@@ -14,7 +14,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apex-apps.uservice</artifactId>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>The Apex microservice application, a wrapper for and mediation to Apex as a microservice</description>
 	<inceptionYear>2016</inceptionYear>
 	<packaging>pom</packaging>

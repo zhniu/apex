@@ -16,7 +16,7 @@
 	<artifactId>apex-context</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.artifactId}</url>
+	<url>${apex.site.prefix}/modules/${project.artifactId}</url>
 	<description>The context handling framework of Apex.</description>
 	<inceptionYear>2017</inceptionYear>
 

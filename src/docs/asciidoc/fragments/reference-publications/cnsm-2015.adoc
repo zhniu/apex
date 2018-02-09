@@ -19,18 +19,23 @@ h| BibTeX
 a|
 [source,bibtex]
 ----
-@inproceedings{VanDerMeer2015c,
-	Author = {van der Meer, S. and Keeney, J. and Fallon, L.},
-	Booktitle = {Network and Service Management (CNSM), 2015 11th International Conference on},
-	Doi = {10.1109/CNSM.2015.7367357},
-	Keywords = {5G mobile communication;Internet of Things;cloud computing;telecommunication control;telecommunication traffic;virtualisation;5G networks;IoT;M2M traffic;NFV;SDN;cloud computing;communication networks;compute hardware;customer demands;dynamic networks;dynamically adaptive policies;dynamically adaptive telecommunications networks;flexible networks;management data;mobile operators;network architectures;network frameworks;network functions;network virtualization;predictive analytics;production networks;Decision support systems;Yttrium;Adaptive Policy;Automation;Control Loop;Policy},
-	Month = {Nov},
-	Pages = {182-186},
-	Sequence = {c},
-	Timestamp = {2015-09-21},
-	Title = {{Dynamically Adaptive Policies for Dynamically Adaptive Telecommunications Networks}},
-	Year = {2015},
-	Bdsk-Url-1 = {http://dx.doi.org/10.1109/CNSM.2015.7367357}}
+@inproceedings{DBLP:conf/cnsm/MeerKF15,
+  author    = {Sven van der Meer and
+               John Keeney and
+               Liam Fallon},
+  title     = {Dynamically Adaptive Policies for
+               Dynamically Adaptive Telecommunications Networks},
+  booktitle = {11th International Conference on Network and Service Management,
+              {CNSM} 2015, Barcelona, Spain, November 9-13, 2015},
+  pages     = {182--186},
+  year      = {2015},
+  crossref  = {DBLP:conf/cnsm/2015},
+  url       = {https://doi.org/10.1109/CNSM.2015.7367357},
+  doi       = {10.1109/CNSM.2015.7367357},
+  timestamp = {Tue, 23 May 2017 01:11:56 +0200},
+  biburl    = {http://dblp.org/rec/bib/conf/cnsm/MeerKF15},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
 ----
 
 |===

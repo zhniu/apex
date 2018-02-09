@@ -1,0 +1,10 @@
+== Context Events: Nodes
+
+The following events create all nodes of the topology.
+
+.Context Events Nodes
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/examples/events/PCVS/vpnsla/CtxtNodes.json[Context Events Nodes]
+----
+

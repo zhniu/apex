@@ -1,0 +1,1 @@
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/031-s1-new-model.adoc[]

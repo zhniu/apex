@@ -12,7 +12,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<url>${apex.site.prefix}/site/modules/apex-apps/apex-apps.uservice/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/apex-apps/apex-apps.uservice/${project.parent.artifactId}/${project.artifactId}/</url>
 
 	<parent>
 		<groupId>com.ericsson.apex</groupId>
@@ -197,22 +197,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.ericsson.apex</groupId>
-			<artifactId>apex-domains.vpn-java</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ericsson.apex</groupId>
-			<artifactId>apex-domains.vpn-avro</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ericsson.apex</groupId>
 			<artifactId>apex-domains.myfirstpolicy</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ericsson.apex</groupId>
-			<artifactId>apex-domains.net3</artifactId>
+			<artifactId>apex-domains.pcvs</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -295,16 +285,7 @@
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.ericsson.apex</groupId>
-									<artifactId>apex-domains.vpn-java</artifactId>
-									<version>${project.version}</version>
-									<type>jar</type>
-									<overWrite>false</overWrite>
-									<outputDirectory>${project.build.directory}</outputDirectory>
-									<includes>etc/**/*,examples/**/*</includes>
-								</artifactItem>
-								<artifactItem>
-									<groupId>com.ericsson.apex</groupId>
-									<artifactId>apex-domains.vpn-avro</artifactId>
+									<artifactId>apex-domains.pcvs</artifactId>
 									<version>${project.version}</version>
 									<type>jar</type>
 									<overWrite>false</overWrite>

@@ -14,7 +14,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apex-apps.uservice-packages</artifactId>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/apex-apps/apex-apps.uservice/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/apex-apps/apex-apps.uservice/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>This module is a library used to hold all the various Apex packages in a single place in the repository</description>
 	<inceptionYear>2017</inceptionYear>
 	<packaging>pom</packaging>

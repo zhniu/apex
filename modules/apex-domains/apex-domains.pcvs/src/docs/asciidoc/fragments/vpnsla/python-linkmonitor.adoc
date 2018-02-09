@@ -1,0 +1,11 @@
+== Link Monitor
+
+The Link Monitor is a Python script.
+At startup, it sends the context events to APEX to initialize the topology and the customers.
+Then it takes events from Kafka and sends them to APEX.
+
+.Link Monitor
+[source,python,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/examples/scripts/PCVS/vpnsla/LinkMonitor.py[Link Monitor]
+----

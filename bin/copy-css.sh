@@ -24,9 +24,17 @@
 ## DO NOT CHANGE CODE BELOW, unless you know what you are doing
 ##
 
+## script name for output
+MOD_SCRIPT_NAME=`basename $0`
+
+echo 
+echo "$MOD_SCRIPT_NAME: copying standard css and images to modules"
 for dir in `find -type d -name "site"|grep "/src"|grep "./modules/"`
 do
-	cp -dfrpi src/site/css $dir
-	cp -dfrpi src/site/images $dir
+	echo "--> copying to $dir"
+	cp -dfrp src/site/css $dir
+	cp -dfrp src/site/images $dir
 done
 
+echo "-> done"
+echo

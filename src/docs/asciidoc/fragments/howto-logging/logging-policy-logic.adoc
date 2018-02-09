@@ -24,11 +24,9 @@ The following example defines
 
 <logger name="com.ericsson.apex.executionlogging" level="info" additivity="false">
   <appender-ref ref="POLICY_APPENDER_STDOUT" />
-</logger>
-
-<logger name="com.ericsson.apex.executionlogging" level="info" additivity="false">
   <appender-ref ref="FILE" />
 </logger>
+
 ----
 
 It is also possible to use specific logging for parts of policy logic.

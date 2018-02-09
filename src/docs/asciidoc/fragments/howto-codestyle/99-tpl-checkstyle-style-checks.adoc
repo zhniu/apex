@@ -1,0 +1,5 @@
+
+[source%nowrap,xml,subs="attributes+"]
+----
+include::{apex-main-dir}/checkstyle/apex_style_checks.xml[]
+----

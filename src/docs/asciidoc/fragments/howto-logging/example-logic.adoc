@@ -42,10 +42,8 @@ This logback configuration is in the APEX installation as `etc/logback-logic.xml
   <appender-ref ref="FILE" />
 </logger>
 
-  <logger name="com.ericsson.apex.executionlogging" level="info" additivity="false">
-    <appender-ref ref="POLICY_APPENDER_STDOUT" />
-  </logger>
   <logger name="com.ericsson.apex.executionlogging" level="debug" additivity="false">
+    <appender-ref ref="POLICY_APPENDER_STDOUT" />
     <appender-ref ref="FILE" />
   </logger>
 </configuration>

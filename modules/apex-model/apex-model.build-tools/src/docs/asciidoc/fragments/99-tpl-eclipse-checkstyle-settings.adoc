@@ -1,5 +1,0 @@
-
-[source%nowrap,xml,subs="attributes+"]
-----
-include::{apex-model-buildtools-dir}/main/resources/eclipse/ApexCheckstyleSettings.xml[]
-----

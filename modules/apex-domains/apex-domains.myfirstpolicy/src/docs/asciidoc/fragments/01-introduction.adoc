@@ -8,5 +8,5 @@ __HyperM__ want to extend this approach to allow some checks to be performed bef
 This can be achieved by requesting a policy-controlled decision as each item is processed by for sale by each PoS system.
 The decision process is integrated with __HyperM__'s other IT systems that manage stock control, sourcing and purchasing, personnel systems, etc.
 
-In this document we will show how Apex and Apex Policies can be used to achieve this, starting with a simple policy, building up to more complicated policy that demonstrates the features of Apex.
+In this document we will show how APEX and APEX Policies can be used to achieve this, starting with a simple policy, building up to more complicated policy that demonstrates the features of APEX.
 

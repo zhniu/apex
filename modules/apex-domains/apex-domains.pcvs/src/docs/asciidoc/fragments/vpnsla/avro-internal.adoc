@@ -1,0 +1,19 @@
+== Internal Event Schemas
+
+For the communication between some of the policy states we are also using Avro schemas, namely:
+
+* Establish -> Decide: a schema for the established situation
+* Decide -> Act: a schema for the taken decision
+
+.AVRO Schema Situation
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/situation.avsc[AVRO Schema Situation]
+----
+
+
+.AVRO Schema Decision
+[source,json,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/decision.avsc[AVRO Schema Decision]
+----

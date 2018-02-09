@@ -17,7 +17,7 @@
 	<version>0.7.0</version>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site</url>
+	<url>${apex.site.prefix}</url>
 	<description>Packaging for all the Apex components, the engine, the WAR service, and the editor.</description>
 	<inceptionYear>2016</inceptionYear>
 	<organization>
@@ -31,7 +31,7 @@
 		<project.resources.sourceEncoding>UTF-8</project.resources.sourceEncoding>
 		<encoding>UTF-8</encoding>
 		<file.encoding>UTF-8</file.encoding>
-		<apex.site.prefix>https://ericsson.github.io/apex</apex.site.prefix>
+		<apex.site.prefix>https://ericsson.github.io/apex-docs</apex.site.prefix>
 
 		<!-- Properties for ASCIIDOC documents and site documentation -->
 		<!-- Copy all those properties to the "apexDocs" profile as well! -->
@@ -39,10 +39,7 @@
 		<apex-main-dir>${project.basedir}/src</apex-main-dir>
 		<apex-apps-wsclients-simple-dir>${project.basedir}/modules/apex-apps/apex-apps.wsclients/apex-apps.wsclients-simple/src</apex-apps-wsclients-simple-dir>
 		<apex-apps-utilities-dir>${project.basedir}/modules/apex-apps/apex-apps.utilities/src</apex-apps-utilities-dir>
-		<apex-apps-uservice-test-dir>${project.basedir}/modules/apex-apps/apex-apps.uservices/apex-apps.uservice-test/src</apex-apps-uservice-test-dir>
-		<apex-auth-xtext-notepad-parent-dir>${project.basedir}/modules/apex-auth/apex-auth.xtext/com.ericsson.apex.auth.xtext.apexnotepad.parent/src</apex-auth-xtext-notepad-parent-dir>
-		<apex-auth-xtext-notepad-dir>${project.basedir}/modules/apex-auth/apex-auth.xtext/com.ericsson.apex.auth.xtext.apexnotepad.parent/com.ericsson.apex.auth.xtext.apexnotepad/src</apex-auth-xtext-notepad-dir>
-		<apex-model-buildtools-dir>${project.basedir}/modules/apex-model/apex-model.build-tools/src</apex-model-buildtools-dir>
+		<apex-apps-uservice-test-dir>${project.basedir}/modules/apex-apps/apex-apps.uservice/apex-apps.uservice-test/src</apex-apps-uservice-test-dir>
 		<apex-plugins-event-carrier-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/src</apex-plugins-event-carrier-dir>
 		<apex-plugins-event-protocol-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-protocol/src</apex-plugins-event-protocol-dir>
 		<apex-plugins-event-protocol-jms-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-protocol/apex-plugins.event-protocol-jms/src</apex-plugins-event-protocol-jms-dir>
@@ -61,6 +58,8 @@
 		<apex-plugins-executor-jython-dir>${project.basedir}/modules/apex-plugins/apex-plugins.executor/apex-plugins.executor-jython/src</apex-plugins-executor-jython-dir>
 		<apex-plugins-executor-mvel-dir>${project.basedir}/modules/apex-plugins/apex-plugins.executor/apex-plugins.executor-mvel/src</apex-plugins-executor-mvel-dir>
 		<apex-domains-myfirstpolicy-dir>${project.basedir}/modules/apex-domains/apex-domains.myfirstpolicy/src</apex-domains-myfirstpolicy-dir>
+		<apex-domains-decisionmaker-dir>${project.basedir}/modules/apex-domains/apex-domains.decisionmaker/src</apex-domains-decisionmaker-dir>
+		<apex-domains-pcvs-dir>${project.basedir}/modules/apex-domains/apex-domains.pcvs/src</apex-domains-pcvs-dir>
 		<apex-services-engine-dir>${project.basedir}/modules/apex-services/apex-services.engine/src</apex-services-engine-dir>
 	</properties>
 
@@ -75,6 +74,17 @@
 			<url>${project.url}</url>
 		</site>
 	</distributionManagement>
+
+	<scm>
+		<developerConnection>scm:git:git@github.com:Ericsson/apex.git</developerConnection>
+		<connection>scm:git:git@github.com:Ericsson/apex.git</connection>
+		<url>https://github.com/Ericsson/apex</url>
+	</scm>
+
+	<issueManagement>
+		<url>https://github.com/Ericsson/apex/issues</url>
+		<system>github</system>
+	</issueManagement>
 
 	<modules>
 		<module>modules/apex-model</module>
@@ -259,7 +269,7 @@
 						<artifactId>maven-site-plugin</artifactId>
 						<version>3.5</version>
 						<configuration>
-							<stagingDirectory>${apex.basedir}/target/gh-pages/site</stagingDirectory>
+							<stagingDirectory>${apex.basedir}/target/gh-pages</stagingDirectory>
 							<asciidoc>
 								<embedAssets>true</embedAssets>
 								<attributes>
@@ -281,7 +291,7 @@
 							<dependency>
 								<groupId>org.asciidoctor</groupId>
 								<artifactId>asciidoctor-maven-plugin</artifactId>
-								<version>1.5.6-SNAPSHOT</version>
+								<version>1.5.6</version>
 							</dependency>
 						</dependencies>
 					</plugin>
@@ -310,6 +320,7 @@
 									<overwrite>true</overwrite>
 								</configuration>
 							</execution>
+
 							<execution>
 								<id>copy-site-logos</id>
 								<phase>process-resources</phase>
@@ -346,7 +357,27 @@
 											</includes>
 										</resource>
 									</resources>
-									<outputDirectory>${project.build.directory}/site/user-guide/install/images/install-guide</outputDirectory>
+									<outputDirectory>${project.build.directory}/site/user-manual/install/images/install-guide</outputDirectory>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>copy-howto-config-images</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>src/docs/asciidoc/resources/images/apex-intro</directory>
+											<includes>
+												<include>ApexEngineConfig.jpg</include>
+												<include>ApexEngineConfig.png</include>
+											</includes>
+										</resource>
+									</resources>
+									<outputDirectory>${project.build.directory}/site/user-manual/configuration/images/apex-intro</outputDirectory>
 								</configuration>
 							</execution>
 
@@ -366,7 +397,7 @@
 											</includes>
 										</resource>
 									</resources>
-									<outputDirectory>${project.build.directory}/site/apex-technical/intro/images/apex-intro</outputDirectory>
+									<outputDirectory>${project.build.directory}/site/apex-intro/images/apex-intro</outputDirectory>
 								</configuration>
 							</execution>
 
@@ -386,7 +417,26 @@
 											</includes>
 										</resource>
 									</resources>
-									<outputDirectory>${project.build.directory}/site/apex-technical/apex-policy-model/images/apex-policy-model</outputDirectory>
+									<outputDirectory>${project.build.directory}/site/policy-guide/policy-model/images/apex-policy-model</outputDirectory>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>copy-tech-pm-apex-intro-images</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>src/docs/asciidoc/resources/images/apex-intro</directory>
+											<includes>
+												<include>ApexPolicyMatrix.png</include>
+											</includes>
+										</resource>
+									</resources>
+									<outputDirectory>${project.build.directory}/site/policy-guide/images/apex-intro</outputDirectory>
 								</configuration>
 							</execution>
 
@@ -406,7 +456,7 @@
 											</includes>
 										</resource>
 									</resources>
-									<outputDirectory>${project.build.directory}/site/user-guide/my-first-policy/images</outputDirectory>
+									<outputDirectory>${project.build.directory}/site/user-manual/my-first-policy/images</outputDirectory>
 								</configuration>
 							</execution>
 
@@ -446,7 +496,7 @@
 					<plugin>
 						<groupId>org.asciidoctor</groupId>
 						<artifactId>asciidoctor-maven-plugin</artifactId>
-						<version>1.5.5</version>
+						<version>1.5.6</version>
 						<dependencies>
 							<dependency>
 								<groupId>org.asciidoctor</groupId>
@@ -464,20 +514,22 @@
 								<sectnums />
 								<linkcss>true</linkcss>
 								<stylesdir>styles</stylesdir>
+
 								<!-- Change this to get another style -->
 								<stylesheet>compass/rocket-panda.css</stylesheet>
 								<pdf-stylesdir>${project.basedir}/src/docs/asciidoc/resources-pdf/themes</pdf-stylesdir>
 								<pdf-style>apex-pdf.yml</pdf-style>
 								<pdf-fontsdir>${project.basedir}/src/docs/asciidoc/resources-pdf/fonts</pdf-fontsdir>
 
+								<revnumber>${project.version}</revnumber>
+								<revdate>${maven.build.timestamp}</revdate>
+								<organization>${project.organization.name}</organization>
+
 								<release-version>${project.version}</release-version>
 								<apex-main-dir>${project.basedir}/src</apex-main-dir>
 								<apex-apps-wsclients-simple-dir>${project.basedir}/modules/apex-apps/apex-apps.wsclients/apex-apps.wsclients-simple/src</apex-apps-wsclients-simple-dir>
 								<apex-apps-utilities-dir>${project.basedir}/modules/apex-apps/apex-apps.utilities/src</apex-apps-utilities-dir>
-								<apex-apps-uservice-test-dir>${project.basedir}/modules/apex-apps/apex-apps.uservices/apex-apps.uservice-test/src</apex-apps-uservice-test-dir>
-								<apex-auth-xtext-notepad-parent-dir>${project.basedir}/modules/apex-auth/apex-auth.xtext/com.ericsson.apex.auth.xtext.apexnotepad.parent/src</apex-auth-xtext-notepad-parent-dir>
-								<apex-auth-xtext-notepad-dir>${project.basedir}/modules/apex-auth/apex-auth.xtext/com.ericsson.apex.auth.xtext.apexnotepad.parent/com.ericsson.apex.auth.xtext.apexnotepad/src</apex-auth-xtext-notepad-dir>
-								<apex-model-buildtools-dir>${project.basedir}/modules/apex-model/apex-model.build-tools/src</apex-model-buildtools-dir>
+								<apex-apps-uservice-test-dir>${project.basedir}/modules/apex-apps/apex-apps.uservice/apex-apps.uservice-test/src</apex-apps-uservice-test-dir>
 								<apex-plugins-event-carrier-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/src</apex-plugins-event-carrier-dir>
 								<apex-plugins-event-protocol-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-protocol/src</apex-plugins-event-protocol-dir>
 								<apex-plugins-event-protocol-jms-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-protocol/apex-plugins.event-protocol-jms/src</apex-plugins-event-protocol-jms-dir>
@@ -496,6 +548,8 @@
 								<apex-plugins-executor-jython-dir>${project.basedir}/modules/apex-plugins/apex-plugins.executor/apex-plugins.executor-jython/src</apex-plugins-executor-jython-dir>
 								<apex-plugins-executor-mvel-dir>${project.basedir}/modules/apex-plugins/apex-plugins.executor/apex-plugins.executor-mvel/src</apex-plugins-executor-mvel-dir>
 								<apex-domains-myfirstpolicy-dir>${project.basedir}/modules/apex-domains/apex-domains.myfirstpolicy/src</apex-domains-myfirstpolicy-dir>
+								<apex-domains-decisionmaker-dir>${project.basedir}/modules/apex-domains/apex-domains.decisionmaker/src</apex-domains-decisionmaker-dir>
+								<apex-domains-pcvs-dir>${project.basedir}/modules/apex-domains/apex-domains.pcvs/src</apex-domains-pcvs-dir>
 								<apex-services-engine-dir>${project.basedir}/modules/apex-services/apex-services.engine/src</apex-services-engine-dir>
 							</attributes>
 						</configuration>
@@ -644,29 +698,8 @@
 					<docfilessubdirs>true</docfilessubdirs>
 					<overview>overview.html</overview>
 					<show>public</show>
-					<!-- Exclude XText and JAXB generated packages -->
-					<excludePackageNames>com.ericsson.apex.auth.xtext.apexnotepad.tests:com.ericsson.apex.auth.xtext.apexnotepad.ui.internal:com.ericsson.apex.auth.xtext.apexnotepad.ui.tests:com.ericsson.apex.auth.xtext.apexnotepad.ide.contentassist.antlr:com.ericsson.apex.auth.xtext.apexnotepad.ide.contentassist.antlr.internal:com.ericsson.apex.auth.xtext.apexnotepad.apexNotepad.impl:com.ericsson.apex.auth.xtext.apexnotepad.parser.antlr:com.ericsson.apex.auth.xtext.apexnotepad.parser.antlr.internal:com.ericsson.apex.auth.xtext.apexnotepad.serializer:com.ericsson.apex.auth.xtext.apexnotepad.services:com.ericsson.apex.auth.xtext.apexnotepad.apexNotepad.util:com.ericsson.apex.auth.xtext.apexnotepad.apexNotepad:com.ericsson.apex.plugins.event.protocol.xml.jaxb</excludePackageNames>
-					<!-- Add non-standard tags for Xtext/Eclipse generated JDoc -->
-					<tags>
-						<tag>
-							<name>generated</name>
-							<!-- generated tag for Xtext/Eclipse generated code -->
-							<placement>a</placement>
-							<head>This code is automatically generated</head>
-						</tag>
-						<tag>
-							<name>ordered</name>
-							<!-- generated tag for Xtext/Eclipse generated code -->
-							<placement>a</placement>
-							<head>XText/Eclipse annotation</head>
-						</tag>
-						<tag>
-							<name>model</name>
-							<!-- generated tag for Xtext/Eclipse generated code -->
-							<placement>a</placement>
-							<head>XText/Eclipse model with properties</head>
-						</tag>
-					</tags>
+					<!-- Exclude JAXB generated packages -->
+					<excludePackageNames>com.ericsson.apex.plugins.event.protocol.xml.jaxb</excludePackageNames>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * COPYRIGHT (C) Ericsson 2016-2018
+ * COPYRIGHT (C) Ericsson 2014-2018
  * 
  * The copyright to the computer program(s) herein is the property of
  * Ericsson Inc. The programs may be used and/or copied only with written
@@ -12,6 +12,7 @@ package com.ericsson.apex.core.engine.executor;
 
 import static com.ericsson.apex.model.utilities.Assertions.argumentNotNull;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -110,7 +111,15 @@ public abstract class TaskExecutor implements Executor<Map<String, Object>, Map<
         // Check that the incoming event has all the input fields for this state
         final Set<String> missingTaskInputFields = new TreeSet<>(axTask.getInputFields().keySet());
         missingTaskInputFields.removeAll(newIncomingFields.keySet());
-        if (missingTaskInputFields.size() > 0) {
+        
+        // Remove fields from the set that are optional
+        for (Iterator<String> missingFieldIterator = missingTaskInputFields.iterator(); missingFieldIterator.hasNext(); ) {
+            String missingField = missingFieldIterator.next();
+            if (axTask.getInputFields().get(missingField).getOptional()) {
+                missingTaskInputFields.remove(missingField);
+            }
+        }
+        if (!missingTaskInputFields.isEmpty()) {
             throw new StateMachineException("task input fields \"" + missingTaskInputFields + "\" are missing for task \"" + axTask.getKey().getID() + "\"");
         }
 
@@ -163,14 +172,22 @@ public abstract class TaskExecutor implements Executor<Map<String, Object>, Map<
         // Finally, check that the outgoing fields have all the output fields defined for this state and, if not, output a list of missing fields
         final Set<String> missingTaskOutputFields = new TreeSet<>(axTask.getOutputFields().keySet());
         missingTaskOutputFields.removeAll(outgoingFields.keySet());
-        if (missingTaskOutputFields.size() > 0) {
+        
+        // Remove fields from the set that are optional
+        for (Iterator<String> missingFieldIterator = missingTaskOutputFields.iterator(); missingFieldIterator.hasNext(); ) {
+            String missingField = missingFieldIterator.next();
+            if (axTask.getInputFields().get(missingField).getOptional()) {
+                missingTaskOutputFields.remove(missingField);
+            }
+        }
+        if (!missingTaskOutputFields.isEmpty()) {
             throw new StateMachineException("task output fields \"" + missingTaskOutputFields + "\" are missing for task \"" + axTask.getKey().getID() + "\"");
         }
 
         // Finally, check that the outgoing field map don't have any extra fields, if present, raise exception with the list of extra fields
         final Set<String> extraTaskOutputFields = new TreeSet<>(outgoingFields.keySet());
         extraTaskOutputFields.removeAll(axTask.getOutputFields().keySet());
-        if (extraTaskOutputFields.size() > 0) {
+        if (!extraTaskOutputFields.isEmpty()) {
             throw new StateMachineException("task output fields \"" + extraTaskOutputFields + "\" are unwanted for task \"" + axTask.getKey().getID() + "\"");
         }
 

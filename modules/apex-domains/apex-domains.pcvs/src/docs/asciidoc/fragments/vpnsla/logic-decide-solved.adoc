@@ -1,0 +1,7 @@
+== Logic: Decide Solved
+
+.JS Logic Policy Decide State - Solved
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-decide-solved.js[JS Logic Policy Decide State - Solved]
+----

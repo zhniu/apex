@@ -28,7 +28,7 @@ Building APEX requires approximately 2-3 GB of hard disc space, 1 GB for the act
 ====
 
 [IMPORTANT]
-.A Build requires Internet (for first build)
+.A Build requires Internet (for first build to download all dependencies and plugins)
 ====
 During the build, several (a lot) of Maven dependencies will be downloaded and stored in the configured local Maven repository.
 The first standard build (and any first specific build) requires Internet access to download those dependencies.

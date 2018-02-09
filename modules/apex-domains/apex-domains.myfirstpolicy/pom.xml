@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apex-domains.myfirstpolicy</artifactId>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>Specific code for the Apex MyFirstPolicy Domain</description>
 	<inceptionYear>2016</inceptionYear>
 
@@ -108,6 +108,34 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-domain-mfp-images</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/src/docs/asciidoc/resources/images</directory>
+									<includes>
+										<include>**/*.jpg</include>
+										<include>**/*.png</include>
+									</includes>
+								</resource>
+							</resources>
+							<outputDirectory>${project.build.directory}/site/images</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

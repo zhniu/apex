@@ -1,0 +1,5 @@
+
+[source%nowrap,text,subs="attributes+"]
+----
+include::{apex-main-dir}/checkstyle/apex_header.txt[]
+----

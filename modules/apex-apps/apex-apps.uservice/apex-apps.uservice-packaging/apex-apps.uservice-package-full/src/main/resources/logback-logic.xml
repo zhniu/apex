@@ -35,8 +35,6 @@
 
   <logger name="com.ericsson.apex.executionlogging" level="info" additivity="false">
     <appender-ref ref="POLICY_APPENDER_STDOUT" />
-  </logger>
-  <logger name="com.ericsson.apex.executionlogging" level="debug" additivity="false">
     <appender-ref ref="FILE" />
   </logger>
 </configuration>

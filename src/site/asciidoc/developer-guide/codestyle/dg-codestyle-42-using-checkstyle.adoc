@@ -1,1 +1,1 @@
-include::{apex-model-buildtools-dir}/site/asciidoc/42-using-checkstyle.adoc[]
+include::{apex-main-dir}/docs/asciidoc/fragments/howto-codestyle/42-using-checkstyle.adoc[]

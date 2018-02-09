@@ -44,6 +44,21 @@
 							</ul>
 						</td>
 					</tr>
+
+					<tr>
+						<td>The APEX Policy Model</td>
+						<td>
+							A deep dive into the policy model defined and implemented in the APEX engine.
+							This model is the foundation for policy execution.
+						</td>
+						<td>
+							<ul>
+								<li><a href="docs-apex/html/Tech-APEX-PolicyModel.html">stand-alone HTML</a></li>
+								<li><a href="docs-apex/pdf/Tech-APEX-PolicyModel.pdf">stand-alone PDF</a></li>
+							</ul>
+						</td>
+					</tr>
+
 					<tr>
 						<td>HowTo: Policy Logic</td>
 						<td>
@@ -55,6 +70,7 @@
 							<ul>
 								<li><a href="policy-guide/pg-task-logic.html">APEX Site, task logic</a></li>
 								<li><a href="policy-guide/pg-task-selection-logic.html">APEX Site, task selection logic</a></li>
+								<li><a href="policy-guide/pg-logic-cheatsheet.html">APEX Site, logic cheatsheet</a></li>
 								<li><a href="docs-apex/html/HowTo-PolicyLogic.html">stand-alone HTML</a></li>
 								<li><a href="docs-apex/pdf/HowTo-PolicyLogic.pdf">stand-alone PDF</a></li>
 							</ul>

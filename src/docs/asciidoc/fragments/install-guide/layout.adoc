@@ -1,4 +1,5 @@
 == Installation Layout
+
 A full installation of APEX comes with the following layout.
 
 ----
@@ -11,33 +12,23 @@ $APEX_HOME
     │   └───META-INF
     ├───examples			<3>
     │   ├───config			<4>
-    │   │   ├───AADM
-    │   │   ├───Adaptive
-    │   │   ├───SampleDomain
-    │   │   └───VPN
-    │   ├───events			<5>
-    │   │   ├───AADM
-    │   │   ├───Adaptive
-    │   │   ├───SampleDomain
-    │   │   └───VPN
-    │   ├───models			<6>
-    │   │   ├───AADM
-    │   │   ├───Adaptive
-    │   │   ├───SampleDomain
-    │   │   └───VPN
-    │   └───scripts			<7>
-    ├───lib					<8>
-    │   └───applications	<9>
-    └───war					<10>
+    │   ├───docker			<5>
+    │   ├───events			<6>
+    │   ├───models			<7>
+    │   └───scripts			<8>
+    ├───lib					<9>
+    │   └───applications	<10>
+    └───war					<11>
 ----
 <1> binaries, mainly scripts (bash and bat) to start the APEX engine and applications
-<2> configuration files, such as loGback (logging) and third party library configurations
-<3> example policy models to get started: AADM use case, Adaptive Policy, simple Sample Domain, and a VPN policy
-<4> configurations for the examples
-<5> example events for the examples
-<6> the policy models, generated for each example
-<7> some scripts for the examples
-<8> the library folder with all Java JAR files
-<9> applications, also known as jar with dependencies (or fat jars), individually deployable
-<10> WAR files for web applications
+<2> configuration files, such as logback (logging) and third party library configurations
+<3> example policy models to get started
+<4> configurations for the examples (with sub directories for individual examples)
+<5> Docker files and additional Docker instructions for the exampples
+<6> example events for the examples (with sub directories for individual examples)
+<7> the policy models, generated for each example (with sub directories for individual examples)
+<8> additional scripts for the examples (with sub directories for individual examples)
+<9> the library folder with all Java JAR files
+<10> applications, also known as jar with dependencies (or fat jars), individually deployable
+<11> WAR files for web applications
 

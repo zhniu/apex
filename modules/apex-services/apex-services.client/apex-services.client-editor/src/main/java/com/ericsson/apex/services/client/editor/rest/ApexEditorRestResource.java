@@ -1267,7 +1267,7 @@ public class ApexEditorRestResource {
                         return ret;
                     }
                     tempres = sessionApexModel.createTaskInputField(jsonbean.getName(), jsonbean.getVersion(), fin.getKey(), fin.getValue().getName(),
-                            fin.getValue().getVersion(), false);
+                            fin.getValue().getVersion(), fin.getValue().getOptional());
                     if (tempres.isNOK()) {
                         tempres.addMessage("Failed to add task input field information for field \"" + fin.getKey() + "\" in task " + jsonbean.getName() + ":"
                                 + jsonbean.getVersion()
@@ -1295,7 +1295,7 @@ public class ApexEditorRestResource {
                         return ret;
                     }
                     tempres = sessionApexModel.createTaskOutputField(jsonbean.getName(), jsonbean.getVersion(), fout.getKey(), fout.getValue().getName(),
-                            fout.getValue().getVersion(), false);
+                            fout.getValue().getVersion(), fout.getValue().getOptional());
                     if (tempres.isNOK()) {
                         tempres.addMessage("Failed to add task output field information for field \"" + fout.getKey() + "\" in task " + jsonbean.getName()
                         + ":" + jsonbean.getVersion()

@@ -20,7 +20,7 @@
   <artifactId>apex-plugins.event-carrier-restclient</artifactId>
   <name>apex-plugins.event-carrier-restclient</name>
   <description>[${project.parent.artifactId}] Plugin for handling events being transported over REST where Apex acts as a REST client</description>
-  <url>${apex.site.prefix}/site/modules/apex-plugins/apex-plugins.event/${project.parent.artifactId}/${project.artifactId}/</url>
+  <url>${apex.site.prefix}/modules/apex-plugins/apex-plugins.event/${project.parent.artifactId}/${project.artifactId}/</url>
 
   <properties>
     <apex-plugins-event-carrier-restclient-dir>${project.basedir}/src</apex-plugins-event-carrier-restclient-dir>

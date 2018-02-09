@@ -14,7 +14,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apex-apps.uservice-test</artifactId>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/apex-apps/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/apex-apps/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>Integration tests for Apex microservices</description>
 	<inceptionYear>2014</inceptionYear>
 
@@ -130,16 +130,6 @@
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>com.ericsson.apex</groupId>
-            <artifactId>apex-domains.vpn-java</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ericsson.apex</groupId>
-            <artifactId>apex-domains.vpn-avro</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.11</artifactId>

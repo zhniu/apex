@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apex-core.engine</artifactId>
 	<name>${project.artifactId}</name>
-	<url>${apex.site.prefix}/site/modules/${project.parent.artifactId}/${project.artifactId}/</url>
+	<url>${apex.site.prefix}/modules/${project.parent.artifactId}/${project.artifactId}/</url>
 	<description>The Apex policy execution engine</description>
 	<inceptionYear>2014</inceptionYear>
 

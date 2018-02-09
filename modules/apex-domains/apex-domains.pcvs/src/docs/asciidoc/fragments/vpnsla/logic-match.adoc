@@ -1,0 +1,12 @@
+== Logic: Policy Match State
+
+This is the logic for the match state.
+It is kept very simple.
+Beside taking the trigger event, it also creates a timestamp.
+This timestamp is later used for SLA and downtime calculations as well as for some performance information of the policy.
+
+.JS Logic Policy Match State
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-match.js[JS Logic Policy Match State]
+----

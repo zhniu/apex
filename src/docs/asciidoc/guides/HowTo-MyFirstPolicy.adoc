@@ -27,37 +27,24 @@ include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/01-introductio
 
 include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/02-data-models.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/021-data-models-input-event.adoc[]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/022-data-models-decision-event.adoc[]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/023-data-models-stock-items.adoc[]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/024-data-models-assistants.adoc[]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/025-data-models-location-branches.adoc[]
-
 include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/03-policy-step1.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/031-s1-scenario.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/031-s1-new-model.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/032-s1-new-model.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/032-s1-new-events.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/033-s1-new-events.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/033-s1-new-policy.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/034-s1-new-policy.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/034-s1-test-policy.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/035-s1-test-policy.adoc[]
-
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/036-s1-clieditor.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/035-s1-clieditor.adoc[]
 
 include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/04-policy-step2.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/041-s2-scenario.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/042-s2-extend-model.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/041-s2-extend-model.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/043-s2-test-policy.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/042-s2-test-policy.adoc[]
 
-include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/044-s2-clieditor.adoc[]
+include::{apex-domains-myfirstpolicy-dir}/docs/asciidoc/fragments/043-s2-clieditor.adoc[]
 

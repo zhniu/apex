@@ -1,0 +1,12 @@
+== Complete Policy Definition
+
+The complete policy definition is realized using the APEX CLI Editor.
+The script below shows the actual policy specification.
+All logic and schemas are included (as macro file).
+
+.APEX VPN SLA Policy Specification
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/vpnsla.apex[APEX VPN SLA Policy Specification]
+----
+
