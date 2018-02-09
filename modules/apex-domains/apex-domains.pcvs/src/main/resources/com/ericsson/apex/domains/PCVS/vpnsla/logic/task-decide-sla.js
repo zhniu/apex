@@ -57,7 +57,7 @@ problem.get("impededLast").addAll(decision.get("customers"));
 executor.outFields["decision"] = decision;
 logger.trace("-- decision: " + decision);
 
-logger.info("vpnsla: sla logic, impeding customers " + decision.get("customers"));
+logger.info("vpnsla: sla balance, impeding customers " + decision.get("customers"));
 
 logger.trace("finished: " + executor.subject.id);
 logger.debug(".d-sla");
