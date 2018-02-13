@@ -1,5 +1,5 @@
 /*******************************************************************************
- * COPYRIGHT (C) Ericsson 2016-2018
+ * COPYRIGHT (C) Ericsson 2014-2018
  * 
  * The copyright to the computer program(s) herein is the property of
  * Ericsson Inc. The programs may be used and/or copied only with written
@@ -67,8 +67,8 @@ public class TestEngineModel {
         model.setTimestamp(timestamp);
         assertEquals(timestamp, model.getTimestamp());
         model.setTimestamp(-1);
-        assertEquals("1970-01-01 00:59:59.999",  model.getTimeStampString());
-        
+        assertTrue(model.getTimeStampString().matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}"));
+
         try {
             model.setState(null);
             fail("test should throw an exception here");
