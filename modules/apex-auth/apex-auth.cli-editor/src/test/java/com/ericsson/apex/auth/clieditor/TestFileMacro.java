@@ -91,7 +91,7 @@ public class TestFileMacro {
 		final File outputLogFile = new File(tempLogFile.getCanonicalPath());
 		final String outputLogString = TextFileUtils
 				.getTextFileAsString(outputLogFile.getCanonicalPath())
-				.replaceAll(Paths.get("").toAbsolutePath().toString() + '/', "")
+				.replaceAll(Paths.get("").toAbsolutePath().toString() + File.separatorChar, "")
 				.replaceAll("\\s+", "");
 
 		// We compare the log to what we expect to get

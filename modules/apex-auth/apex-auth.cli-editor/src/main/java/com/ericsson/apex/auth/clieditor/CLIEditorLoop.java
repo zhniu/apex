@@ -11,6 +11,7 @@
 package com.ericsson.apex.auth.clieditor;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -511,7 +512,7 @@ public class CLIEditorLoop {
         }
 
         // Append the working directory to the macro file name
-        macroFileName = parameters.getWorkingDirectory() + '/' + macroFileName;
+        macroFileName = parameters.getWorkingDirectory() + File.separatorChar + macroFileName;
         
         // Now, get the text file for the argument of the macro
         String macroFileContents = null;
