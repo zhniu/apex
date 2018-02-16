@@ -10,6 +10,7 @@
 
 package com.ericsson.apex.auth.clieditor;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -60,7 +61,8 @@ public class TestContextAlbums {
      */
     @Test
     public void testLogicBlock() throws IOException, ApexModelException {
-        new ApexCLIEditorMain(logicBlockArgs);
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(logicBlockArgs);
+        assertEquals(1, cliEditor.getErrorCount());
 
         // Read the file from disk
         final ApexModelReader<AxPolicyModel> modelReader = new ApexModelReader<>(AxPolicyModel.class);

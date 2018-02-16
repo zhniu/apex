@@ -42,6 +42,8 @@ public class TestLogicBlock {
                 "src/test/resources/scripts/LogicBlock.apex",
                 "-o",
                 tempLogicModelFile.getCanonicalPath(),
+                "-if",
+                "true",
                 "-nl"
         };
 

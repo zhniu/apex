@@ -46,8 +46,9 @@ public class TestCLIEditorOptions {
         final String[] cliArgs = new String[] {"-c", "src/main/resources/examples/scripts/ShellPolicyModel.apex", "-l", tempLogFile.getAbsolutePath(), "-o",
                 tempModelFile.getAbsolutePath() };
 
-        new ApexCLIEditorMain(cliArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Get the model and log into strings
         final String logString = TextFileUtils.getTextFileAsString(tempLogFile.getCanonicalPath());
         final String modelString = TextFileUtils.getTextFileAsString(tempModelFile.getCanonicalPath());
@@ -77,8 +78,9 @@ public class TestCLIEditorOptions {
         final String[] cliArgs = new String[] {"-c", "src/main/resources/examples/scripts/ShellPolicyModel.apex", "-l", tempLogFile.getAbsolutePath(), "-o",
                 tempModelFile.getAbsolutePath(), "-nl", "-nm" };
 
-        new ApexCLIEditorMain(cliArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Get the model and log into strings
         final String logString = TextFileUtils.getTextFileAsString(tempLogFile.getCanonicalPath());
         final String modelString = TextFileUtils.getTextFileAsString(tempModelFile.getCanonicalPath());
@@ -108,8 +110,9 @@ public class TestCLIEditorOptions {
         final String[] cliArgs = new String[] {"-c", "src/main/resources/examples/scripts/ShellPolicyModel.apex", "-l", tempLogFile.getAbsolutePath(), "-o",
                 tempModelFile.getAbsolutePath(), "-nm" };
 
-        new ApexCLIEditorMain(cliArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Get the model and log into strings
         final String logString = TextFileUtils.getTextFileAsString(tempLogFile.getCanonicalPath());
         final String modelString = TextFileUtils.getTextFileAsString(tempModelFile.getCanonicalPath());
@@ -140,8 +143,9 @@ public class TestCLIEditorOptions {
         final String[] cliArgs = new String[] {"-c", "src/main/resources/examples/scripts/ShellPolicyModel.apex", "-l", tempLogFile.getAbsolutePath(), "-o",
                 tempModelFile.getAbsolutePath(), "-nl" };
 
-        new ApexCLIEditorMain(cliArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Get the model and log into strings
         final String logString = TextFileUtils.getTextFileAsString(tempLogFile.getCanonicalPath());
         final String modelString = TextFileUtils.getTextFileAsString(tempModelFile.getCanonicalPath());
@@ -170,8 +174,9 @@ public class TestCLIEditorOptions {
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         System.setOut(new PrintStream(baos));
-        new ApexCLIEditorMain(cliArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Cursor for log
         assertFalse(baos.toString().contains(">"));
 
@@ -193,8 +198,9 @@ public class TestCLIEditorOptions {
 
         final PrintStream stdout = System.out;
         System.setOut(new PrintStream(baos));
-        new ApexCLIEditorMain(cliArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Cursor for log
         assertTrue(baos.toString().contains(">"));
 
@@ -221,8 +227,9 @@ public class TestCLIEditorOptions {
         final String[] cliArgsIn = new String[] {"-c", "src/main/resources/examples/scripts/ShellPolicyModel.apex", "-l", tempLogFileIn.getAbsolutePath(),
                 "-o", tempModelFileIn.getAbsolutePath() };
 
-        new ApexCLIEditorMain(cliArgsIn);
-
+        ApexCLIEditorMain cliEditorIn = new ApexCLIEditorMain(cliArgsIn);
+        assertEquals(0, cliEditorIn.getErrorCount());
+        
         // Get the model and log into strings
         final String tempLogFileInString = TextFileUtils.getTextFileAsString(tempLogFileIn.getCanonicalPath());
         final String tempModelFileInString = TextFileUtils.getTextFileAsString(tempModelFileIn.getCanonicalPath());
@@ -238,7 +245,8 @@ public class TestCLIEditorOptions {
                 "src/main/resources/examples/scripts/ShellPolicyModelAddSchema.apex", "-l", tempLogFileOut.getAbsolutePath(), "-o",
                 tempModelFileOut.getAbsolutePath() };
 
-        new ApexCLIEditorMain(cliArgsOut);
+        ApexCLIEditorMain cliEditorOut = new ApexCLIEditorMain(cliArgsOut);
+        assertEquals(0, cliEditorOut.getErrorCount());
 
         // Get the model and log into strings
         final String tempLogFileOutString = TextFileUtils.getTextFileAsString(tempLogFileOut.getCanonicalPath());

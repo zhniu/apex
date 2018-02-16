@@ -89,6 +89,7 @@
 								<argument>--command-file=${project.basedir}/src/main/resources/policy/${policymodel.name}.apex</argument>
 								<argument>--output-model-file=${project.build.directory}/${policymodel.name}.json</argument>
 								<argument>--log-file=${project.build.directory}/${policymodel.name}_policygeneration.log</argument>
+								<argument>--working-dir=${project.basedir}</argument>
 							</arguments>
 						</configuration>
 					</execution>

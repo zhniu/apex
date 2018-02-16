@@ -65,7 +65,7 @@ public class TestAPIResult {
         
         assertEquals("result: OTHER_ERROR\nFirst Message\nSecond Message\nThird Message\n", result2.toString());
         assertEquals("{\n" + 
-                "\"success\": \"false\",\n" + 
+                "\"result\": \"OTHER_ERROR\",\n" + 
                 "\"messages\": [\n" + 
                 "\"First Message\",\n" + 
                 "\"Second Message\",\n" + 

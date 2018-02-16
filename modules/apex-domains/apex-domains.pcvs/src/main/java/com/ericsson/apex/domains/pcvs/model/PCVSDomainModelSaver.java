@@ -34,14 +34,14 @@ public final class PCVSDomainModelSaver {
 	 *             the apex exception
 	 */
 	public static void main(final String[] args) throws ApexException {
-		if (args.length != 1) {
-			System.err.println("usage: " + PCVSDomainModelSaver.class.getCanonicalName() + " modelDirectory");
+		if (args.length != 2) {
+			System.err.println("usage: " + PCVSDomainModelSaver.class.getCanonicalName() + " workingDirectory modelDirectory");
 			return;
 		}
 
-		AxPolicyModel pcvsPolicyModel = new PCVSDomainModelFactory().getPCVVpnSlaSPolicyModel();
+		AxPolicyModel pcvsPolicyModel = new PCVSDomainModelFactory().getPCVVpnSlaSPolicyModel(args[0]);
 		ApexModelSaver<AxPolicyModel> pcvsModelSaver = new ApexModelSaver<>(AxPolicyModel.class, pcvsPolicyModel,
-				args[0] + "vpnsla/");
+				args[1] + "vpnsla/");
 		pcvsModelSaver.apexModelWriteJSON();
 		pcvsModelSaver.apexModelWriteXML();
 

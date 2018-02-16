@@ -1,5 +1,5 @@
 /*******************************************************************************
- * COPYRIGHT (C) Ericsson 2016-2018
+ * COPYRIGHT (C) Ericsson 2014-2018
  * 
  * The copyright to the computer program(s) herein is the property of
  * Ericsson Inc. The programs may be used and/or copied only with written
@@ -26,6 +26,8 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.TreeMap;
 
+import com.ericsson.apex.model.modelapi.ApexAPIResult;
+import com.ericsson.apex.model.modelapi.ApexAPIResult.RESULT;
 import com.ericsson.apex.model.utilities.TextFileUtils;
 import com.ericsson.apex.model.utilities.TreeMapUtils;
 
@@ -71,9 +73,10 @@ public class CLIEditorLoop {
      * @param inputStream The stream to read commands from
      * @param outputStream The stream to write command output and messages to
      * @param parameters The parameters for the CLI editor
+     * @return the exit code from command processing
      * @throws IOException Thrown on exceptions on IO
      */
-    public void runLoop(final InputStream inputStream, final OutputStream outputStream, final CLIParameters parameters) throws IOException {
+    public int runLoop(final InputStream inputStream, final OutputStream outputStream, final CLIParameters parameters) throws IOException {
         // Readers and writers for input and output
         final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         final PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream));
@@ -82,7 +85,13 @@ public class CLIEditorLoop {
         final CLILineParser parser = new CLILineParser();
 
         // The main loop for command handing, it continues until EOF on the input stream or until a quit command
-        while (true) {
+        int errorCount = 0;
+        ApexAPIResult result = new ApexAPIResult();
+        while (result.getResult() != RESULT.FINISHED) {
+            if (!parameters.isIgnoreCommandFailures() && errorCount > 0) {
+                break;
+            }
+
             // Output prompt and get a line of input
             writer.print(getPrompt());
             writer.flush();
@@ -94,12 +103,13 @@ public class CLIEditorLoop {
             // Expand any macros in the script
             try {
                 while (line.contains(macroFileTag)) {
-                    line = expandMacroFile(line);
+                    line = expandMacroFile(parameters, line);
                 }
             }
             // Print any error messages from command parsing and finding
             catch (final CLIException e) {
                 writer.println(e.getMessage());
+                errorCount++;
                 continue;
             }
 
@@ -121,12 +131,13 @@ public class CLIEditorLoop {
 
                     try {
                         while (logicLine.contains(macroFileTag)) {
-                            logicLine = expandMacroFile(logicLine);
+                            logicLine = expandMacroFile(parameters, logicLine);
                         }
                     }
                     // Print any error messages from command parsing and finding
                     catch (final CLIException e) {
                         writer.println(e.getMessage());
+                        errorCount++;
                         continue;
                     }
 
@@ -154,15 +165,17 @@ public class CLIEditorLoop {
                     // Check the arguments of the command
                     final TreeMap<String, CLIArgumentValue> argumentValues = getArgumentValues(command, commandWords);
 
-                    // Execute the command, a false result means a command causes the loop to leave execution
-                    if (!executeCommand(command, argumentValues, writer)) {
-                        break;
+                    // Execute the command, a FINISHED result means a command causes the loop to leave execution
+                    result = executeCommand(command, argumentValues, writer);
+                    if (result.isNOK()) {
+                    		errorCount++;
                     }
                 }
             }
             // Print any error messages from command parsing and finding
             catch (final CLIException e) {
                 writer.println(e.getMessage());
+                errorCount++;
             }
             catch (final Exception e) {
                 e.printStackTrace(writer);
@@ -183,6 +196,8 @@ public class CLIEditorLoop {
 
         reader.close();
         writer.close();
+        
+        return errorCount;
     }
 
     /**
@@ -344,9 +359,9 @@ public class CLIEditorLoop {
      * @param command The command to execute
      * @param argumentValues The arguments input on the command line to invoke the command
      * @param writer The writer to use for any output from the command
-     * @return true if the command loop should continue on execution of the command
+     * @return the result of execution of the command
      */
-    private boolean executeCommand(final CLICommand command, final TreeMap<String, CLIArgumentValue> argumentValues, final PrintWriter writer) {
+    private ApexAPIResult executeCommand(final CLICommand command, final TreeMap<String, CLIArgumentValue> argumentValues, final PrintWriter writer) {
         if (command.isSystemCommand()) {
             return exceuteSystemCommand(command, writer);
         }
@@ -360,9 +375,9 @@ public class CLIEditorLoop {
      *
      * @param command The command to execute
      * @param writer The writer to use for any output from the command
-     * @return true if the command loop should continue on execution of the command
+     * @return the result of execution of the command
      */
-    private boolean exceuteSystemCommand(final CLICommand command, final PrintWriter writer) {
+    private ApexAPIResult exceuteSystemCommand(final CLICommand command, final PrintWriter writer) {
         if (command.getName().equals("back")) {
             return executeBackCommand();
         }
@@ -373,42 +388,42 @@ public class CLIEditorLoop {
             return executeQuitCommand();
         }
         else {
-            return true;
+            return new ApexAPIResult(RESULT.SUCCESS);
         }
     }
 
     /**
      * Execute the "back" command.
      *
-     * @return true if the command loop should continue on execution of the command
+     * @return the result of execution of the command
      */
-    private boolean executeBackCommand() {
+    private ApexAPIResult executeBackCommand() {
         if (keywordNodeDeque.size() > 1) {
             keywordNodeDeque.pop();
         }
-        return true;
+        return new ApexAPIResult(RESULT.SUCCESS);
     }
 
     /**
      * Execute the "quit" command.
      *
-     * @return true if the command loop should continue on execution of the command
+     * @return the result of execution of the command
      */
-    private boolean executeQuitCommand() {
-        return false;
+    private ApexAPIResult executeQuitCommand() {
+        return new ApexAPIResult(RESULT.FINISHED);
     }
 
     /**
      * Execute the "help" command.
      *
      * @param writer The writer to use for output from the command
-     * @return true if the command loop should continue on execution of the command
+     * @return the result of execution of the command
      */
-    private boolean executeHelpCommand(final PrintWriter writer) {
+    private ApexAPIResult executeHelpCommand(final PrintWriter writer) {
         for (final CLICommand command : keywordNodeDeque.peek().getCommands()) {
             writer.println(command.getHelp());
         }
-        return true;
+        return new ApexAPIResult(RESULT.SUCCESS);
     }
 
     /**
@@ -465,11 +480,12 @@ public class CLIEditorLoop {
 
     /**
      * This method reads in the file from a file macro statement, expands the macro, and replaces the Macro tag in the line with the file contents.
-     *
+     * 
+     * @param parameters The parameters for the CLI editor
      * @param line The line with the macro keyword in it
      * @return the expanded line
      */
-    private String expandMacroFile(final String line) {
+    private String expandMacroFile(CLIParameters parameters, final String line) {
         int macroTagPos = line.indexOf(macroFileTag);
 
         // Get the line before and after the macro tag
@@ -494,6 +510,9 @@ public class CLIEditorLoop {
             throw new CLIException("macro file name \"" + macroFileName + "\" must exist and be quoted with double quotes \"\"");
         }
 
+        // Append the working directory to the macro file name
+        macroFileName = parameters.getWorkingDirectory() + '/' + macroFileName;
+        
         // Now, get the text file for the argument of the macro
         String macroFileContents = null;
         try {

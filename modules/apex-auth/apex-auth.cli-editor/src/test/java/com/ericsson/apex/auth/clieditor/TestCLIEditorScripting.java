@@ -87,8 +87,9 @@ public class TestCLIEditorScripting {
      */
     @Test
     public void testSampleLBPolicyScript() throws IOException, ApexModelException {
-        new ApexCLIEditorMain(sampleLBPolicyArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(sampleLBPolicyArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         // Read the file from disk
         final ApexModelReader<AxPolicyModel> modelReader = new ApexModelReader<>(AxPolicyModel.class);
 
@@ -115,8 +116,9 @@ public class TestCLIEditorScripting {
     public void testSampleLBMapPolicyScript() throws IOException, ApexModelException {
         tempModelFile.delete();
 
-        new ApexCLIEditorMain(sampleLBPolicyMapArgs);
-
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(sampleLBPolicyMapArgs);
+        assertEquals(0, cliEditor.getErrorCount());
+        
         assertTrue(tempModelFile.isFile());
 
         // Read the file from disk

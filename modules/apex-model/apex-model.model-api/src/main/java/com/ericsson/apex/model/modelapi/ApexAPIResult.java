@@ -37,6 +37,8 @@ public class ApexAPIResult {
     public enum RESULT {
         /** The method call succeeded. */
         SUCCESS,
+        /** The method call succeeded and all operations are now completed. */
+        FINISHED,
         /** The method call for a create operation failed because the concept already exists. */
         CONCEPT_EXISTS,
         /** The method call for a create operation failed because multiple concepts already exists. */
@@ -114,7 +116,7 @@ public class ApexAPIResult {
      */
     @XmlAttribute(required = true)
     public boolean isOK() {
-        return result == RESULT.SUCCESS;
+        return result == RESULT.SUCCESS || result == RESULT.FINISHED;
     }
 
     /**
@@ -123,7 +125,7 @@ public class ApexAPIResult {
      * @return true, if the result indicates the API operation did not succeed
      */
     public boolean isNOK() {
-        return result != RESULT.SUCCESS;
+        return !isOK();
     }
 
     /**
@@ -216,8 +218,8 @@ public class ApexAPIResult {
         final StringBuilder builder = new StringBuilder();
         builder.append("{\n");
 
-        builder.append("\"success\": \"");
-        builder.append(result == RESULT.SUCCESS);
+        builder.append("\"result\": \"");
+        builder.append(result.toString());
         builder.append("\",\n");
 
         builder.append("\"messages\": [");

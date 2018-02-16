@@ -40,7 +40,8 @@ public class TestCLIEditorEventsContext {
         final String[] cliArgs = new String[] {"-c", "src/main/resources/examples/scripts/TestPolicyJavaEventContext.apex", "-l",
                 tempLogFile.getAbsolutePath(), "-o", tempModelFile.getAbsolutePath() };
 
-        new ApexCLIEditorMain(cliArgs);
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
 
         // Get the model and log into strings
         final String logString = TextFileUtils.getTextFileAsString(tempLogFile.getCanonicalPath());
@@ -71,7 +72,8 @@ public class TestCLIEditorEventsContext {
         final String[] cliArgs = new String[] {"-c", "src/main/resources/examples/scripts/TestPolicyAvroEventContext.apex", "-l",
                 tempLogFile.getAbsolutePath(), "-o", tempModelFile.getAbsolutePath()};
 
-        new ApexCLIEditorMain(cliArgs);
+        ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(cliArgs);
+        assertEquals(0, cliEditor.getErrorCount());
 
         // Get the model and log into strings
         final String logString = TextFileUtils.getTextFileAsString(tempLogFile.getCanonicalPath());

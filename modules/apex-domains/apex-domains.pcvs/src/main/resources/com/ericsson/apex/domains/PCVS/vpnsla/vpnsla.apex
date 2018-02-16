@@ -90,8 +90,8 @@ task create name=CustomerContextTask version=1.0.0 description="This task adds e
 task inputfield create name=CustomerContextTask version=1.0.0 fieldName=customerName schemaName=ctxtCustomerNameDecl schemaVersion=1.0.0
 task inputfield create name=CustomerContextTask version=1.0.0 fieldName=priority schemaName=ctxtCustomerPriorityDecl schemaVersion=1.0.0
 task inputfield create name=CustomerContextTask version=1.0.0 fieldName=satisfaction schemaName=ctxtCustomerSatisfactionDecl schemaVersion=1.0.0
-task inputfield create name=CustomerContextTask version=1.0.0 fieldName=dtSLA schemaName=ctxtCustomerSlaDtDecl schemaVersion=1.0.0
-task inputfield create name=CustomerContextTask version=1.0.0 fieldName=dtYTD schemaName=ctxtCustomerYtdDtDecl schemaVersion=1.0.0
+task inputfield create name=CustomerContextTask version=1.0.0 fieldName=dtSLA schemaName=ctxtCustomerDowntimeSLADecl schemaVersion=1.0.0
+task inputfield create name=CustomerContextTask version=1.0.0 fieldName=dtYTD schemaName=ctxtCustomerDowntimeYTDDecl schemaVersion=1.0.0
 task inputfield create name=CustomerContextTask version=1.0.0 fieldName=links schemaName=ctxtCustomerLinksDecl schemaVersion=1.0.0
 task outputfield create name=CustomerContextTask version=1.0.0 fieldName=report schemaName=reportDecl schemaVersion=1.0.0
 task contextref create name=CustomerContextTask albumName=albumCustomerMap

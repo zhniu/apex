@@ -28,10 +28,11 @@ public class PCVSDomainModelFactory {
 	/**
 	 * Generates the PCVS VPN-SLA policy model from CLI commands and creates an APEX
 	 * model.
+	 * @param workingDirectory The working directory for the CLI editor for includes
 	 *
 	 * @return the PCVS VPN-SLA policy model
 	 */
-	public AxPolicyModel getPCVVpnSlaSPolicyModel() {
+	public AxPolicyModel getPCVVpnSlaSPolicyModel(final String workingDirectory) {
 		String path = "target/model-gen/PCVS/vpnsla";
 		String file = "policy.json";
 		String full = path + "/" + file;
@@ -39,9 +40,19 @@ public class PCVSDomainModelFactory {
 		File pathFile = new File(path);
 		pathFile.mkdirs();
 
-		String[] args = new String[] { "-c", "src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/vpnsla.apex",
-				"-o", full };
-		ApexCLIEditorMain.main(args);
+		String[] args = new String[] {
+				"-c",
+				"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/vpnsla.apex",
+				"-wd",
+				workingDirectory,
+				"-o",
+				full
+		};
+		
+		ApexCLIEditorMain cliEditor = new ApexCLIEditorMain(args);
+		if (cliEditor.getErrorCount() > 0) {
+			throw new ApexRuntimeException("Apex CLI editor execution failed with " + cliEditor.getErrorCount() + " errors");
+		}
 
 		java.util.TimeZone.getTimeZone("gmt");
 		try {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * COPYRIGHT (C) Ericsson 2016-2018
+ * COPYRIGHT (C) Ericsson 2014-2018
  * 
  * The copyright to the computer program(s) herein is the property of
  * Ericsson Inc. The programs may be used and/or copied only with written
@@ -62,9 +62,9 @@ public class ApexModelHandler {
      * @param command The command to execute
      * @param argumentValues Arguments of the command
      * @param writer A writer to which to write output
-     * @return true, if execute command
+     * @return the result of the executed command
      */
-    public boolean executeCommand(final CLICommand command, final TreeMap<String, CLIArgumentValue> argumentValues, final PrintWriter writer) {
+    public ApexAPIResult executeCommand(final CLICommand command, final TreeMap<String, CLIArgumentValue> argumentValues, final PrintWriter writer) {
         // Get the method
         final Method apiMethod = getCommandMethod(command);
 
@@ -73,7 +73,16 @@ public class ApexModelHandler {
 
         try {
             final Object returnObject = apiMethod.invoke(apexModel, parameterArray);
-            writer.println(returnObject);
+            
+            if (returnObject instanceof ApexAPIResult) {
+                ApexAPIResult result = (ApexAPIResult) returnObject;
+                writer.println(result);
+                return result;
+            }
+            else {
+                throw new CLIException("invocation of specified method \"" + command.getApiMethod() + "\" failed for command \"" + command.getName() +
+                        "\" the returned object is not an instance of ApexAPIResult");
+            }
         }
         catch (IllegalAccessException | IllegalArgumentException e) {
             writer.println("invocation of specified method \"" + command.getApiMethod() + "\" failed for command \"" + command.getName() + "\"");
@@ -85,8 +94,6 @@ public class ApexModelHandler {
             e.getCause().printStackTrace(writer);
             throw new CLIException("invocation of specified method \"" + command.getApiMethod() + "\" failed for command \"" + command.getName() + "\"", e);
         }
-
-        return true;
     }
 
     /**

@@ -98,6 +98,7 @@
 								<argument>-classpath</argument>
 								<classpath />
 								<argument>com.ericsson.apex.domains.pcvs.model.PCVSDomainModelSaver</argument>
+								<argument>${project.basedir}</argument>
 								<argument>${project.build.directory}/classes/examples/models/PCVS/</argument>
 							</arguments>
 						</configuration>

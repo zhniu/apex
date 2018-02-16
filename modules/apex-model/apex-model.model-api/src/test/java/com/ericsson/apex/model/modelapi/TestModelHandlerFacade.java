@@ -83,11 +83,12 @@ public class TestModelHandlerFacade {
         result = mhf.saveToDatabase(daoParameters);
         assertEquals(ApexAPIResult.RESULT.FAILED, result.getResult());
 
-        result = mhf.readFromURL("http://somewhere/over/the/rainbow");
+        result = mhf.readFromURL("blah://somewhere/over/the/rainbow");
         assertEquals(ApexAPIResult.RESULT.FAILED, result.getResult());
 
         result = mhf.loadFromString(modelString);
         assertEquals(ApexAPIResult.RESULT.SUCCESS, result.getResult());
+        
         result = mhf.readFromURL("http://somewhere/over/the/rainbow");
         assertEquals(ApexAPIResult.RESULT.CONCEPT_EXISTS, result.getResult());
 
