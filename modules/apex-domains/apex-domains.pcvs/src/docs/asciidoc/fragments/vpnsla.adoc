@@ -102,12 +102,13 @@ In these terminals, run `vlc-wrapper`.
 In each opened VLC window do
 
 * Click Media -> Stream
-* Add the video (from `/usr/local/source/videos`)
-* Click `next`
+* Add the video (from `/usr/local/src/videos`)
+* Click `Stream`
+* Click `Next`
 * Change the destination `RTP / MPEG Transport Stream` and click `Add`
 * Change the address and type to `10.0.0.2` in `A1` and to `10.0.0.4` in `B1`
 * Turn off `Active Transcoding` (this is important to minimize CPU load)
-* Click `next`
+* Click `Next`
 * Click `Stream`
 
 The video should be streaming across the network from `A1` to `A2` and from `B1` to `B2`.

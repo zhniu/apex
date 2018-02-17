@@ -52,24 +52,25 @@ sudo tar -xvf /tmp/kafka_2.12-1.0.0.tgz -C /opt/Kafka/
 
 # install mininet
 cd /usr/local/src
-git clone https://github.com/mininet/mininet.git
+sudo git clone https://github.com/mininet/mininet.git
 (cd mininet;util/install.sh -a)
 
 # install floodlight, requires ant
 sudo apt-get install ant
-cd /usr/loca/src
-wget --no-check-certificate https://github.com/floodlight/floodlight/archive/master.zip
-unzip floodlight-master.zip
-cd floodlight-master; ant
-mkdir /var/lib/floodlight
-chmod 777 /var/lib/floodlight
+cd /usr/local/src
+sudo wget --no-check-certificate https://github.com/floodlight/floodlight/archive/master.zip
+sudo unzip master.zip
+cd floodlight-master
+sudo ant
+sudo mkdir /var/lib/floodlight
+sudo chmod 777 /var/lib/floodlight
 
 # install python pip
 sudo apt-get install python-pip
 
 # install kafka-python (need newer version from github)
 cd /usr/local/src
-git clone https://github.com/dpkp/kafka-python
+sudo git clone https://github.com/dpkp/kafka-python
 sudo pip install ./kafka-python
 
 # install vlc
@@ -83,14 +84,13 @@ We assume that APEX is installed in `/opt/ericsson/apex/apex`
 Copy the LinkMonitor file to Kafka-Python
 
 ----
-cp /opt/ericsson/apex/apex/examples/scripts/PCVS/vpnsla/LinkMonitor.py /usr/local/src/kafka-python
+sudo cp /opt/ericsson/apex/apex/examples/scripts/PCVS/vpnsla/LinkMonitor.py /usr/local/src/kafka-python
 ----
 
 Change the Logback configuration in APEX to logic logging
 
 ----
-cd /opt/ericsson/apex/apex/etc
-cp logback-logic.xml logback.xml
+(cd /opt/ericsson/apex/apex/etc; sudo cp logback-logic.xml logback.xml)
 ----
 
 
@@ -100,22 +100,21 @@ cp logback-logic.xml logback.xml
 * For lower-res downloads and mirrors see link:https://peach.blender.org/download[]
 
 ----
-cd /usr/local/src
-mkdir videos
+sudo mkdir /usr/local/src/videos
 ----
 
 
 Standard 720p (recommended)
 
 ----
-(cd /usr/local/src/videos; curl -o big_buck_bunny_480p_surround.avi http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_surround-fix.avi)
+(cd /usr/local/src/videos; sudo curl -o big_buck_bunny_480p_surround.avi http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_surround-fix.avi)
 ----
 
 
 Full HD video
 
 ----
-(cd videos; curl -o bbb_sunflower_1080p_60fps_normal.mp4 http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4)
+(cd videos; sudo curl -o bbb_sunflower_1080p_60fps_normal.mp4 http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4)
 ----
 
 
