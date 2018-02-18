@@ -8,5 +8,5 @@ This timestamp is later used for SLA and downtime calculations as well as for so
 .JS Logic Policy Match State
 [source,javascript,options="nowrap"]
 ----
-include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-match.js[JS Logic Policy Match State]
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-match.js[JS Logic Policy Match State]
 ----

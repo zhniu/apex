@@ -7,6 +7,6 @@ All logic and schemas are included (as macro file).
 .APEX VPN SLA Policy Specification
 [source,javascript,options="nowrap"]
 ----
-include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/vpnsla.apex[APEX VPN SLA Policy Specification]
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/vpnsla.apex[APEX VPN SLA Policy Specification]
 ----
 

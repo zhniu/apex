@@ -19,7 +19,7 @@ The demo requires to start some software (detailed below).
 To show actual video streams, we use `VLC`.
 If you do not want to show video streams, but only the policy, skip the `VLC` section.
 
-All shown scripts are available in a full APEX installation in `$APEX_HOME/examples/scripts/PCVS/vpnsla`.
+All shown scripts are available in a full APEX installation in `$APEX_HOME/examples/scripts/pcvs/vpnsla`.
 
 === Start all Software
 
@@ -50,7 +50,7 @@ In a new Xterm start Mininet
 ----
 sudo -i
 . ./env.sh
-mn -c && python $APEX_HOME/examples/scripts/PCVS/vpnsla/MininetTopology.py
+mn -c && python $APEX_HOME/examples/scripts/pcvs/vpnsla/MininetTopology.py
 ----
 
 In a new Xterm, start Kafka
@@ -65,7 +65,7 @@ In a new Xerm start APEX with the Kafka configuration for this demo
 
 ----
 cd $APEX_HOME
-./bin/apexApps.sh engine -c examples/config/PCVS/vpnsla/kafka2kafka.json
+./bin/apexApps.sh engine -c examples/config/pcvs/vpnsla/kafka2kafka.json
 ----
 
 In a new Xterm start the Link Monitor.

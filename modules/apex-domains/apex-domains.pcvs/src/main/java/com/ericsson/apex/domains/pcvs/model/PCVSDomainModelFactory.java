@@ -33,7 +33,7 @@ public class PCVSDomainModelFactory {
 	 * @return the PCVS VPN-SLA policy model
 	 */
 	public AxPolicyModel getPCVVpnSlaSPolicyModel(final String workingDirectory) {
-		String path = "target/model-gen/PCVS/vpnsla";
+		String path = "target/model-gen/pcvs/vpnsla";
 		String file = "policy.json";
 		String full = path + "/" + file;
 
@@ -42,7 +42,7 @@ public class PCVSDomainModelFactory {
 
 		String[] args = new String[] {
 				"-c",
-				"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/vpnsla.apex",
+				"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/vpnsla.apex",
 				"-wd",
 				workingDirectory,
 				"-o",

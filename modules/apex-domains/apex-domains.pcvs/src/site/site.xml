@@ -2,7 +2,7 @@
 
 <project>
 	<body>
-		<menu name="APEX Domains: PCVS">
+		<menu name="APEX Domains: pcvs">
 			<item href="introduction.html" name="Introduction" />
 			<item href="install.html" name="Install Ubuntu Server and SW" />
 			<item href="vpnsla.html" name="VPN SLA Demo" />
@@ -35,7 +35,7 @@
 		<menu ref="modules"/> 
 
 		<breadcrumbs>
-			<item name="PCVS" href="index.html"/>
+			<item name="pcvs" href="index.html"/>
 		</breadcrumbs>
 	</body>
 </project>

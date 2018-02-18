@@ -6,5 +6,5 @@ It is simply selecting an action, and creating the repsonse event for the orches
 .JS Logic Policy Act State
 [source,javascript,options="nowrap"]
 ----
-include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-act.js[JS Logic Policy Act State]
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-act.js[JS Logic Policy Act State]
 ----

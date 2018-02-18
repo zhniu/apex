@@ -16,7 +16,7 @@ schema create name=ctxtEdgeEndDecl version=1.0.0 description="Topology Edges: ed
 schema create name=ctxtEdgeStatusDecl version=1.0.0 description="Topology Edges: edge status as up (true) or down (false)" flavour=Java schema=java.lang.Boolean
 
 schema create name=ctxtTopologyEdgesDecl version=1.0.0 description="Topology Edges Context Map" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/topology-edges.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/topology-edges.avsc"
 LE
 album create name=albumTopoEdges scope=global writable=true schemaName=ctxtTopologyEdgesDecl
 
@@ -29,7 +29,7 @@ task inputfield create name=EdgeContextTask version=1.0.0 fieldName=status schem
 task outputfield create name=EdgeContextTask version=1.0.0 fieldName=report schemaName=reportDecl schemaVersion=1.0.0
 task contextref create name=EdgeContextTask albumName=albumTopoEdges
 task logic create name=EdgeContextTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/ctxt-edges.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/ctxt-edges.js"
 LE
 
 event create name=EdgeContextEventIn version=1.0.0 description="Event to add an Edge to engine Context" nameSpace=com.ericsson.apex.domains.pcvs.vpnsla source="CtxtManagement" target="APEX"
@@ -49,7 +49,7 @@ schema create name=ctxtNodeNameDecl version=1.0.0 description="Topology Nodes: n
 schema create name=ctxtNodeMininetNameDecl version=1.0.0 description="Topology Nodes: node name in Mininet" flavour=Java schema=java.lang.String
 
 schema create name=ctxtTopologyNodesDecl version=1.0.0 description="Topology Nodes Context Map" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/topology-nodes.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/topology-nodes.avsc"
 LE
 album create name=albumTopoNodes scope=global writable=true schemaName=ctxtTopologyNodesDecl
 
@@ -59,7 +59,7 @@ task inputfield create name=NodeContextTask version=1.0.0 fieldName=mininetName 
 task outputfield create name=NodeContextTask version=1.0.0 fieldName=report schemaName=reportDecl schemaVersion=1.0.0
 task contextref create name=NodeContextTask albumName=albumTopoNodes
 task logic create name=NodeContextTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/ctxt-nodes.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/ctxt-nodes.js"
 LE
 
 event create name=NodeContextEventIn version=1.0.0 description="Event to add Node to engine Context" nameSpace=com.ericsson.apex.domains.pcvs.vpnsla source="CtxtManagement" target="APEX"
@@ -82,7 +82,7 @@ schema create name=ctxtCustomerDowntimeYTDDecl version=1.0.0 description="Custom
 schema create name=ctxtCustomerLinksDecl version=1.0.0 description="Customer Context: links a customer uses (for events/task)" flavour=Java schema=java.lang.String
 
 schema create name=ctxtCustomerMapDecl version=1.0.0 description="Map of customers with all known information" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/customers.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/customers.avsc"
 LE
 album create name=albumCustomerMap scope=global writable=true schemaName=ctxtCustomerMapDecl
 
@@ -97,7 +97,7 @@ task outputfield create name=CustomerContextTask version=1.0.0 fieldName=report 
 task contextref create name=CustomerContextTask albumName=albumCustomerMap
 task contextref create name=CustomerContextTask albumName=albumTopoEdges
 task logic create name=CustomerContextTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/ctxt-customer.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/ctxt-customer.js"
 LE
 
 event create name=CustomerContextEventIn version=1.0.0 description="Event to add Customers to engine Context" nameSpace=com.ericsson.apex.domains.pcvs.vpnsla source="CtxtManagement" target="APEX"
@@ -118,7 +118,7 @@ policy state taskref create name=CustomerContextPolicy version=1.0.0 stateName=C
 
 schema create name=edgeNameDecl version=1.0.0 description="Edge name" flavour=Java schema=java.lang.String
 schema create name=edgeStatusDecl version=1.0.0 description="Statuf of the edge (UP, DOWN)" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/link-status.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/link-status.avsc"
 LE
 schema create name=edgeChangedDecl version=1.0.0 description="Status Change (true:change, false:no change)" flavour=Java schema=java.lang.Boolean
 
@@ -131,19 +131,19 @@ task outputfield create name=VpnSlaPolicyMatchTask version=1.0.0 fieldName=hasCh
 task outputfield create name=VpnSlaPolicyMatchTask version=1.0.0 fieldName=matchStart schemaName=timestampDecl schemaVersion=1.0.0
 task contextref create name=VpnSlaPolicyMatchTask albumName=albumTopoEdges
 task logic create name=VpnSlaPolicyMatchTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-match.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-match.js"
 LE
 
 
 
 
 schema create name=problemMapDecl version=1.0.0 description="Map of problems with all known Information" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/problems.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/problems.avsc"
 LE
 album create name=albumProblemMap scope=global writable=true schemaName=problemMapDecl
 
 schema create name=establishSituationDecl version=1.0.0 description="Establish: the situation that was established" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/situation.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/situation.avsc"
 LE
 
 task create name=VpnSlaPolicyEstablishTask version=1.0.0 description="Task taking a match event and establishing a situation"
@@ -156,14 +156,14 @@ task outputfield create name=VpnSlaPolicyEstablishTask version=1.0.0 fieldName=m
 task contextref create name=VpnSlaPolicyEstablishTask albumName=albumProblemMap
 task contextref create name=VpnSlaPolicyEstablishTask albumName=albumCustomerMap
 task logic create name=VpnSlaPolicyEstablishTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-establish.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-establish.js"
 LE
 
 
 
 
 schema create name=decideDecisionDecl version=1.0.0 description="Decide: the taken decision" flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/decision.avsc"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/decision.avsc"
 LE
 
 task create name=VpnSlaPolicyDecideNoneTask version=1.0.0 description="Decide task for a 'none' problem"
@@ -172,7 +172,7 @@ task inputfield create name=VpnSlaPolicyDecideNoneTask version=1.0.0 fieldName=m
 task outputfield create name=VpnSlaPolicyDecideNoneTask version=1.0.0 fieldName=decision schemaName=decideDecisionDecl schemaVersion=1.0.0
 task outputfield create name=VpnSlaPolicyDecideNoneTask version=1.0.0 fieldName=matchStart schemaName=timestampDecl schemaVersion=1.0.0
 task logic create name=VpnSlaPolicyDecideNoneTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-decide-none.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-decide-none.js"
 LE
 
 
@@ -184,7 +184,7 @@ task outputfield create name=VpnSlaPolicyDecideSlaTask version=1.0.0 fieldName=m
 task contextref create name=VpnSlaPolicyDecideSlaTask albumName=albumCustomerMap
 task contextref create name=VpnSlaPolicyDecideSlaTask albumName=albumProblemMap
 task logic create name=VpnSlaPolicyDecideSlaTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-decide-sla.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-decide-sla.js"
 LE
 
 
@@ -196,7 +196,7 @@ task outputfield create name=VpnSlaPolicyDecidePriorityTask version=1.0.0 fieldN
 task contextref create name=VpnSlaPolicyDecidePriorityTask albumName=albumCustomerMap
 task contextref create name=VpnSlaPolicyDecidePriorityTask albumName=albumProblemMap
 task logic create name=VpnSlaPolicyDecidePriorityTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-decide-priority.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-decide-priority.js"
 LE
 
 
@@ -207,7 +207,7 @@ task outputfield create name=VpnSlaPolicyDecideSolvedTask version=1.0.0 fieldNam
 task outputfield create name=VpnSlaPolicyDecideSolvedTask version=1.0.0 fieldName=matchStart schemaName=timestampDecl schemaVersion=1.0.0
 task contextref create name=VpnSlaPolicyDecideSolvedTask albumName=albumProblemMap
 task logic create name=VpnSlaPolicyDecideSolvedTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-decide-solved.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-decide-solved.js"
 LE
 
 
@@ -223,7 +223,7 @@ task outputfield create name=VpnSlaPolicyActTask version=1.0.0 fieldName=action 
 task contextref create name=VpnSlaPolicyActTask albumName=albumCustomerMap
 task contextref create name=VpnSlaPolicyActTask albumName=albumProblemMap
 task logic create name=VpnSlaPolicyActTask logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-act.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-act.js"
 LE
 
 
@@ -264,7 +264,7 @@ policy state taskref create name=VpnSlaPolicy version=1.0.0 stateName=VpnSlaPoli
 policy state create name=VpnSlaPolicy version=1.0.0 stateName=VpnSlaPolicyDecideState triggerName=VpnSlaEstablishOut triggerVersion=1.0.0 defaultTaskName=VpnSlaPolicyDecideSlaTask defaultTaskVersion=1.0.0
 policy state contextref create name=VpnSlaPolicy version=1.0.0 stateName=VpnSlaPolicyDecideState albumName=albumProblemMap
 policy state selecttasklogic create name=VpnSlaPolicy stateName=VpnSlaPolicyDecideState logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/tsl-decide.js"
+#MACROFILE:"src/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/tsl-decide.js"
 LE
 policy state output create name=VpnSlaPolicy version=1.0.0 stateName=VpnSlaPolicyDecideState outputName=VpnSlaPolicyDecide_Output_Direct eventName=VpnSlaDecideOut eventVersion=1.0.0 nextState=VpnSlaPolicyActState
 policy state taskref create name=VpnSlaPolicy version=1.0.0 stateName=VpnSlaPolicyDecideState taskLocalName=decideNone taskName=VpnSlaPolicyDecideNoneTask taskVersion=1.0.0 outputType=DIRECT outputName=VpnSlaPolicyDecide_Output_Direct

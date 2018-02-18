@@ -7,5 +7,5 @@ This does not impact the trigger system (it can still send the strings), but mak
 .AVRO Schema Link Status
 [source,json,options="nowrap"]
 ----
-include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/avro/link-status.avsc[AVRO Schema Link Status]
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/avro/link-status.avsc[AVRO Schema Link Status]
 ----

@@ -1,3 +1,3 @@
-== Policy-controlled Video Streaming (PCVS) with APEX
+== Policy-controlled Video Streaming (pcvs) with APEX
 
 include::{apex-domains-pcvs-dir}/docs/asciidoc/fragments/introduction.adoc[]

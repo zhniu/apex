@@ -11,6 +11,6 @@ Finally, it creates a situation object.
 .JS Logic Policy Establish State
 [source,javascript,options="nowrap"]
 ----
-include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/PCVS/vpnsla/logic/task-establish.js[JS Logic Policy Establish State]
+include::{apex-domains-pcvs-dir}/main/resources/com/ericsson/apex/domains/pcvs/vpnsla/logic/task-establish.js[JS Logic Policy Establish State]
 ----
 

@@ -7,5 +7,5 @@ Then it takes events from Kafka and sends them to APEX.
 .Link Monitor
 [source,python,options="nowrap"]
 ----
-include::{apex-domains-pcvs-dir}/main/resources/examples/scripts/PCVS/vpnsla/LinkMonitor.py[Link Monitor]
+include::{apex-domains-pcvs-dir}/main/resources/examples/scripts/pcvs/vpnsla/LinkMonitor.py[Link Monitor]
 ----

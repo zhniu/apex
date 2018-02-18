@@ -84,7 +84,7 @@ We assume that APEX is installed in `/opt/ericsson/apex/apex`
 Copy the LinkMonitor file to Kafka-Python
 
 ----
-sudo cp /opt/ericsson/apex/apex/examples/scripts/PCVS/vpnsla/LinkMonitor.py /usr/local/src/kafka-python
+sudo cp /opt/ericsson/apex/apex/examples/scripts/pcvs/vpnsla/LinkMonitor.py /usr/local/src/kafka-python
 ----
 
 Change the Logback configuration in APEX to logic logging
