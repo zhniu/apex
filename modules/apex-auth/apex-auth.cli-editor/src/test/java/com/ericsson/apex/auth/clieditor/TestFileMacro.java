@@ -90,11 +90,9 @@ public class TestFileMacro {
 		// The output event is in this file
 		final File outputLogFile = new File(tempLogFile.getCanonicalPath());
 
-		String tmpPath = Paths.get("").toAbsolutePath().toString() + '/';
-		tmpPath = tmpPath.replace("\\", "\\\\");
 		final String outputLogString = TextFileUtils
 				.getTextFileAsString(outputLogFile.getCanonicalPath())
-				.replaceAll(tmpPath, "")
+				.replace(Paths.get("").toAbsolutePath().toString() + File.separator, "")
 				.replaceAll("\\s+", "");
 
 		// We compare the log to what we expect to get
