@@ -257,7 +257,7 @@ public class TestRESTServer {
         System.setOut(stdout);
         System.setErr(stderr);
         
-        assertTrue(outString.contains("REST Server consumer (FirstConsumer) must run in synchronous mode with a REST Server producer"));
+        assertTrue(outString.contains("event output for peered mode \"SYNCHRONOUS\": peer \"FirstConsumer\" for event handler \"FirstProducer\" does not exist or is not defined as being synchronous"));
     }
 
     @Test

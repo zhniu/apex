@@ -25,6 +25,7 @@ import com.ericsson.apex.service.parameters.ApexParameterException;
 import com.ericsson.apex.service.parameters.ApexParameterHandler;
 import com.ericsson.apex.service.parameters.ApexParameters;
 import com.ericsson.apex.service.parameters.carriertechnology.CarrierTechnologyParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 import com.ericsson.apex.service.parameters.eventprotocol.EventProtocolParameters;
 
 /**
@@ -146,10 +147,10 @@ public class SyncParameterTests {
 
         try {
             ApexParameters parameters = new ApexParameterHandler().getParameters(arguments);
-            assertEquals(12345, parameters.getEventInputParameters() .get("SyncConsumer0").getSynchronousTimeout());
-            assertEquals(1,     parameters.getEventInputParameters() .get("SyncConsumer1").getSynchronousTimeout());
-            assertEquals(12345, parameters.getEventOutputParameters().get("SyncProducer0").getSynchronousTimeout());
-            assertEquals(1,     parameters.getEventOutputParameters().get("SyncProducer1").getSynchronousTimeout());
+            assertEquals(12345, parameters.getEventInputParameters() .get("SyncConsumer0").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(1,     parameters.getEventInputParameters() .get("SyncConsumer1").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(12345, parameters.getEventOutputParameters().get("SyncProducer0").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(1,     parameters.getEventOutputParameters().get("SyncProducer1").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
         }
         catch (Exception e) {
             fail("This test should not throw an exception");
@@ -163,10 +164,10 @@ public class SyncParameterTests {
 
         try {
             ApexParameters parameters = new ApexParameterHandler().getParameters(arguments);
-            assertEquals(12345, parameters.getEventInputParameters() .get("SyncConsumer0").getSynchronousTimeout());
-            assertEquals(1,     parameters.getEventInputParameters() .get("SyncConsumer1").getSynchronousTimeout());
-            assertEquals(12345, parameters.getEventOutputParameters().get("SyncProducer0").getSynchronousTimeout());
-            assertEquals(1,     parameters.getEventOutputParameters().get("SyncProducer1").getSynchronousTimeout());
+            assertEquals(12345, parameters.getEventInputParameters() .get("SyncConsumer0").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(1,     parameters.getEventInputParameters() .get("SyncConsumer1").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(12345, parameters.getEventOutputParameters().get("SyncProducer0").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(1,     parameters.getEventOutputParameters().get("SyncProducer1").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
         }
         catch (Exception e) {
             fail("This test should not throw an exception");
@@ -180,10 +181,10 @@ public class SyncParameterTests {
 
         try {
             ApexParameters parameters = new ApexParameterHandler().getParameters(arguments);
-            assertEquals(12345, parameters.getEventInputParameters() .get("SyncConsumer0").getSynchronousTimeout());
-            assertEquals(1,     parameters.getEventInputParameters() .get("SyncConsumer1").getSynchronousTimeout());
-            assertEquals(12345, parameters.getEventOutputParameters().get("SyncProducer0").getSynchronousTimeout());
-            assertEquals(1,     parameters.getEventOutputParameters().get("SyncProducer1").getSynchronousTimeout());
+            assertEquals(12345, parameters.getEventInputParameters() .get("SyncConsumer0").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(1,     parameters.getEventInputParameters() .get("SyncConsumer1").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(12345, parameters.getEventOutputParameters().get("SyncProducer0").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
+            assertEquals(1,     parameters.getEventOutputParameters().get("SyncProducer1").getPeerTimeout(EventHandlerPeeredMode.SYNCHRONOUS));
         }
         catch (Exception e) {
             fail("This test should not throw an exception");

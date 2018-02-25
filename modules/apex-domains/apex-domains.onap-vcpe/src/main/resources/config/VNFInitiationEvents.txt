@@ -1,0 +1,15 @@
+{
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "name": "VNFInitEvent",
+  "version": "0.0.1",
+  "source": "init",
+  "target": "apex",
+  "vnf": {
+    "name": "131.160.203.160",
+    "ipAddress": "131.160.203.160",
+    "uuid": "49414df5-3482-4fd8-9952-c463dff2770b",
+    "breached": false,
+    "lastOnsetTime": 0,
+    "lastAbatedTime": 0
+  }
+}

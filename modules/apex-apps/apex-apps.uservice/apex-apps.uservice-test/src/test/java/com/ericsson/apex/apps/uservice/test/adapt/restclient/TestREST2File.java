@@ -46,7 +46,7 @@ public class TestREST2File {
 
     @Before
     public void setUp() throws Exception {
-        final ResourceConfig rc = new ResourceConfig(TestEndpoint.class);
+        final ResourceConfig rc = new ResourceConfig(TestRESTClientEndpoint.class);
         server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);   
         
         while (!server.isStarted()) {
@@ -95,9 +95,8 @@ public class TestREST2File {
         System.setOut(stdout);
         System.setErr(stderr);
         
-        assertTrue(outString.contains("received an enpty event from URL \"http://localhost:32801/TestRest2File/apex/event/GetEmptyEvent\""));
+        assertTrue(outString.contains("received an empty event from URL \"http://localhost:32801/TestRest2File/apex/event/GetEmptyEvent\""));
    }
-
     
     @Test
     public void testFileEventsNoURL() throws MessagingException, ApexException, IOException {

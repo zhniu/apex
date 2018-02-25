@@ -21,6 +21,7 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
 import com.ericsson.apex.core.infrastructure.threading.ThreadUtilities;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
  * This class holds a cache of the synchronous events sent into Apex and that have not yet been replied to. It runs a thread to time out events that have not
@@ -28,7 +29,7 @@ import com.ericsson.apex.core.infrastructure.threading.ThreadUtilities;
  * 
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
-public class SynchronousEventCache implements Runnable {
+public class SynchronousEventCache extends PeeredReference implements Runnable {
     // Get a reference to the logger
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(SynchronousEventCache.class);
 
@@ -38,12 +39,6 @@ public class SynchronousEventCache implements Runnable {
     // The timeout to wait between event polls in milliseconds and the time to wait for the thread to stop
     private static final long OUTSTANDING_EVENT_POLL_TIMEOUT = 50;
     private static final long CACHE_STOP_WAIT_INTERVAL = 10;
-
-    // The synchronous consumer putting events into this synchronous event cache
-    private ApexEventConsumer synchronousConsumer;
-
-    // The synchronous consumer taking events out of this synchronous event cache
-    private ApexEventProducer synchronousProducer = null;
 
     // The time in milliseconds to wait for the reply to a sent synchronous event
     private long synchronousEventTimeout = DEFAULT_SYNCHRONOUS_EVENT_TIMEOUT;
@@ -61,13 +56,13 @@ public class SynchronousEventCache implements Runnable {
     /**
      * Create a synchronous event cache that caches outstanding synchronous Apex events.
      * 
+     * @param peeredMode the peered mode for which to return the reference
      * @param consumer the consumer that is populating the cache
      * @param producer the producer that is emptying the cache
      * @param synchronousEventTimeout the time in milliseconds to wait for the reply to a sent synchronous event
      */
-    public SynchronousEventCache(final ApexEventConsumer consumer, final ApexEventProducer producer, final long synchronousEventTimeout) {
-        this.synchronousConsumer = consumer;
-        this.synchronousProducer = producer;
+    public SynchronousEventCache(final EventHandlerPeeredMode peeredMode, final ApexEventConsumer consumer, final ApexEventProducer producer, final long synchronousEventTimeout) {
+    		super(peeredMode, consumer, producer);
 
         if (synchronousEventTimeout != 0) {
             this.synchronousEventTimeout = synchronousEventTimeout;
@@ -76,33 +71,10 @@ public class SynchronousEventCache implements Runnable {
             this.synchronousEventTimeout = DEFAULT_SYNCHRONOUS_EVENT_TIMEOUT;
         }
 
-        // Set the cache on the producer and consumer
-        synchronousConsumer.setSynchronousEventCache(this);
-        synchronousProducer.setSynchronousEventCache(this);
-
         // Start scanning the outstanding events
         synchronousEventCacheThread = new Thread(this);
         synchronousEventCacheThread.setDaemon(true);
         synchronousEventCacheThread.start();
-
-    }
-
-    /**
-     * Gets the synchronous consumer putting events into the cache.
-     *
-     * @return the source synchronous consumer
-     */
-    public ApexEventConsumer getSynchronousConsumer() {
-        return synchronousConsumer;
-    }
-
-    /**
-     * Gets the synchronous producer taking events from the cache.
-     *
-     * @return the synchronous producer that is taking events from the cache
-     */
-    public ApexEventProducer getSynchronousProducer() {
-        return synchronousProducer;
     }
 
     /**
@@ -289,7 +261,7 @@ public class SynchronousEventCache implements Runnable {
      */
     private void timeoutEventsOnCache(final Map<Long, SimpleEntry<Long, Object>> eventCacheMap) {
         // Use a set to keep track of the events that have timed out
-        Set<Long> timedOutEventSet = new HashSet<Long>();
+        Set<Long> timedOutEventSet = new HashSet<>();
 
         for (Entry<Long, SimpleEntry<Long, Object>> cachedEventEntry : eventCacheMap.entrySet()) {
             // The amount of time we are waiting for the event reply

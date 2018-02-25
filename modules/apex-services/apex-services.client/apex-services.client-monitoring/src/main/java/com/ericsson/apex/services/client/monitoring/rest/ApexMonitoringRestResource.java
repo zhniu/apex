@@ -318,8 +318,9 @@ public class ApexMonitoringRestResource {
      * A list of values that uses a FIFO sliding window of a fixed size.
      */
     public class SlidingWindowList<V> extends LinkedList<V> {
+		private static final long serialVersionUID = -7187277916025957447L;
 
-        private final int maxEntries;
+		private final int maxEntries;
 
         public SlidingWindowList(int maxEntries) {
             this.maxEntries = maxEntries;
@@ -338,7 +339,7 @@ public class ApexMonitoringRestResource {
     /**
      * A class used to storing a single data entry for an engine.
      */
-    private class Counter {
+    public class Counter {
         private long timestamp;
         private long value;
         
@@ -346,6 +347,13 @@ public class ApexMonitoringRestResource {
             this.timestamp = timestamp;
             this.value = value;
         }
-    }
 
+		public long getTimestamp() {
+			return timestamp;
+		}
+
+		public long getValue() {
+			return value;
+		}
+    }
 }

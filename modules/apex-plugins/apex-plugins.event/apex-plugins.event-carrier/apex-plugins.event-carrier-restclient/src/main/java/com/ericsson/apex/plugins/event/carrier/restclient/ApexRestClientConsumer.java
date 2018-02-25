@@ -10,6 +10,9 @@
 
 package com.ericsson.apex.plugins.event.carrier.restclient;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -23,8 +26,9 @@ import com.ericsson.apex.service.engine.event.ApexEventConsumer;
 import com.ericsson.apex.service.engine.event.ApexEventException;
 import com.ericsson.apex.service.engine.event.ApexEventReceiver;
 import com.ericsson.apex.service.engine.event.ApexEventRuntimeException;
-import com.ericsson.apex.service.engine.event.SynchronousEventCache;
+import com.ericsson.apex.service.engine.event.PeeredReference;
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
  * This class implements an Apex event consumer that receives events from a REST server.
@@ -50,8 +54,8 @@ public class ApexRestClientConsumer implements ApexEventConsumer, Runnable {
     // The name for this consumer
     private String name = null;
 
-    // The synchronous event cache being used to track synchronous events
-    private SynchronousEventCache synchronousEventCache;
+    // The peer references for this event handler
+    private Map<EventHandlerPeeredMode, PeeredReference> peerReferenceMap = new EnumMap<>(EventHandlerPeeredMode.class);
 
     // The consumer thread and stopping flag
     private Thread consumerThread;
@@ -114,25 +118,21 @@ public class ApexRestClientConsumer implements ApexEventConsumer, Runnable {
         return name;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.ericsson.apex.service.engine.event.ApexEventConsumer#getSynchronousEventCache()
-     */
-    @Override
-    public SynchronousEventCache getSynchronousEventCache() {
-        return synchronousEventCache;
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventConsumer#getPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode)
+	 */
+	@Override
+	public PeeredReference getPeeredReference(EventHandlerPeeredMode peeredMode) {
+		return peerReferenceMap.get(peeredMode);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.ericsson.apex.service.engine.event.ApexEventConsumer#setSynchronousEventCache(com.ericsson.apex.service.engine.event.SynchronousEventCache)
-     */
-    @Override
-    public void setSynchronousEventCache(final SynchronousEventCache synchronousEventCache) {
-        this.synchronousEventCache = synchronousEventCache;
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventConsumer#setPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode, com.ericsson.apex.service.engine.event.PeeredReference)
+	 */
+	@Override
+	public void setPeeredReference(EventHandlerPeeredMode peeredMode, PeeredReference peeredReference) {
+		peerReferenceMap.put(peeredMode, peeredReference);
+	}
 
     /*
      * (non-Javadoc)
@@ -198,7 +198,7 @@ public class ApexRestClientConsumer implements ApexEventConsumer, Runnable {
 
                 // Check there is content
                 if (eventJSONString == null || eventJSONString.trim().length() == 0) {
-                    String errorMessage = "received an enpty event from URL \"" + restConsumerProperties.getURL() + "\"";
+                    String errorMessage = "received an empty event from URL \"" + restConsumerProperties.getURL() + "\"";
                     throw new ApexEventRuntimeException(errorMessage);
                 }
 

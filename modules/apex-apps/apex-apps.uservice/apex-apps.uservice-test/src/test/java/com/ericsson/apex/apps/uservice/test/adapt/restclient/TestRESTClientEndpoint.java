@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 
 
 @Path("/apex")
-public class TestEndpoint {
+public class TestRESTClientEndpoint {
 
     private static int postMessagesReceived = 0;
     private static int putMessagesReceived = 0;

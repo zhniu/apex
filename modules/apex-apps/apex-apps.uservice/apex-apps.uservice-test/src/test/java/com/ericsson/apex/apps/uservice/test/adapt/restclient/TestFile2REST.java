@@ -38,7 +38,6 @@ import com.google.gson.Gson;
 
 
 public class TestFile2REST {
-    
     private static final String BASE_URI = "http://localhost:32801/TestFile2Rest";
     private HttpServer server;
 
@@ -50,7 +49,7 @@ public class TestFile2REST {
     
     @Before
     public void setUp() throws Exception {
-        final ResourceConfig rc = new ResourceConfig(TestEndpoint.class);
+        final ResourceConfig rc = new ResourceConfig(TestRESTClientEndpoint.class);
         server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);   
         
         while (!server.isStarted()) {
@@ -65,11 +64,11 @@ public class TestFile2REST {
 
     @Test
     public void testFileEventsPost() throws MessagingException, ApexException, IOException {
-        String[] args = {"src/test/resources/prodcons/File2RESTJsonEventPost.json"};
-        ApexMain apexMain = new ApexMain(args);
-
         Client client = ClientBuilder.newClient();
 
+        String[] args = {"src/test/resources/prodcons/File2RESTJsonEventPost.json"};
+        ApexMain apexMain = new ApexMain(args);
+        
         // Wait for the required amount of events to be received or for 10 seconds
         for (int i = 0; i < 100; i++) {
             ThreadUtilities.sleep(100);

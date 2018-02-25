@@ -114,6 +114,12 @@
         </dependency>
         <dependency>
             <groupId>com.ericsson.apex</groupId>
+            <artifactId>apex-plugins.event-carrier-restrequestor</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.apex</groupId>
             <artifactId>apex-plugins.event-protocol-xml</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>

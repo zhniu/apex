@@ -11,6 +11,7 @@
 package com.ericsson.apex.service.engine.event;
 
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
  * This interface is used by technology specific consumers and listeners that are are listening for or collecting events for input into Apex.
@@ -37,18 +38,20 @@ public interface ApexEventConsumer {
     void start();
 
     /**
-     * Get the synchronous event cache to use to cache outstanding synchronous events sent to Apex in synchronous mode.
+     * Get the peered reference object for this consumer.
      * 
-     * @return the synchronous event cache to use to cache outstanding synchronous events sent to Apex
+     * @param peeredMode the peered mode for which to return the reference
+     * @return the peered reference object for this consumer
      */
-    SynchronousEventCache getSynchronousEventCache();
+    PeeredReference getPeeredReference(EventHandlerPeeredMode peeredMode);
 
     /**
-     * Set the synchronous event cache to use to cache outstanding synchronous events sent to Apex in synchronous mode.
+     * Set the peered reference object for this consumer.
      * 
-     * @param synchronousEventCache the synchronous event cache to use to cache outstanding synchronous events sent to Apex
+     * @param peeredMode the peered mode for which to return the reference
+     * @param peeredReference the peered reference object for this consumer
      */
-    void setSynchronousEventCache(SynchronousEventCache synchronousEventCache);
+    void setPeeredReference(EventHandlerPeeredMode peeredMode, PeeredReference peeredReference);
 
     /**
      * Get the name of this event consumer.

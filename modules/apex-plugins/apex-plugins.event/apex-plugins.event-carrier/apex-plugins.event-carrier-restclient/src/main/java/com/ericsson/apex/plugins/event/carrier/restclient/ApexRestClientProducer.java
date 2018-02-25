@@ -10,6 +10,9 @@
 
 package com.ericsson.apex.plugins.event.carrier.restclient;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -21,8 +24,10 @@ import org.slf4j.LoggerFactory;
 import com.ericsson.apex.service.engine.event.ApexEventException;
 import com.ericsson.apex.service.engine.event.ApexEventProducer;
 import com.ericsson.apex.service.engine.event.ApexEventRuntimeException;
+import com.ericsson.apex.service.engine.event.PeeredReference;
 import com.ericsson.apex.service.engine.event.SynchronousEventCache;
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
  * Concrete implementation of an Apex event producer that sends events using REST.
@@ -42,8 +47,8 @@ public class ApexRestClientProducer implements ApexEventProducer {
     // The name for this producer
     private String name = null;
 
-    // The event cache managing outstanding events
-    private SynchronousEventCache synchronousEventCache;
+    // The peer references for this event handler
+    private Map<EventHandlerPeeredMode, PeeredReference> peerReferenceMap = new EnumMap<>(EventHandlerPeeredMode.class);
 
     /*
      * (non-Javadoc)
@@ -89,25 +94,21 @@ public class ApexRestClientProducer implements ApexEventProducer {
         return name;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.ericsson.apex.service.engine.event.ApexEventProducer#getSynchronousEventCache()
-     */
-    @Override
-    public SynchronousEventCache getSynchronousEventCache() {
-        return synchronousEventCache;
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventProducer#getPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode)
+	 */
+	@Override
+	public PeeredReference getPeeredReference(EventHandlerPeeredMode peeredMode) {
+		return peerReferenceMap.get(peeredMode);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.ericsson.apex.service.engine.event.ApexEventProducer#setSynchronousEventCache(com.ericsson.apex.service.engine.event.SynchronousEventCache)
-     */
-    @Override
-    public void setSynchronousEventCache(final SynchronousEventCache synchronousEventCache) {
-        this.synchronousEventCache = synchronousEventCache;
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventProducer#setPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode, com.ericsson.apex.service.engine.event.PeeredReference)
+	 */
+	@Override
+	public void setPeeredReference(EventHandlerPeeredMode peeredMode, PeeredReference peeredReference) {
+		peerReferenceMap.put(peeredMode, peeredReference);
+	}
 
     /*
      * (non-Javadoc)
@@ -117,6 +118,7 @@ public class ApexRestClientProducer implements ApexEventProducer {
     @Override
     public void sendEvent(final long executionId, final String eventName, final Object event) {
         // Check if this is a synchronized event, if so we have received a reply
+		SynchronousEventCache synchronousEventCache = (SynchronousEventCache) peerReferenceMap.get(EventHandlerPeeredMode.SYNCHRONOUS);
         if (synchronousEventCache != null) {
             synchronousEventCache.removeCachedEventToApexIfExists(executionId);
         }
@@ -134,8 +136,12 @@ public class ApexRestClientProducer implements ApexEventProducer {
         }
 
         if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("event sent from engine using {} to URL {} with HTTP {} : {} ", this.name, restProducerProperties.getURL(),
-                    restProducerProperties.getHttpMethod(), event);
+            LOGGER.trace("event sent from engine using {} to URL {} with HTTP {} : {} and response {} ",
+            		this.name,
+            		restProducerProperties.getURL(),
+            		restProducerProperties.getHttpMethod(),
+            		event,
+            		response);
         }
     }
 

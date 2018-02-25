@@ -11,6 +11,7 @@
 package com.ericsson.apex.service.engine.event;
 
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
  * This interface is used by technology specific producers and publishers that are handling events output by Apex. Users specify the producer technology to use
@@ -31,18 +32,20 @@ public interface ApexEventProducer {
     void init(String name, EventHandlerParameters producerParameters) throws ApexEventException;
 
     /**
-     * Get the synchronous event cache to use to cache outstanding synchronous events sent to Apex in synchronous mode.
+     * Get the peered reference object for this producer.
      * 
-     * @return the synchronous event cache to use to cache outstanding synchronous events sent to Apex
+     * @param peeredMode the peered mode for which to return the reference
+     * @return the peered reference object for this producer
      */
-    SynchronousEventCache getSynchronousEventCache();
+    PeeredReference getPeeredReference(EventHandlerPeeredMode peeredMode);
 
     /**
-     * Set the synchronous event cache to use to cache outstanding synchronous events sent to Apex in synchronous mode.
+     * Set the peered reference object for this producer.
      * 
-     * @param synchronousEventCache the synchronous event cache to use to cache outstanding synchronous events sent to Apex
+     * @param peeredMode the peered mode for which to return the reference
+     * @param peeredReference the peered reference object for this producer
      */
-    void setSynchronousEventCache(SynchronousEventCache synchronousEventCache);
+    void setPeeredReference(EventHandlerPeeredMode peeredMode, PeeredReference peeredReference);
 
     /**
      * Send an event to the producer.

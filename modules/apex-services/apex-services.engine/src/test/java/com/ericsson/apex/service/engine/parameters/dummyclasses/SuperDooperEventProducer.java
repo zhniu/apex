@@ -15,8 +15,9 @@ import org.slf4j.ext.XLoggerFactory;
 
 import com.ericsson.apex.service.engine.event.ApexEventException;
 import com.ericsson.apex.service.engine.event.ApexEventProducer;
-import com.ericsson.apex.service.engine.event.SynchronousEventCache;
+import com.ericsson.apex.service.engine.event.PeeredReference;
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
  * @author John Keeney (john.keeney@ericsson.com)
@@ -45,21 +46,21 @@ public class SuperDooperEventProducer implements ApexEventProducer {
         return name;
     }
 
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventProducer#getPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode)
+	 */
+	@Override
+	public PeeredReference getPeeredReference(EventHandlerPeeredMode peeredMode) {
+		return null;
+	}
 
-    /* (non-Javadoc)
-     * @see com.ericsson.apex.service.engine.event.ApexEventProducer#getSynchronousEventCache()
-     */
-    @Override
-    public SynchronousEventCache getSynchronousEventCache() {
-        return null;
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventProducer#setPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode, com.ericsson.apex.service.engine.event.PeeredReference)
+	 */
+	@Override
+	public void setPeeredReference(EventHandlerPeeredMode peeredMode, PeeredReference peeredReference) {
+	}
 
-    /* (non-Javadoc)
-     * @see com.ericsson.apex.service.engine.event.ApexEventProducer#setSynchronousEventCache(com.ericsson.apex.service.engine.event.SynchronousEventCache)
-     */
-    @Override
-    public void setSynchronousEventCache(SynchronousEventCache synchronousEventCache) {
-    }
 
     /* (non-Javadoc)
      * @see com.ericsson.apex.service.engine.event.ApexEventProducer#sendEvent(long, java.lang.String, java.lang.Object)

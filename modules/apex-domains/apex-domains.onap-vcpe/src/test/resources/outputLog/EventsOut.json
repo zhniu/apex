@@ -1,0 +1,166 @@
+{
+  "name": "VNFInitResultEvent",
+  "version": "0.0.1",
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "source": "DCAE",
+  "target": "apex",
+  "message": "VNF 131.160.203.160 initiated",
+  "vnf": {
+    "name": "131.160.203.160",
+    "ipAddress": "131.160.203.160",
+    "uuid": "49414df5-3482-4fd8-9952-c463dff2770b",
+    "breached": false,
+    "lastOnsetTime": 0.0,
+    "lastAbatedTime": 0.0
+  }
+}
+{
+  "name": "ConfigModifyOutputEvent",
+  "version": "0.0.1",
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "source": "apex",
+  "target": "external",
+  "body": {
+    "input": {
+      "action": "ConfigModify",
+      "action-identifiers": {
+        "vnf-id": "49414df5-3482-4fd8-9952-c463dff2770b"
+      },
+      "common-header": {
+        "request-id": "afr-request3",
+        "originator-id": "AFR",
+        "api-ver": "2.15",
+        "sub-request-id": "AFR-subrequest",
+        "timestamp": "2017-11-17T09:43:45.175Z",
+        "flags": {
+          "ttl": "10000",
+          "force": "TRUE",
+          "mode": "EXCLUSIVE"
+        }
+      },
+      "payload": "{\"vnf-host-ip-address\":\"131.160.203.126\",\"configuration-file-name\":\"manage_threshold_compliance_breached\"}"
+    }
+  },
+  "cambria.partition": "APPC-LCM-READ/APPC-EVENT-LISTENER-TEST",
+  "rpc-name": "config-modify"
+}
+{
+  "name": "ConfigModifyOutputEvent",
+  "version": "0.0.1",
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "source": "apex",
+  "target": "external",
+  "body": {
+    "input": {
+      "action": "ConfigModify",
+      "action-identifiers": {
+        "vnf-id": "49414df5-3482-4fd8-9952-c463dff2770b"
+      },
+      "common-header": {
+        "request-id": "afr-request3",
+        "originator-id": "AFR",
+        "api-ver": "2.15",
+        "sub-request-id": "AFR-subrequest",
+        "timestamp": "2017-11-17T09:43:54.420Z",
+        "flags": {
+          "ttl": "10000",
+          "force": "TRUE",
+          "mode": "EXCLUSIVE"
+        }
+      },
+      "payload": "{\"vnf-host-ip-address\":\"131.160.203.126\",\"configuration-file-name\":\"manage_threshold_compliance_breached\"}"
+    }
+  },
+  "cambria.partition": "APPC-LCM-READ/APPC-EVENT-LISTENER-TEST",
+  "rpc-name": "config-modify"
+}
+{
+  "name": "ConfigModifyOutputEvent",
+  "version": "0.0.1",
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "source": "apex",
+  "target": "external",
+  "body": {
+    "input": {
+      "action": "ConfigModify",
+      "action-identifiers": {
+        "vnf-id": "49414df5-3482-4fd8-9952-c463dff2770b"
+      },
+      "common-header": {
+        "request-id": "afr-request3",
+        "originator-id": "AFR",
+        "api-ver": "2.15",
+        "sub-request-id": "AFR-subrequest",
+        "timestamp": "2017-11-17T09:44:00.624Z",
+        "flags": {
+          "ttl": "10000",
+          "force": "TRUE",
+          "mode": "EXCLUSIVE"
+        }
+      },
+      "payload": "{\"vnf-host-ip-address\":\"131.160.203.126\",\"configuration-file-name\":\"manage_threshold_compliance_breached\"}"
+    }
+  },
+  "cambria.partition": "APPC-LCM-READ/APPC-EVENT-LISTENER-TEST",
+  "rpc-name": "config-modify"
+}
+{
+  "name": "ConfigModifyOutputEvent",
+  "version": "0.0.1",
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "source": "apex",
+  "target": "external",
+  "body": {
+    "input": {
+      "action": "ConfigModify",
+      "action-identifiers": {
+        "vnf-id": "49414df5-3482-4fd8-9952-c463dff2770b"
+      },
+      "common-header": {
+        "request-id": "afr-request3",
+        "originator-id": "AFR",
+        "api-ver": "2.15",
+        "sub-request-id": "AFR-subrequest",
+        "timestamp": "2017-11-17T09:44:01.929Z",
+        "flags": {
+          "ttl": "10000",
+          "force": "TRUE",
+          "mode": "EXCLUSIVE"
+        }
+      },
+      "payload": "{\"vnf-host-ip-address\":\"131.160.203.126\",\"configuration-file-name\":\"manage_threshold_compliance_breached\"}"
+    }
+  },
+  "cambria.partition": "APPC-LCM-READ/APPC-EVENT-LISTENER-TEST",
+  "rpc-name": "config-modify"
+}
+{
+  "name": "ConfigModifyOutputEvent",
+  "version": "0.0.1",
+  "nameSpace": "com.ericsson.apex.onap.tlgoal2017",
+  "source": "apex",
+  "target": "external",
+  "body": {
+    "input": {
+      "action": "ConfigModify",
+      "action-identifiers": {
+        "vnf-id": "49414df5-3482-4fd8-9952-c463dff2770b"
+      },
+      "common-header": {
+        "request-id": "afr-request3",
+        "originator-id": "AFR",
+        "api-ver": "2.15",
+        "sub-request-id": "AFR-subrequest",
+        "timestamp": "2017-11-17T09:44:05.208Z",
+        "flags": {
+          "ttl": "10000",
+          "force": "TRUE",
+          "mode": "EXCLUSIVE"
+        }
+      },
+      "payload": "{\"vnf-host-ip-address\":\"131.160.203.133\",\"configuration-file-name\":\"manage_threshold_compliance_breached\"}"
+    }
+  },
+  "cambria.partition": "APPC-LCM-READ/APPC-EVENT-LISTENER-TEST",
+  "rpc-name": "config-modify"
+}

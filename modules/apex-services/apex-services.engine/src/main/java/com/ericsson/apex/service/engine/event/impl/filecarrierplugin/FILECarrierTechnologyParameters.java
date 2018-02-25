@@ -27,6 +27,7 @@ import com.ericsson.apex.service.parameters.carriertechnology.CarrierTechnologyP
  * <li>standardError: If this flag is set to true, then standard error is used to write events
  * <li>streamingMode: If this flag is set to true, then streaming mode is set for reading events and event handling will wait on the input stream for events
  * until the stream is closed. If streaming model is off, then event reading completes when the end of input is detected.
+ * <li>startDelay: The amount of milliseconds to wait at startup startup before processing the first event.
  * </ol>
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
@@ -46,9 +47,10 @@ public class FILECarrierTechnologyParameters extends CarrierTechnologyParameters
     private boolean standardIO    = false;
     private boolean standardError = false;
     private boolean streamingMode = false;
+    private long    startDelay    = 0;
     // @formatter:on
 
-    /**
+	/**
      * Constructor to create a file carrier technology parameters instance and register the instance with the parameter service.
      */
     public FILECarrierTechnologyParameters() {
@@ -132,16 +134,33 @@ public class FILECarrierTechnologyParameters extends CarrierTechnologyParameters
         this.streamingMode = streamingMode;
     }
 
+    /**
+     * Gets the delay in milliseconds before the plugin starts processing
+     * @return the delay
+     */
+    public long getStartDelay() {
+		return startDelay;
+	}
+
+    /**
+     * Sets the delay in milliseconds before the plugin starts processing
+     * @param startDelay the delay
+     */
+	public void setStartDelay(long startDelay) {
+		this.startDelay = startDelay;
+	}
+
     /*
      * (non-Javadoc)
      *
      * @see com.ericsson.apex.service.parameters.carriertechnology.CarrierTechnologyParameters#toString()
      */
-    @Override
-    public String toString() {
-        return "FILECarrierTechnologyParameters {" + super.toString() + "}  [fileName=" + fileName + ", standardIO=" + standardIO + ", standardError="
-                + standardError + ", streamingMode=" + streamingMode + "]";
-    }
+	@Override
+	public String toString() {
+		return "FILECarrierTechnologyParameters [fileName=" + fileName + ", standardIO=" + standardIO
+				+ ", standardError=" + standardError + ", streamingMode=" + streamingMode + ", startDelay=" + startDelay
+				+ "]";
+	}
 
     /*
      * (non-Javadoc)
@@ -160,6 +179,10 @@ public class FILECarrierTechnologyParameters extends CarrierTechnologyParameters
 
         if (standardIO || standardError) {
             streamingMode = true;
+        }
+
+        if (startDelay < 0) {
+            errorMessageBuilder.append("  startDelay must be zero or a positive number of milliseconds\n");
         }
 
         return errorMessageBuilder.toString();

@@ -1,0 +1,8 @@
+{
+	"type"      : "record",
+	"name"      : "AAI_Type",
+	"namespace" : "com.ericsson.apex.onap.tlgoal2017",
+	"fields"    : [
+		{"name": "generic_DasH_vnf_DoT_vnf_DasH_name" , "type": "string"}
+		]
+}

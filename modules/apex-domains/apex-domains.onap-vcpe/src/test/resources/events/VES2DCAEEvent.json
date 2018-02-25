@@ -1,0 +1,127 @@
+{
+  "VESversion": "v5",
+  "event": {
+    "commonEventHeader": {
+      "startEpochMicrosec": 2000,
+      "sourceId": "Dummy VM UUID - No Metadata available",
+      "eventId": "123",
+      "reportingEntityId": "entity_id",
+      "internalHeaderFields": {
+        "collectorTimeStamp": "Thu, 11 02 2017 10:41:03 GMT"
+      },
+      "eventType": "Perf management...",
+      "priority": "Normal",
+      "version": 1.2,
+      "reportingEntityName": "entity_name",
+      "sequence": 123,
+      "domain": "measurementsForVfScaling",
+      "functionalRole": "UNIT TEST",
+      "lastEpochMicrosec": 3000,
+      "eventName": "vFirewallBroadcastPackets",
+      "sourceName": "Dummy VM name - No Metadata available"
+    },
+    "measurementsForVfScalingFields": {
+      "cpuUsageArray": [
+        {
+          "percentUsage": 11.11,
+          "cpuIdentifier": "cpu1"
+        },
+        {
+          "percentUsage": 22.22,
+          "cpuIdentifier": "cpu2"
+        }
+      ],
+      "measurementInterval": 5.5,
+      "featureUsageArray": [
+        {
+          "featureUtilization": 123,
+          "featureIdentifier": "FeatureA"
+        },
+        {
+          "featureUtilization": 567,
+          "featureIdentifier": "FeatureB"
+        }
+      ],
+      "concurrentSessions": 1,
+      "requestRate": 7,
+      "vNicUsageArray": [
+        {
+          "packetsOut": 200000,
+          "receivedTotalPacketsDelta": 500,
+          "vNicIdentifier": "eth0",
+          "packetsIn": 100000,
+          "bytesIn": 3000,
+          "bytesOut": 4000
+        },
+        {
+          "packetsOut": 240000,
+          "unicastPacketsIn": 17000,
+          "vNicIdentifier": "eth1",
+          "broadcastPacketsIn": 11000,
+          "packetsIn": 110000,
+          "broadcastPacketsOut": 12000,
+          "multicastPacketsOut": 16000,
+          "unicastPacketsOut": 18000,
+          "multicastPacketsIn": 15000,
+          "bytesIn": 13000,
+          "bytesOut": 14000
+        }
+      ],
+      "measurementsForVfScalingVersion": 1.1,
+      "numberOfMediaPortsInUse": 1234,
+      "memoryUsed": 3.3,
+      "memoryConfigured": 6.6,
+      "filesystemUsageArray": [
+        {
+          "ephemeralConfigured": 100.11,
+          "filesystemName": "00-11-22",
+          "blockConfigured": 100.11,
+          "ephemeralIops": 44,
+          "ephemeralUsed": 200.22,
+          "blockUsed": 100.22,
+          "blockIops": 33
+        },
+        {
+          "ephemeralConfigured": 300.11,
+          "filesystemName": "33-44-55",
+          "blockConfigured": 300.11,
+          "ephemeralIops": 66,
+          "ephemeralUsed": 400.22,
+          "blockUsed": 300.22,
+          "blockIops": 55
+        }
+      ],
+      "meanRequestLatency": 4.4,
+      "configuredEntities": 2,
+      "latencyDistribution": [
+        {
+          "countsInTheBucket": 20
+        },
+        {
+          "lowEndOfLatencyBucket": 10,
+          "highEndOfLatencyBucket": 20,
+          "countsInTheBucket": 30
+        }
+      ],
+      "aggregateCpuUsage": 8.8,
+      "vnfcScalingMetric": 1234,
+      "errors": {
+        "receiveDiscards": 1,
+        "transmitDiscards": 2,
+        "receiveErrors": 0,
+        "transmitErrors": 1
+      },
+      "codecUsageArray": [
+        {
+          "numberInUse": 91,
+          "codecIdentifier": "G711a"
+        },
+        {
+          "numberInUse": 92,
+          "codecIdentifier": "G729ab"
+        }
+      ]
+    }
+  }
+}
+

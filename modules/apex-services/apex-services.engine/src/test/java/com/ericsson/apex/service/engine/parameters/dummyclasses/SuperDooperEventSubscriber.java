@@ -16,8 +16,9 @@ import org.slf4j.ext.XLoggerFactory;
 import com.ericsson.apex.service.engine.event.ApexEventConsumer;
 import com.ericsson.apex.service.engine.event.ApexEventException;
 import com.ericsson.apex.service.engine.event.ApexEventReceiver;
-import com.ericsson.apex.service.engine.event.SynchronousEventCache;
+import com.ericsson.apex.service.engine.event.PeeredReference;
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
+import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 public class SuperDooperEventSubscriber implements ApexEventConsumer {
 
@@ -39,14 +40,20 @@ public class SuperDooperEventSubscriber implements ApexEventConsumer {
         return name;
     }
 
-    @Override
-    public SynchronousEventCache getSynchronousEventCache() {
-        return null;
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventConsumer#getPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode)
+	 */
+	@Override
+	public PeeredReference getPeeredReference(EventHandlerPeeredMode peeredMode) {
+		return null;
+	}
 
-    @Override
-    public void setSynchronousEventCache(SynchronousEventCache synchronousEventCache) {
-    }
+	/* (non-Javadoc)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventConsumer#setPeeredReference(com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode, com.ericsson.apex.service.engine.event.PeeredReference)
+	 */
+	@Override
+	public void setPeeredReference(EventHandlerPeeredMode peeredMode, PeeredReference peeredReference) {
+	}
 
     @Override
     public void start() {

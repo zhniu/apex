@@ -1,0 +1,17 @@
+{
+  "closedLoopEventClient": "DCAE_INSTANCE_ID.dcae-tca",
+  "policyVersion": "v0.0.1",
+  "policyName": "DCAE.Config_tca-hi-lo",
+  "policyScope": "DCAE",
+  "target_type": "VNF",
+  "AAI": {
+    "generic-vnf.vnf-name": "Dummy VM name - No Metadata available"
+  },
+  "closedLoopAlarmStart": 2000,
+  "closedLoopEventStatus": "ONSET",
+  "closedLoopControlName": "ControlLoop-vFirewall-d0a1dfc6-94f5-4fd4-a5b5-4630b438850a",
+  "version": "1.0.2",
+  "target": "generic-vnf.vnf-name",
+  "requestID": "986ec172-5010-4519-a0f7-cf4f09ded438",
+  "from": "DCAE"
+}

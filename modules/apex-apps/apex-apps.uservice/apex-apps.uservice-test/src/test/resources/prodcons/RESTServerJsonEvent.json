@@ -31,7 +31,6 @@
 			"synchronousMode"    : true,
 			"synchronousPeer"    : "FirstProducer",
 			"synchronousTimeout" : 500
-
 		}
 	},
 	"eventOutputParameters": {

@@ -98,11 +98,12 @@ public class RESTClientCarrierTechnologyParameters extends CarrierTechnologyPara
      * 
      * @see java.lang.Object#toString()
      */
-    @Override
-    public String toString() {
-        return "RESTCarrierTechnologyParameters [URL=" + url + ", httpMethod=" + httpMethod + "]";
-    }
+	@Override
+	public String toString() {
+		return "RESTClientCarrierTechnologyParameters [url=" + url + ", httpMethod=" + httpMethod + "]";
+	}
 
+ 
     /*
      * (non-Javadoc)
      *
@@ -119,5 +120,4 @@ public class RESTClientCarrierTechnologyParameters extends CarrierTechnologyPara
 
         return errorMessageBuilder.toString();
     }
-
 }

@@ -12,13 +12,6 @@ package com.ericsson.apex.services.client.deployment.rest;
 
 import java.io.InputStream;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -35,15 +28,7 @@ import org.slf4j.ext.XLoggerFactory;
 
 import com.ericsson.apex.core.deployment.ApexDeploymentException;
 import com.ericsson.apex.core.deployment.EngineServiceFacade;
-import com.ericsson.apex.model.basicmodel.concepts.ApexException;
-import com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey;
-import com.ericsson.apex.model.contextmodel.concepts.AxContextAlbum;
-import com.ericsson.apex.model.enginemodel.concepts.AxEngineModel;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 /**
  * The class represents the root resource exposed at the base URL<br>
  * The url to access this resource would be in the form {@code <baseURL>/rest/....} <br>
@@ -76,7 +61,6 @@ public class ApexDeploymentRestResource {
      */
     @GET
     public Response createSession(@QueryParam("hostName") String hostName, @QueryParam("port") int port) {
-        Gson gson = new Gson();
         String host = hostName + ":" + port;
         final EngineServiceFacade engineServiceFacade = new EngineServiceFacade(hostName, port);
         

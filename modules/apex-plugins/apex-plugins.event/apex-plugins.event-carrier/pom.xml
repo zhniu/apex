@@ -43,5 +43,6 @@
 		<module>apex-plugins.event-carrier-jms</module>
 		<module>apex-plugins.event-carrier-restclient</module>
                 <module>apex-plugins.event-carrier-restserver</module>
+                <module>apex-plugins.event-carrier-restrequestor</module>
 	</modules>
 </project>
