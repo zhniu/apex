@@ -26,11 +26,12 @@ public interface ApexEventConverter {
     /**
      * Convert an event of arbitrary type into an Apex event.
      *
+     * @param name the name of the incoming event
      * @param eventOfOtherType the event of some other type to convert
      * @return the apex event
      * @throws ApexException thrown on conversion errors
      */
-    List<ApexEvent> toApexEvent(Object eventOfOtherType) throws ApexException;
+    List<ApexEvent> toApexEvent(String name, Object eventOfOtherType) throws ApexException;
 
     /**
      * Convert an Apex event into an event of arbitrary type {@code OTHER_EVENT_TYPE}.

@@ -201,7 +201,7 @@ public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
 
 		// Convert the incoming events to Apex events
 		try {
-			final List<ApexEvent> apexEventList = converter.toApexEvent(event);
+			final List<ApexEvent> apexEventList = converter.toApexEvent(eventName, event);
 			for (ApexEvent apexEvent : apexEventList) {
 				// Check if we are filtering events on this unmarshaler, if so check the event name against the filter
 				if (consumerParameters.isSetEventNameFilter() && !apexEvent.getName().matches(consumerParameters.getEventNameFilter())) {

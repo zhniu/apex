@@ -47,7 +47,7 @@ public class TestXMLEventHandler {
 
             logger.debug("input event\n" + apexEventXMLStringIn);
 
-            for (ApexEvent apexEvent : xmlEventConverter.toApexEvent(apexEventXMLStringIn)) {
+            for (ApexEvent apexEvent : xmlEventConverter.toApexEvent("XMLEventName", apexEventXMLStringIn)) {
                 assertNotNull(apexEvent);
 
                 logger.debug(apexEvent.toString());

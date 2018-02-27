@@ -73,7 +73,7 @@ public class TestJSONEventHandler {
 
             logger.debug("input event\n" + apexEventJSONStringIn);
 
-            for ( ApexEvent apexEvent : jsonEventConverter.toApexEvent(apexEventJSONStringIn)) {
+            for ( ApexEvent apexEvent : jsonEventConverter.toApexEvent(null, apexEventJSONStringIn)) {
                 assertNotNull(apexEvent);
 
                 logger.debug(apexEvent.toString());
@@ -106,16 +106,16 @@ public class TestJSONEventHandler {
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventNoName();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
-                assertTrue(e.getMessage().startsWith("Failed to unmarshal JSON event: mandatory field \"name\" is missing"));
+                assertTrue(e.getMessage().startsWith("Failed to unmarshal JSON event: event received without mandatory parameter \"name\" on configuration or on event"));
             }
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventBadName();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -124,7 +124,7 @@ public class TestJSONEventHandler {
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventNoExName();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -132,12 +132,12 @@ public class TestJSONEventHandler {
             }
 
             apexEventJSONStringIn = EventGenerator.jsonEventNoVersion();
-            ApexEvent event = jsonEventConverter.toApexEvent(apexEventJSONStringIn).get(0);
+            ApexEvent event = jsonEventConverter.toApexEvent(null, apexEventJSONStringIn).get(0);
             assertEquals("0.0.1", event.getVersion());
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventBadVersion();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -146,7 +146,7 @@ public class TestJSONEventHandler {
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventNoExVersion();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -154,12 +154,12 @@ public class TestJSONEventHandler {
             }
 
             apexEventJSONStringIn = EventGenerator.jsonEventNoNamespace();
-            event = jsonEventConverter.toApexEvent(apexEventJSONStringIn).get(0);
+            event = jsonEventConverter.toApexEvent(null, apexEventJSONStringIn).get(0);
             assertEquals("com.ericsson.apex.sample.events", event.getNameSpace());
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventBadNamespace();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -168,7 +168,7 @@ public class TestJSONEventHandler {
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventNoExNamespace();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -178,12 +178,12 @@ public class TestJSONEventHandler {
             }
 
             apexEventJSONStringIn = EventGenerator.jsonEventNoSource();
-            event = jsonEventConverter.toApexEvent(apexEventJSONStringIn).get(0);
+            event = jsonEventConverter.toApexEvent(null, apexEventJSONStringIn).get(0);
             assertEquals("Outside", event.getSource());
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventBadSource();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -191,12 +191,12 @@ public class TestJSONEventHandler {
             }
 
             apexEventJSONStringIn = EventGenerator.jsonEventNoTarget();
-            event = jsonEventConverter.toApexEvent(apexEventJSONStringIn).get(0);
+            event = jsonEventConverter.toApexEvent(null, apexEventJSONStringIn).get(0);
             assertEquals("Match", event.getTarget());
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventBadTarget();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -205,7 +205,7 @@ public class TestJSONEventHandler {
 
             try {
                 apexEventJSONStringIn = EventGenerator.jsonEventMissingFields();
-                jsonEventConverter.toApexEvent(apexEventJSONStringIn);
+                jsonEventConverter.toApexEvent(null, apexEventJSONStringIn);
                 fail("Test should throw an exception here");
             }
             catch (ApexEventException e) {
@@ -214,7 +214,7 @@ public class TestJSONEventHandler {
             }
 
             apexEventJSONStringIn = EventGenerator.jsonEventNullFields();
-            event = jsonEventConverter.toApexEvent(apexEventJSONStringIn).get(0);
+            event = jsonEventConverter.toApexEvent(null, apexEventJSONStringIn).get(0);
             assertEquals(event.get("TestSlogan"), null);
             assertEquals(event.get("TestMatchCase"), (byte)-1);
             assertEquals(event.get("TestTimestamp"), (long)-1);
@@ -228,7 +228,7 @@ public class TestJSONEventHandler {
             eventDefinition.getParameterMap().get("TestTemperature").setOptional(true);
 
             apexEventJSONStringIn = EventGenerator.jsonEventMissingFields();
-            event = jsonEventConverter.toApexEvent(apexEventJSONStringIn).get(0);
+            event = jsonEventConverter.toApexEvent(null, apexEventJSONStringIn).get(0);
             assertEquals(null, event.get("TestSlogan"));
             assertEquals(null, event.get("TestMatchCase"));
             assertEquals(null, event.get("TestTimestamp"));

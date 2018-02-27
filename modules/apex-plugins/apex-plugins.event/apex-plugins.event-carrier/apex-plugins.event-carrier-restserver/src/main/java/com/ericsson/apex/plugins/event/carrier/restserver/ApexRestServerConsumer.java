@@ -185,7 +185,7 @@ public class ApexRestServerConsumer implements ApexEventConsumer, Runnable {
 
         try {
             // Send the event into Apex
-            eventReceiver.receiveEvent(executionId, name + '_' + executionId, event);
+            eventReceiver.receiveEvent(executionId, null, event);
         }
         catch (final Exception e) {
             String errorMessage = "error receiving events on event consumer " + name + ", " + e.getMessage();

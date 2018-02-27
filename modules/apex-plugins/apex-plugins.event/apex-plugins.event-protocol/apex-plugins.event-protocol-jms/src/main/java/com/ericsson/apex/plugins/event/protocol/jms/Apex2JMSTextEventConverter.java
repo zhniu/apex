@@ -42,10 +42,10 @@ public final class Apex2JMSTextEventConverter extends Apex2JSONEventConverter {
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.Object)
+     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.String, java.lang.Object)
      */
     @Override
-    public List<ApexEvent> toApexEvent(final Object eventObject) throws ApexEventException {
+    public List<ApexEvent> toApexEvent(final String eventName, final Object eventObject) throws ApexEventException {
         // Check if this is an TextMessage from JMS
         if (!(eventObject instanceof TextMessage)) {
             String errorMessage = "message \"" + eventObject + "\" received from JMS is not an instance of \"" + TextMessage.class.getCanonicalName() + "\"";
@@ -66,7 +66,7 @@ public final class Apex2JMSTextEventConverter extends Apex2JSONEventConverter {
         }
 
         // Use the generic JSON plugin from here
-        return super.toApexEvent(jmsString);
+        return super.toApexEvent(eventName, jmsString);
     }
 
     /*

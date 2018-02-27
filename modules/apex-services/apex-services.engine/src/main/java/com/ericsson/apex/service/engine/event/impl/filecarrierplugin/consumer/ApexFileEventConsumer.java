@@ -188,7 +188,7 @@ public class ApexFileEventConsumer implements ApexEventConsumer, Runnable {
 
                 // Process the event from the text block if there is one there
                 if (textBlock.getText() != null) {
-                    eventReceiver.receiveEvent(getNextExecutionID(), "Event_" + eventsRead, textBlock.getText());
+                    eventReceiver.receiveEvent(getNextExecutionID(), null, textBlock.getText());
                     eventsRead++;
                 }
             }

@@ -51,10 +51,10 @@ public final class ApexEvent2EnEventConverter implements ApexEventConverter {
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.Object)
+     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.String, java.lang.Object)
      */
     @Override
-    public List<ApexEvent> toApexEvent(final Object event) throws ApexException {
+    public List<ApexEvent> toApexEvent(final String eventName, final Object event) throws ApexException {
         // Check the Engine event
         if (event == null) {
             LOGGER.warn("event processing failed, engine event is null");

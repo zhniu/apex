@@ -118,7 +118,7 @@ public final class Engine {
                 System.out.println(eventXMLString);
                 if (eventXMLString != null) {
                     // Send the event to the engine service
-                    for (ApexEvent apexEvent: xmlEventHandler.toApexEvent(eventXMLString)) {
+                    for (ApexEvent apexEvent: xmlEventHandler.toApexEvent(null, eventXMLString)) {
                         engineService.getEngineServiceEventInterface().sendEvent(apexEvent);
                     }
                 }

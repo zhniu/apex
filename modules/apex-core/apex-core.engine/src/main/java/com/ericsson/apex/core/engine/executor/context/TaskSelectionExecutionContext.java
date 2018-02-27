@@ -41,16 +41,16 @@ public class TaskSelectionExecutionContext {
     // CHECKSTYLE:OFF: checkstyle:VisibilityModifier Logic has access to these field
 
     /** A constant <code>boolean true</code> value available for reuse e.g., for the return value*/
-    public final Boolean TRUE = new Boolean(true);
+    public final Boolean TRUE = true;
 
     /** A constant <code>boolean false</code> value available for reuse e.g., for the return value*/
-    public final Boolean FALSE = new Boolean(false);
+    public final Boolean FALSE = false;
 
     /** A facade to the full state definition for the task selection logic being executed. */
     public final AxStateFacade subject;
 
     /** 	the execution ID for the current APEX policy execution instance. */
-	public final long executionID;
+	public final Long executionID;
 
     /**
      * The incoming fields from the trigger event for the state. The task selection logic can access these fields to decide what task to select for the state.

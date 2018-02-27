@@ -23,7 +23,7 @@
 		}
 	},
 	"eventInputParameters": {
-		"VNFInitConsumer": {
+		"VCPEInitConsumer": {
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "FILE",
 				"parameters": {

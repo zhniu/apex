@@ -61,10 +61,10 @@ public final class Apex2JMSObjectEventConverter implements ApexEventProtocolConv
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.Object)
+     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.String, java.lang.Object)
      */
     @Override
-    public List<ApexEvent> toApexEvent(final Object eventObject) throws ApexEventException {
+    public List<ApexEvent> toApexEvent(final String eventName, final Object eventObject) throws ApexEventException {
         // Check if this is an ObjectMessage from JMS
         if (!(eventObject instanceof ObjectMessage)) {
             String errorMessage = "message \"" + eventObject + "\" received from JMS is not an instance of \"" + ObjectMessage.class.getCanonicalName() + "\"";

@@ -50,6 +50,7 @@ public class EventHandlerParameters extends AbstractParameters implements ApexPa
 	private boolean requestorMode = false;
 	private String requestorPeer = null;
 	private long requestorTimeout = 0;
+	private String eventName = null;
 	private String eventNameFilter = null;
 
 	/**
@@ -240,6 +241,33 @@ public class EventHandlerParameters extends AbstractParameters implements ApexPa
 	}
 
 	/**
+	 * Check if an event name is being used.
+	 *
+	 * @return true if an event name is being used
+	 */
+	public boolean isSetEventName() {
+		return eventName != null;
+	}
+
+	/**
+	 * Gets the event name for this event handler.
+	 *
+	 * @return the event name
+	 */
+	public String getEventName() {
+		return eventName;
+	}
+
+	/**
+	 * Sets the event name for this event handler.
+	 *
+	 * @param eventNameFilter the event name
+	 */
+	public void setEventName(final String eventName) {
+		this.eventName = eventName;
+	}
+
+	/**
 	 * Check if event name filtering is being used.
 	 *
 	 * @return true if event name filtering is being used
@@ -307,7 +335,10 @@ public class EventHandlerParameters extends AbstractParameters implements ApexPa
 	 */
 	@Override
 	public String toString() {
-		return "EventHandlerParameters [name=" + name + ", carrierTechnologyParameters=" + carrierTechnologyParameters + ", eventProtocolParameters="
-				+ eventProtocolParameters + ", synchronousMode=" + synchronousMode + ", synchronousPeer=" + synchronousPeer + "]";
+		return "EventHandlerParameters [name=" + name + ", carrierTechnologyParameters=" + carrierTechnologyParameters
+				+ ", eventProtocolParameters=" + eventProtocolParameters + ", synchronousMode=" + synchronousMode
+				+ ", synchronousPeer=" + synchronousPeer + ", synchronousTimeout=" + synchronousTimeout
+				+ ", requestorMode=" + requestorMode + ", requestorPeer=" + requestorPeer + ", requestorTimeout="
+				+ requestorTimeout + ", eventName=" + eventName + ", eventNameFilter=" + eventNameFilter + "]";
 	}
 }

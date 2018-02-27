@@ -44,7 +44,7 @@ public class StateFinalizerExecutionContext {
     public final AxStateFacade subject;
 
     /** 	the execution ID for the current APEX policy execution instance. */
-	public final long executionID;
+	public final Long executionID;
 
     /**
      * The list of state outputs for this state finalizer. The purpose of a state finalizer is to select a state output for a state from this list of state

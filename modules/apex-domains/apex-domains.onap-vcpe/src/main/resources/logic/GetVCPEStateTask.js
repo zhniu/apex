@@ -8,8 +8,6 @@ var vnfID     = uuidType.fromString(executor.inFields.get("AAI").get("generic_Da
 var vcpeClosedLoopStatus = executor.getContextAlbum("VCPEClosedLoopStatusAlbum").get(vnfID);
 
 if (vcpeClosedLoopStatus == null) {
-	var javaLongType = Java.type("java.lang.Long");
-
 	executor.logger.info("Creating context information for new vCPE VNF \"" + vnfID.toString() + "\"");
 
 	vcpeClosedLoopStatus = executor.getContextAlbum("VCPEClosedLoopStatusAlbum").getSchemaHelper().createNewInstance();

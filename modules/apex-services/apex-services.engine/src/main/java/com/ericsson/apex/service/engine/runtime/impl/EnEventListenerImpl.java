@@ -50,7 +50,7 @@ public final class EnEventListenerImpl implements EnEventListener {
      */
     @Override
     public void onEnEvent(final EnEvent enEvent) throws ApexException {
-        for (ApexEvent apexEvent : apexEnEventConverter.toApexEvent(enEvent)) {
+        for (ApexEvent apexEvent : apexEnEventConverter.toApexEvent(enEvent.getName(), enEvent)) {
             apexEventListener.onApexEvent(apexEvent);
         }
     }

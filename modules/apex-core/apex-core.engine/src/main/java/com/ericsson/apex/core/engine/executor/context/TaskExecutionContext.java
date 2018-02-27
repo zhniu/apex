@@ -41,16 +41,16 @@ public class TaskExecutionContext {
     // CHECKSTYLE:OFF: checkstyle:VisibilityModifier Logic has access to these field
 
     /** A constant <code>boolean true</code> value available for reuse e.g., for the return value*/
-    public static final Boolean TRUE = true;
+    public final Boolean TRUE = true;
 
     /** A constant <code>boolean false</code> value available for reuse e.g., for the return value*/
-    public static final Boolean FALSE = false;
+    public final Boolean FALSE = false;
 
     /** A facade to the full task definition for the task logic being executed. */
     public final AxTaskFacade subject;
 
     /** 	the execution ID for the current APEX policy execution instance. */
-	public final long executionID;
+	public final Long executionID;
 
     /**
      * The incoming fields from the trigger event for the task. The task logic can access these fields when executing its logic.

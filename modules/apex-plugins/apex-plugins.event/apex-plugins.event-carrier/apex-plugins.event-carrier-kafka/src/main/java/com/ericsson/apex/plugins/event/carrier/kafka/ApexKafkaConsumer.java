@@ -150,7 +150,7 @@ public class ApexKafkaConsumer implements ApexEventConsumer, Runnable {
                         LOGGER.trace("event received for {} for forwarding to Apex engine : {} {}", this.getClass().getName() + ":" + this.name, record.key(),
                                 record.value());
                     }
-                    eventReceiver.receiveEvent(record.key(), record.value());
+                    eventReceiver.receiveEvent(null, record.value());
                 }
             }
             catch (final Exception e) {

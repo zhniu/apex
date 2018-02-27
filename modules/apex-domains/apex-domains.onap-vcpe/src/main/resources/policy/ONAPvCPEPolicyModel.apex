@@ -3,7 +3,7 @@ model create name=ONAPvCPEPolicyModel
 schema create name=SimpleStringType  flavour=Java schema=java.lang.String
 schema create name=SimpleLongType    flavour=Java schema=java.lang.Long
 schema create name=SimpleBooleanType flavour=Java schema=java.lang.Boolean
-schema create name=UUIDType           flavour=Java schema=java.util.UUID
+schema create name=UUIDType          flavour=Java schema=java.util.UUID
 
 schema create name=AAIType flavour=Avro schema=LS
 #MACROFILE:"src/main/resources/schemas/AAIType.avsc"
@@ -22,6 +22,8 @@ schema create name=VCPEClosedLoopStatusType flavour=Avro schema=LS
 LE
 
 album create name=VCPEClosedLoopStatusAlbum scope=policy writable=true schemaName=VCPEClosedLoopStatusType
+
+album create name=ControlLoopExecutionIDAlbum scope=policy writable=true schemaName=UUIDType
 
 event create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 version=1.0.2 nameSpace=com.ericsson.apex.onap.vcpe source=DCAE target=APEX
 
@@ -129,12 +131,11 @@ task create name=GuardRequestTask
 task inputfield create name=GuardRequestTask fieldName=requestID schemaName=UUIDType
 task inputfield create name=GuardRequestTask fieldName=vnfID     schemaName=UUIDType
 
-task outputfield create name=GuardRequestTask fieldName=requestID          schemaName=UUIDType
-task outputfield create name=GuardRequestTask fieldName=vnfID              schemaName=UUIDType
 task outputfield create name=GuardRequestTask fieldName=decisionAttributes schemaName=GuardDecisionAttributesType
 task outputfield create name=GuardRequestTask fieldName=onapName           schemaName=SimpleStringType
 
 task contextref create name=GuardRequestTask albumName=VCPEClosedLoopStatusAlbum
+task contextref create name=GuardRequestTask albumName=ControlLoopExecutionIDAlbum
 
 task logic create name=GuardRequestTask logicFlavour=JAVASCRIPT logic=LS
 #MACROFILE:"src/main/resources/logic/GuardRequestTask.js"
@@ -142,8 +143,6 @@ LE
 
 task create name=GuardResponseTask
 
-task inputfield create name=GuardResponseTask fieldName=requestID schemaName=UUIDType
-task inputfield create name=GuardResponseTask fieldName=vnfID     schemaName=UUIDType
 task inputfield create name=GuardResponseTask fieldName=decision  schemaName=SimpleStringType
 task inputfield create name=GuardResponseTask fieldName=details   schemaName=SimpleStringType
 
@@ -151,6 +150,7 @@ task outputfield create name=GuardResponseTask fieldName=requestID schemaName=UU
 task outputfield create name=GuardResponseTask fieldName=vnfID     schemaName=UUIDType
 
 task contextref create name=GuardResponseTask albumName=VCPEClosedLoopStatusAlbum
+task contextref create name=GuardResponseTask albumName=ControlLoopExecutionIDAlbum
 
 task logic create name=GuardResponseTask logicFlavour=JAVASCRIPT logic=LS
 #MACROFILE:"src/main/resources/logic/GuardResponseTask.js"

@@ -203,7 +203,7 @@ public class ApexRestClientConsumer implements ApexEventConsumer, Runnable {
                 }
 
                 // Send the event into Apex
-                eventReceiver.receiveEvent(name + "_" + eventsRead, eventJSONString);
+                eventReceiver.receiveEvent(null, eventJSONString);
                 eventsRead++;
             }
             catch (final Exception e) {

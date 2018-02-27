@@ -20,10 +20,10 @@ import com.ericsson.apex.service.parameters.eventprotocol.EventProtocolParameter
 public final class SuperTokenDelimitedEventConverter implements ApexEventProtocolConverter {
 
     /* (non-Javadoc)
-     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.Object)
+     * @see com.ericsson.apex.service.engine.event.ApexEventConverter#toApexEvent(java.lang.String, java.lang.Object)
      */
     @Override
-    public List<ApexEvent> toApexEvent(Object eventOfOtherType) throws ApexException {
+    public List<ApexEvent> toApexEvent(String eventName, Object eventOfOtherType) throws ApexException {
         return null;
     }
 

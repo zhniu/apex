@@ -23,7 +23,7 @@
 		}
 	},
 	"eventInputParameters": {
-		"VNFInitConsumer": {
+		"VCPEInitConsumer": {
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "FILE",
 				"parameters": {
@@ -38,9 +38,40 @@
 					"sourceAlias": "from"
 				}
 			}
+		},
+		"GuardRequestorConsumer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "RESTREQUESTOR",
+				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restrequestor.RESTRequestorCarrierTechnologyParameters",
+				"parameters": {
+					"url": "http://localhost:54321/AAIAndGuardSim/sim/pdp/api/getDecision",
+					"httpMethod": "POST",
+					"restRequestTimeout": 2000
+				}
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			},
+			"eventNameFilter": "GuardResponseEvent",
+			"requestorMode": true,
+			"requestorPeer": "GuardRequestorProducer",
+			"requestorTimeout": 500
 		}
 	},
 	"eventOutputParameters": {
+		"GuardRequestorProducer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "RESTREQUESTOR",
+				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restrequestor.RESTRequestorCarrierTechnologyParameters"
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			},
+			"eventNameFilter": "GuardRequestEvent",
+			"requestorMode": true,
+			"requestorPeer": "GuardRequestorConsumer",
+			"requestorTimeout": 500
+		},
 		"logProducer": {
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "FILE",
