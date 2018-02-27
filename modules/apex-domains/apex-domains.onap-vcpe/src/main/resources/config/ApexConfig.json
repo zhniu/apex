@@ -27,11 +27,16 @@
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "FILE",
 				"parameters": {
-					"fileName": "config/VNFInitiationEvents.txt"
+					"fileName": "config/VCPEInitiationEvents.txt"
 				}
 			},
 			"eventProtocolParameters": {
-				"eventProtocol": "JSON"
+				"eventProtocol": "JSON",
+				"parameters": {
+					"nameAlias": "closedLoopControlName",
+					"versionAlias": "version",
+					"sourceAlias": "from"
+				}
 			}
 		},
 		"DMaaPConsumer": {
@@ -39,14 +44,14 @@
 				"carrierTechnology": "RESTCLIENT",
 				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restclient.RESTClientCarrierTechnologyParameters",
 				"parameters": {
-					"url": "http://131.160.203.101:3904/events/unauthenticated.DCAE_CL_OUTPUT/APEX/1?timeout=60000"
+					"url": "http://159.107.219.140:3904/events/unauthenticated.DCAE_CL_OUTPUT/APEX/1?timeout=60000"
 				}
 			},
 			"eventProtocolParameters": {
 				"eventProtocol": "JSON",
 				"parameters": {
-					"nameAlias": "policyName",
-					"versionAlias": "policyVersion",
+					"nameAlias": "closedLoopControlName",
+					"versionAlias": "version",
 					"sourceAlias": "from"
 				}
 			}
@@ -57,7 +62,7 @@
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "FILE",
 				"parameters": {
-					"fileName": "outputLog/EventsOut.json"
+					"fileName": "/tmp/VCPEEventsOut.json"
 				}
 			},
 			"eventProtocolParameters": {
@@ -69,12 +74,13 @@
 				"carrierTechnology": "RESTCLIENT",
 				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restclient.RESTClientCarrierTechnologyParameters",
 				"parameters": {
-					"url": "http://131.160.203.101:3904/events/APPC-LCM-READ"
+					"url": "http://159.107.219.140:3904/events/APPC-LCM-READ"
 				}
 			},
 			"eventProtocolParameters": {
 				"eventProtocol": "JSON"
-			}
+			},
+			"eventNameFilter": "APPCRestartVNFOutputRequestEvent"
 		}
 	}
 }

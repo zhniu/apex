@@ -5,10 +5,10 @@ do
     echo curl \
 	 --header "Content-type: application/json" \
 	 --request GET \
-	 http://131.160.203.101:3904/events/unauthenticated.DCAE_CL_OUTPUT/LFN/1?timeout=60000
+	 http://localhost:3904/events/unauthenticated.DCAE_CL_OUTPUT/LFN/1?timeout=60000
 
     curl \
 	--header "Content-type: application/json" \
 	--request GET \
-	 http://131.160.203.101:3904/events/unauthenticated.DCAE_CL_OUTPUT/LFN/1?timeout=60000
+	 http://localhost:3904/events/unauthenticated.DCAE_CL_OUTPUT/LFN/1?timeout=60000
 done

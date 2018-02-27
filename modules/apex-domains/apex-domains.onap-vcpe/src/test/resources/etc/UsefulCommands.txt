@@ -1,0 +1,11 @@
+docker run -it --rm -p 12561:12561 --name apex apex/onap-vcpe:0.7.0
+
+docker run -it --rm -p 12345:12345 --name apex --user=apexuser:apexuser --entrypoint=/bin/bash apex/onap-vcpe:0.7.0
+
+export APEX_HOME=<apex_install_dir>
+export APEX_USER=$USER
+<apex_install_dir>/bin/apexApps.sh engine -c etc/ApexConfig.json -m etc/ONAPvCPEPolicyModel.json
+ 
+docker run -v <path_to>/ApexConfig.json:/home/apexuser/etc/ApexConfig.json -v <path_to>/ONAPTLGoalPolicyModel.json:/home/apexuser/etc/ONAPvCPEPolicyModel.json -p 12629:12629 --name apex -d apex/onap-vcpe:0.7.0 engine -c /home/apexuser/etc/ApexConfig.json
+ 
+docker exec -it apex /bin/bash

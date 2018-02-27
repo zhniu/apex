@@ -1,0 +1,56 @@
+{
+	"engineServiceParameters": {
+		"name": "MyApexEngine",
+		"version": "0.0.1",
+		"id": 45,
+		"instanceCount": 4,
+		"deploymentPort": 12561,
+		"policyModelFileName": "policy/ONAPTLGoalPolicyModel.json",
+		"engineParameters": {
+			"executorParameters": {
+				"JAVASCRIPT": {
+					"parameterClassName": "com.ericsson.apex.plugins.executor.javascript.JavascriptExecutorParameters"
+				}
+			},
+			"contextParameters": {
+				"parameterClassName": "com.ericsson.apex.context.parameters.ContextParameters",
+				"schemaParameters": {
+					"Avro": {
+						"parameterClassName": "com.ericsson.apex.plugins.context.schema.avro.AvroSchemaHelperParameters"
+					}
+				}
+			}
+		}
+	},
+	"eventInputParameters": {
+		"VNFInitConsumer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "FILE",
+				"parameters": {
+					"fileName": "src/main/resources/config/VCPEInitiationEvents.txt"
+				}
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON",
+				"parameters": {
+					"nameAlias": "closedLoopControlName",
+					"versionAlias": "version",
+					"sourceAlias": "from"
+				}
+			}
+		}
+	},
+	"eventOutputParameters": {
+		"logProducer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "FILE",
+				"parameters": {
+					"fileName": "/tmp/VCPEEventsOut.json"
+				}
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			}
+		}
+	}
+}

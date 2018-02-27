@@ -43,6 +43,9 @@ public class StateFinalizerExecutionContext {
     /** A facade to the full state definition for the state finalizer logic being executed. */
     public final AxStateFacade subject;
 
+    /** 	the execution ID for the current APEX policy execution instance. */
+	public final long executionID;
+
     /**
      * The list of state outputs for this state finalizer. The purpose of a state finalizer is to select a state output for a state from this list of state
      * output names.
@@ -75,14 +78,19 @@ public class StateFinalizerExecutionContext {
      * Instantiates a new state finalizer execution context.
      *
      * @param stateFinalizerExecutor the state finalizer executor that requires context
+     * @param executionID the execution ID for the current APEX policy execution instance
      * @param axState the state definition that is the subject of execution
      * @param fields the fields to be manipulated by the state finalizer
      * @param stateOutputNames the state output names, one of which will be selected by the state finalizer
      * @param internalContext the execution context of the Apex engine in which the task is being executed
      */
-    public StateFinalizerExecutionContext(final StateFinalizerExecutor stateFinalizerExecutor, final AxState axState, final Map<String, Object> fields,
+    public StateFinalizerExecutionContext(final StateFinalizerExecutor stateFinalizerExecutor, final long executionID, final AxState axState, final Map<String, Object> fields,
             final Set<String> stateOutputNames, final ApexInternalContext internalContext) {
         subject = new AxStateFacade(axState);
+
+        // Execution ID is the current policy execution instance
+        this.executionID = executionID;
+        
         this.fields = fields;
         this.stateOutputNames = stateOutputNames;
 

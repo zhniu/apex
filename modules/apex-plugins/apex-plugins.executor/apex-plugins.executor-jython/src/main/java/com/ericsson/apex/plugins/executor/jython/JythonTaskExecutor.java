@@ -63,18 +63,19 @@ public class JythonTaskExecutor extends TaskExecutor {
     /**
      * Executes the executor for the task in a sequential manner.
      *
+     * @param executionID the execution ID for the current APEX policy execution
      * @param incomingFields the incoming fields
      * @return The outgoing fields
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
     @Override
-    public Map<String, Object> execute(final Map<String, Object> incomingFields) throws StateMachineException, ContextException {
+    public Map<String, Object> execute(final long executionID, final Map<String, Object> incomingFields) throws StateMachineException, ContextException {
 
         boolean returnValue = false;
 
         // Do execution pre work
-        executePre(incomingFields);
+        executePre(executionID, incomingFields);
 
         try {
 

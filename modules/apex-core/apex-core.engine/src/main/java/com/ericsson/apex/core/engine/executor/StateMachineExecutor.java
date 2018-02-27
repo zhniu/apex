@@ -111,10 +111,10 @@ public class StateMachineExecutor implements Executor<EnEvent, EnEvent, AxPolicy
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#executeDirected(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#executeDirected(java.lang.long, java.lang.Object)
      */
     @Override
-    public EnEvent execute(final EnEvent incomingEvent) throws StateMachineException, ContextException {
+    public EnEvent execute(final long executionID, final EnEvent incomingEvent) throws StateMachineException, ContextException {
         // Check if there are any states on the state machine
         if (stateExecutorMap.size() == 0) {
             throw new StateMachineException("no states defined on state machine");
@@ -131,7 +131,7 @@ public class StateMachineExecutor implements Executor<EnEvent, EnEvent, AxPolicy
                 new AxStateOutput(firstExecutor.getSubject().getKey(), incomingEvent.getKey(), firstExecutor.getSubject().getKey()), incomingEvent);
         while (true) {
             // Execute the state
-            stateOutput = stateExecutor.execute(stateOutput.getOutputEvent());
+            stateOutput = stateExecutor.execute(executionID, stateOutput.getOutputEvent());
             if (stateOutput == null) {
                 throw new StateMachineException("state execution failed, invalid state output returned");
             }
@@ -154,10 +154,10 @@ public class StateMachineExecutor implements Executor<EnEvent, EnEvent, AxPolicy
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.long, java.lang.Object)
      */
     @Override
-    public final void executePre(final EnEvent incomingEntity) throws StateMachineException {
+    public final void executePre(final long executionID, final EnEvent incomingEntity) throws StateMachineException {
         throw new StateMachineException("execution pre work not implemented on class");
     }
 

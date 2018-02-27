@@ -89,27 +89,27 @@ public abstract class StateFinalizerExecutor implements Executor<Map<String, Obj
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.long, java.lang.Object)
      */
     @Override
-    public String execute(final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
+    public String execute(final long executionID, final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
         throw new StateMachineException("execute() not implemented on abstract StateFinalizerExecutionContext class, only on its subclasses");
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.long, java.lang.Object)
      */
     @Override
-    public final void executePre(final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
+    public final void executePre(final long executionID, final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
         LOGGER.debug("execute-pre:" + finalizerLogic.getLogicFlavour() + "," + getSubject().getID() + "," + finalizerLogic.getLogic());
 
         // Record the incoming fields
         this.incomingFields = newIncomingFields;
 
         // Get state finalizer context object
-        executionContext = new StateFinalizerExecutionContext(this, axState, getIncoming(), axState.getStateOutputs().keySet(), getContext());
+        executionContext = new StateFinalizerExecutionContext(this, executionID, axState, getIncoming(), axState.getStateOutputs().keySet(), getContext());
     }
 
     /*

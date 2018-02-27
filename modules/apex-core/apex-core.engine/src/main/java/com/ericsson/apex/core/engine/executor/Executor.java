@@ -50,21 +50,23 @@ public interface Executor<IN, OUT, SUBJECT, CONTEXT> {
     /**
      * Executes the executor, running through its context in its natural order.
      *
+     * @param executionID the execution ID of the current APEX execution policy thread
      * @param incomingEntity the incoming entity that triggers execution
      * @return The outgoing entity that is the result of execution
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
-    OUT execute(IN incomingEntity) throws StateMachineException, ContextException;
+    OUT execute(long executionID, IN incomingEntity) throws StateMachineException, ContextException;
 
     /**
      * Carry out the preparatory work for execution.
      *
+     * @param executionID the execution ID of the current APEX execution policy thread
      * @param incomingEntity the incoming entity that triggers execution
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
-    void executePre(IN incomingEntity) throws StateMachineException, ContextException;
+    void executePre(long executionID, IN incomingEntity) throws StateMachineException, ContextException;
 
     /**
      * Carry out the post work for execution, the returning entity should be set by the child execution object.

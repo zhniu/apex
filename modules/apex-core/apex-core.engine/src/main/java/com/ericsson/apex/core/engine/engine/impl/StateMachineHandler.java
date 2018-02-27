@@ -136,7 +136,7 @@ public class StateMachineHandler {
         // Run the state machine
         try {
             LOGGER.debug("execute(): state machine \"{}\" execution starting  . . .", stateMachineExecutor);
-            final EnEvent outputObject = stateMachineExecutor.execute(event);
+            final EnEvent outputObject = stateMachineExecutor.execute(event.getExecutionID(), event);
 
             LOGGER.debug("execute()<-: state machine \"{}\" execution completed", stateMachineExecutor);
             return outputObject;

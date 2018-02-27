@@ -49,6 +49,9 @@ public class TaskSelectionExecutionContext {
     /** A facade to the full state definition for the task selection logic being executed. */
     public final AxStateFacade subject;
 
+    /** 	the execution ID for the current APEX policy execution instance. */
+	public final long executionID;
+
     /**
      * The incoming fields from the trigger event for the state. The task selection logic can access these fields to decide what task to select for the state.
      */
@@ -77,12 +80,15 @@ public class TaskSelectionExecutionContext {
      * @param outgoingKey the outgoing key for the task to execute in this state
      * @param internalContext the execution context of the Apex engine in which the task is being executed
      */
-    public TaskSelectionExecutionContext(final TaskSelectExecutor taskSelectExecutor, final AxState axState, final EnEvent incomingEvent,
+    public TaskSelectionExecutionContext(final TaskSelectExecutor taskSelectExecutor, final long executionID, final AxState axState, final EnEvent incomingEvent,
             final AxArtifactKey outgoingKey, final ApexInternalContext internalContext) {
         // The subject is the state definition
         subject = new AxStateFacade(axState);
 
-        // The events
+        // Execution ID is the current policy execution instance
+        this.executionID = executionID;
+        
+       // The events
         inFields = incomingEvent;
         selectedTask = outgoingKey;
 

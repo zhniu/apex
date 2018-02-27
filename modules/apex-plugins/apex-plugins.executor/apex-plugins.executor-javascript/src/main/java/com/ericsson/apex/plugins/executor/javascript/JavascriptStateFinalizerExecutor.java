@@ -60,15 +60,16 @@ public class JavascriptStateFinalizerExecutor extends StateFinalizerExecutor {
     /**
      * Executes the executor for the state finalizer logic in a sequential manner.
      *
+     * @param executionID the execution ID for the current APEX policy execution
      * @param incomingFields the incoming fields for finalisation
      * @return The state output for the state
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
     @Override
-    public String execute(final Map<String, Object> incomingFields) throws StateMachineException, ContextException {
+    public String execute(final long executionID, final Map<String, Object> incomingFields) throws StateMachineException, ContextException {
         // Do execution pre work
-        executePre(incomingFields);
+        executePre(executionID, incomingFields);
 
         // Set up the Javascript engine
         engine.put("executor", getExecutionContext());

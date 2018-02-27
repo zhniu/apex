@@ -154,10 +154,10 @@ public class StateExecutor implements Executor<EnEvent, StateOutput, AxState, Ap
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.long, java.lang.Object)
      */
     @Override
-    public StateOutput execute(final EnEvent incomingEvent) throws StateMachineException, ContextException {
+    public StateOutput execute(final long executionID, final EnEvent incomingEvent) throws StateMachineException, ContextException {
         this.lastIncomingEvent = incomingEvent;
 
         // Check that the incoming event matches the trigger for this state
@@ -173,7 +173,7 @@ public class StateExecutor implements Executor<EnEvent, StateOutput, AxState, Ap
             // There may be no task selection logic, in which case just return the default task
             if (taskSelectExecutor != null) {
                 // Fire the task selector to find the task to run
-                taskKey = taskSelectExecutor.execute(incomingEvent);
+                taskKey = taskSelectExecutor.execute(executionID, incomingEvent);
             }
 
             // If there's no task selection logic or the TSL returned no task, just use the default task
@@ -184,7 +184,7 @@ public class StateExecutor implements Executor<EnEvent, StateOutput, AxState, Ap
             // Execute the task
             final TreeMap<String, Object> incomingValues = new TreeMap<>();
             incomingValues.putAll(incomingEvent);
-            final Map<String, Object> taskExecutionResultMap = taskExecutorMap.get(taskKey).execute(incomingValues);
+            final Map<String, Object> taskExecutionResultMap = taskExecutorMap.get(taskKey).execute(executionID, incomingValues);
             final AxTask task = taskExecutorMap.get(taskKey).getSubject();
 
             // Check if this task has direct output
@@ -200,7 +200,7 @@ public class StateExecutor implements Executor<EnEvent, StateOutput, AxState, Ap
                 }
 
                 // Execute the state finalizer logic to select a state output and to adjust the taskExecutionResultMap
-                stateOutputName = finalizerLogicExecutor.execute(taskExecutionResultMap);
+                stateOutputName = finalizerLogicExecutor.execute(incomingEvent.getExecutionID(), taskExecutionResultMap);
             }
 
             // Now look up the the actual state output
@@ -239,10 +239,10 @@ public class StateExecutor implements Executor<EnEvent, StateOutput, AxState, Ap
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.long, java.lang.Object)
      */
     @Override
-    public final void executePre(final EnEvent incomingEntity) throws StateMachineException {
+    public final void executePre(final long executionID, final EnEvent incomingEntity) throws StateMachineException {
         throw new StateMachineException("execution pre work not implemented on class");
     }
 

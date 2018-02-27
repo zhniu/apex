@@ -91,20 +91,20 @@ public abstract class TaskExecutor implements Executor<Map<String, Object>, Map<
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.long, java.lang.Object)
      */
     @Override
-    public Map<String, Object> execute(final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
+    public Map<String, Object> execute(final long executionID, final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
         throw new StateMachineException("execute() not implemented on abstract TaskExecutor class, only on its subclasses");
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.long, java.lang.Object)
      */
     @Override
-    public final void executePre(final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
+    public final void executePre(final long executionID, final Map<String, Object> newIncomingFields) throws StateMachineException, ContextException {
         LOGGER.debug("execute-pre:" + getSubject().getTaskLogic().getLogicFlavour() + "," + getSubject().getKey().getID() + ","
                 + getSubject().getTaskLogic().getLogic());
 
@@ -133,7 +133,7 @@ public abstract class TaskExecutor implements Executor<Map<String, Object>, Map<
         }
 
         // Get task context object
-        executionContext = new TaskExecutionContext(this, getSubject(), getIncoming(), getOutgoing(), getContext());
+        executionContext = new TaskExecutionContext(this, executionID, getSubject(), getIncoming(), getOutgoing(), getContext());
     }
 
     /*

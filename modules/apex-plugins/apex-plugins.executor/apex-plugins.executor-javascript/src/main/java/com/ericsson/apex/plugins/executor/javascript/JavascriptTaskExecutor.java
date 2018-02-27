@@ -59,16 +59,16 @@ public class JavascriptTaskExecutor extends TaskExecutor {
     /**
      * Executes the executor for the task in a sequential manner.
      *
+     * @param executionID the execution ID for the current APEX policy execution
      * @param incomingFields the incoming fields
      * @return The outgoing fields
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
     @Override
-    // TODO this method should probably be synchronised, or else maintain a synchronized pool of ScriptEngines
-    public Map<String, Object> execute(final Map<String, Object> incomingFields) throws StateMachineException, ContextException {
+    public Map<String, Object> execute(final long executionID, final Map<String, Object> incomingFields) throws StateMachineException, ContextException {
         // Do execution pre work
-        executePre(incomingFields);
+        executePre(executionID, incomingFields);
 
         // Set up the Javascript engine
         engine.put("executor", getExecutionContext());

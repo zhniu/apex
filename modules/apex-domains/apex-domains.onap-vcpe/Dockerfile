@@ -16,10 +16,10 @@ RUN apt-get update && \
 	apt-get clean
 
 RUN mkdir /tmp/packages
-COPY target/apex-uservice-onap-tlgoal-0.0.1-SNAPSHOT.deb /tmp/packages
+COPY target/apex-domains-onap-vcpe-0.7.0.deb /tmp/packages
 
-RUN dpkg -i /tmp/packages/apex-uservice-onap-tlgoal-0.0.1-SNAPSHOT.deb  && \
-	rm /tmp/packages/apex-uservice-onap-tlgoal-0.0.1-SNAPSHOT.deb && \
+RUN dpkg -i /tmp/packages/apex-domains-onap-vcpe-0.7.0.deb  && \
+	rm /tmp/packages/apex-domains-onap-vcpe-0.7.0.deb && \
 	rmdir /tmp/packages
 
 ENV PATH /opt/ericsson/apex/apex/bin:$PATH
@@ -35,10 +35,10 @@ USER apexuser:apexuser
 RUN mkdir /home/apexuser/etc
 RUN mkdir /home/apexuser/outputLog
 
-COPY target/classes/config/ApexConfig.json            /home/apexuser/etc
-COPY target/ONAPTLGoalPolicyModel.json /home/apexuser/etc
-COPY target/classes/config/VNFInitiationEvents.txt    /home/apexuser/etc
+COPY target/classes/config/ApexConfig.json          /home/apexuser/etc
+COPY target/ONAPvCPEPolicyModel.json                /home/apexuser/etc
+COPY target/classes/config/VCPEInitiationEvents.txt /home/apexuser/etc
 
 ENTRYPOINT ["apexApps.sh"]
-CMD ["engine", "-c", "/home/apexuser/etc/ApexConfig.json", "-m", "/home/apexuser/etc/ONAPTLGoalPolicyModel.json"]
+CMD ["engine", "-c", "/home/apexuser/etc/ApexConfig.json", "-m", "/home/apexuser/etc/ONAPvCPEPolicyModel.json"]
 

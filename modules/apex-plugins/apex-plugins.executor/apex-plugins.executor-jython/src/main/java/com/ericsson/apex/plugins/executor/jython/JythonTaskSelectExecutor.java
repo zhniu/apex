@@ -62,18 +62,19 @@ public class JythonTaskSelectExecutor extends TaskSelectExecutor {
     /**
      * Executes the executor for the task in a sequential manner.
      *
+     * @param executionID the execution ID for the current APEX policy execution
      * @param incomingEvent the incoming event
      * @return The outgoing event
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
     @Override
-    public AxArtifactKey execute(final EnEvent incomingEvent) throws StateMachineException, ContextException {
+    public AxArtifactKey execute(final long executionID, final EnEvent incomingEvent) throws StateMachineException, ContextException {
 
         boolean returnValue = false;
 
         // Do execution pre work
-        executePre(incomingEvent);
+        executePre(executionID, incomingEvent);
 
         try {
             // Check and execute the Jython logic

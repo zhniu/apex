@@ -87,20 +87,20 @@ public abstract class TaskSelectExecutor implements Executor<EnEvent, AxArtifact
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#execute(java.lang.long, java.lang.Object)
      */
     @Override
-    public AxArtifactKey execute(final EnEvent newIncomingEvent) throws StateMachineException, ContextException {
+    public AxArtifactKey execute(final long executionID, final EnEvent newIncomingEvent) throws StateMachineException, ContextException {
         throw new StateMachineException("execute() not implemented on class");
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.Object)
+     * @see com.ericsson.apex.core.engine.executor.Executor#executePre(java.lang.long, java.lang.Object)
      */
     @Override
-    public final void executePre(final EnEvent newIncomingEvent) throws StateMachineException {
+    public final void executePre(final long executionID, final EnEvent newIncomingEvent) throws StateMachineException {
         LOGGER.debug("execute-pre:" + axState.getKey().getID() + "," + axState.getTaskSelectionLogic().getLogicFlavour() + ","
                 + axState.getTaskSelectionLogic().getLogic());
 
@@ -110,7 +110,7 @@ public abstract class TaskSelectExecutor implements Executor<EnEvent, AxArtifact
         outgoingTaskKey = new AxArtifactKey();
 
         // Get task selection context object
-        executionContext = new TaskSelectionExecutionContext(this, getSubject(), getIncoming(), getOutgoing(), getContext());
+        executionContext = new TaskSelectionExecutionContext(this, executionID, getSubject(), getIncoming(), getOutgoing(), getContext());
     }
 
     /*

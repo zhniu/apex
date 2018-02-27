@@ -60,16 +60,16 @@ public class JavascriptTaskSelectExecutor extends TaskSelectExecutor {
     /**
      * Executes the executor for the task in a sequential manner.
      *
+     * @param executionID the execution ID for the current APEX policy execution
      * @param incomingEvent the incoming event
      * @return The outgoing event
      * @throws StateMachineException on an execution error
      * @throws ContextException on context errors
      */
     @Override
-    // TODO this method should probably be synchronised, or else maintain a synchronized pool of ScriptEngines
-    public AxArtifactKey execute(final EnEvent incomingEvent) throws StateMachineException, ContextException {
+    public AxArtifactKey execute(final long executionID, final EnEvent incomingEvent) throws StateMachineException, ContextException {
         // Do execution pre work
-        executePre(incomingEvent);
+        executePre(executionID, incomingEvent);
 
         // Set up the Javascript engine
         engine.put("executor", getExecutionContext());

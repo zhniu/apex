@@ -1,39 +1,38 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ COPYRIGHT (C) Ericsson 2016-2018
+ 
+ The copyright to the computer program(s) herein is the property of
+ Ericsson Inc. The programs may be used and/or copied only with written
+ permission from Ericsson Inc. or in accordance with the terms and
+ conditions stipulated in the agreement/contract under which the
+ program(s) have been supplied.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.ericsson.apex.onap</groupId>
-	<artifactId>TLGoal2017</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<artifactId>apex-domains.onap-vcpe</artifactId>
 	<name>${project.artifactId}</name>
-	<description>Thhis POM builds a Docker image for the ONAP TL Goal Apex and its policy.</description>
-	<inceptionYear>2017</inceptionYear>
-	<organization>
-		<name>Ericsson</name>
-	</organization>
+	<url>${apex.site.prefix}/modules/${project.parent.artifactId}/${project.artifactId}/</url>
+	<description>Specific code for the APEX ONAP vCPE Domain</description>
+	<inceptionYear>2018</inceptionYear>
+
+	<parent>
+		<groupId>com.ericsson.apex</groupId>
+		<artifactId>apex-domains</artifactId>
+		<version>0.7.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.resources.sourceEncoding>UTF-8</project.resources.sourceEncoding>
-		<encoding>UTF-8</encoding>
-		<file.encoding>UTF-8</file.encoding>
-		<apex.version>0.6.0</apex.version>
-		<install.package.name>apex-uservice-onap-tlgoal</install.package.name>
-		<policymodel.name>ONAPTLGoalPolicyModel</policymodel.name>
+		<install.package.name>apex-domains-onap-vcpe</install.package.name>
+		<policymodel.name>ONAPvCPEPolicyModel</policymodel.name>
+		<docker.repository.name>apex/onap-vcpe</docker.repository.name>
+		<apex-domains-onap-vcpe-dir>${project.basedir}/src</apex-domains-onap-vcpe-dir>
 	</properties>
 
-	<prerequisites>
-		<maven>3.0.0</maven>
-	</prerequisites>
-
 	<distributionManagement>
-		<repository>
-			<id>res-pct-maven-ftp</id>
-			<name>Local Research/PCT Repository</name>
-			<url>ftp://159.107.219.145/opt/www/maven</url>
-		</repository>
 		<site>
 			<id>${project.artifactId}-site</id>
 			<url>${project.url}</url>
@@ -42,35 +41,46 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.ericsson.apex.services</groupId>
-			<artifactId>apex-services.engine</artifactId>
-			<version>${apex.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ericsson.apex.auth</groupId>
+			<groupId>com.ericsson.apex</groupId>
 			<artifactId>apex-auth.cli-editor</artifactId>
-			<version>${apex.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ericsson.apex.plugins</groupId>
-			<artifactId>apex-plugins.context-schema-avro</artifactId>
-			<version>${apex.version}</version>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-services.engine</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ericsson.apex.plugins</groupId>
+			<groupId>com.ericsson.apex</groupId>
 			<artifactId>apex-plugins.executor-javascript</artifactId>
-			<version>${apex.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ericsson.apex.plugins</groupId>
+			<groupId>com.ericsson.apex</groupId>
 			<artifactId>apex-plugins.event-carrier-restclient</artifactId>
-			<version>${apex.version}</version>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.event-carrier-restrequestor</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.context-schema-avro</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-http</artifactId>
+			<version>2.25.1</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Generate the APEX Policy JSON from the APEX CLI command -->
+            <!-- Generate the APEX Policy JSON from the APEX CLI command -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -89,13 +99,14 @@
 								<argument>--command-file=${project.basedir}/src/main/resources/policy/${policymodel.name}.apex</argument>
 								<argument>--output-model-file=${project.build.directory}/${policymodel.name}.json</argument>
 								<argument>--log-file=${project.build.directory}/${policymodel.name}_policygeneration.log</argument>
+								<argument>--working-dir=${project.basedir}</argument>
 							</arguments>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
-			<!-- Build the tar ball -->
+            <!-- Build the tar ball -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
@@ -121,10 +132,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<untar
-									src="${project.build.directory}/${install.package.name}-${project.version}-tarball.tar.gz"
-									dest="${project.build.directory}/install_hierarchy"
-									compression="gzip" />
+								<untar src="${project.build.directory}/${install.package.name}-${project.version}-tarball.tar.gz" dest="${project.build.directory}/install_hierarchy" compression="gzip" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -136,8 +144,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<chmod file="${project.build.directory}/install_hierarchy/bin/*"
-									perm="755" />
+								<chmod file="${project.build.directory}/install_hierarchy/bin/*" perm="755" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -146,7 +153,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Build the dpkg distribution -->
+            <!-- Build the dpkg distribution -->
 			<plugin>
 				<groupId>org.vafer</groupId>
 				<artifactId>jdeb</artifactId>
@@ -161,7 +168,7 @@
 							<deb>${project.build.directory}/${install.package.name}-${project.version}.deb</deb>
 							<controlDir>${basedir}/src/main/package/control</controlDir>
 							<dataSet>
-								<!-- Copy the Apex run time configuration -->
+                                <!-- Copy the Apex run time configuration -->
 								<data>
 									<src>${project.build.directory}/install_hierarchy/lib</src>
 									<type>directory</type>
@@ -195,27 +202,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.3.6</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-							<goal>push</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<repository>armdocker.rnd.ericsson.se/proj-apex/apex/onap-tl-goal-2017</repository>
-					<tag>${project.version}</tag>
-				</configuration>
-			</plugin>
 		</plugins>
-
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -227,8 +214,41 @@
 
 	<profiles>
 		<profile>
-			<!--This profile is used to store Eclipse m2e settings only. It has no 
-				influence on the Maven build itself. -->
+            <!--This profile is used to build the Docker image for the demo. -->
+			<id>apexDocker</id>
+			<activation>
+				<property>
+					<name>apexDocker</name>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.spotify</groupId>
+						<artifactId>dockerfile-maven-plugin</artifactId>
+						<version>1.3.6</version>
+						<executions>
+							<execution>
+								<id>default</id>
+								<goals>
+									<goal>build</goal>
+									<goal>push</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<repository>${docker.repository.name}</repository>
+							<tag>${project.version}</tag>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+            <!--This profile is used to store Eclipse m2e settings only. It has no 
+                influence on the Maven build itself. -->
 			<id>only-eclipse</id>
 			<activation>
 				<property>
