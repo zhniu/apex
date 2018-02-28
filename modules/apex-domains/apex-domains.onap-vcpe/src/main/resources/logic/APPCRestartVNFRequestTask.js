@@ -46,6 +46,8 @@ executor.outFields.put("body",           appcBodyRecord);
 
 executor.getContextAlbum("RequestIDVNFIDAlbum").put(executor.inFields.get("requestID").toString(), executor.inFields.get("vnfID"));
 
+vcpeClosedLoopStatus.put("notification", "OPERATION: RESTART REQUESTED");
+
 executor.logger.info(executor.outFields);
 
 var returnValue = executor.TRUE;
