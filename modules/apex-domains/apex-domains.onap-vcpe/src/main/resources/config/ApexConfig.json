@@ -39,7 +39,26 @@
 				}
 			}
 		},
-		"DMaaPConsumer": {
+		"GuardRequestorConsumer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "RESTREQUESTOR",
+				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restrequestor.RESTRequestorCarrierTechnologyParameters",
+				"parameters": {
+					"url": "http://localhost:54321/AAIAndGuardSim/sim/pdp/api/getDecision",
+					"httpMethod": "POST",
+					"restRequestTimeout": 2000
+				}
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			},
+			"eventName": "GuardResponseEvent",
+			"eventNameFilter": "GuardResponseEvent",
+			"requestorMode": true,
+			"requestorPeer": "GuardRequestorProducer",
+			"requestorTimeout": 500
+		},
+		"DCAEConsumer": {
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "RESTCLIENT",
 				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restclient.RESTClientCarrierTechnologyParameters",
@@ -55,6 +74,20 @@
 					"sourceAlias": "from"
 				}
 			}
+		},
+		"APPCConsumer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "RESTCLIENT",
+				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restclient.RESTClientCarrierTechnologyParameters",
+				"parameters": {
+					"url": "http://159.107.219.140:3904/events/APPC_LCM_WRITE/APEX/1?timeout=60000"
+				}
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			},
+			"eventName": "APPCRestartVNFResponseEvent",
+			"eventNameFilter": "APPCRestartVNFResponseEvent"
 		}
 	},
 	"eventOutputParameters": {
@@ -69,7 +102,20 @@
 				"eventProtocol": "JSON"
 			}
 		},
-		"DMaapProducer": {
+		"GuardRequestorProducer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "RESTREQUESTOR",
+				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restrequestor.RESTRequestorCarrierTechnologyParameters"
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			},
+			"eventNameFilter": "GuardRequestEvent",
+			"requestorMode": true,
+			"requestorPeer": "GuardRequestorConsumer",
+			"requestorTimeout": 500
+		},
+		"APPCProducer": {
 			"carrierTechnologyParameters": {
 				"carrierTechnology": "RESTCLIENT",
 				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restclient.RESTClientCarrierTechnologyParameters",
@@ -80,7 +126,20 @@
 			"eventProtocolParameters": {
 				"eventProtocol": "JSON"
 			},
-			"eventNameFilter": "APPCRestartVNFOutputRequestEvent"
+			"eventNameFilter": "APPCRestartVNFRequestEvent"
+		},
+		"PolicyLogProducer": {
+			"carrierTechnologyParameters": {
+				"carrierTechnology": "RESTCLIENT",
+				"parameterClassName": "com.ericsson.apex.plugins.event.carrier.restclient.RESTClientCarrierTechnologyParameters",
+				"parameters": {
+					"url": "http://159.107.219.140:3904/events/POLICY_CL_MGT"
+				}
+			},
+			"eventProtocolParameters": {
+				"eventProtocol": "JSON"
+			},
+			"eventNameFilter": "ControlLoopLogEvent"
 		}
 	}
 }

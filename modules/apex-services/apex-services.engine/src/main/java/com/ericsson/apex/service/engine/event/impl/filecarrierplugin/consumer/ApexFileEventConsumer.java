@@ -53,9 +53,6 @@ public class ApexFileEventConsumer implements ApexEventConsumer, Runnable {
     // The consumer thread and stopping flag
     private Thread consumerThread;
 
-    // The number of events read
-    private int eventsRead = 0;
-
     // The name for this consumer
     private String consumerName = null;
 
@@ -188,8 +185,7 @@ public class ApexFileEventConsumer implements ApexEventConsumer, Runnable {
 
                 // Process the event from the text block if there is one there
                 if (textBlock.getText() != null) {
-                    eventReceiver.receiveEvent(getNextExecutionID(), null, textBlock.getText());
-                    eventsRead++;
+                    eventReceiver.receiveEvent(getNextExecutionID(), textBlock.getText());
                 }
             }
             while (!textBlock.isEndOfText());

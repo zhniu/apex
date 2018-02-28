@@ -340,7 +340,7 @@ public class ApexRestRequestorConsumer implements ApexEventConsumer, Runnable {
 				}
 
 				// Send the event into Apex
-				eventReceiver.receiveEvent(request.getExecutionId(), null, eventJSONString);
+				eventReceiver.receiveEvent(request.getExecutionId(), eventJSONString);
 
 				synchronized (eventsReceivedLock) {
 					eventsReceived++;

@@ -1,6 +1,6 @@
 {
 	"type"      : "record",
-	"name"      : "APPCBody_Type",
+	"name"      : "APPCInputBody_Type",
 	"namespace" : "com.ericsson.apex.onap.vcpe",
 	"fields"    : [
 		{
@@ -28,7 +28,7 @@
 						"name": "common_DasH_header",
 						"type": {
 							"type" : "record",
-							"name" : "CommonHeaderRecord",
+							"name" : "InputCommonHeaderRecord",
 							"fields" : [
 								{
 									"name": "request_DasH_id", "type": "string"

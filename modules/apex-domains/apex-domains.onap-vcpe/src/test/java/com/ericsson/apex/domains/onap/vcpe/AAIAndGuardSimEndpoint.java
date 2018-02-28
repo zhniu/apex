@@ -28,97 +28,103 @@ import com.google.gson.Gson;
 @Path("/sim")
 public class AAIAndGuardSimEndpoint {
 
-    private static int postMessagesReceived = 0;
-    private static int putMessagesReceived = 0;
-    private static int statMessagesReceived = 0;
-    private static int getMessagesReceived = 0;
+	private static int postMessagesReceived = 0;
+	private static int putMessagesReceived = 0;
+	private static int statMessagesReceived = 0;
+	private static int getMessagesReceived = 0;
 
-    @Path("/pdp/api/Stats")
-    @GET
-    public Response serviceGetStats() {
-        statMessagesReceived++;
-        return Response.status(200).entity("{\"GET\": " + getMessagesReceived + ",\"STAT\": " + statMessagesReceived + ",\"POST\": " + postMessagesReceived + ",\"PUT\": " + putMessagesReceived + "}").build();
-    }
+	@Path("/pdp/api/Stats")
+	@GET
+	public Response serviceGetStats() {
+		statMessagesReceived++;
+		return Response.status(200).entity("{\"GET\": " + getMessagesReceived + ",\"STAT\": " + statMessagesReceived + ",\"POST\": " + postMessagesReceived + ",\"PUT\": " + putMessagesReceived + "}").build();
+	}
 
-    @Path("/pdp/api/getDecision")
-    @POST
-    public Response serviceGuardPostRequest(final String jsonString) {
-        postMessagesReceived++;
-        return Response.status(200).entity("{\"decision\": \"PERMIT\", \"details\": \"Decision Permit. OK!\"}").build();
-    }
+	@Path("/pdp/api/getDecision")
+	@POST
+	public Response serviceGuardPostRequest(final String jsonString) {
+		postMessagesReceived++;
 
-   @Path("/event/GetEvent")
-    @GET
-    public Response serviceGetEvent() {
-        Random rand = new Random();
-        int nextMatchCase = rand.nextInt(4);
-        String nextEventName = "Event0" + rand.nextInt(2) + "00";
-        
-        String eventString = 
-                "{\n" +
-                        "\"nameSpace\": \"com.ericsson.apex.sample.events\",\n" +
-                        "\"name\": \"" + nextEventName + "\",\n" +
-                        "\"version\": \"0.0.1\",\n" +
-                        "\"source\": \"REST_" + getMessagesReceived + "\",\n" +
-                        "\"target\": \"apex\",\n" +
-                        "\"TestSlogan\": \"Test slogan for External Event0\",\n" +
-                        "\"TestMatchCase\": " + nextMatchCase + ",\n" +
-                        "\"TestTimestamp\": " + System.currentTimeMillis() + ",\n" +
-                        "\"TestTemperature\": 9080.866\n" +
-                        "}";
+		if (postMessagesReceived % 2 == 0) { 
+			return Response.status(200).entity("{\"decision\": \"PERMIT\", \"details\": \"Decision Permit. OK!\"}").build();
+		}
+		else {
+			return Response.status(200).entity("{\"decision\": \"DENY\", \"details\": \"Decision Denied. NOK :-(\"}").build();
+		}
+	}
+	
+	@Path("/event/GetEvent")
+	@GET
+	public Response serviceGetEvent() {
+		Random rand = new Random();
+		int nextMatchCase = rand.nextInt(4);
+		String nextEventName = "Event0" + rand.nextInt(2) + "00";
 
-        getMessagesReceived++;
+		String eventString = 
+				"{\n" +
+						"\"nameSpace\": \"com.ericsson.apex.sample.events\",\n" +
+						"\"name\": \"" + nextEventName + "\",\n" +
+						"\"version\": \"0.0.1\",\n" +
+						"\"source\": \"REST_" + getMessagesReceived + "\",\n" +
+						"\"target\": \"apex\",\n" +
+						"\"TestSlogan\": \"Test slogan for External Event0\",\n" +
+						"\"TestMatchCase\": " + nextMatchCase + ",\n" +
+						"\"TestTimestamp\": " + System.currentTimeMillis() + ",\n" +
+						"\"TestTemperature\": 9080.866\n" +
+						"}";
 
-        return Response.status(200).entity(eventString).build();
-    }
+		getMessagesReceived++;
 
-    @Path("/event/GetEmptyEvent")
-    @GET
-    public Response serviceGetEmptyEvent() {
-        return Response.status(200).build();
-    }
+		return Response.status(200).entity(eventString).build();
+	}
 
-    @Path("/event/GetEventBadResponse")
-    @GET
-    public Response serviceGetEventBadResponse() {
-        return Response.status(400).build();
-    }
+	@Path("/event/GetEmptyEvent")
+	@GET
+	public Response serviceGetEmptyEvent() {
+		return Response.status(200).build();
+	}
 
-    @Path("/event/PostEvent")
-    @POST
-    public Response servicePostRequest(final String jsonString) {
-        postMessagesReceived++;
+	@Path("/event/GetEventBadResponse")
+	@GET
+	public Response serviceGetEventBadResponse() {
+		return Response.status(400).build();
+	}
 
-        @SuppressWarnings("unchecked")
-        Map<String, Object> jsonMap = new Gson().fromJson(jsonString, Map.class);
-        assertTrue(jsonMap.containsKey("name"));
-        assertEquals("0.0.1", jsonMap.get("version"));
-        assertEquals("com.ericsson.apex.sample.events", jsonMap.get("nameSpace"));
-        assertEquals("Act", jsonMap.get("source"));
-        assertEquals("Outside", jsonMap.get("target"));
+	@Path("/event/PostEvent")
+	@POST
+	public Response servicePostRequest(final String jsonString) {
+		postMessagesReceived++;
 
-        return Response.status(200).entity("{\"GET\": , " + getMessagesReceived + ",\"STAT\": " + statMessagesReceived + ",\"POST\": , " + postMessagesReceived + ",\"PUT\": " + putMessagesReceived + "}").build();
-    }
+		@SuppressWarnings("unchecked")
+		Map<String, Object> jsonMap = new Gson().fromJson(jsonString, Map.class);
+		assertTrue(jsonMap.containsKey("name"));
+		assertEquals("0.0.1", jsonMap.get("version"));
+		assertEquals("com.ericsson.apex.sample.events", jsonMap.get("nameSpace"));
+		assertEquals("Act", jsonMap.get("source"));
+		assertEquals("Outside", jsonMap.get("target"));
 
-    @Path("/event/PostEventBadResponse")
-    @POST
-    public Response servicePostRequestBadResponse(final String jsonString) {
-        return Response.status(400).build();
-    }
+		return Response.status(200).entity("{\"GET\": , " + getMessagesReceived + ",\"STAT\": " + statMessagesReceived + ",\"POST\": , " + postMessagesReceived + ",\"PUT\": " + putMessagesReceived + "}").build();
+	}
 
-    @Path("/event/PutEvent")
-    @PUT
-    public Response servicePutRequest(final String jsonString) {
-        putMessagesReceived++;
+	@Path("/event/PostEventBadResponse")
+	@POST
+	public Response servicePostRequestBadResponse(final String jsonString) {
+		return Response.status(400).build();
+	}
 
-        @SuppressWarnings("unchecked")
-        Map<String, Object> jsonMap = new Gson().fromJson(jsonString, Map.class);
-        assertTrue(jsonMap.containsKey("name"));
-        assertEquals("0.0.1", jsonMap.get("version"));
-        assertEquals("com.ericsson.apex.sample.events", jsonMap.get("nameSpace"));
-        assertEquals("Act", jsonMap.get("source"));
-        assertEquals("Outside", jsonMap.get("target"));
+	@Path("/event/PutEvent")
+	@PUT
+	public Response servicePutRequest(final String jsonString) {
+		putMessagesReceived++;
 
-        return Response.status(200).entity("{\"GET\": , " + getMessagesReceived + ",\"STAT\": " + statMessagesReceived + ",\"POST\": , " + postMessagesReceived + ",\"PUT\": " + putMessagesReceived + "}").build();
-    }
+		@SuppressWarnings("unchecked")
+		Map<String, Object> jsonMap = new Gson().fromJson(jsonString, Map.class);
+		assertTrue(jsonMap.containsKey("name"));
+		assertEquals("0.0.1", jsonMap.get("version"));
+		assertEquals("com.ericsson.apex.sample.events", jsonMap.get("nameSpace"));
+		assertEquals("Act", jsonMap.get("source"));
+		assertEquals("Outside", jsonMap.get("target"));
+
+		return Response.status(200).entity("{\"GET\": , " + getMessagesReceived + ",\"STAT\": " + statMessagesReceived + ",\"POST\": , " + postMessagesReceived + ",\"PUT\": " + putMessagesReceived + "}").build();
+	}
 }

@@ -61,9 +61,6 @@ public class ApexRestClientConsumer implements ApexEventConsumer, Runnable {
     private Thread consumerThread;
     private boolean stopOrderedFlag = false;
 
-    // The number of events read to date
-    private int eventsRead = 0;
-
     @Override
     public void init(final String consumerName, final EventHandlerParameters consumerParameters, final ApexEventReceiver incomingEventReceiver)
             throws ApexEventException {
@@ -203,8 +200,7 @@ public class ApexRestClientConsumer implements ApexEventConsumer, Runnable {
                 }
 
                 // Send the event into Apex
-                eventReceiver.receiveEvent(null, eventJSONString);
-                eventsRead++;
+                eventReceiver.receiveEvent(eventJSONString);
             }
             catch (final Exception e) {
                 LOGGER.warn("error receiving events on thread {}", consumerThread.getName(), e);

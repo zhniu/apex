@@ -1,50 +1,33 @@
 executor.logger.info(executor.subject.id);
 executor.logger.info(executor.inFields);
 
-var genericDataRecordType = Java.type("org.apache.avro.generic.GenericData.Record");
+var uuidType     = Java.type("java.util.UUID");
+var integerType  = Java.type("java.lang.Integer");
 
-var vcpeClosedLoopStatus = executor.getContextAlbum("VCPEClosedLoopStatusAlbum").get(executor.inFields.get("vnfID").toString());
+var requestID = uuidType.fromString(executor.inFields.get("correlation-id"));
+var vnfID = executor.getContextAlbum("RequestIDVNFIDAlbum").remove(requestID.toString());
 
-var appcBodyRecord = executor.subject.getOutFieldSchemaHelper("body").createNewInstance();
-var appcBodyRecordSchema = appcBodyRecord.getSchema();
+var returnValue = executor.TRUE;
 
-var inputRecord = new genericDataRecordType(appcBodyRecordSchema.getField("input").schema());
-var inputRecordRecordSchema = inputRecord.getSchema();
+if (vnfID != null) {
+	var vcpeClosedLoopStatus = executor.getContextAlbum("VCPEClosedLoopStatusAlbum").get(vnfID.toString());
 
-var actionIndentifiersRecord = new genericDataRecordType(inputRecordRecordSchema.getField("action_DasH_identifiers").schema());
+	var notification = "OPERATION: VNF RESTART WITH RETURN CODE " 
+		+ executor.inFields.get("body").get("output").get("status").get("code")
+		+ ", "
+		+ executor.inFields.get("body").get("output").get("status").get("message");
 
-var commonHeaderRecord = new genericDataRecordType(inputRecordRecordSchema.getField("common_DasH_header").schema());
-var commonHeaderRecordSchema = commonHeaderRecord.getSchema();
+	vcpeClosedLoopStatus.put("notification", notification);
+	vcpeClosedLoopStatus.put("notificationTime", executor.inFields.get("body").get("output").get("common_DasH_header").get("timestamp"));
 
-var commonHeaderFlagsRecord = new genericDataRecordType(commonHeaderRecordSchema.getField("flags").schema());
-
-appcBodyRecord.put("input", inputRecord);
-inputRecord.put("action_DasH_identifiers", actionIndentifiersRecord);
-inputRecord.put("common_DasH_header", commonHeaderRecord);
-commonHeaderRecord.put("flags", commonHeaderFlagsRecord);
-
-inputRecord.put("action", "Restart");
-inputRecord.put("payload", "{}");
-
-actionIndentifiersRecord.put("vnf_DasH_id", executor.inFields.get("vnfID").toString());
-
-commonHeaderRecord.put("timestamp", new Date().toISOString());
-commonHeaderRecord.put("api_DasH_ver", "2.00");
-commonHeaderRecord.put("originator_DasH_id", executor.inFields.get("requestID").toString());
-commonHeaderRecord.put("request_DasH_id", executor.inFields.get("requestID").toString());
-commonHeaderRecord.put("sub_DasH_request_DasH_id", "1");
-
-commonHeaderFlagsRecord.put("ttl", "10000");
-commonHeaderFlagsRecord.put("force", "TRUE");
-commonHeaderFlagsRecord.put("mode", "EXCLUSIVE");
-
-executor.outFields.put("version",        "2.0");
-executor.outFields.put("rpc-name",       "restart");
-executor.outFields.put("correlation-id", executor.inFields.get("vnfID"));
-executor.outFields.put("type",           "request");
-executor.outFields.put("body",           appcBodyRecord);
+	executor.outFields.put("requestID", requestID);
+	executor.outFields.put("vnfID",     vnfID);
+}
+else {
+	executor.message = "VNF ID not found in context album for request ID " + requestID;
+	returnValue = executor.FALSE
+}
 
 executor.logger.info(executor.outFields);
 
-var returnValue = executor.TRUE;
 

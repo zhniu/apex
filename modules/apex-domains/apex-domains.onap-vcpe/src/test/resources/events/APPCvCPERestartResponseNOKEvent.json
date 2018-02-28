@@ -1,6 +1,6 @@
 {
 	"rpc-name": "restart",
-	"version": "2.0",
+	"version": "0.0.1",
 	"correlation-id": "4a68f8a5-0db9-4070-a132-adede51e3d5c",
 	"type": "response",	
 	"body": {
@@ -15,7 +15,7 @@
 			},
 			"status": {
 				"code": 400,
-				"message": "Restart Successful"
+				"message": "Restart Failed"
 			}
 		}
 	}

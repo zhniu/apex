@@ -52,6 +52,7 @@
 			"eventProtocolParameters": {
 				"eventProtocol": "JSON"
 			},
+			"eventName": "GuardResponseEvent",
 			"eventNameFilter": "GuardResponseEvent",
 			"requestorMode": true,
 			"requestorPeer": "GuardRequestorProducer",

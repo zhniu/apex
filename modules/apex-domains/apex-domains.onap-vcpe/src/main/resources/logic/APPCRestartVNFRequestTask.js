@@ -18,7 +18,7 @@ var commonHeaderRecordSchema = commonHeaderRecord.getSchema();
 
 var commonHeaderFlagsRecord = new genericDataRecordType(commonHeaderRecordSchema.getField("flags").schema());
 
-appcBodyRecord.put("input", inputRecord);
+appcBodyRecord.put("input",  inputRecord);
 inputRecord.put("action_DasH_identifiers", actionIndentifiersRecord);
 inputRecord.put("common_DasH_header", commonHeaderRecord);
 commonHeaderRecord.put("flags", commonHeaderFlagsRecord);
@@ -43,6 +43,8 @@ executor.outFields.put("rpc-name",       "restart");
 executor.outFields.put("correlation-id", executor.inFields.get("vnfID"));
 executor.outFields.put("type",           "request");
 executor.outFields.put("body",           appcBodyRecord);
+
+executor.getContextAlbum("RequestIDVNFIDAlbum").put(executor.inFields.get("requestID").toString(), executor.inFields.get("vnfID"));
 
 executor.logger.info(executor.outFields);
 

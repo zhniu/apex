@@ -143,12 +143,14 @@ public abstract class TaskExecutor implements Executor<Map<String, Object>, Map<
      */
     @Override
     public final void executePost(final boolean returnValue) throws StateMachineException, ContextException {
-        if (!returnValue) {
-            LOGGER.warn(
-                    "execute-post: task logic execution failure on task \"" + axTask.getKey().getName() + "\" in model " + internalContext.getKey().getID());
-            throw new StateMachineException(
-                    "execute-post: task logic execution failure on task \"" + axTask.getKey().getName() + "\" in model " + internalContext.getKey().getID());
-        }
+		if (!returnValue) {
+			String errorMessage = "execute-post: task logic execution failure on task \"" + axTask.getKey().getName() + "\" in model " + internalContext.getKey().getID();
+			if (executionContext.getMessage() != null) {
+				errorMessage += ", user message: " + executionContext.getMessage();
+			}
+			LOGGER.warn(errorMessage);
+			throw new StateMachineException(errorMessage);
+		}
 
         // Copy any unset fields from the input to the output if their data type and names are identical
         for (final String field : axTask.getOutputFields().keySet()) {

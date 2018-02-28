@@ -27,7 +27,14 @@ public class AAIAndGuardSim {
 	public static void main(String[] args) throws Exception {
 		AAIAndGuardSim sim = new AAIAndGuardSim();
 		
-		ThreadUtilities.sleep(100000);
+		while (true) {
+			try {
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e) {
+				break;
+			}
+		}
 		sim.tearDown();
 	}
 }

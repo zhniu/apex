@@ -58,13 +58,15 @@ public class StateFinalizerExecutionContext {
      * the state output.
      */
     public Map<String, Object> fields;
+    
+    // A message specified in the logic
+    private String message;
 
     /**
      * The state output that the state finalizer logic has selected for a state. The state finalizer logic sets this field in its logic after executing and the Apex engine
      * uses this state output for this state.
      */
     private String selectedStateOutputName;
-
 
     /** Logger for state finalizer execution, state finalizer logic can use this field to access and log to Apex logging. */
     public final XLogger logger = EXCEUTION_LOGGER;
@@ -153,4 +155,21 @@ public class StateFinalizerExecutionContext {
         this.selectedStateOutputName = selectedStateOutputName;
     }
 
+    /**
+     * Get the user message
+     * 
+     * @return the message
+     */
+	public String getMessage() {
+		return message;
+	}
+
+    /**
+     * Set the user message
+     * 
+     * @param the message
+     */
+	public void setMessage(String message) {
+		this.message = message;
+	}
 }

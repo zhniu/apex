@@ -20,18 +20,16 @@ public interface ApexEventReceiver {
      * Receive an event from a consumer for processing.
      *
      * @param executionId the unique ID for execution of this event
-     * @param name the name of the event
      * @param event the event to receive
      * @throws ApexEventException on exceptions receiving an event into Apex
      */
-    void receiveEvent(long executionId, String name, Object event) throws ApexEventException;
+    void receiveEvent(long executionId, Object event) throws ApexEventException;
 
     /**
      * Receive an event from a consumer for processing.
      *
-     * @param name the name of the event
      * @param event the event to receive
      * @throws ApexEventException on exceptions receiving an event into Apex
      */
-    void receiveEvent(String name, Object event) throws ApexEventException;
+    void receiveEvent(Object event) throws ApexEventException;
 }

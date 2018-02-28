@@ -9,3 +9,5 @@ export APEX_USER=$USER
 docker run -v <path_to>/ApexConfig.json:/home/apexuser/etc/ApexConfig.json -v <path_to>/ONAPTLGoalPolicyModel.json:/home/apexuser/etc/ONAPvCPEPolicyModel.json -p 12629:12629 --name apex -d apex/onap-vcpe:0.7.0 engine -c /home/apexuser/etc/ApexConfig.json
  
 docker exec -it apex /bin/bash
+
+mvn exec:java -Dexec.mainClass=com.ericsson.apex.domains.onap.vcpe.AAIAndGuardSim -Dexec.classpathScope=test

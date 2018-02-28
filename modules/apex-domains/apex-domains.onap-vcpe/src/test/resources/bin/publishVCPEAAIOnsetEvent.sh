@@ -1,6 +1,6 @@
 #! /bin/bash
 
-event_text=`cat events/VCPEOnsetAAIInfo.json`
+event_text=`cat events/VCPEOnsetAAIInfoEvent.json`
 
 curl \
     --header "Content-type: application/json" \

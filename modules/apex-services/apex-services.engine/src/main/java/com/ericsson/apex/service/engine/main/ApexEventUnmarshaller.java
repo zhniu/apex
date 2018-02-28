@@ -167,41 +167,40 @@ public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.ericsson.apex.service.engine.event.ApexEventReceiver#receiveEvent(java.lang.String, java.lang.Object)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventReceiver#receiveEvent(java.lang.Object)
 	 */
 	@Override
-	public void receiveEvent(final String eventName, final Object event) throws ApexEventException {
-		receiveEvent(0, eventName, event, true);
+	public void receiveEvent(final Object event) throws ApexEventException {
+		receiveEvent(0, event, true);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.ericsson.apex.service.engine.event.ApexEventReceiver#receiveEvent(long, java.lang.String, java.lang.Object)
+	 * @see com.ericsson.apex.service.engine.event.ApexEventReceiver#receiveEvent(long, java.lang.Object)
 	 */
 	@Override
-	public void receiveEvent(final long executionId, final String eventName, final Object event) throws ApexEventException {
-		receiveEvent(executionId, eventName, event, false);
+	public void receiveEvent(final long executionId, final Object event) throws ApexEventException {
+		receiveEvent(executionId, event, false);
 	}
 
 	/**
 	 * Receive an event from a consumer, convert its protocol and forward it to Apex.
 	 *
 	 * @param executionId the execution id the incoming execution ID
-	 * @param eventName the user's event name, not used by Apex
 	 * @param event the event in its native format
 	 * @param generateExecutionId if true, let Apex generate the execution ID, if false, use the incoming execution ID
 	 * @throws ApexEventException on unmarshaling errors on events
 	 */
-	private void receiveEvent(final long executionId, final String eventName, final Object event, final boolean generateExecutionId) throws ApexEventException {
+	private void receiveEvent(final long executionId, final Object event, final boolean generateExecutionId) throws ApexEventException {
 		// Push the event onto the queue
 		if (LOGGER.isTraceEnabled()) {
-			LOGGER.trace("onMessage(): event {} received: {}", eventName, event.toString());
+			LOGGER.trace("onMessage(): event received: {}", event.toString());
 		}
 
 		// Convert the incoming events to Apex events
 		try {
-			final List<ApexEvent> apexEventList = converter.toApexEvent(eventName, event);
+			final List<ApexEvent> apexEventList = converter.toApexEvent(consumerParameters.getEventName(), event);
 			for (ApexEvent apexEvent : apexEventList) {
 				// Check if we are filtering events on this unmarshaler, if so check the event name against the filter
 				if (consumerParameters.isSetEventNameFilter() && !apexEvent.getName().matches(consumerParameters.getEventNameFilter())) {
@@ -228,7 +227,7 @@ public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
 			}
 		}
 		catch (ApexException e) {
-			String errorMessage = "Error while converting event \"" + eventName + "\" into an ApexEvent for " + name + ": " + e.getMessage() + ", Event="
+			String errorMessage = "Error while converting event into an ApexEvent for " + name + ": " + e.getMessage() + ", Event="
 					+ event;
 			LOGGER.warn(errorMessage, e);
 			throw new ApexEventException(errorMessage, e);

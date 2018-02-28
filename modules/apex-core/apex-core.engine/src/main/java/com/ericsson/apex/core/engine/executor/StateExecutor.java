@@ -228,7 +228,7 @@ public class StateExecutor implements Executor<EnEvent, StateOutput, AxState, Ap
             return stateOutput;
         }
         catch (Exception e) {
-            String errorMessage = "State exeution of state \"" + axState.getID() + "\" on task \""
+            String errorMessage = "State execution of state \"" + axState.getID() + "\" on task \""
                     + (taskKey != null ? taskKey.getID() : "null") + "\" failed: " + e.getMessage();
 
             LOGGER.warn(errorMessage);

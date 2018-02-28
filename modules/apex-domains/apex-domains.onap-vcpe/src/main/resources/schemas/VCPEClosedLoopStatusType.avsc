@@ -53,6 +53,10 @@
 			"type": "long"
 		},
 		{
+			"name": "closedLoopAlarmEnd",
+			"type": "long"
+		},
+		{
 			"name": "closedLoopControlName",
 			"type": "string"
 		},
@@ -98,6 +102,10 @@
 		},
 		{
 			"name": "notification",
+			"type": "string"
+		},
+		{
+			"name": "notificationTime",
 			"type": "string"
 		}
 	]

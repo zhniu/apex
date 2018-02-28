@@ -13,8 +13,12 @@ schema create name=GuardDecisionAttributesType flavour=Avro schema=LS
 #MACROFILE:"src/main/resources/schemas/GuardDecisionAttributesType.avsc"
 LE
 
-schema create name=APPCBodyType flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/schemas/APPCBodyType.avsc"
+schema create name=APPCInputBodyType flavour=Avro schema=LS
+#MACROFILE:"src/main/resources/schemas/APPCInputBodyType.avsc"
+LE
+
+schema create name=APPCOutputBodyType flavour=Avro schema=LS
+#MACROFILE:"src/main/resources/schemas/APPCOutputBodyType.avsc"
 LE
 
 schema create name=VCPEClosedLoopStatusType flavour=Avro schema=LS
@@ -24,6 +28,8 @@ LE
 album create name=VCPEClosedLoopStatusAlbum scope=policy writable=true schemaName=VCPEClosedLoopStatusType
 
 album create name=ControlLoopExecutionIDAlbum scope=policy writable=true schemaName=UUIDType
+
+album create name=RequestIDVNFIDAlbum scope=policy writable=true schemaName=UUIDType
 
 event create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 version=1.0.2 nameSpace=com.ericsson.apex.onap.vcpe source=DCAE target=APEX
 
@@ -56,7 +62,7 @@ event parameter create name=GuardResponseEvent parName=details   schemaName=Simp
 
 event create name=APPCRestartVNFRequestEvent nameSpace=com.ericsson.apex.onap.vcpe source=APEX target=APPC
 
-event parameter create name=APPCRestartVNFRequestEvent parName=body           schemaName=APPCBodyType
+event parameter create name=APPCRestartVNFRequestEvent parName=body           schemaName=APPCInputBodyType
 event parameter create name=APPCRestartVNFRequestEvent parName=version        schemaName=SimpleStringType
 event parameter create name=APPCRestartVNFRequestEvent parName=rpc-name       schemaName=SimpleStringType
 event parameter create name=APPCRestartVNFRequestEvent parName=correlation-id schemaName=SimpleStringType
@@ -64,7 +70,7 @@ event parameter create name=APPCRestartVNFRequestEvent parName=type           sc
 
 event create name=APPCRestartVNFResponseEvent nameSpace=com.ericsson.apex.onap.vcpe source=APEX target=APPC
 
-event parameter create name=APPCRestartVNFResponseEvent parName=body           schemaName=APPCBodyType
+event parameter create name=APPCRestartVNFResponseEvent parName=body           schemaName=APPCOutputBodyType
 event parameter create name=APPCRestartVNFResponseEvent parName=version        schemaName=SimpleStringType
 event parameter create name=APPCRestartVNFResponseEvent parName=rpc-name       schemaName=SimpleStringType
 event parameter create name=APPCRestartVNFResponseEvent parName=correlation-id schemaName=SimpleStringType
@@ -78,6 +84,7 @@ event parameter create name=ControlLoopLogEvent parName=closedLoopAlarmStart  sc
 event parameter create name=ControlLoopLogEvent parName=closedLoopAlarmEnd    schemaName=SimpleLongType   optional=true
 event parameter create name=ControlLoopLogEvent parName=closedLoopEventClient schemaName=SimpleStringType
 event parameter create name=ControlLoopLogEvent parName=closedLoopEventStatus schemaName=SimpleStringType
+event parameter create name=ControlLoopLogEvent parName=version               schemaName=SimpleStringType
 event parameter create name=ControlLoopLogEvent parName=requestID             schemaName=SimpleStringType
 event parameter create name=ControlLoopLogEvent parName=target_type           schemaName=SimpleStringType
 event parameter create name=ControlLoopLogEvent parName=target                schemaName=SimpleStringType
@@ -174,15 +181,15 @@ task create name=APPCRestartVNFRequestTask
 
 task inputfield create name=APPCRestartVNFRequestTask fieldName=requestID schemaName=UUIDType
 task inputfield create name=APPCRestartVNFRequestTask fieldName=vnfID     schemaName=UUIDType
-task inputfield create name=APPCRestartVNFRequestTask fieldName=onsetFlag schemaName=SimpleBooleanType
 
-task outputfield create name=APPCRestartVNFRequestTask fieldName=body           schemaName=APPCBodyType
+task outputfield create name=APPCRestartVNFRequestTask fieldName=body           schemaName=APPCInputBodyType
 task outputfield create name=APPCRestartVNFRequestTask fieldName=version        schemaName=SimpleStringType
 task outputfield create name=APPCRestartVNFRequestTask fieldName=rpc-name       schemaName=SimpleStringType
 task outputfield create name=APPCRestartVNFRequestTask fieldName=correlation-id schemaName=SimpleStringType
 task outputfield create name=APPCRestartVNFRequestTask fieldName=type           schemaName=SimpleStringType
 
 task contextref create name=APPCRestartVNFRequestTask albumName=VCPEClosedLoopStatusAlbum
+task contextref create name=APPCRestartVNFRequestTask albumName=RequestIDVNFIDAlbum
 
 task logic create name=APPCRestartVNFRequestTask logicFlavour=JAVASCRIPT logic=LS
 #MACROFILE:"src/main/resources/logic/APPCRestartVNFRequestTask.js"
@@ -190,7 +197,7 @@ LE
 
 task create name=APPCRestartVNFResponseTask
 
-task inputfield create name=APPCRestartVNFResponseTask fieldName=body           schemaName=APPCBodyType
+task inputfield create name=APPCRestartVNFResponseTask fieldName=body           schemaName=APPCOutputBodyType
 task inputfield create name=APPCRestartVNFResponseTask fieldName=version        schemaName=SimpleStringType
 task inputfield create name=APPCRestartVNFResponseTask fieldName=rpc-name       schemaName=SimpleStringType
 task inputfield create name=APPCRestartVNFResponseTask fieldName=correlation-id schemaName=SimpleStringType
@@ -200,6 +207,7 @@ task outputfield create name=APPCRestartVNFResponseTask fieldName=requestID sche
 task outputfield create name=APPCRestartVNFResponseTask fieldName=vnfID     schemaName=UUIDType
 
 task contextref create name=APPCRestartVNFResponseTask albumName=VCPEClosedLoopStatusAlbum
+task contextref create name=APPCRestartVNFResponseTask albumName=RequestIDVNFIDAlbum
 
 task logic create name=APPCRestartVNFResponseTask logicFlavour=JAVASCRIPT logic=LS
 #MACROFILE:"src/main/resources/logic/APPCRestartVNFResponseTask.js"
@@ -217,6 +225,7 @@ task outputfield create name=ControlLoopLogTask fieldName=closedLoopAlarmEnd    
 task outputfield create name=ControlLoopLogTask fieldName=closedLoopEventClient schemaName=SimpleStringType
 task outputfield create name=ControlLoopLogTask fieldName=closedLoopEventStatus schemaName=SimpleStringType
 task outputfield create name=ControlLoopLogTask fieldName=requestID             schemaName=SimpleStringType
+task outputfield create name=ControlLoopLogTask fieldName=version               schemaName=SimpleStringType
 task outputfield create name=ControlLoopLogTask fieldName=target_type           schemaName=SimpleStringType
 task outputfield create name=ControlLoopLogTask fieldName=target                schemaName=SimpleStringType
 task outputfield create name=ControlLoopLogTask fieldName=from                  schemaName=SimpleStringType
@@ -231,34 +240,6 @@ task contextref create name=ControlLoopLogTask albumName=VCPEClosedLoopStatusAlb
 
 task logic create name=ControlLoopLogTask logicFlavour=JAVASCRIPT logic=LS
 #MACROFILE:"src/main/resources/logic/ControlLoopLogTask.js"
-LE
-
-policy create name=RestartAPPCResponsePolicy template=Freestyle firstState=RestartAPPCResponseState
-
-policy state create name=RestartAPPCResponsePolicy stateName=ResponseLogState triggerName=VCPEStateUpdatedEvent defaultTaskName=ControlLoopLogTask
-policy state output create name=RestartAPPCResponsePolicy stateName=ResponseLogState outputName=ResponseLogOutput eventName=ControlLoopLogEvent
-policy state taskref create name=RestartAPPCResponsePolicy stateName=ResponseLogState taskName=ControlLoopLogTask outputType=DIRECT outputName=ResponseLogOutput
-
-policy state create name=RestartAPPCResponsePolicy stateName=RestartAPPCResponseState triggerName=APPCRestartVNFResponseEvent defaultTaskName=APPCRestartVNFResponseTask
-policy state output create name=RestartAPPCResponsePolicy stateName=RestartAPPCResponseState outputName=APPCRestartVNFResponseOutput eventName=VCPEStateUpdatedEvent nextState=ResponseLogState
-policy state taskref create name=RestartAPPCResponsePolicy stateName=RestartAPPCResponseState taskName=APPCRestartVNFResponseTask outputType=DIRECT outputName=APPCRestartVNFResponseOutput
-
-policy create name=RestartAPPCRequestPolicy template=Freestyle firstState=PermitOrDenyState
-
-policy state create name=RestartAPPCRequestPolicy stateName=DeniedState triggerName=VCPEStateUpdatedEvent defaultTaskName=ControlLoopLogTask
-policy state output create name=RestartAPPCRequestPolicy stateName=DeniedState outputName=DeniedOutput eventName=ControlLoopLogEvent
-policy state taskref create name=RestartAPPCRequestPolicy stateName=DeniedState taskName=ControlLoopLogTask outputType=DIRECT outputName=DeniedOutput
-
-policy state create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState triggerName=VCPEStateUpdatedEvent defaultTaskName=DeniedTask
-policy state output create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState outputName=PermitOutput eventName=APPCRestartVNFRequestEvent
-policy state taskref create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState taskName=APPCRestartVNFRequestTask outputType=DIRECT outputName=PermitOutput
-policy state output create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState outputName=DenyOutput eventName=VCPEStateUpdatedEvent nextState=DeniedState
-policy state taskref create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState taskName=DeniedTask outputType=DIRECT outputName=DenyOutput
-
-policy state contextref create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState albumName=VCPEClosedLoopStatusAlbum
-
-policy state selecttasklogic create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState logicFlavour=JAVASCRIPT logic=LS
-#MACROFILE:"src/main/resources/logic/RestartAPPCRequestPolicyPermitOrDenyTSL.js"
 LE
 
 policy create name=ReceiveEventPolicy template=Freestyle firstState=GetVCPEState
@@ -282,6 +263,38 @@ LE
 policy state create name=ReceiveEventPolicy stateName=GetVCPEState triggerName=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 defaultTaskName=GetVCPEStateTask
 policy state output create name=ReceiveEventPolicy stateName=GetVCPEState outputName=GetVCPEStateOutput eventName=VCPEStateUpdatedEvent nextState=OnsetOrAbatedState
 policy state taskref create name=ReceiveEventPolicy stateName=GetVCPEState taskName=GetVCPEStateTask outputType=DIRECT outputName=GetVCPEStateOutput
+
+policy create name=RestartAPPCRequestPolicy template=Freestyle firstState=PolicyGuardResponseState
+
+policy state create name=RestartAPPCRequestPolicy stateName=DeniedState triggerName=VCPEStateUpdatedEvent defaultTaskName=ControlLoopLogTask
+policy state output create name=RestartAPPCRequestPolicy stateName=DeniedState outputName=DeniedOutput eventName=ControlLoopLogEvent
+policy state taskref create name=RestartAPPCRequestPolicy stateName=DeniedState taskName=ControlLoopLogTask outputType=DIRECT outputName=DeniedOutput
+
+policy state create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState triggerName=VCPEStateUpdatedEvent defaultTaskName=DeniedTask
+policy state output create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState outputName=PermitOutput eventName=APPCRestartVNFRequestEvent
+policy state taskref create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState taskName=APPCRestartVNFRequestTask outputType=DIRECT outputName=PermitOutput
+policy state output create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState outputName=DenyOutput eventName=VCPEStateUpdatedEvent nextState=DeniedState
+policy state taskref create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState taskName=DeniedTask outputType=DIRECT outputName=DenyOutput
+
+policy state create name=RestartAPPCRequestPolicy stateName=PolicyGuardResponseState triggerName=GuardResponseEvent defaultTaskName=GuardResponseTask
+policy state output create name=RestartAPPCRequestPolicy stateName=PolicyGuardResponseState outputName=GuardResponseOutput eventName=VCPEStateUpdatedEvent nextState=PermitOrDenyState
+policy state taskref create name=RestartAPPCRequestPolicy stateName=PolicyGuardResponseState taskName=GuardResponseTask outputType=DIRECT outputName=GuardResponseOutput
+
+policy state contextref create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState albumName=VCPEClosedLoopStatusAlbum
+
+policy state selecttasklogic create name=RestartAPPCRequestPolicy stateName=PermitOrDenyState logicFlavour=JAVASCRIPT logic=LS
+#MACROFILE:"src/main/resources/logic/RestartAPPCRequestPolicyPermitOrDenyTSL.js"
+LE
+
+policy create name=RestartAPPCResponsePolicy template=Freestyle firstState=RestartAPPCResponseState
+
+policy state create name=RestartAPPCResponsePolicy stateName=ResponseLogState triggerName=VCPEStateUpdatedEvent defaultTaskName=ControlLoopLogTask
+policy state output create name=RestartAPPCResponsePolicy stateName=ResponseLogState outputName=ResponseLogOutput eventName=ControlLoopLogEvent
+policy state taskref create name=RestartAPPCResponsePolicy stateName=ResponseLogState taskName=ControlLoopLogTask outputType=DIRECT outputName=ResponseLogOutput
+
+policy state create name=RestartAPPCResponsePolicy stateName=RestartAPPCResponseState triggerName=APPCRestartVNFResponseEvent defaultTaskName=APPCRestartVNFResponseTask
+policy state output create name=RestartAPPCResponsePolicy stateName=RestartAPPCResponseState outputName=APPCRestartVNFResponseOutput eventName=VCPEStateUpdatedEvent nextState=ResponseLogState
+policy state taskref create name=RestartAPPCResponsePolicy stateName=RestartAPPCResponseState taskName=APPCRestartVNFResponseTask outputType=DIRECT outputName=APPCRestartVNFResponseOutput
 
 validate
 

@@ -15,6 +15,7 @@ if (vcpeClosedLoopStatus == null) {
 	vcpeClosedLoopStatus.put("AAI",                   executor.inFields.get("AAI"));
 	vcpeClosedLoopStatus.put("closedLoopControlName", executor.inFields.get("closedLoopControlName"));
 	vcpeClosedLoopStatus.put("closedLoopAlarmStart",  executor.inFields.get("closedLoopAlarmStart"));
+	vcpeClosedLoopStatus.put("closedLoopAlarmEnd",    executor.inFields.get("closedLoopAlarmEnd"));
 	vcpeClosedLoopStatus.put("closedLoopEventClient", executor.inFields.get("closedLoopEventClient"));
 	vcpeClosedLoopStatus.put("closedLoopEventStatus", executor.inFields.get("closedLoopEventStatus"));
 	vcpeClosedLoopStatus.put("version",               executor.inFields.get("version"));

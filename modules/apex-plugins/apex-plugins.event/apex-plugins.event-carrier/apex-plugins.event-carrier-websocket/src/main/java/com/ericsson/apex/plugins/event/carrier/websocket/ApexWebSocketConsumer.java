@@ -167,7 +167,7 @@ public class ApexWebSocketConsumer implements ApexEventConsumer, WSStringMessage
     @Override
     public void receiveString(final String eventString) {
         try {
-            eventReceiver.receiveEvent(null, eventString);
+            eventReceiver.receiveEvent(eventString);
             eventsRead++;
         }
         catch (Exception e) {

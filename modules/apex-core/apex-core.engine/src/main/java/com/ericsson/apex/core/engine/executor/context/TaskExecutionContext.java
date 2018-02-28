@@ -73,6 +73,9 @@ public class TaskExecutionContext {
     // The artifact stack of users of this context
     private final List<AxConcept> usedArtifactStack;
 
+    // A message specified in the logic
+    private String message;
+
     /**
      * Instantiates a new task execution context.
      *
@@ -136,4 +139,22 @@ public class TaskExecutionContext {
             throw new ContextRuntimeException("cannot find definition of context album \"" + contextAlbumName + "\" on task \"" + subject.getId() + "\"");
         }
     }
+
+    /**
+     * Get the user message
+     * 
+     * @return the message
+     */
+	public String getMessage() {
+		return message;
+	}
+
+    /**
+     * Set the user message
+     * 
+     * @param the message
+     */
+	public void setMessage(String message) {
+		this.message = message;
+	}
 }

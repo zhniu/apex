@@ -13,7 +13,7 @@ if (status === "ONSET") {
 	executor.subject.getTaskKey("GuardRequestTask").copyTo(executor.selectedTask);
 }
 else if (status === "ABATED") {
-	executor.subject.getTaskKey("ControlLoopLogTask").copyTo(executor.selectedTask);
+	executor.subject.getTaskKey("AbatedTask").copyTo(executor.selectedTask);
 	onsetFlag = executor.FALSE;
 }
 else {

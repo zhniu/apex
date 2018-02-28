@@ -244,7 +244,7 @@ public class ApexJMSConsumer implements MessageListener, ApexEventConsumer, Runn
                         jmsMessage.getJMSMessageID(), jmsMessage.getJMSType());
             }
 
-            eventReceiver.receiveEvent(jmsMessage.getJMSType(), jmsMessage);
+            eventReceiver.receiveEvent(jmsMessage);
         }
         catch (Exception e) {
             String errorMessage = "failed to receive message from JMS";

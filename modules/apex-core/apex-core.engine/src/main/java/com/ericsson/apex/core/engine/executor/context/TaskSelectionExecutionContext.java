@@ -71,6 +71,9 @@ public class TaskSelectionExecutionContext {
     // All available context albums
     private final Map<String, ContextAlbum> context;
 
+    // A message specified in the logic
+    private String message;
+
     /**
      * Instantiates a new task selection execution context.
      *
@@ -139,4 +142,22 @@ public class TaskSelectionExecutionContext {
             throw new ContextRuntimeException("cannot find definition of context album \"" + contextAlbumName + "\" on state \"" + subject.getId() + "\"");
         }
     }
+
+    /**
+     * Get the user message
+     * 
+     * @return the message
+     */
+	public String getMessage() {
+		return message;
+	}
+
+    /**
+     * Set the user message
+     * 
+     * @param the message
+     */
+	public void setMessage(String message) {
+		this.message = message;
+	}
 }
