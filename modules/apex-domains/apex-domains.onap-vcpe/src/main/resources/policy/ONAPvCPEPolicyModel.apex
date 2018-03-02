@@ -5,8 +5,8 @@ schema create name=SimpleLongType    flavour=Java schema=java.lang.Long
 schema create name=SimpleBooleanType flavour=Java schema=java.lang.Boolean
 schema create name=UUIDType          flavour=Java schema=java.util.UUID
 
-schema create name=AAIType flavour=Avro schema=LS
-#MACROFILE:"src/main/resources/schemas/AAIType.avsc"
+schema create name=VCPEAAIInfoType flavour=Avro schema=LS
+#MACROFILE:"src/main/resources/schemas/VCPEAAIInfoType.avsc"
 LE
 
 schema create name=GuardDecisionAttributesType flavour=Avro schema=LS
@@ -43,7 +43,7 @@ event parameter create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef
 event parameter create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 parName=target                schemaName=SimpleStringType
 event parameter create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 parName=from                  schemaName=SimpleStringType
 event parameter create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 parName=version               schemaName=SimpleStringType
-event parameter create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 parName=AAI                   schemaName=AAIType
+event parameter create name=ControlLoop-vCPE-85317438-861d-42a9-979e-9d96dc0a9ef1 parName=AAI                   schemaName=VCPEAAIInfoType
 
 event create name=VCPEStateUpdatedEvent nameSpace=com.ericsson.apex.onap.vcpe source=APEX target=APEX
 
@@ -78,7 +78,7 @@ event parameter create name=APPCRestartVNFResponseEvent parName=type           s
 
 event create name=ControlLoopLogEvent nameSpace=com.ericsson.apex.onap.vcpe source=APEX target=APEX
 
-event parameter create name=ControlLoopLogEvent parName=AAI                   schemaName=AAIType
+event parameter create name=ControlLoopLogEvent parName=AAI                   schemaName=VCPEAAIInfoType
 event parameter create name=ControlLoopLogEvent parName=closedLoopControlName schemaName=SimpleStringType
 event parameter create name=ControlLoopLogEvent parName=closedLoopAlarmStart  schemaName=SimpleLongType
 event parameter create name=ControlLoopLogEvent parName=closedLoopAlarmEnd    schemaName=SimpleLongType   optional=true
@@ -108,7 +108,7 @@ task inputfield create name=GetVCPEStateTask fieldName=target_type           sch
 task inputfield create name=GetVCPEStateTask fieldName=target                schemaName=SimpleStringType
 task inputfield create name=GetVCPEStateTask fieldName=from                  schemaName=SimpleStringType
 task inputfield create name=GetVCPEStateTask fieldName=version               schemaName=SimpleStringType
-task inputfield create name=GetVCPEStateTask fieldName=AAI                   schemaName=AAIType
+task inputfield create name=GetVCPEStateTask fieldName=AAI                   schemaName=VCPEAAIInfoType
 
 task contextref create name=GetVCPEStateTask albumName=VCPEClosedLoopStatusAlbum
 
@@ -218,7 +218,7 @@ task create name=ControlLoopLogTask
 task inputfield create name=ControlLoopLogTask fieldName=requestID schemaName=UUIDType
 task inputfield create name=ControlLoopLogTask fieldName=vnfID     schemaName=UUIDType
 
-task outputfield create name=ControlLoopLogTask fieldName=AAI                   schemaName=AAIType
+task outputfield create name=ControlLoopLogTask fieldName=AAI                   schemaName=VCPEAAIInfoType
 task outputfield create name=ControlLoopLogTask fieldName=closedLoopControlName schemaName=SimpleStringType
 task outputfield create name=ControlLoopLogTask fieldName=closedLoopAlarmStart  schemaName=SimpleLongType
 task outputfield create name=ControlLoopLogTask fieldName=closedLoopAlarmEnd    schemaName=SimpleLongType   optional=true

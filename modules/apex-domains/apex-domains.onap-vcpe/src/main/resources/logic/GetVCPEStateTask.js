@@ -2,6 +2,8 @@ executor.logger.info(executor.subject.id);
 executor.logger.info(executor.inFields);
 
 var uuidType  = Java.type("java.util.UUID");
+var longType  = Java.type("java.lang.Long");
+
 var requestID = uuidType.fromString(executor.inFields.get("requestID"));
 var vnfID     = uuidType.fromString(executor.inFields.get("AAI").get("generic_DasH_vnf_DoT_vnf_DasH_id"));
 
@@ -15,7 +17,6 @@ if (vcpeClosedLoopStatus == null) {
 	vcpeClosedLoopStatus.put("AAI",                   executor.inFields.get("AAI"));
 	vcpeClosedLoopStatus.put("closedLoopControlName", executor.inFields.get("closedLoopControlName"));
 	vcpeClosedLoopStatus.put("closedLoopAlarmStart",  executor.inFields.get("closedLoopAlarmStart"));
-	vcpeClosedLoopStatus.put("closedLoopAlarmEnd",    executor.inFields.get("closedLoopAlarmEnd"));
 	vcpeClosedLoopStatus.put("closedLoopEventClient", executor.inFields.get("closedLoopEventClient"));
 	vcpeClosedLoopStatus.put("closedLoopEventStatus", executor.inFields.get("closedLoopEventStatus"));
 	vcpeClosedLoopStatus.put("version",               executor.inFields.get("version"));
@@ -27,6 +28,14 @@ if (vcpeClosedLoopStatus == null) {
 	vcpeClosedLoopStatus.put("policyName",            "ONAPvCPEPolicyModel");
 	vcpeClosedLoopStatus.put("policyVersion",         "0.0.1");
 	vcpeClosedLoopStatus.put("notification",          "");
+	vcpeClosedLoopStatus.put("notificationTime",      "");
+
+	if (executor.inFields.get("closedLoopAlarmEnd") != null) {
+		vcpeClosedLoopStatus.put("closedLoopAlarmEnd", executor.inFields.get("closedLoopAlarmEnd"));
+	}
+	else {
+		vcpeClosedLoopStatus.put("closedLoopAlarmEnd", longType.valueOf(0));
+	}
 
 	executor.getContextAlbum("VCPEClosedLoopStatusAlbum").put(vnfID.toString(), vcpeClosedLoopStatus);
 
