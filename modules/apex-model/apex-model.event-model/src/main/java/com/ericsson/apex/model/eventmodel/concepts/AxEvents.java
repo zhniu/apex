@@ -55,350 +55,348 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxEvents", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "eventMap" })
 
 public class AxEvents extends AxConcept implements AxConceptGetter<AxEvent> {
-    private static final long serialVersionUID = 4290442590545820316L;
+	private static final long serialVersionUID = 4290442590545820316L;
 
-    @EmbeddedId
-    @XmlElement(name = "key", required = true)
-    private AxArtifactKey key;
+	@EmbeddedId
+	@XmlElement(name = "key", required = true)
+	private AxArtifactKey key;
 
-    // @formatter:off
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = {
-            @JoinColumn(name = "eventMapName", referencedColumnName = "name"),
-            @JoinColumn(name = "eventMapVersion", referencedColumnName = "version")},
-    inverseJoinColumns = {
-            @JoinColumn(name = "eventName", referencedColumnName = "name"),
-            @JoinColumn(name = "eventVersion", referencedColumnName = "version")
-    })
-    @XmlElement(required = true)
-    private Map<AxArtifactKey, AxEvent> eventMap;
-    // @formatter:on
+	// @formatter:off
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(joinColumns = {
+			@JoinColumn(name = "eventMapName", referencedColumnName = "name"),
+			@JoinColumn(name = "eventMapVersion", referencedColumnName = "version")},
+	inverseJoinColumns = {
+			@JoinColumn(name = "eventName", referencedColumnName = "name"),
+			@JoinColumn(name = "eventVersion", referencedColumnName = "version")
+	})
+	@XmlElement(required = true)
+	private Map<AxArtifactKey, AxEvent> eventMap;
+	// @formatter:on
 
-    /**
-     * The Default Constructor creates a {@link AxEvents} object with a null artifact key and creates an empty event map.
-     */
-    public AxEvents() {
-        this(new AxArtifactKey());
-    }
+	/**
+	 * The Default Constructor creates a {@link AxEvents} object with a null artifact key and creates an empty event map.
+	 */
+	public AxEvents() {
+		this(new AxArtifactKey());
+	}
 
-    /**
-     * The Key Constructor creates a {@link AxEvents} object with the given artifact key and creates an empty event map.
-     *
-     * @param key the event container key
-     */
-    public AxEvents(final AxArtifactKey key) {
-        this(key, new TreeMap<AxArtifactKey, AxEvent>());
-    }
+	/**
+	 * The Key Constructor creates a {@link AxEvents} object with the given artifact key and creates an empty event map.
+	 *
+	 * @param key the event container key
+	 */
+	public AxEvents(final AxArtifactKey key) {
+		this(key, new TreeMap<AxArtifactKey, AxEvent>());
+	}
 
-    /**
-     * This Constructor creates an event container with all of its fields defined.
-     *
-     * @param key the event container key
-     * @param eventMap the events to be stored in the event container
-     */
-    public AxEvents(final AxArtifactKey key, final Map<AxArtifactKey, AxEvent> eventMap) {
-        super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(eventMap, "eventMap may not be null");
+	/**
+	 * This Constructor creates an event container with all of its fields defined.
+	 *
+	 * @param key the event container key
+	 * @param eventMap the events to be stored in the event container
+	 */
+	public AxEvents(final AxArtifactKey key, final Map<AxArtifactKey, AxEvent> eventMap) {
+		super();
+		Assertions.argumentNotNull(key, "key may not be null");
+		Assertions.argumentNotNull(eventMap, "eventMap may not be null");
 
-        this.key = key;
-        this.eventMap = new TreeMap<>();
-        this.eventMap.putAll(eventMap);
-    }
+		this.key = key;
+		this.eventMap = new TreeMap<>();
+		this.eventMap.putAll(eventMap);
+	}
 
-    /**
-     * When a model is unmarshalled from disk or from the database, the event map is returned as a raw hash map. This method is called by JAXB after
-     * unmarshaling and is used to convert the hash map to a {@link NavigableMap} so that it will work with the {@link AxConceptGetter} interface.
-     *
-     * @param u the unmarshaler that is unmarshaling the model
-     * @param parent the parent object of this object in the unmarshaler
-     */
-    public void afterUnmarshal(final Unmarshaller u, final Object parent) {
-        // The map must be navigable to allow name and version searching, unmarshaling returns a hash map
-        final NavigableMap<AxArtifactKey, AxEvent> navigableEventMap = new TreeMap<>();
-        navigableEventMap.putAll(eventMap);
-        eventMap = navigableEventMap;
-    }
+	/**
+	 * When a model is unmarshalled from disk or from the database, the event map is returned as a raw hash map. This method is called by JAXB after
+	 * unmarshaling and is used to convert the hash map to a {@link NavigableMap} so that it will work with the {@link AxConceptGetter} interface.
+	 *
+	 * @param u the unmarshaler that is unmarshaling the model
+	 * @param parent the parent object of this object in the unmarshaler
+	 */
+	public void afterUnmarshal(final Unmarshaller u, final Object parent) {
+		// The map must be navigable to allow name and version searching, unmarshaling returns a hash map
+		final NavigableMap<AxArtifactKey, AxEvent> navigableEventMap = new TreeMap<>();
+		navigableEventMap.putAll(eventMap);
+		eventMap = navigableEventMap;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
-     */
-    @Override
-    public AxArtifactKey getKey() {
-        return key;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
+	 */
+	@Override
+	public AxArtifactKey getKey() {
+		return key;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
-     */
-    @Override
-    public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
+	 */
+	@Override
+	public List<AxKey> getKeys() {
+		final List<AxKey> keyList = key.getKeys();
 
-        for (final AxEvent event : eventMap.values()) {
-            keyList.addAll(event.getKeys());
-        }
+		for (final AxEvent event : eventMap.values()) {
+			keyList.addAll(event.getKeys());
+		}
 
-        return keyList;
-    }
+		return keyList;
+	}
 
-    /**
-     * Sets the key of the event container.
-     *
-     * @param key the event container key
-     */
-    public void setKey(final AxArtifactKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
-        this.key = key;
-    }
+	/**
+	 * Sets the key of the event container.
+	 *
+	 * @param key the event container key
+	 */
+	public void setKey(final AxArtifactKey key) {
+		Assertions.argumentNotNull(key, "key may not be null");
+		this.key = key;
+	}
 
-    /**
-     * Gets the event map containing the events in the event container.
-     *
-     * @return the event map with all the events in the event container
-     */
-    public Map<AxArtifactKey, AxEvent> getEventMap() {
-        return eventMap;
-    }
+	/**
+	 * Gets the event map containing the events in the event container.
+	 *
+	 * @return the event map with all the events in the event container
+	 */
+	public Map<AxArtifactKey, AxEvent> getEventMap() {
+		return eventMap;
+	}
 
-    /**
-     * Sets the event map containing the events in the event container.
-     *
-     * @param eventMap the event map containing the events in the event container
-     */
-    public void setEventMap(final Map<AxArtifactKey, AxEvent> eventMap) {
-        Assertions.argumentNotNull(eventMap, "eventMap may not be null");
-        this.eventMap = new TreeMap<>();
-        this.eventMap.putAll(eventMap);
-    }
+	/**
+	 * Sets the event map containing the events in the event container.
+	 *
+	 * @param eventMap the event map containing the events in the event container
+	 */
+	public void setEventMap(final Map<AxArtifactKey, AxEvent> eventMap) {
+		Assertions.argumentNotNull(eventMap, "eventMap may not be null");
+		this.eventMap = new TreeMap<>();
+		this.eventMap.putAll(eventMap);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
-     */
-    @Override
-    public AxValidationResult validate(final AxValidationResult resultIn) {
-        AxValidationResult result = resultIn;
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
+	 */
+	@Override
+	public AxValidationResult validate(final AxValidationResult resultIn) {
+		AxValidationResult result = resultIn;
 
-        if (key.equals(AxArtifactKey.getNullKey())) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
-        }
+		if (key.equals(AxArtifactKey.getNullKey())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
+		}
 
-        result = key.validate(result);
+		result = key.validate(result);
 
-        if (eventMap.size() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "eventMap may not be empty"));
-        }
-        else {
-            for (final Entry<AxArtifactKey, AxEvent> eventEntry : eventMap.entrySet()) {
-                if (eventEntry.getKey().equals(AxArtifactKey.getNullKey())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "key on event entry " + eventEntry.getKey() + " may not be the null key"));
-                    continue;
-                }
+		if (eventMap.size() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "eventMap may not be empty"));
+		}
+		else {
+			for (final Entry<AxArtifactKey, AxEvent> eventEntry : eventMap.entrySet()) {
+				if (eventEntry.getKey().equals(AxArtifactKey.getNullKey())) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"key on event entry " + eventEntry.getKey() + " may not be the null key"));
+				}
+				else if (eventEntry.getValue() == null) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"value on event entry " + eventEntry.getKey() + " may not be null"));
+				}
+				else {
+					if (!eventEntry.getKey().equals(eventEntry.getValue().getKey())) {
+						result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+								"key on event entry key " + eventEntry.getKey() + " does not equal event value key " + eventEntry.getValue().getKey()));
+					}
 
-                if (eventEntry.getValue() == null) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "value on event entry " + eventEntry.getKey() + " may not be null"));
-                    continue;
-                }
+					result = eventEntry.getValue().validate(result);
+				}
+			}
+		}
 
-                if (!eventEntry.getKey().equals(eventEntry.getValue().getKey())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "key on event entry key " + eventEntry.getKey() + " does not equal event value key " + eventEntry.getValue().getKey()));
-                }
+		return result;
+	}
 
-                result = eventEntry.getValue().validate(result);
-            }
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
+	 */
+	@Override
+	public void clean() {
+		key.clean();
+		for (final Entry<AxArtifactKey, AxEvent> eventEntry : eventMap.entrySet()) {
+			eventEntry.getKey().clean();
+			eventEntry.getValue().clean();
+		}
+	}
 
-        return result;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(this.getClass().getSimpleName());
+		builder.append(":(");
+		builder.append("key=");
+		builder.append(key);
+		builder.append(",eventMap=");
+		builder.append(eventMap);
+		builder.append(")");
+		return builder.toString();
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
-     */
-    @Override
-    public void clean() {
-        key.clean();
-        for (final Entry<AxArtifactKey, AxEvent> eventEntry : eventMap.entrySet()) {
-            eventEntry.getKey().clean();
-            eventEntry.getValue().clean();
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 */
+	@Override
+	public Object clone() {
+		return copyTo(new AxEvents());
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
-     */
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(this.getClass().getSimpleName());
-        builder.append(":(");
-        builder.append("key=");
-        builder.append(key);
-        builder.append(",eventMap=");
-        builder.append(eventMap);
-        builder.append(")");
-        return builder.toString();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
+	 */
+	@Override
+	public Object copyTo(final Object target) {
+		Assertions.argumentNotNull(target, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxEvents());
-    }
+		final Object copyObject = target;
+		Assertions.instanceOf(copyObject, AxEvents.class);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
+		final AxEvents copy = ((AxEvents) copyObject);
+		copy.setKey((AxArtifactKey) key.clone());
+		final Map<AxArtifactKey, AxEvent> newEventMap = new TreeMap<>();
+		for (final Entry<AxArtifactKey, AxEvent> eventMapEntry : eventMap.entrySet()) {
+			newEventMap.put((AxArtifactKey) eventMapEntry.getKey().clone(), (AxEvent) eventMapEntry.getValue().clone());
+		}
+		copy.setEventMap(newEventMap);
 
-        final Object copyObject = target;
-        Assertions.instanceOf(copyObject, AxEvents.class);
+		return copyObject;
+	}
 
-        final AxEvents copy = ((AxEvents) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
-        final Map<AxArtifactKey, AxEvent> newEventMap = new TreeMap<>();
-        for (final Entry<AxArtifactKey, AxEvent> eventMapEntry : eventMap.entrySet()) {
-            newEventMap.put((AxArtifactKey) eventMapEntry.getKey().clone(), (AxEvent) eventMapEntry.getValue().clone());
-        }
-        copy.setEventMap(newEventMap);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + key.hashCode();
+		result = prime * result + eventMap.hashCode();
+		return result;
+	}
 
-        return copyObject;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + key.hashCode();
-        result = prime * result + eventMap.hashCode();
-        return result;
-    }
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
+		final AxEvents other = (AxEvents) obj;
+		if (!key.equals(other.key)) {
+			return false;
+		}
+		return eventMap.equals(other.eventMap);
+	}
 
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final AxConcept otherObj) {
+		if (otherObj == null) {
+			return -1;
+		}
+		if (this == otherObj) {
+			return 0;
+		}
+		if (getClass() != otherObj.getClass()) {
+			return this.hashCode() - otherObj.hashCode();
+		}
 
-        final AxEvents other = (AxEvents) obj;
-        if (!key.equals(other.key)) {
-            return false;
-        }
-        return eventMap.equals(other.eventMap);
-    }
+		final AxEvents other = (AxEvents) otherObj;
+		if (!key.equals(other.key)) {
+			return key.compareTo(other.key);
+		}
+		if (!eventMap.equals(other.eventMap)) {
+			return (eventMap.hashCode() - other.eventMap.hashCode());
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(final AxConcept otherObj) {
-        if (otherObj == null) {
-            return -1;
-        }
-        if (this == otherObj) {
-            return 0;
-        }
-        if (getClass() != otherObj.getClass()) {
-            return this.hashCode() - otherObj.hashCode();
-        }
+		return 0;
+	}
 
-        final AxEvents other = (AxEvents) otherObj;
-        if (!key.equals(other.key)) {
-            return key.compareTo(other.key);
-        }
-        if (!eventMap.equals(other.eventMap)) {
-            return (eventMap.hashCode() - other.eventMap.hashCode());
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey)
+	 */
+	@Override
+	public AxEvent get(final AxArtifactKey conceptKey) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).get(conceptKey);
+	}
 
-        return 0;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String)
+	 */
+	@Override
+	public AxEvent get(final String conceptKeyName) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).get(conceptKeyName);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey)
-     */
-    @Override
-    public AxEvent get(final AxArtifactKey conceptKey) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).get(conceptKey);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public AxEvent get(final String conceptKeyName, final String conceptKeyVersion) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).get(conceptKeyName, conceptKeyVersion);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String)
-     */
-    @Override
-    public AxEvent get(final String conceptKeyName) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).get(conceptKeyName);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String)
+	 */
+	@Override
+	public Set<AxEvent> getAll(final String conceptKeyName) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).getAll(conceptKeyName);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String, java.lang.String)
-     */
-    @Override
-    public AxEvent get(final String conceptKeyName, final String conceptKeyVersion) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).get(conceptKeyName, conceptKeyVersion);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String)
-     */
-    @Override
-    public Set<AxEvent> getAll(final String conceptKeyName) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).getAll(conceptKeyName);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String, java.lang.String)
-     */
-    @Override
-    public Set<AxEvent> getAll(final String conceptKeyName, final String conceptKeyVersion) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).getAll(conceptKeyName, conceptKeyVersion);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Set<AxEvent> getAll(final String conceptKeyName, final String conceptKeyVersion) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxEvent>) eventMap).getAll(conceptKeyName, conceptKeyVersion);
+	}
 }

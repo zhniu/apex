@@ -133,7 +133,7 @@ public class AxContextModel extends AxModel {
      */
     @Override
     public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) super.getKeys();
+        final List<AxKey> keyList = super.getKeys();
 
         keyList.addAll(schemas.getKeys());
         keyList.addAll(albums.getKeys());

@@ -23,9 +23,9 @@ import com.ericsson.apex.model.utilities.Assertions;
  * This class writes an Apex concept to a string.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <CONCEPT> the type of Apex concept to write to a string, must be a sub class of {@link AxConcept}
+ * @param <C> the type of Apex concept to write to a string, must be a sub class of {@link AxConcept}
  */
-public class ApexModelStringWriter<CONCEPT extends AxConcept> {
+public class ApexModelStringWriter<C extends AxConcept> {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexModelStringWriter.class);
 
     // Should concepts being written to files be valid
@@ -49,7 +49,7 @@ public class ApexModelStringWriter<CONCEPT extends AxConcept> {
      * @return The string with the concept
      * @throws ApexException thrown on errors
      */
-    public String writeString(final CONCEPT concept, final Class<CONCEPT> rootConceptClass, final boolean jsonFlag) throws ApexException {
+    public String writeString(final C concept, final Class<C> rootConceptClass, final boolean jsonFlag) throws ApexException {
         Assertions.argumentNotNull(concept, "concept may not be null");
         
         if (jsonFlag) {
@@ -68,10 +68,10 @@ public class ApexModelStringWriter<CONCEPT extends AxConcept> {
      * @return The string with the concept
      * @throws ApexException thrown on errors
      */
-    public String writeXMLString(final CONCEPT concept, final Class<CONCEPT> rootConceptClass) throws ApexException {
+    public String writeXMLString(final C concept, final Class<C> rootConceptClass) throws ApexException {
         LOGGER.debug("running writeXMLString . . .");
 
-        final ApexModelWriter<CONCEPT> conceptWriter = new ApexModelWriter<>(rootConceptClass);
+        final ApexModelWriter<C> conceptWriter = new ApexModelWriter<>(rootConceptClass);
         conceptWriter.setValidateFlag(validateFlag);
         conceptWriter.getCDataFieldSet().add("description");
         conceptWriter.getCDataFieldSet().add("logic");
@@ -99,10 +99,10 @@ public class ApexModelStringWriter<CONCEPT extends AxConcept> {
      * @return The string with the concept
      * @throws ApexException thrown on errors
      */
-    public String writeJSONString(final CONCEPT concept, final Class<CONCEPT> rootConceptClass) throws ApexException {
+    public String writeJSONString(final C concept, final Class<C> rootConceptClass) throws ApexException {
         LOGGER.debug("running writeJSONString . . .");
 
-        final ApexModelWriter<CONCEPT> conceptWriter = new ApexModelWriter<>(rootConceptClass);
+        final ApexModelWriter<C> conceptWriter = new ApexModelWriter<>(rootConceptClass);
         conceptWriter.setJsonOutput(true);
         conceptWriter.setValidateFlag(validateFlag);
 

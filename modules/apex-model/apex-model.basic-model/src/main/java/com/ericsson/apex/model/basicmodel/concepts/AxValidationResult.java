@@ -33,7 +33,7 @@ public class AxValidationResult {
          * Errors were detected on a concept (such as referenced but undefined concepts) of a nature that will affect the use of the concept.
          */
         INVALID
-    };
+    }
 
     // The actual verification result
     private ValidationResult validationResult = ValidationResult.VALID;

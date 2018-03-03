@@ -23,14 +23,14 @@ import com.ericsson.apex.model.utilities.Assertions;
  * This class is used to save Apex models to file in XML or JSON format.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <MODEL> the type of Apex model to save to file, must be a sub class of {@link AxModel}
+ * @param <M> the type of Apex model to save to file, must be a sub class of {@link AxModel}
  */
-public class ApexModelSaver<MODEL extends AxModel> {
+public class ApexModelSaver<M extends AxModel> {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexModelSaver.class);
 
     // The class of the model and the model to write to disk
-    private final Class<MODEL> rootModelClass;
-    private final MODEL model;
+    private final Class<M> rootModelClass;
+    private final M model;
 
     // The path into which to write the models
     private final String writePath;
@@ -44,7 +44,7 @@ public class ApexModelSaver<MODEL extends AxModel> {
      * @param writePath the directory to which models will be written. The name of the written model will be the Model Name for its key with the suffix
      *            {@code .xml} or {@code .json}.
      */
-    public ApexModelSaver(final Class<MODEL> rootModelClass, final MODEL model, final String writePath) {
+    public ApexModelSaver(final Class<M> rootModelClass, final M model, final String writePath) {
         Assertions.argumentNotNull(rootModelClass, "argument rootModelClass may not be null");
         Assertions.argumentNotNull(model, "argument model may not be null");
         Assertions.argumentNotNull(writePath, "writePath rootModelClass may not be null");
@@ -63,8 +63,8 @@ public class ApexModelSaver<MODEL extends AxModel> {
         LOGGER.debug("running apexModelWriteXML . . .");
 
         // Write the file to disk
-        final File xmlFile = new File(writePath + "/" + model.getKey().getName() + ".xml");
-        new ApexModelFileWriter<MODEL>(true).apexModelWriteXMLFile(model, rootModelClass, xmlFile.getPath());
+        final File xmlFile = new File(writePath + File.separatorChar + model.getKey().getName() + ".xml");
+        new ApexModelFileWriter<M>(true).apexModelWriteXMLFile(model, rootModelClass, xmlFile.getPath());
 
         LOGGER.debug("ran apexModelWriteXML");
     }
@@ -78,8 +78,8 @@ public class ApexModelSaver<MODEL extends AxModel> {
         LOGGER.debug("running apexModelWriteJSON . . .");
 
         // Write the file to disk
-        final File jsonFile = new File(writePath + "/" + model.getKey().getName() + ".json");
-        new ApexModelFileWriter<MODEL>(true).apexModelWriteJSONFile(model, rootModelClass, jsonFile.getPath());
+        final File jsonFile = new File(writePath + File.separatorChar + model.getKey().getName() + ".json");
+        new ApexModelFileWriter<M>(true).apexModelWriteJSONFile(model, rootModelClass, jsonFile.getPath());
 
         LOGGER.debug("ran apexModelWriteJSON");
     }

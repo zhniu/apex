@@ -203,7 +203,7 @@ public class PolicyAnalysisResult {
         for (final Entry<? extends AxKey, Set<AxKey>> usageEntry : usageMap.entrySet()) {
             builder.append(" ");
             builder.append(usageEntry.getKey().getID());
-            if (usageEntry.getValue().size() == 0) {
+            if (usageEntry.getValue().isEmpty()) {
                 builder.append(" (unused)\n");
                 continue;
             }
@@ -228,7 +228,7 @@ public class PolicyAnalysisResult {
         final Set<AxArtifactKey> usedKeySet = new TreeSet<>();
 
         for (final Entry<AxArtifactKey, Set<AxKey>> usageEntry : usageMap.entrySet()) {
-            if (usageEntry.getValue().size() > 0) {
+            if (!usageEntry.getValue().isEmpty()) {
                 usedKeySet.add(usageEntry.getKey());
             }
         }
@@ -246,7 +246,7 @@ public class PolicyAnalysisResult {
         final Set<AxArtifactKey> usedKeySet = new TreeSet<>();
 
         for (final Entry<AxArtifactKey, Set<AxKey>> usageEntry : usageMap.entrySet()) {
-            if (usageEntry.getValue().size() == 0) {
+            if (usageEntry.getValue().isEmpty()) {
                 usedKeySet.add(usageEntry.getKey());
             }
         }

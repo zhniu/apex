@@ -27,6 +27,10 @@ import java.io.InputStreamReader;
 public abstract class TextFileUtils {
     private static final int READER_CHAR_BUFFER_SIZE_4096 = 4096;
 
+    private TextFileUtils() {
+    		// This class cannot be initialized
+    }
+    
     /**
      * Method to return the contents of a text file as a string.
      *

@@ -14,12 +14,12 @@ package com.ericsson.apex.model.utilities.comparison;
  * This class is used to template key differences for bulk key comparisons in models. It performs a difference check between two keys.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <KEY> the generic type
+ * @param <K> the generic type
  */
-public class KeyDifference<KEY> {
+public class KeyDifference<K> {
     // The keys being compared
-    private KEY leftKey;
-    private KEY rightKey;
+    private K leftKey;
+    private K rightKey;
 
     /**
      * Constructor used to set the keys being compared.
@@ -27,7 +27,7 @@ public class KeyDifference<KEY> {
      * @param leftKey the left key that is being compared
      * @param rightKey the right key that is being compared
      */
-    public KeyDifference(final KEY leftKey, final KEY rightKey) {
+    public KeyDifference(final K leftKey, final K rightKey) {
         this.leftKey = leftKey;
         this.rightKey = rightKey;
     }
@@ -37,7 +37,7 @@ public class KeyDifference<KEY> {
      *
      * @return the left key
      */
-    public KEY getLeftKey() {
+    public K getLeftKey() {
         return leftKey;
     }
 
@@ -46,7 +46,7 @@ public class KeyDifference<KEY> {
      *
      * @return the right key
      */
-    public KEY getRightKey() {
+    public K getRightKey() {
         return rightKey;
     }
 

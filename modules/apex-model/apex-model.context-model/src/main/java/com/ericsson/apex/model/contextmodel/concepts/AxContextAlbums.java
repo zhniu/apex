@@ -56,350 +56,348 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxContextAlbums", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "albums" })
 
 public final class AxContextAlbums extends AxConcept implements AxConceptGetter<AxContextAlbum> {
-    private static final long serialVersionUID = -4844259809024470975L;
+	private static final long serialVersionUID = -4844259809024470975L;
 
-    @EmbeddedId
-    @XmlElement(name = "key", required = true)
-    private AxArtifactKey key;
+	@EmbeddedId
+	@XmlElement(name = "key", required = true)
+	private AxArtifactKey key;
 
-    // @formatter:off
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            joinColumns = {
-                    @JoinColumn(name = "contextName", referencedColumnName = "name"),
-                    @JoinColumn(name = "contextVersion", referencedColumnName = "version")
-            })
-    @XmlElement(name = "albums", required = true)
-    private Map<AxArtifactKey, AxContextAlbum> albums;
-    // @formatter:on
+	// @formatter:off
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			joinColumns = {
+					@JoinColumn(name = "contextName", referencedColumnName = "name"),
+					@JoinColumn(name = "contextVersion", referencedColumnName = "version")
+			})
+	@XmlElement(name = "albums", required = true)
+	private Map<AxArtifactKey, AxContextAlbum> albums;
+	// @formatter:on
 
-    /**
-     * The Default Constructor creates a {@link AxContextAlbums} object with a null artifact key and creates an empty context album map.
-     */
-    public AxContextAlbums() {
-        this(new AxArtifactKey());
-    }
+	/**
+	 * The Default Constructor creates a {@link AxContextAlbums} object with a null artifact key and creates an empty context album map.
+	 */
+	public AxContextAlbums() {
+		this(new AxArtifactKey());
+	}
 
-    /**
-     * The Key Constructor creates a {@link AxContextAlbums} object with the given artifact key and creates an empty context album map.
-     *
-     * @param key the key of the context album container
-     */
-    public AxContextAlbums(final AxArtifactKey key) {
-        this(key, new TreeMap<AxArtifactKey, AxContextAlbum>());
-    }
+	/**
+	 * The Key Constructor creates a {@link AxContextAlbums} object with the given artifact key and creates an empty context album map.
+	 *
+	 * @param key the key of the context album container
+	 */
+	public AxContextAlbums(final AxArtifactKey key) {
+		this(key, new TreeMap<AxArtifactKey, AxContextAlbum>());
+	}
 
-    /**
-     * Constructor that creates the context album map with the given albums and key.
-     *
-     * @param key the key of the context album container
-     * @param albums the context albums to place in this context album container
-     */
-    public AxContextAlbums(final AxArtifactKey key, final Map<AxArtifactKey, AxContextAlbum> albums) {
-        super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(albums, "albums may not be null");
+	/**
+	 * Constructor that creates the context album map with the given albums and key.
+	 *
+	 * @param key the key of the context album container
+	 * @param albums the context albums to place in this context album container
+	 */
+	public AxContextAlbums(final AxArtifactKey key, final Map<AxArtifactKey, AxContextAlbum> albums) {
+		super();
+		Assertions.argumentNotNull(key, "key may not be null");
+		Assertions.argumentNotNull(albums, "albums may not be null");
 
-        this.key = key;
-        this.albums = new TreeMap<>();
-        this.albums.putAll(albums);
-    }
+		this.key = key;
+		this.albums = new TreeMap<>();
+		this.albums.putAll(albums);
+	}
 
-    /**
-     * When a model is unmarshalled from disk or from the database, the context album map is returned as a raw hash map. This method is called by JAXB after
-     * unmarshaling and is used to convert the hash map to a {@link NavigableMap} so that it will work with the {@link AxConceptGetter} interface.
-     *
-     * @param u the unmarshaler that is unmarshaling the model
-     * @param parent the parent object of this object in the unmarshaler
-     */
-    public void afterUnmarshal(final Unmarshaller u, final Object parent) {
-        // The map must be navigable to allow name and version searching, unmarshaling returns a hash map
-        final NavigableMap<AxArtifactKey, AxContextAlbum> navigableAlbums = new TreeMap<>();
-        navigableAlbums.putAll(albums);
-        albums = navigableAlbums;
-    }
+	/**
+	 * When a model is unmarshalled from disk or from the database, the context album map is returned as a raw hash map. This method is called by JAXB after
+	 * unmarshaling and is used to convert the hash map to a {@link NavigableMap} so that it will work with the {@link AxConceptGetter} interface.
+	 *
+	 * @param u the unmarshaler that is unmarshaling the model
+	 * @param parent the parent object of this object in the unmarshaler
+	 */
+	public void afterUnmarshal(final Unmarshaller u, final Object parent) {
+		// The map must be navigable to allow name and version searching, unmarshaling returns a hash map
+		final NavigableMap<AxArtifactKey, AxContextAlbum> navigableAlbums = new TreeMap<>();
+		navigableAlbums.putAll(albums);
+		albums = navigableAlbums;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
-     */
-    @Override
-    public AxArtifactKey getKey() {
-        return key;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
+	 */
+	@Override
+	public AxArtifactKey getKey() {
+		return key;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
-     */
-    @Override
-    public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
+	 */
+	@Override
+	public List<AxKey> getKeys() {
+		final List<AxKey> keyList = key.getKeys();
 
-        for (final AxContextAlbum contextAlbum : albums.values()) {
-            keyList.addAll(contextAlbum.getKeys());
-        }
+		for (final AxContextAlbum contextAlbum : albums.values()) {
+			keyList.addAll(contextAlbum.getKeys());
+		}
 
-        return keyList;
-    }
+		return keyList;
+	}
 
-    /**
-     * Sets the key of the context album container.
-     *
-     * @param key the context album container key
-     */
-    public void setKey(final AxArtifactKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
-        this.key = key;
-    }
+	/**
+	 * Sets the key of the context album container.
+	 *
+	 * @param key the context album container key
+	 */
+	public void setKey(final AxArtifactKey key) {
+		Assertions.argumentNotNull(key, "key may not be null");
+		this.key = key;
+	}
 
-    /**
-     * Gets the map of context albums from the context album container.
-     *
-     * @return the context album map
-     */
-    public Map<AxArtifactKey, AxContextAlbum> getAlbumsMap() {
-        return albums;
-    }
+	/**
+	 * Gets the map of context albums from the context album container.
+	 *
+	 * @return the context album map
+	 */
+	public Map<AxArtifactKey, AxContextAlbum> getAlbumsMap() {
+		return albums;
+	}
 
-    /**
-     * Sets the map of context albums from the context album container.
-     *
-     * @param albumsMap the map of context albums to place in the container
-     */
-    public void setAlbumsMap(final Map<AxArtifactKey, AxContextAlbum> albumsMap) {
-        Assertions.argumentNotNull(albums, "albums may not be null");
-        this.albums = new TreeMap<>();
-        this.albums.putAll(albumsMap);
-    }
+	/**
+	 * Sets the map of context albums from the context album container.
+	 *
+	 * @param albumsMap the map of context albums to place in the container
+	 */
+	public void setAlbumsMap(final Map<AxArtifactKey, AxContextAlbum> albumsMap) {
+		Assertions.argumentNotNull(albums, "albums may not be null");
+		this.albums = new TreeMap<>();
+		this.albums.putAll(albumsMap);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
-     */
-    @Override
-    public void clean() {
-        key.clean();
-        for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
-            contextAlbumEntry.getKey().clean();
-            contextAlbumEntry.getValue().clean();
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
+	 */
+	@Override
+	public void clean() {
+		key.clean();
+		for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
+			contextAlbumEntry.getKey().clean();
+			contextAlbumEntry.getValue().clean();
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
-     */
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(this.getClass().getSimpleName());
-        builder.append(":(");
-        builder.append(this.getClass().getSimpleName());
-        builder.append(":(");
-        builder.append("key=");
-        builder.append(key);
-        builder.append(",albums=");
-        builder.append(albums);
-        builder.append(")");
-        return builder.toString();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(this.getClass().getSimpleName());
+		builder.append(":(");
+		builder.append(this.getClass().getSimpleName());
+		builder.append(":(");
+		builder.append("key=");
+		builder.append(key);
+		builder.append(",albums=");
+		builder.append(albums);
+		builder.append(")");
+		return builder.toString();
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
-     */
-    @Override
-    public AxValidationResult validate(final AxValidationResult resultIn) {
-        AxValidationResult result = resultIn;
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
+	 */
+	@Override
+	public AxValidationResult validate(final AxValidationResult resultIn) {
+		AxValidationResult result = resultIn;
 
-        if (key.equals(AxArtifactKey.getNullKey())) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
-        }
+		if (key.equals(AxArtifactKey.getNullKey())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
+		}
 
-        result = key.validate(result);
+		result = key.validate(result);
 
-        if (albums.size() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "albums are empty"));
-        }
-        else {
-            for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
-                if (contextAlbumEntry.getKey().equals(AxArtifactKey.getNullKey())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "key on context album entry " + contextAlbumEntry.getKey() + " may not be the null key"));
-                    continue;
-                }
+		if (albums.size() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "albums are empty"));
+		}
+		else {
+			for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
+				if (contextAlbumEntry.getKey().equals(AxArtifactKey.getNullKey())) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"key on context album entry " + contextAlbumEntry.getKey() + " may not be the null key"));
+				}
+				else if (contextAlbumEntry.getValue() == null) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"value on context album entry " + contextAlbumEntry.getKey() + " may not be null"));
+				}
+				else {
+					if (!contextAlbumEntry.getKey().equals(contextAlbumEntry.getValue().getKey())) {
+						result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on context album entry key "
+								+ contextAlbumEntry.getKey() + " does not equal context album value key " + contextAlbumEntry.getValue().getKey()));
+					}
 
-                if (contextAlbumEntry.getValue() == null) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "value on context album entry " + contextAlbumEntry.getKey() + " may not be null"));
-                    continue;
-                }
+					result = contextAlbumEntry.getValue().validate(result);
+				}
+			}
+		}
 
-                if (!contextAlbumEntry.getKey().equals(contextAlbumEntry.getValue().getKey())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on context album entry key "
-                            + contextAlbumEntry.getKey() + " does not equal context album value key " + contextAlbumEntry.getValue().getKey()));
-                }
+		return result;
+	}
 
-                result = contextAlbumEntry.getValue().validate(result);
-            }
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 */
+	@Override
+	public Object clone() {
+		return copyTo(new AxContextAlbums());
+	}
 
-        return result;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
+	 */
+	@Override
+	public Object copyTo(final Object target) {
+		Assertions.argumentNotNull(target, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxContextAlbums());
-    }
+		final Object copyObject = target;
+		Assertions.instanceOf(copyObject, AxContextAlbums.class);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
+		final AxContextAlbums copy = ((AxContextAlbums) copyObject);
+		copy.setKey(key);
+		final Map<AxArtifactKey, AxContextAlbum> newContextAlbum = new TreeMap<>();
+		for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
+			newContextAlbum.put((AxArtifactKey) contextAlbumEntry.getKey().clone(), (AxContextAlbum) contextAlbumEntry.getValue().clone());
+		}
+		copy.setAlbumsMap(newContextAlbum);
 
-        final Object copyObject = target;
-        Assertions.instanceOf(copyObject, AxContextAlbums.class);
+		return copyObject;
+	}
 
-        final AxContextAlbums copy = ((AxContextAlbums) copyObject);
-        copy.setKey(key);
-        final Map<AxArtifactKey, AxContextAlbum> newContextAlbum = new TreeMap<>();
-        for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
-            newContextAlbum.put((AxArtifactKey) contextAlbumEntry.getKey().clone(), (AxContextAlbum) contextAlbumEntry.getValue().clone());
-        }
-        copy.setAlbumsMap(newContextAlbum);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + key.hashCode();
+		result = prime * result + albums.hashCode();
+		return result;
+	}
 
-        return copyObject;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + key.hashCode();
-        result = prime * result + albums.hashCode();
-        return result;
-    }
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
+		final AxContextAlbums other = (AxContextAlbums) obj;
+		if (!key.equals(other.key)) {
+			return false;
+		}
+		return albums.equals(other.albums);
+	}
 
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final AxConcept otherObj) {
+		if (otherObj == null) {
+			return -1;
+		}
+		if (this == otherObj) {
+			return 0;
+		}
+		if (getClass() != otherObj.getClass()) {
+			return this.hashCode() - otherObj.hashCode();
+		}
 
-        final AxContextAlbums other = (AxContextAlbums) obj;
-        if (!key.equals(other.key)) {
-            return false;
-        }
-        return albums.equals(other.albums);
-    }
+		final AxContextAlbums other = (AxContextAlbums) otherObj;
+		if (!key.equals(other.key)) {
+			return key.compareTo(other.key);
+		}
+		if (!albums.equals(other.albums)) {
+			return (albums.hashCode() - other.albums.hashCode());
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(final AxConcept otherObj) {
-        if (otherObj == null) {
-            return -1;
-        }
-        if (this == otherObj) {
-            return 0;
-        }
-        if (getClass() != otherObj.getClass()) {
-            return this.hashCode() - otherObj.hashCode();
-        }
+		return 0;
+	}
 
-        final AxContextAlbums other = (AxContextAlbums) otherObj;
-        if (!key.equals(other.key)) {
-            return key.compareTo(other.key);
-        }
-        if (!albums.equals(other.albums)) {
-            return (albums.hashCode() - other.albums.hashCode());
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey)
+	 */
+	@Override
+	public AxContextAlbum get(final AxArtifactKey conceptKey) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).get(conceptKey);
+	}
 
-        return 0;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String)
+	 */
+	@Override
+	public AxContextAlbum get(final String conceptKeyName) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).get(conceptKeyName);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey)
-     */
-    @Override
-    public AxContextAlbum get(final AxArtifactKey conceptKey) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).get(conceptKey);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public AxContextAlbum get(final String conceptKeyName, final String conceptKeyVersion) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).get(conceptKeyName, conceptKeyVersion);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String)
-     */
-    @Override
-    public AxContextAlbum get(final String conceptKeyName) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).get(conceptKeyName);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String)
+	 */
+	@Override
+	public Set<AxContextAlbum> getAll(final String conceptKeyName) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).getAll(conceptKeyName);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#get(java.lang.String, java.lang.String)
-     */
-    @Override
-    public AxContextAlbum get(final String conceptKeyName, final String conceptKeyVersion) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).get(conceptKeyName, conceptKeyVersion);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String)
-     */
-    @Override
-    public Set<AxContextAlbum> getAll(final String conceptKeyName) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).getAll(conceptKeyName);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String, java.lang.String)
-     */
-    @Override
-    public Set<AxContextAlbum> getAll(final String conceptKeyName, final String conceptKeyVersion) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).getAll(conceptKeyName, conceptKeyVersion);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConceptGetter#getAll(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Set<AxContextAlbum> getAll(final String conceptKeyName, final String conceptKeyVersion) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxContextAlbum>) albums).getAll(conceptKeyName, conceptKeyVersion);
+	}
 }

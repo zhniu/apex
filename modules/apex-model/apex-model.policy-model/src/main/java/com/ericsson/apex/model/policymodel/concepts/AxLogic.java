@@ -56,7 +56,14 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxLogic", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "logicFlavour", "logic" })
 
 public class AxLogic extends AxConcept {
-    private static final long serialVersionUID = -4260562004005697328L;
+	private static final long serialVersionUID = -4260562004005697328L;
+
+    private static final String WHITESPACE_REGEXP = "\\s+$";
+
+	private static final String LOGIC_FLAVOUR_TOKEN = "logicFlavour";
+	private static final String KEY_NULL_MESSAGE = "key may not be null";
+	private static final String LOGIC_FLAVOUR_NULL_MESSAGE = "logicFlavour may not be null";
+	private static final String LOGIC_NULL_MESSAGE = "logic may not be null";
 
     /** Regular expression that specifies the allowed characters in logic flavour tokens. */
     public static final String LOGIC_FLAVOUR_REGEXP = "[A-Za-z0-9\\-_]+";
@@ -72,7 +79,7 @@ public class AxLogic extends AxConcept {
     @XmlJavaTypeAdapter(AxReferenceKeyAdapter.class)
     private AxReferenceKey key;
 
-    @Column(name = "logicFlavour")
+    @Column(name = LOGIC_FLAVOUR_TOKEN)
     @XmlElement(required = true)
     private String logicFlavour = LOGIC_FLAVOUR_UNDEFINED;
 
@@ -119,13 +126,13 @@ public class AxLogic extends AxConcept {
      */
     public AxLogic(final AxReferenceKey key, final String logicFlavour, final String logic) {
         super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(logicFlavour, "logicFlavour may not be null");
-        Assertions.argumentNotNull(logic, "logic may not be null");
+        Assertions.argumentNotNull(key, KEY_NULL_MESSAGE);
+        Assertions.argumentNotNull(logicFlavour, LOGIC_FLAVOUR_NULL_MESSAGE);
+        Assertions.argumentNotNull(logic, LOGIC_NULL_MESSAGE);
 
         this.key = key;
-        this.logicFlavour = Assertions.validateStringParameter("logicFlavour", logicFlavour, LOGIC_FLAVOUR_REGEXP);
-        this.logic = logic.replaceAll("\\s+$", "");
+        this.logicFlavour = Assertions.validateStringParameter(LOGIC_FLAVOUR_TOKEN, logicFlavour, LOGIC_FLAVOUR_REGEXP);
+        this.logic = logic.replaceAll(WHITESPACE_REGEXP, "");
     }
 
     /**
@@ -137,12 +144,12 @@ public class AxLogic extends AxConcept {
      */
     public AxLogic(final AxReferenceKey key, final String logicFlavour, final AxLogicReader logicReader) {
         super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(logicFlavour, "logicFlavour may not be null");
+        Assertions.argumentNotNull(key, KEY_NULL_MESSAGE);
+        Assertions.argumentNotNull(logicFlavour, LOGIC_FLAVOUR_NULL_MESSAGE);
         Assertions.argumentNotNull(logicReader, "logicReader may not be null");
 
         this.key = key;
-        this.logicFlavour = Assertions.validateStringParameter("logicFlavour", logicFlavour, LOGIC_FLAVOUR_REGEXP);
+        this.logicFlavour = Assertions.validateStringParameter(LOGIC_FLAVOUR_TOKEN, logicFlavour, LOGIC_FLAVOUR_REGEXP);
         logic = logicReader.readLogic(this);
     }
 
@@ -172,7 +179,7 @@ public class AxLogic extends AxConcept {
      * @param key the key
      */
     public void setKey(final AxReferenceKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
+        Assertions.argumentNotNull(key, KEY_NULL_MESSAGE);
         this.key = key;
     }
 
@@ -191,7 +198,7 @@ public class AxLogic extends AxConcept {
      * @param logicFlavour the logic flavour
      */
     public void setLogicFlavour(final String logicFlavour) {
-        this.logicFlavour = Assertions.validateStringParameter("logicFlavour", logicFlavour, LOGIC_FLAVOUR_REGEXP);
+        this.logicFlavour = Assertions.validateStringParameter(LOGIC_FLAVOUR_TOKEN, logicFlavour, LOGIC_FLAVOUR_REGEXP);
     }
 
     /**
@@ -209,8 +216,8 @@ public class AxLogic extends AxConcept {
      * @param logic the logic
      */
     public void setLogic(final String logic) {
-        Assertions.argumentNotNull(logic, "logic may not be null");
-        this.logic = logic.replaceAll("\\s+$", "");
+        Assertions.argumentNotNull(logic, LOGIC_NULL_MESSAGE);
+        this.logic = logic.replaceAll(WHITESPACE_REGEXP, "");
     }
 
     /*
@@ -228,18 +235,18 @@ public class AxLogic extends AxConcept {
 
         result = key.validate(result);
 
-        if (logicFlavour.replaceAll("\\s+$", "").length() == 0 || logicFlavour.equals(LOGIC_FLAVOUR_UNDEFINED)) {
+        if (logicFlavour.replaceAll(WHITESPACE_REGEXP, "").length() == 0 || logicFlavour.equals(LOGIC_FLAVOUR_UNDEFINED)) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "logic flavour is not defined"));
         }
 
         try {
-            Assertions.validateStringParameter("logicFlavour", logicFlavour, LOGIC_FLAVOUR_REGEXP);
+            Assertions.validateStringParameter(LOGIC_FLAVOUR_TOKEN, logicFlavour, LOGIC_FLAVOUR_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "logic flavour invalid-" + e.getMessage()));
         }
 
-        if (logic.replaceAll("\\s+$", "").length() == 0) {
+        if (logic.replaceAll(WHITESPACE_REGEXP, "").length() == 0) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "no logic specified, logic may not be blank"));
         }
 
@@ -256,8 +263,8 @@ public class AxLogic extends AxConcept {
         if (key != null) {
             key.clean();
         }
-        logicFlavour = Assertions.validateStringParameter("logicFlavour", logicFlavour, LOGIC_FLAVOUR_REGEXP);
-        logic = logic.replaceAll("\\s+$", "");
+        logicFlavour = Assertions.validateStringParameter(LOGIC_FLAVOUR_TOKEN, logicFlavour, LOGIC_FLAVOUR_REGEXP);
+        logic = logic.replaceAll(WHITESPACE_REGEXP, "");
     }
 
     /*
@@ -304,8 +311,8 @@ public class AxLogic extends AxConcept {
 
         final AxLogic copy = ((AxLogic) copyObject);
         copy.setKey((AxReferenceKey) key.clone());
-        copy.setLogicFlavour(new String(logicFlavour));
-        copy.setLogic(new String(logic));
+        copy.setLogicFlavour(logicFlavour);
+        copy.setLogic(logic);
 
         return copyObject;
     }
@@ -351,10 +358,7 @@ public class AxLogic extends AxConcept {
         }
         final String thislogic = CDATAConditioner.clean(logic).replaceAll("\n", "");
         final String otherlogic = CDATAConditioner.clean(other.logic).replaceAll("\n", "");
-        if (!thislogic.equals(otherlogic)) {
-            return false;
-        }
-        return true;
+        return thislogic.equals(otherlogic);
     }
 
     /*

@@ -219,15 +219,15 @@ public class TestApexEditorAPIPolicy {
 
         result = apexModel.deletePolicyState("@£$$", "0.0.2", "Trigger04");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.FAILED));
-        assertEquals(apexModel.listPolicyState("MyTestPolicy", null, null).getMessages().size(), 4);
+        assertEquals(4, apexModel.listPolicyState("MyTestPolicy", null, null).getMessages().size());
         result = apexModel.deletePolicyState("MyTestPolicy", "0.0.2", "Trigger04");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
-        assertEquals(apexModel.listPolicyState("MyTestPolicy", null, null).getMessages().size(), 4);
+        assertEquals(4, apexModel.listPolicyState("MyTestPolicy", null, null).getMessages().size());
         result = apexModel.deletePolicyState("MyTestPolicy", null, "CState");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
         result = apexModel.deletePolicyState("MyTestPolicy", null, "ZState");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
-        assertEquals(apexModel.listPolicyState("MyTestPolicy", null, null).getMessages().size(), 3);
+        assertEquals(3, apexModel.listPolicyState("MyTestPolicy", null, null).getMessages().size());
         result = apexModel.deletePolicyState("MyTestPolicy", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
         result = apexModel.listPolicyState("MyTestPolicy", null, null);
@@ -843,25 +843,25 @@ public class TestApexEditorAPIPolicy {
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.FAILED));
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", null, "TestState1", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(result.getMessages().size(), 2);
+        assertEquals(2, result.getMessages().size());
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.2", "TestState1", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(result.getMessages().size(), 2);
+        assertEquals(2, result.getMessages().size());
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "contextAlbum0", null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(result.getMessages().size(), 1);
+        assertEquals(1, result.getMessages().size());
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "contextAlbum0", "0.0.1");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(result.getMessages().size(), 1);
+        assertEquals(1, result.getMessages().size());
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "contextAlbum0", "0.0.2");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "AContextMap04", null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "contextAlbum0", "0.0.1");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(result.getMessages().size(), 1);
+        assertEquals(1, result.getMessages().size());
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "contextAlbum0", "1.0.1");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
 
@@ -903,14 +903,14 @@ public class TestApexEditorAPIPolicy {
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
         result = apexModel.deletePolicyStateContextRef("MyTestPolicy", null, "TestState1", "contextAlbum1", "0.0.1");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(result.getMessages().size(), 1);
+        assertEquals(1, result.getMessages().size());
         result=apexModel.createPolicyStateContextRef("MyTestPolicy", "0.0.1", "TestState1", "contextAlbum0", "0.0.1");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
         result = apexModel.deletePolicyStateContextRef("MyTestPolicy", null, "TestState1", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
         result = apexModel.deletePolicyStateContextRef("MyTestPolicy", null, "TestState1", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
-        assertEquals(result.getMessages().size(), 1);
+        assertEquals(1, result.getMessages().size());
         result = apexModel.listPolicyStateContextRef("MyTestPolicy", null, "TestState1", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
    

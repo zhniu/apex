@@ -60,9 +60,8 @@ public final class TypeBuilder {
      *
      * @param type the java Type as a string
      * @return the java Type
-     * @throws IllegalArgumentException thrown on illegal types
      */
-    public static Class<?> getJavaTypeClass(final String type) throws IllegalArgumentException {
+    public static Class<?> getJavaTypeClass(final String type) {
         return getJavaTypeClass(build(type));
     }
 
@@ -71,9 +70,8 @@ public final class TypeBuilder {
      *
      * @param type the java Type as a Type
      * @return the java Type
-     * @throws IllegalArgumentException the illegal argument exception
      */
-    public static Class<?> getJavaTypeClass(final Type type) throws IllegalArgumentException {
+    public static Class<?> getJavaTypeClass(final Type type) {
         if (type instanceof Class<?>) {
             return (Class<?>) type;
         }
@@ -93,9 +91,8 @@ public final class TypeBuilder {
      *
      * @param type the Java Type
      * @return the parameters of the java Type
-     * @throws IllegalArgumentException the illegal argument exception
      */
-    public static Type[] getJavaTypeParameters(final Type type) throws IllegalArgumentException {
+    public static Type[] getJavaTypeParameters(final Type type) {
         if (type instanceof Class<?>) {
             return new Type[0];
         }

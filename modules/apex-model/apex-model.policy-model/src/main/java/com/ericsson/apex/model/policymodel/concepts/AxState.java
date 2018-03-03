@@ -754,7 +754,7 @@ public class AxState extends AxConcept {
 
         final Map<String, AxStateOutput> newStateOutputs = new TreeMap<>();
         for (final Entry<String, AxStateOutput> stateOutputEntry : stateOutputs.entrySet()) {
-            newStateOutputs.put(new String(stateOutputEntry.getKey()), (AxStateOutput) stateOutputEntry.getValue().clone());
+            newStateOutputs.put(stateOutputEntry.getKey(), (AxStateOutput) stateOutputEntry.getValue().clone());
         }
         copy.setStateOutputs(newStateOutputs);
 
@@ -768,7 +768,7 @@ public class AxState extends AxConcept {
 
         final Map<String, AxStateFinalizerLogic> newStateFinalizerLogicMap = new TreeMap<>();
         for (final Entry<String, AxStateFinalizerLogic> stateFinalizerLogicEntry : stateFinalizerLogicMap.entrySet()) {
-            newStateFinalizerLogicMap.put(new String(stateFinalizerLogicEntry.getKey()), new AxStateFinalizerLogic(stateFinalizerLogicEntry.getValue()));
+            newStateFinalizerLogicMap.put(stateFinalizerLogicEntry.getKey(), new AxStateFinalizerLogic(stateFinalizerLogicEntry.getValue()));
         }
         copy.setStateFinalizerLogicMap(newStateFinalizerLogicMap);
 

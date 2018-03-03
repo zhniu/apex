@@ -85,21 +85,21 @@ public class PolicyAnalyser {
         // Only analyse tasks used by this policy
         for (final Entry<AxArtifactKey, Set<AxKey>> taskUsageEntry : result.getTaskUsage().entrySet()) {
             // If the usage set is empty, then we skip the task as its not used in the policy
-            if (taskUsageEntry.getValue().size() > 0) {
+            if (!taskUsageEntry.getValue().isEmpty()) {
                 analyseTask(policyModel.getTasks().getTaskMap().get(taskUsageEntry.getKey()), result);
             }
         }
 
         // Only analyse events used by this policy, same approach as for tasks
         for (final Entry<AxArtifactKey, Set<AxKey>> eventUsageEntry : result.getEventUsage().entrySet()) {
-            if (eventUsageEntry.getValue().size() > 0) {
+            if (!eventUsageEntry.getValue().isEmpty()) {
                 analyseEvent(policyModel.getEvents().getEventMap().get(eventUsageEntry.getKey()), result);
             }
         }
 
         // Only analyse context albums used by this policy, same approach as for tasks
         for (final Entry<AxArtifactKey, Set<AxKey>> contextAlbumUsageEntry : result.getContextAlbumUsage().entrySet()) {
-            if (contextAlbumUsageEntry.getValue().size() > 0) {
+            if (!contextAlbumUsageEntry.getValue().isEmpty()) {
                 final AxContextAlbum contextAlbum = policyModel.getAlbums().get(contextAlbumUsageEntry.getKey());
                 result.getContextSchemaUsage().get(contextAlbum.getItemSchema()).add(contextAlbum.getKey());
             }

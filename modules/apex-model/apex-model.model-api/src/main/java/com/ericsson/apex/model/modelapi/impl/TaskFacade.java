@@ -134,7 +134,7 @@ public class TaskFacade {
     public ApexAPIResult listTask(final String name, final String version) {
         try {
             Set<AxTask> taskSet = apexModel.getPolicyModel().getTasks().getAll(name, version);
-            if (name != null && taskSet.size() == 0) {
+            if (name != null && taskSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -171,7 +171,7 @@ public class TaskFacade {
             }
 
             Set<AxTask> taskSet = apexModel.getPolicyModel().getTasks().getAll(name, version);
-            if (taskSet.size() == 0) {
+            if (taskSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -198,7 +198,7 @@ public class TaskFacade {
     public ApexAPIResult validateTask(final String name, final String version) {
         try {
             Set<AxTask> taskSet = apexModel.getPolicyModel().getTasks().getAll(name, version);
-            if (taskSet.size() == 0) {
+            if (taskSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -807,7 +807,7 @@ public class TaskFacade {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept " + name + ':' + version + " does not exist");
             }
 
-            Set<AxArtifactKey> deleteSet = new TreeSet<AxArtifactKey>();
+            Set<AxArtifactKey> deleteSet = new TreeSet<>();
 
             for (AxArtifactKey albumKey : task.getContextAlbumReferences()) {
                 if (contextAlbumName == null) {
@@ -824,7 +824,7 @@ public class TaskFacade {
                 }
             }
 
-            if (deleteSet.size() == 0) {
+            if (deleteSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST,
                         "concept " + contextAlbumName + ':' + contextAlbumVersion + " does not exist");
             }

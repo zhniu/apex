@@ -43,9 +43,9 @@ import com.ericsson.apex.model.utilities.TextFileUtils;
  * This class reads an Apex concept from an XML file into a Java Apex Concept {@link AxConcept}.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <CONCEPT> the type of Apex concept to read, must be a sub class of {@link AxConcept}
+ * @param <C> the type of Apex concept to read, must be a sub class of {@link AxConcept}
  */
-public class ApexModelReader<CONCEPT extends AxConcept> {
+public class ApexModelReader<C extends AxConcept> {
     // Get a reference to the logger
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexModelReader.class);
 
@@ -56,7 +56,7 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
     // and has a close bracket
 
     //  The root class of the concept we are reading
-    private final Class<CONCEPT> rootConceptClass;
+    private final Class<C> rootConceptClass;
 
     // The unmarshaller for the Apex concepts
     private Unmarshaller unmarshaller = null;
@@ -70,7 +70,7 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
      * @param rootConceptClass the root concept class for concept reading
      * @throws ApexModelException the apex concept reader exception
      */
-    public ApexModelReader(final Class<CONCEPT> rootConceptClass) throws ApexModelException {
+    public ApexModelReader(final Class<C> rootConceptClass) throws ApexModelException {
         // Save the root concept class
         this.rootConceptClass = rootConceptClass;
 
@@ -94,7 +94,7 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
      * @param validate whether to perform validation by default
      * @throws ApexModelException the apex concept reader exception
      */
-    public ApexModelReader(final Class<CONCEPT> rootConceptClass, final boolean validate) throws ApexModelException {
+    public ApexModelReader(final Class<C> rootConceptClass, final boolean validate) throws ApexModelException {
         this(rootConceptClass);
         this.validateFlag = validate;
     }
@@ -132,7 +132,7 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
      * @return the Apex concept
      * @throws ApexModelException on reading exceptions
      */
-    public CONCEPT read(final InputStream apexConceptStream) throws ApexModelException {
+    public C read(final InputStream apexConceptStream) throws ApexModelException {
         Assertions.argumentNotNull(apexConceptStream, "concept stream may not be null");
 
         return read(new BufferedReader(new InputStreamReader(apexConceptStream)));
@@ -145,7 +145,7 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
      * @return the Apex concept
      * @throws ApexModelException on reading exceptions
      */
-    public CONCEPT read(final BufferedReader apexConceptReader) throws ApexModelException {
+    public C read(final BufferedReader apexConceptReader) throws ApexModelException {
         Assertions.argumentNotNull(apexConceptReader, "concept reader may not be null");
 
         LOGGER.entry("reading Apex concept into a String . . .");
@@ -169,7 +169,7 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
      * @return the Apex concept
      * @throws ApexModelException on reading exceptions
      */
-    public CONCEPT read(final String apexConceptString) throws ApexModelException {
+    public C read(final String apexConceptString) throws ApexModelException {
         Assertions.argumentNotNull(apexConceptString, "concept string may not be null");
 
         LOGGER.entry("reading Apex concept from string . . .");
@@ -180,13 +180,13 @@ public class ApexModelReader<CONCEPT extends AxConcept> {
         setInputType(apexString);
 
         // The Apex Concept
-        CONCEPT apexConcept = null;
+        C apexConcept = null;
 
         // Use JAXB to read and verify the Apex concept XML file
         try {
             // Load the configuration file
             final StreamSource source = new StreamSource(new StringReader(apexString));
-            final JAXBElement<CONCEPT> rootElement = unmarshaller.unmarshal(source, rootConceptClass);
+            final JAXBElement<C> rootElement = unmarshaller.unmarshal(source, rootConceptClass);
             apexConcept = rootElement.getValue();
         }
         catch (final JAXBException e) {

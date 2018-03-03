@@ -30,10 +30,8 @@ public final class Assertions {
      * @param parameterValue the string parameter value
      * @param pattern The regular expression
      * @return the trimmed string
-     * @throws IllegalArgumentException if the string does not match the regular expression
      */
-    public static String validateStringParameter(final String parameterName, final String parameterValue, final String pattern)
-            throws IllegalArgumentException {
+    public static String validateStringParameter(final String parameterName, final String parameterValue, final String pattern) {
         argumentNotNull(parameterName, "parameter name is null");
         argumentNotNull(parameterValue, "parameter \"" + parameterName + "\" is null");
         argumentNotNull(pattern, "parameter pattern is null");
@@ -54,9 +52,8 @@ public final class Assertions {
      * @param <T> the generic type of the argument to check
      * @param value the value of the type
      * @param message the error message to issue
-     * @throws IllegalArgumentException if the incoming value is null
      */
-    public static <T> void argumentNotNull(final T value, final String message) throws IllegalArgumentException {
+    public static <T> void argumentNotNull(final T value, final String message) {
         if (value == null) {
             throw new IllegalArgumentException(message);
         }
@@ -67,9 +64,8 @@ public final class Assertions {
      *
      * @param value the value to check if false
      * @param message the error message to issue
-     * @throws IllegalArgumentException if the incoming value is false
      */
-    public static void argumentNotFalse(final boolean value, final String message) throws IllegalArgumentException {
+    public static void argumentNotFalse(final boolean value, final String message) {
         if (!value) {
             throw new IllegalArgumentException(message);
         }
@@ -89,8 +85,7 @@ public final class Assertions {
         if (value == null) {
             // Instantiate the exception and throw it
             try {
-                final E exceptionInstance = exceptionClass.getConstructor(String.class).newInstance(message);
-                throw exceptionInstance;
+                throw exceptionClass.getConstructor(String.class).newInstance(message);
             }
             catch (final Exception errorException) {
                 throw new IllegalArgumentException(message, errorException);
@@ -111,8 +106,7 @@ public final class Assertions {
         if (!value) {
             // Instantiate the exception and throw it
             try {
-                final E exceptionInstance = exceptionClass.getConstructor(String.class).newInstance(message);
-                throw exceptionInstance;
+                throw exceptionClass.getConstructor(String.class).newInstance(message);
             }
             catch (final Exception errorException) {
                 throw new IllegalArgumentException(message, errorException);

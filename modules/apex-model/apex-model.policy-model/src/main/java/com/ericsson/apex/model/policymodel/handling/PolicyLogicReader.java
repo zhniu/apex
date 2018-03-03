@@ -107,7 +107,7 @@ public class PolicyLogicReader implements AxLogicReader {
         String fullLogicFilePath = logicPackage.replaceAll("\\.", "/");
 
         // Now, the logic should be in a sub directory for the logic executor type
-        fullLogicFilePath += "/" + axLogic.getLogicFlavour().toString().toLowerCase();
+        fullLogicFilePath += "/" + axLogic.getLogicFlavour().toLowerCase();
 
         // Check if we're using the default logic
         if (defaultLogic != null) {
@@ -125,7 +125,7 @@ public class PolicyLogicReader implements AxLogicReader {
         }
 
         // Now get the type of executor to find the extension of the file
-        fullLogicFilePath += "." + axLogic.getLogicFlavour().toString().toLowerCase();
+        fullLogicFilePath += "." + axLogic.getLogicFlavour().toLowerCase();
 
         final String logicString = ResourceUtils.getResourceAsString(fullLogicFilePath);
 

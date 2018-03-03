@@ -23,9 +23,9 @@ import com.ericsson.apex.model.basicmodel.concepts.AxModel;
  * This class writes an Apex model to a file.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <MODEL> the type of Apex model to write to file, must be a sub class of {@link AxModel}
+ * @param <M> the type of Apex model to write to file, must be a sub class of {@link AxModel}
  */
-public class ApexModelFileWriter<MODEL extends AxModel> {
+public class ApexModelFileWriter<M extends AxModel> {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexModelFileWriter.class);
 
     // Should models being written to files be valid
@@ -48,11 +48,11 @@ public class ApexModelFileWriter<MODEL extends AxModel> {
      * @param modelFileName The name of the file to write to
      * @throws ApexException thrown on errors
      */
-    public void apexModelWriteXMLFile(final MODEL model, final Class<MODEL> rootModelClass, final String modelFileName)
+    public void apexModelWriteXMLFile(final M model, final Class<M> rootModelClass, final String modelFileName)
             throws ApexException {
         LOGGER.debug("running apexModelWriteXMLFile . . .");
 
-        final ApexModelWriter<MODEL> modelWriter = new ApexModelWriter<>(rootModelClass);
+        final ApexModelWriter<M> modelWriter = new ApexModelWriter<>(rootModelClass);
         modelWriter.setValidateFlag(validateFlag);
         modelWriter.getCDataFieldSet().add("description");
         modelWriter.getCDataFieldSet().add("logic");
@@ -71,11 +71,11 @@ public class ApexModelFileWriter<MODEL extends AxModel> {
      * @param modelFileName The name of the file to write to
      * @throws ApexException thrown on errors
      */
-    public void apexModelWriteJSONFile(final MODEL model, final Class<MODEL> rootModelClass, final String modelFileName)
+    public void apexModelWriteJSONFile(final M model, final Class<M> rootModelClass, final String modelFileName)
             throws ApexException {
         LOGGER.debug("running apexModelWriteJSONFile . . .");
 
-        final ApexModelWriter<MODEL> modelWriter = new ApexModelWriter<>(rootModelClass);
+        final ApexModelWriter<M> modelWriter = new ApexModelWriter<>(rootModelClass);
         modelWriter.setJsonOutput(true);
         modelWriter.setValidateFlag(validateFlag);
 
@@ -110,7 +110,7 @@ public class ApexModelFileWriter<MODEL extends AxModel> {
      * @param modelFileName the file name of the file to write to
      * @throws ApexException on exceptions writing the model
      */
-    private void writeModelFile(final MODEL model, final ApexModelWriter<MODEL> modelWriter, final String modelFileName) throws ApexException {
+    private void writeModelFile(final M model, final ApexModelWriter<M> modelWriter, final String modelFileName) throws ApexException {
         final File modelFile = new File(modelFileName);
         if (!modelFile.getParentFile().exists() && !modelFile.getParentFile().mkdirs()) {
             LOGGER.warn("could not create directory  " + modelFile.getParentFile());

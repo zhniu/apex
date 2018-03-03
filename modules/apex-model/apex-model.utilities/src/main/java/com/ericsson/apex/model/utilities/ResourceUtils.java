@@ -171,6 +171,7 @@ public abstract class ResourceUtils {
             }
         }
         catch (final Exception ignore) {
+        		// We ignore exceptions here and catch them below
         }
 
         try {

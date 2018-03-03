@@ -245,7 +245,7 @@ public class AxTask extends AxConcept {
      * @return the raw input fields that the task expects
      */
     public Map<String, AxField> getRawInputFields() {
-        return new TreeMap<String, AxField>(inputFields);
+        return new TreeMap<>(inputFields);
     }
 
     /**
@@ -303,7 +303,7 @@ public class AxTask extends AxConcept {
      * @return the raw output fields as a tree map
      */
     public Map<String, AxField> getRawOutputFields() {
-        return new TreeMap<String, AxField>(outputFields);
+        return new TreeMap<>(outputFields);
     }
 
     /**
@@ -566,19 +566,19 @@ public class AxTask extends AxConcept {
 
         final Map<String, AxInputField> newInputFields = new TreeMap<>();
         for (final Entry<String, AxInputField> inputFieldEntry : inputFields.entrySet()) {
-            newInputFields.put(new String(inputFieldEntry.getKey()), new AxInputField(inputFieldEntry.getValue()));
+            newInputFields.put(inputFieldEntry.getKey(), new AxInputField(inputFieldEntry.getValue()));
         }
         copy.setInputFields(newInputFields);
 
         final Map<String, AxOutputField> newOutputFields = new TreeMap<>();
         for (final Entry<String, AxOutputField> outputFieldEntry : outputFields.entrySet()) {
-            newOutputFields.put(new String(outputFieldEntry.getKey()), new AxOutputField(outputFieldEntry.getValue()));
+            newOutputFields.put(outputFieldEntry.getKey(), new AxOutputField(outputFieldEntry.getValue()));
         }
         copy.setOutputFields(newOutputFields);
 
         final Map<String, AxTaskParameter> newTaskParameter = new TreeMap<>();
         for (final Entry<String, AxTaskParameter> taskParameterEntry : taskParameters.entrySet()) {
-            newTaskParameter.put(new String(taskParameterEntry.getKey()), (AxTaskParameter) taskParameterEntry.getValue().clone());
+            newTaskParameter.put(taskParameterEntry.getKey(), (AxTaskParameter) taskParameterEntry.getValue().clone());
         }
         copy.setTaskParameters(newTaskParameter);
 

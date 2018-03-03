@@ -40,34 +40,34 @@ public abstract class ModelService {
     /**
      * Register a model with the model service.
      *
-     * @param <MODEL> the generic type
+     * @param <M> the generic type
      * @param modelClass the class of the model, used to index the model
      * @param model The model
      */
-    public static <MODEL extends AxConcept> void registerModel(final Class<MODEL> modelClass, final MODEL model) {
+    public static <M extends AxConcept> void registerModel(final Class<M> modelClass, final M model) {
         modelMap.put(modelClass, model);
     }
 
     /**
      * Remove a model from the model service.
      *
-     * @param <MODEL> the generic type
+     * @param <M> the generic type
      * @param modelClass the class of the model, used to index the model
      */
-    public static <MODEL extends AxConcept> void deregisterModel(final Class<MODEL> modelClass) {
+    public static <M extends AxConcept> void deregisterModel(final Class<M> modelClass) {
         modelMap.remove(modelClass);
     }
 
     /**
      * Get a model from the model service.
      *
-     * @param <MODEL> the generic type
+     * @param <M> the generic type
      * @param modelClass the class of the model, used to index the model
      * @return The model
      */
     @SuppressWarnings("unchecked")
-    public static <MODEL extends AxConcept> MODEL getModel(final Class<MODEL> modelClass) {
-        final MODEL model = (MODEL) modelMap.get(modelClass);
+    public static <M extends AxConcept> M getModel(final Class<M> modelClass) {
+        final M model = (M) modelMap.get(modelClass);
 
         if (model == null) {
             throw new ApexRuntimeException("Model for " + modelClass.getCanonicalName() + " not found in model service");
@@ -79,11 +79,11 @@ public abstract class ModelService {
     /**
      * Check if a model is defined on the model service.
      *
-     * @param <MODEL> the generic type
+     * @param <M> the generic type
      * @param modelClass the class of the model, used to index the model
      * @return true if the model is defined
      */
-    public static <MODEL extends AxConcept> boolean existsModel(final Class<MODEL> modelClass) {
+    public static <M extends AxConcept> boolean existsModel(final Class<M> modelClass) {
         return modelMap.get(modelClass) != null;
     }
 

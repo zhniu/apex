@@ -34,16 +34,16 @@ import com.ericsson.apex.model.utilities.ResourceUtils;
  * use in unit tests in modules that define Apex models.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <MODEL> the generic type
+ * @param <M> the generic type
  */
-public class TestApexModel<MODEL extends AxModel> {
+public class TestApexModel<M extends AxModel> {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(TestApexModel.class);
 
     // The root model class that specifies the root to import and export from
-    private final Class<MODEL> rootModelClass;
+    private final Class<M> rootModelClass;
 
     // The class that provides the model
-    private TestApexModelCreator<MODEL> modelCreator = null;
+    private TestApexModelCreator<M> modelCreator = null;
 
     /**
      * Constructor, defines the subclass of {@link AxModel} that is being tested and the {@link TestApexModelCreator} object that is used to generate Apex
@@ -52,7 +52,7 @@ public class TestApexModel<MODEL extends AxModel> {
      * @param rootModelClass the Apex model class, a sub class of {@link AxModel}
      * @param modelCreator the @link TestApexModelCreator} that will generate Apex models of various types for testing
      */
-    public TestApexModel(final Class<MODEL> rootModelClass, final TestApexModelCreator<MODEL> modelCreator) {
+    public TestApexModel(final Class<M> rootModelClass, final TestApexModelCreator<M> modelCreator) {
         this.rootModelClass = rootModelClass;
         this.modelCreator = modelCreator;
     }
@@ -62,7 +62,7 @@ public class TestApexModel<MODEL extends AxModel> {
      *
      * @return the test Apex model
      */
-    public final MODEL getModel() {
+    public final M getModel() {
         return modelCreator.getModel();
     }
 
@@ -74,7 +74,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final void testApexModelWriteReadXML() throws ApexException {
         LOGGER.debug("running testApexModelWriteReadXML . . .");
 
-        final MODEL model = modelCreator.getModel();
+        final M model = modelCreator.getModel();
 
         // Write the file to disk
         File xmlFile;
@@ -87,14 +87,14 @@ public class TestApexModel<MODEL extends AxModel> {
             LOGGER.warn("error creating temporary file for Apex model", e);
             throw new ApexException("error creating temporary file for Apex model", e);
         }
-        new ApexModelFileWriter<MODEL>(true).apexModelWriteXMLFile(model, rootModelClass, xmlFile.getPath());
+        new ApexModelFileWriter<M>(true).apexModelWriteXMLFile(model, rootModelClass, xmlFile.getPath());
 
         // Read the file from disk
-        final ApexModelReader<MODEL> modelReader = new ApexModelReader<>(rootModelClass);
+        final ApexModelReader<M> modelReader = new ApexModelReader<>(rootModelClass);
 
         try {
             final URL apexModelURL = ResourceUtils.getLocalFile(xmlFile.getAbsolutePath());
-            final MODEL fileModel = modelReader.read(apexModelURL.openStream());
+            final M fileModel = modelReader.read(apexModelURL.openStream());
             if (!model.equals(fileModel)) {
                 LOGGER.warn("test model does not equal model read from XML file " + xmlFile.getAbsolutePath());
                 throw new ApexException("test model does not equal model read from XML file " + xmlFile.getAbsolutePath());
@@ -105,7 +105,7 @@ public class TestApexModel<MODEL extends AxModel> {
             throw new ApexException("error processing file " + xmlFile.getAbsolutePath(), e);
         }
 
-        final ApexModelWriter<MODEL> modelWriter = new ApexModelWriter<>(rootModelClass);
+        final ApexModelWriter<M> modelWriter = new ApexModelWriter<>(rootModelClass);
         modelWriter.getCDataFieldSet().add("description");
         modelWriter.getCDataFieldSet().add("logic");
         modelWriter.getCDataFieldSet().add("uiLogic");
@@ -113,7 +113,7 @@ public class TestApexModel<MODEL extends AxModel> {
         final ByteArrayOutputStream baOutputStream = new ByteArrayOutputStream();
         modelWriter.write(model, baOutputStream);
         final ByteArrayInputStream baInputStream = new ByteArrayInputStream(baOutputStream.toByteArray());
-        final MODEL byteArrayModel = modelReader.read(baInputStream);
+        final M byteArrayModel = modelReader.read(baInputStream);
         if (!model.equals(byteArrayModel)) {
             LOGGER.warn("test model does not equal XML marshalled and unmarshalled model");
             throw new ApexException("test model does not equal XML marshalled and unmarshalled model");
@@ -130,7 +130,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final void testApexModelWriteReadJSON() throws ApexException {
         LOGGER.debug("running testApexModelWriteReadJSON . . .");
 
-        final MODEL model = modelCreator.getModel();
+        final M model = modelCreator.getModel();
 
         // Write the file to disk
         File jsonFile;
@@ -142,14 +142,14 @@ public class TestApexModel<MODEL extends AxModel> {
             LOGGER.warn("error creating temporary file for Apex model", e);
             throw new ApexException("error creating temporary file for Apex model", e);
         }
-        new ApexModelFileWriter<MODEL>(true).apexModelWriteJSONFile(model, rootModelClass, jsonFile.getPath());
+        new ApexModelFileWriter<M>(true).apexModelWriteJSONFile(model, rootModelClass, jsonFile.getPath());
 
         // Read the file from disk
-        final ApexModelReader<MODEL> modelReader = new ApexModelReader<>(rootModelClass);
+        final ApexModelReader<M> modelReader = new ApexModelReader<>(rootModelClass);
 
         try {
             final URL apexModelURL = ResourceUtils.getLocalFile(jsonFile.getAbsolutePath());
-            final MODEL fileModel = modelReader.read(apexModelURL.openStream());
+            final M fileModel = modelReader.read(apexModelURL.openStream());
             if (!model.equals(fileModel)) {
                 LOGGER.warn("test model does not equal model read from XML file " + jsonFile.getAbsolutePath());
                 throw new ApexException("test model does not equal model read from XML file " + jsonFile.getAbsolutePath());
@@ -160,13 +160,13 @@ public class TestApexModel<MODEL extends AxModel> {
             throw new ApexException("error processing file " + jsonFile.getAbsolutePath(), e);
         }
 
-        final ApexModelWriter<MODEL> modelWriter = new ApexModelWriter<>(rootModelClass);
+        final ApexModelWriter<M> modelWriter = new ApexModelWriter<>(rootModelClass);
         modelWriter.setJsonOutput(true);
 
         final ByteArrayOutputStream baOutputStream = new ByteArrayOutputStream();
         modelWriter.write(model, baOutputStream);
         final ByteArrayInputStream baInputStream = new ByteArrayInputStream(baOutputStream.toByteArray());
-        final MODEL byteArrayModel = modelReader.read(baInputStream);
+        final M byteArrayModel = modelReader.read(baInputStream);
         if (!model.equals(byteArrayModel)) {
             LOGGER.warn("test model does not equal JSON marshalled and unmarshalled model");
             throw new ApexException("test model does not equal JSON marshalled and unmarshalled model");
@@ -184,13 +184,13 @@ public class TestApexModel<MODEL extends AxModel> {
     public final void testApexModelWriteReadJPA(final DAOParameters daoParameters) throws ApexException {
         LOGGER.debug("running testApexModelWriteReadJPA . . .");
 
-        final MODEL model = modelCreator.getModel();
+        final M model = modelCreator.getModel();
 
         final ApexDao apexDao = new ApexDaoFactory().createApexDao(daoParameters);
         apexDao.init(daoParameters);
 
         apexDao.create(model);
-        final MODEL dbJPAModel = apexDao.get(rootModelClass, model.getKey());
+        final M dbJPAModel = apexDao.get(rootModelClass, model.getKey());
         apexDao.close();
 
         if (!model.equals(dbJPAModel)) {
@@ -210,7 +210,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final AxValidationResult testApexModelValid() throws ApexException {
         LOGGER.debug("running testApexModelVaid . . .");
 
-        final MODEL model = modelCreator.getModel();
+        final M model = modelCreator.getModel();
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (!result.isValid()) {
@@ -231,7 +231,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final AxValidationResult testApexModelVaidateMalstructured() throws ApexException {
         LOGGER.debug("running testApexModelVaidateMalstructured . . .");
 
-        final MODEL model = modelCreator.getMalstructuredModel();
+        final M model = modelCreator.getMalstructuredModel();
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (result.isValid()) {
@@ -252,7 +252,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final AxValidationResult testApexModelVaidateObservation() throws ApexException {
         LOGGER.debug("running testApexModelVaidateObservation . . .");
 
-        final MODEL model = modelCreator.getObservationModel();
+        final M model = modelCreator.getObservationModel();
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (!result.isValid()) {
@@ -278,7 +278,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final AxValidationResult testApexModelVaidateWarning() throws ApexException {
         LOGGER.debug("running testApexModelVaidateWarning . . .");
 
-        final MODEL model = modelCreator.getWarningModel();
+        final M model = modelCreator.getWarningModel();
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (!result.isValid()) {
@@ -304,7 +304,7 @@ public class TestApexModel<MODEL extends AxModel> {
     public final AxValidationResult testApexModelVaidateInvalidModel() throws ApexException {
         LOGGER.debug("running testApexModelVaidateInvalidModel . . .");
 
-        final MODEL model = modelCreator.getInvalidModel();
+        final M model = modelCreator.getInvalidModel();
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (result.isValid()) {

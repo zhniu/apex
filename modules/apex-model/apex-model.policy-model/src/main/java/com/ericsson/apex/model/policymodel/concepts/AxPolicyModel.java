@@ -339,8 +339,8 @@ public class AxPolicyModel extends AxModel {
         result = tasks.validate(result);
         result = policies.validate(result);
 
-        result = validateEventKeys(result);
-        result = validateContextAlbumKeys(result);
+        validateEventKeys(result);
+        validateContextAlbumKeys(result);
         result = validateTaskKeys(result);
         result = validatePolicyKeys(result);
 

@@ -50,380 +50,378 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxKeyInformation", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "keyInfoMap" })
 
 public class AxKeyInformation extends AxConcept implements AxConceptGetter<AxKeyInfo> {
-    private static final long serialVersionUID = -2746380769017043888L;
+	private static final long serialVersionUID = -2746380769017043888L;
 
-    @EmbeddedId
-    @XmlElement(name = "key", required = true)
-    private AxArtifactKey key;
+	@EmbeddedId
+	@XmlElement(name = "key", required = true)
+	private AxArtifactKey key;
 
-    // @formatter:off
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            joinColumns = {
-                    @JoinColumn(name = "keyInfoMapName", referencedColumnName = "name"),
-                    @JoinColumn(name = "keyInfoMapVersion", referencedColumnName = "version"),
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "keyInfoName", referencedColumnName = "name"),
-                    @JoinColumn(name = "keyInfoVersion", referencedColumnName = "version")
-            })
-    private Map<AxArtifactKey, AxKeyInfo> keyInfoMap;
-    // @formatter:on
+	// @formatter:off
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			joinColumns = {
+					@JoinColumn(name = "keyInfoMapName", referencedColumnName = "name"),
+					@JoinColumn(name = "keyInfoMapVersion", referencedColumnName = "version"),
+			},
+			inverseJoinColumns = {
+					@JoinColumn(name = "keyInfoName", referencedColumnName = "name"),
+					@JoinColumn(name = "keyInfoVersion", referencedColumnName = "version")
+			})
+	private Map<AxArtifactKey, AxKeyInfo> keyInfoMap;
+	// @formatter:on
 
-    /**
-     * The Default Constructor creates this concept with a null key.
-     */
-    public AxKeyInformation() {
-        this(new AxArtifactKey());
-    }
+	/**
+	 * The Default Constructor creates this concept with a null key.
+	 */
+	public AxKeyInformation() {
+		this(new AxArtifactKey());
+	}
 
-    /**
-     * Constructor to create this concept with the specified key.
-     *
-     * @param key the key of the concept
-     */
-    public AxKeyInformation(final AxArtifactKey key) {
-        this(key, new TreeMap<AxArtifactKey, AxKeyInfo>());
-    }
+	/**
+	 * Constructor to create this concept with the specified key.
+	 *
+	 * @param key the key of the concept
+	 */
+	public AxKeyInformation(final AxArtifactKey key) {
+		this(key, new TreeMap<AxArtifactKey, AxKeyInfo>());
+	}
 
-    /**
-     * Constructor to create this concept and set all its fields.
-     *
-     * @param key the key of the concept
-     * @param keyInfoMap the key info map of the concept
-     */
-    public AxKeyInformation(final AxArtifactKey key, final Map<AxArtifactKey, AxKeyInfo> keyInfoMap) {
-        super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(keyInfoMap, "keyInfoMap may not be null");
+	/**
+	 * Constructor to create this concept and set all its fields.
+	 *
+	 * @param key the key of the concept
+	 * @param keyInfoMap the key info map of the concept
+	 */
+	public AxKeyInformation(final AxArtifactKey key, final Map<AxArtifactKey, AxKeyInfo> keyInfoMap) {
+		super();
+		Assertions.argumentNotNull(key, "key may not be null");
+		Assertions.argumentNotNull(keyInfoMap, "keyInfoMap may not be null");
 
-        this.key = key;
-        this.keyInfoMap = new TreeMap<>();
-        this.keyInfoMap.putAll(keyInfoMap);
-    }
+		this.key = key;
+		this.keyInfoMap = new TreeMap<>();
+		this.keyInfoMap.putAll(keyInfoMap);
+	}
 
-    /**
-     * When a model is unmarshalled from disk or from the database, the key information map is returned as a raw Hash Map. This method is called by JAXB
-     * after unmarshaling and is used to convert the hash map to a {@link NavigableMap} so that it will work with the {@link AxConceptGetter} interface.
-     *
-     * @param u the unmarshaler that is unmarshaling the model
-     * @param parent the parent object of this object in the unmarshaler
-     */
-    public void afterUnmarshal(final Unmarshaller u, final Object parent) {
-        // The map must be navigable to allow name and version searching,
-        // unmarshaling returns a hash map
-        final NavigableMap<AxArtifactKey, AxKeyInfo> navigablekeyInfoMap = new TreeMap<>();
-        navigablekeyInfoMap.putAll(keyInfoMap);
-        keyInfoMap = navigablekeyInfoMap;
-    }
+	/**
+	 * When a model is unmarshalled from disk or from the database, the key information map is returned as a raw Hash Map. This method is called by JAXB
+	 * after unmarshaling and is used to convert the hash map to a {@link NavigableMap} so that it will work with the {@link AxConceptGetter} interface.
+	 *
+	 * @param u the unmarshaler that is unmarshaling the model
+	 * @param parent the parent object of this object in the unmarshaler
+	 */
+	public void afterUnmarshal(final Unmarshaller u, final Object parent) {
+		// The map must be navigable to allow name and version searching,
+		// unmarshaling returns a hash map
+		final NavigableMap<AxArtifactKey, AxKeyInfo> navigablekeyInfoMap = new TreeMap<>();
+		navigablekeyInfoMap.putAll(keyInfoMap);
+		keyInfoMap = navigablekeyInfoMap;
+	}
 
-    /**
-     * This method generates default key information for all keys found in the concept passed in as a parameter that do not already have key information.
-     *
-     * @param concept the concept for which to generate key information
-     */
-    public void generateKeyInfo(final AxConcept concept) {
-        for (final AxKey axKey : concept.getKeys()) {
-            if (!(axKey instanceof AxArtifactKey)) {
-                continue;
-            }
+	/**
+	 * This method generates default key information for all keys found in the concept passed in as a parameter that do not already have key information.
+	 *
+	 * @param concept the concept for which to generate key information
+	 */
+	public void generateKeyInfo(final AxConcept concept) {
+		for (final AxKey axKey : concept.getKeys()) {
+			if (!(axKey instanceof AxArtifactKey)) {
+				continue;
+			}
 
-            final AxArtifactKey artifactKey = (AxArtifactKey) axKey;
-            if (!keyInfoMap.containsKey(artifactKey)) {
-                final AxKeyInfo keyInfo = new AxKeyInfo(artifactKey);
-                //generate a reproducible UUID
-                keyInfo.setUuid(AxKeyInfo.generateReproducibleUUID(keyInfo.getID() + keyInfo.getDescription()));
-                keyInfoMap.put(artifactKey, keyInfo);
-            }
-        }
-    }
+			final AxArtifactKey artifactKey = (AxArtifactKey) axKey;
+			if (!keyInfoMap.containsKey(artifactKey)) {
+				final AxKeyInfo keyInfo = new AxKeyInfo(artifactKey);
+				//generate a reproducible UUID
+				keyInfo.setUuid(AxKeyInfo.generateReproducibleUUID(keyInfo.getID() + keyInfo.getDescription()));
+				keyInfoMap.put(artifactKey, keyInfo);
+			}
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
-     */
-    @Override
-    public AxArtifactKey getKey() {
-        return key;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
+	 */
+	@Override
+	public AxArtifactKey getKey() {
+		return key;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
-     */
-    @Override
-    public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
-        keyList.addAll(keyInfoMap.keySet());
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
+	 */
+	@Override
+	public List<AxKey> getKeys() {
+		final List<AxKey> keyList = key.getKeys();
+		keyList.addAll(keyInfoMap.keySet());
 
-        return keyList;
-    }
+		return keyList;
+	}
 
-    /**
-     * Sets the key of this concept.
-     *
-     * @param key the key of this concept
-     */
-    public void setKey(final AxArtifactKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
-        this.key = key;
-    }
+	/**
+	 * Sets the key of this concept.
+	 *
+	 * @param key the key of this concept
+	 */
+	public void setKey(final AxArtifactKey key) {
+		Assertions.argumentNotNull(key, "key may not be null");
+		this.key = key;
+	}
 
-    /**
-     * Gets the key info map of this concept.
-     *
-     * @return the key info map of this concept
-     */
-    public Map<AxArtifactKey, AxKeyInfo> getKeyInfoMap() {
-        return keyInfoMap;
-    }
+	/**
+	 * Gets the key info map of this concept.
+	 *
+	 * @return the key info map of this concept
+	 */
+	public Map<AxArtifactKey, AxKeyInfo> getKeyInfoMap() {
+		return keyInfoMap;
+	}
 
-    /**
-     * Sets the key info map of this concept.
-     *
-     * @param keyInfoMap the key info map of this concept
-     */
-    public void setKeyInfoMap(final Map<AxArtifactKey, AxKeyInfo> keyInfoMap) {
-        Assertions.argumentNotNull(keyInfoMap, "keyInfoMap may not be null");
-        this.keyInfoMap = new TreeMap<>();
-        this.keyInfoMap.putAll(keyInfoMap);
-    }
+	/**
+	 * Sets the key info map of this concept.
+	 *
+	 * @param keyInfoMap the key info map of this concept
+	 */
+	public void setKeyInfoMap(final Map<AxArtifactKey, AxKeyInfo> keyInfoMap) {
+		Assertions.argumentNotNull(keyInfoMap, "keyInfoMap may not be null");
+		this.keyInfoMap = new TreeMap<>();
+		this.keyInfoMap.putAll(keyInfoMap);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com. ericsson.apex.model.basicmodel.concepts.AxValidationResult)
-     */
-    @Override
-    public AxValidationResult validate(final AxValidationResult resultIn) {
-        AxValidationResult result = resultIn;
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com. ericsson.apex.model.basicmodel.concepts.AxValidationResult)
+	 */
+	@Override
+	public AxValidationResult validate(final AxValidationResult resultIn) {
+		AxValidationResult result = resultIn;
 
-        if (key.equals(AxArtifactKey.getNullKey())) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
-        }
+		if (key.equals(AxArtifactKey.getNullKey())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
+		}
 
-        result = key.validate(result);
+		result = key.validate(result);
 
-        if (keyInfoMap.size() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "keyInfoMap may not be empty"));
-        }
-        else {
-            final Set<UUID> uuidSet = new TreeSet<>();
+		if (keyInfoMap.size() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "keyInfoMap may not be empty"));
+		}
+		else {
+			final Set<UUID> uuidSet = new TreeSet<>();
 
-            for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoEntry : keyInfoMap.entrySet()) {
-                if (keyInfoEntry.getKey().equals(AxArtifactKey.getNullKey())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "key on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be the null key"));
-                    continue;
-                }
+			for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoEntry : keyInfoMap.entrySet()) {
+				if (keyInfoEntry.getKey().equals(AxArtifactKey.getNullKey())) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"key on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be the null key"));
+				}
+				else if (keyInfoEntry.getValue() == null) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"value on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be null"));
+				}
+				else {
+					if (!keyInfoEntry.getKey().equals(keyInfoEntry.getValue().getKey())) {
+						result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+								"key on keyInfoMap entry " + keyInfoEntry.getKey() + " does not equal entry key " + keyInfoEntry.getValue().getKey()));
+					}
 
-                if (keyInfoEntry.getValue() == null) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "value on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be null"));
-                    continue;
-                }
+					result = keyInfoEntry.getValue().validate(result);
 
-                if (!keyInfoEntry.getKey().equals(keyInfoEntry.getValue().getKey())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "key on keyInfoMap entry " + keyInfoEntry.getKey() + " does not equal entry key " + keyInfoEntry.getValue().getKey()));
-                }
+					if (uuidSet.contains(keyInfoEntry.getValue().getUUID())) {
+						result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+								"duplicate UUID found on keyInfoMap entry " + keyInfoEntry.getKey() + ":" + keyInfoEntry.getValue().getUUID()));
+					}
+					else {
+						uuidSet.add(keyInfoEntry.getValue().getUUID());
+					}
+				}
+			}
+		}
 
-                result = keyInfoEntry.getValue().validate(result);
+		return result;
+	}
 
-                if (uuidSet.contains(keyInfoEntry.getValue().getUUID())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "duplicate UUID found on keyInfoMap entry " + keyInfoEntry.getKey() + ":" + keyInfoEntry.getValue().getUUID()));
-                }
-                else {
-                    uuidSet.add(keyInfoEntry.getValue().getUUID());
-                }
-            }
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
+	 */
+	@Override
+	public void clean() {
+		key.clean();
+		for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoEntry : keyInfoMap.entrySet()) {
+			keyInfoEntry.getKey().clean();
+			keyInfoEntry.getValue().clean();
+		}
+	}
 
-        return result;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(this.getClass().getSimpleName());
+		builder.append(":(");
+		builder.append("key=");
+		builder.append(key);
+		builder.append(",keyInfoMap=");
+		builder.append(keyInfoMap);
+		builder.append(")");
+		return builder.toString();
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
-     */
-    @Override
-    public void clean() {
-        key.clean();
-        for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoEntry : keyInfoMap.entrySet()) {
-            keyInfoEntry.getKey().clean();
-            keyInfoEntry.getValue().clean();
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 */
+	@Override
+	public Object clone() {
+		return copyTo(new AxKeyInformation());
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
-     */
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(this.getClass().getSimpleName());
-        builder.append(":(");
-        builder.append("key=");
-        builder.append(key);
-        builder.append(",keyInfoMap=");
-        builder.append(keyInfoMap);
-        builder.append(")");
-        return builder.toString();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
+	 */
+	@Override
+	public Object copyTo(final Object target) {
+		Assertions.argumentNotNull(target, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxKeyInformation());
-    }
+		final Object copyObject = target;
+		Assertions.instanceOf(copyObject, AxKeyInformation.class);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
+		final AxKeyInformation copy = ((AxKeyInformation) copyObject);
+		copy.setKey((AxArtifactKey) key.clone());
+		final Map<AxArtifactKey, AxKeyInfo> newKeyInfoMap = new TreeMap<>();
+		for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoMapEntry : keyInfoMap.entrySet()) {
+			newKeyInfoMap.put((AxArtifactKey) keyInfoMapEntry.getKey().clone(), (AxKeyInfo) keyInfoMapEntry.getValue().clone());
+		}
+		copy.setKeyInfoMap(newKeyInfoMap);
 
-        final Object copyObject = target;
-        Assertions.instanceOf(copyObject, AxKeyInformation.class);
+		return copyObject;
+	}
 
-        final AxKeyInformation copy = ((AxKeyInformation) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
-        final Map<AxArtifactKey, AxKeyInfo> newKeyInfoMap = new TreeMap<>();
-        for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoMapEntry : keyInfoMap.entrySet()) {
-            newKeyInfoMap.put((AxArtifactKey) keyInfoMapEntry.getKey().clone(), (AxKeyInfo) keyInfoMapEntry.getValue().clone());
-        }
-        copy.setKeyInfoMap(newKeyInfoMap);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + key.hashCode();
+		result = prime * result + keyInfoMap.hashCode();
+		return result;
+	}
 
-        return copyObject;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang. Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + key.hashCode();
-        result = prime * result + keyInfoMap.hashCode();
-        return result;
-    }
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang. Object)
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
+		final AxKeyInformation other = (AxKeyInformation) obj;
+		if (!key.equals(other.key)) {
+			return false;
+		}
+		return keyInfoMap.equals(other.keyInfoMap);
+	}
 
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final AxConcept otherObj) {
+		if (otherObj == null) {
+			return -1;
+		}
+		if (this == otherObj) {
+			return 0;
+		}
+		if (getClass() != otherObj.getClass()) {
+			return this.hashCode() - otherObj.hashCode();
+		}
 
-        final AxKeyInformation other = (AxKeyInformation) obj;
-        if (!key.equals(other.key)) {
-            return false;
-        }
-        return keyInfoMap.equals(other.keyInfoMap);
-    }
+		final AxKeyInformation other = (AxKeyInformation) otherObj;
+		if (!key.equals(other.key)) {
+			return key.compareTo(other.key);
+		}
+		if (!keyInfoMap.equals(other.keyInfoMap)) {
+			return (keyInfoMap.hashCode() - other.keyInfoMap.hashCode());
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(final AxConcept otherObj) {
-        if (otherObj == null) {
-            return -1;
-        }
-        if (this == otherObj) {
-            return 0;
-        }
-        if (getClass() != otherObj.getClass()) {
-            return this.hashCode() - otherObj.hashCode();
-        }
+		return 0;
+	}
 
-        final AxKeyInformation other = (AxKeyInformation) otherObj;
-        if (!key.equals(other.key)) {
-            return key.compareTo(other.key);
-        }
-        if (!keyInfoMap.equals(other.keyInfoMap)) {
-            return (keyInfoMap.hashCode() - other.keyInfoMap.hashCode());
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(com. ericsson.apex.core.basicmodel.concepts.AxArtifactKey)
+	 */
+	@Override
+	public AxKeyInfo get(final AxArtifactKey conceptKey) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).get(conceptKey);
+	}
 
-        return 0;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(java.lang. String)
+	 */
+	@Override
+	public AxKeyInfo get(final String conceptKeyName) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).get(conceptKeyName);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(com. ericsson.apex.core.basicmodel.concepts.AxArtifactKey)
-     */
-    @Override
-    public AxKeyInfo get(final AxArtifactKey conceptKey) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).get(conceptKey);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(java.lang. String, java.lang.String)
+	 */
+	@Override
+	public AxKeyInfo get(final String conceptKeyName, final String conceptKeyVersion) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).get(conceptKeyName, conceptKeyVersion);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(java.lang. String)
-     */
-    @Override
-    public AxKeyInfo get(final String conceptKeyName) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).get(conceptKeyName);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#getAll(java. lang.String)
+	 */
+	@Override
+	public Set<AxKeyInfo> getAll(final String conceptKeyName) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).getAll(conceptKeyName);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(java.lang. String, java.lang.String)
-     */
-    @Override
-    public AxKeyInfo get(final String conceptKeyName, final String conceptKeyVersion) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).get(conceptKeyName, conceptKeyVersion);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#getAll(java. lang.String)
-     */
-    @Override
-    public Set<AxKeyInfo> getAll(final String conceptKeyName) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).getAll(conceptKeyName);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#getAll(java. lang.String, java.lang.String)
-     */
-    @Override
-    public Set<AxKeyInfo> getAll(final String conceptKeyName, final String conceptKeyVersion) {
-        return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).getAll(conceptKeyName, conceptKeyVersion);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#getAll(java. lang.String, java.lang.String)
+	 */
+	@Override
+	public Set<AxKeyInfo> getAll(final String conceptKeyName, final String conceptKeyVersion) {
+		return new AxConceptGetterImpl<>((NavigableMap<AxArtifactKey, AxKeyInfo>) keyInfoMap).getAll(conceptKeyName, conceptKeyVersion);
+	}
 }

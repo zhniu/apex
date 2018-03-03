@@ -177,7 +177,7 @@ public class ContextAlbumFacade {
     public ApexAPIResult listContextAlbum(final String name, final String version) {
         try {
             Set<AxContextAlbum> contextAlbumSet = apexModel.getPolicyModel().getAlbums().getAll(name, version);
-            if (name != null && contextAlbumSet.size() == 0) {
+            if (name != null && contextAlbumSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -212,7 +212,7 @@ public class ContextAlbumFacade {
             }
 
             Set<AxContextAlbum> contextAlbumSet = apexModel.getPolicyModel().getAlbums().getAll(name, version);
-            if (contextAlbumSet.size() == 0) {
+            if (contextAlbumSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -239,7 +239,7 @@ public class ContextAlbumFacade {
     public ApexAPIResult validateContextAlbum(final String name, final String version) {
         try {
             Set<AxContextAlbum> contextAlbumSet = apexModel.getPolicyModel().getAlbums().getAll(name, version);
-            if (contextAlbumSet.size() == 0) {
+            if (contextAlbumSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 

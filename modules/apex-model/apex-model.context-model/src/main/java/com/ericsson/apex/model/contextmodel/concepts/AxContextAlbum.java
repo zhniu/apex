@@ -148,7 +148,7 @@ public class AxContextAlbum extends AxConcept {
      */
     @Override
     public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
+        final List<AxKey> keyList = key.getKeys();
         keyList.add(new AxKeyUse(itemSchema.getKey()));
 
         return keyList;
@@ -312,7 +312,7 @@ public class AxContextAlbum extends AxConcept {
 
         final AxContextAlbum copy = ((AxContextAlbum) copyObject);
         copy.setKey((AxArtifactKey) key.clone());
-        copy.setScope(new String(scope));
+        copy.setScope(scope);
         copy.setWritable(isWritable);
         copy.setItemSchema((AxArtifactKey) itemSchema.clone());
 

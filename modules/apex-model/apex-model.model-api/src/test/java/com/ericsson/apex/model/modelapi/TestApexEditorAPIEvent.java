@@ -152,13 +152,13 @@ public class TestApexEditorAPIEvent {
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.FAILED));
         result = apexModel.deleteEventPar("NonExistantEvent", "0.0.2", "NewPar04");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
-        assertEquals(apexModel.listEventPar("MyEvent002", null, null).getMessages().size(), 4);
+        assertEquals(4, apexModel.listEventPar("MyEvent002", null, null).getMessages().size());
         result = apexModel.deleteEventPar("MyEvent002", "0.0.2", "NewPar04");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST));
-        assertEquals(apexModel.listEventPar("MyEvent002", null, null).getMessages().size(), 4);
+        assertEquals(4, apexModel.listEventPar("MyEvent002", null, null).getMessages().size());
         result = apexModel.deleteEventPar("MyEvent002", null, "NewPar02");
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
-        assertEquals(apexModel.listEventPar("MyEvent002", null, null).getMessages().size(), 3);
+        assertEquals(3, apexModel.listEventPar("MyEvent002", null, null).getMessages().size());
         result = apexModel.deleteEventPar("MyEvent002", null, null);
         assertTrue(result.getResult().equals(ApexAPIResult.RESULT.SUCCESS));
         result = apexModel.listEventPar("MyEvent002", null, null);

@@ -210,7 +210,7 @@ public class AxTaskParameter extends AxConcept {
 
         final AxTaskParameter copy = ((AxTaskParameter) copyObject);
         copy.setKey((AxReferenceKey) key.clone());
-        copy.setDefaultValue(new String(defaultValue));
+        copy.setDefaultValue(defaultValue);
 
         return copyObject;
     }

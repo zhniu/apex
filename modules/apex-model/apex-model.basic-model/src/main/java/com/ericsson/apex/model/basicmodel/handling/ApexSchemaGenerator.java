@@ -83,12 +83,10 @@ public class ApexSchemaGenerator {
         }
         catch (final ClassNotFoundException e) {
             LOGGER.error("could not create JAXB context, root class " + rootClassName + " not found", e);
-            e.printStackTrace();
             return null;
         }
         catch (final JAXBException e) {
             LOGGER.error("could not create JAXB context", e);
-            e.printStackTrace();
             return null;
         }
 

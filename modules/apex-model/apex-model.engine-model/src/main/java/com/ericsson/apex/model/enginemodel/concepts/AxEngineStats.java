@@ -486,10 +486,7 @@ public class AxEngineStats extends AxConcept {
         if (upTime != other.upTime) {
             return false;
         }
-        if (getLastStart() != other.getLastStart()) {
-            return false;
-        }
-        return true;
+        return getLastStart() == other.getLastStart();
     }
 
     /*

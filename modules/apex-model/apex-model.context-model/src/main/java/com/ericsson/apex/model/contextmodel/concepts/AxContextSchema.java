@@ -133,8 +133,7 @@ public class AxContextSchema extends AxConcept {
      */
     @Override
     public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
-        return keyList;
+        return key.getKeys();
     }
 
     /**
@@ -274,8 +273,8 @@ public class AxContextSchema extends AxConcept {
 
         final AxContextSchema copy = ((AxContextSchema) copyObject);
         copy.setKey((AxArtifactKey) key.clone());
-        copy.setSchemaFlavour(new String(schemaFlavour));
-        copy.setSchema(new String(schemaDefinition));
+        copy.setSchemaFlavour(schemaFlavour);
+        copy.setSchema(schemaDefinition);
 
         return copyObject;
     }

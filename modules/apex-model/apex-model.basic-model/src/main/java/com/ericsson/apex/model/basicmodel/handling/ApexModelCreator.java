@@ -16,14 +16,14 @@ import com.ericsson.apex.model.basicmodel.concepts.AxModel;
  * This interface is implemented by factories that create Apex models. It is mainly used by unit test classes that generate Apex models for test purposes.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <MODEL> the type of Apex model to create, must be a sub class of {@link AxModel}
+ * @param <M> the type of Apex model to create, must be a sub class of {@link AxModel}
  */
-public interface ApexModelCreator<MODEL extends AxModel> {
+public interface ApexModelCreator<M extends AxModel> {
 
     /**
      * Gets the model created by the model creator.
      *
      * @return the model created by the model creator
      */
-    MODEL getModel();
+    M getModel();
 }

@@ -43,9 +43,9 @@ import com.ericsson.apex.model.utilities.Assertions;
  * This class writes an Apex concept to an XML file or JSON file from a Java Apex Concept.
  *
  * @author John Keeney (john.keeney@ericsson.com)
- * @param <CONCEPT> the type of Apex concept to write, must be a sub class of {@link AxConcept}
+ * @param <C> the type of Apex concept to write, must be a sub class of {@link AxConcept}
  */
-public class ApexModelWriter<CONCEPT extends AxConcept> {
+public class ApexModelWriter<C extends AxConcept> {
     // Get a reference to the logger
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexModelWriter.class);
 
@@ -67,7 +67,7 @@ public class ApexModelWriter<CONCEPT extends AxConcept> {
      * @param rootConceptClass the root concept class for concept reading
      * @throws ApexModelException the apex concept writer exception
      */
-    public ApexModelWriter(final Class<CONCEPT> rootConceptClass) throws ApexModelException {
+    public ApexModelWriter(final Class<C> rootConceptClass) throws ApexModelException {
         // Set up Eclipselink for XML and JSON output
         System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
 
@@ -141,7 +141,7 @@ public class ApexModelWriter<CONCEPT extends AxConcept> {
      * @param apexConceptStream the stream to write to
      * @throws ApexModelException on validation or writing exceptions
      */
-    public void write(final CONCEPT concept, final OutputStream apexConceptStream) throws ApexModelException {
+    public void write(final C concept, final OutputStream apexConceptStream) throws ApexModelException {
         Assertions.argumentNotNull(concept, "concept may not be null");
         Assertions.argumentNotNull(apexConceptStream, "concept stream may not be null");
         
@@ -155,7 +155,7 @@ public class ApexModelWriter<CONCEPT extends AxConcept> {
      * @param apexConceptWriter the writer to write to
      * @throws ApexModelException on validation or writing exceptions
      */
-    public void write(final CONCEPT concept, final Writer apexConceptWriter) throws ApexModelException {
+    public void write(final C concept, final Writer apexConceptWriter) throws ApexModelException {
         Assertions.argumentNotNull(concept, "concept may not be null");
         Assertions.argumentNotNull(apexConceptWriter, "concept writer may not be null");
 
@@ -185,7 +185,7 @@ public class ApexModelWriter<CONCEPT extends AxConcept> {
      * @param apexConceptWriter the writer to write to
      * @throws ApexModelException on validation or writing exceptions
      */
-    private void writeXML(final CONCEPT concept, final Writer apexConceptWriter) throws ApexModelException {
+    private void writeXML(final C concept, final Writer apexConceptWriter) throws ApexModelException {
         Assertions.argumentNotNull(concept, "concept may not be null");
 
         LOGGER.debug("writing Apex concept XML . . .");
@@ -209,6 +209,7 @@ public class ApexModelWriter<CONCEPT extends AxConcept> {
                 domTransformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             }
             catch (final Exception ignore) {
+            		// We ignore exceptions here and catch errors below
             }
 
             // Convert the cDataFieldSet into a space delimited string
@@ -229,7 +230,7 @@ public class ApexModelWriter<CONCEPT extends AxConcept> {
      * @param apexConceptWriter the writer to write to
      * @throws ApexModelException on validation or writing exceptions
      */
-    private void writeJSON(final CONCEPT concept, final Writer apexConceptWriter) throws ApexModelException {
+    private void writeJSON(final C concept, final Writer apexConceptWriter) throws ApexModelException {
         Assertions.argumentNotNull(concept, "concept may not be null");
 
         LOGGER.debug("writing Apex concept JSON . . .");

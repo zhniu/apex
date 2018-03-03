@@ -251,7 +251,7 @@ public class AxKeyInfo extends AxConcept {
         final AxKeyInfo copy = ((AxKeyInfo) copyObject);
         copy.setKey((AxArtifactKey) key.clone());
         copy.setUuid(UUID.fromString(uuid.toString()));
-        copy.setDescription(new String(description));
+        copy.setDescription(description);
 
         return copyObject;
     }

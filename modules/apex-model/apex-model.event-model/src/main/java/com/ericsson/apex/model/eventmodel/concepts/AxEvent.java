@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -64,465 +65,460 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxEvent", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "nameSpace", "source", "target", "parameterMap" })
 
 public class AxEvent extends AxConcept {
-    private static final long serialVersionUID = -1460388382582984269L;
+	private static final long serialVersionUID = -1460388382582984269L;
 
-    /** The key of the event, unique in the Apex system. */
-    @EmbeddedId
-    @XmlElement(name = "key", required = true)
-    //CHECKSTYLE:OFF: checkstyle:VisibilityMonitor
-    protected AxArtifactKey key;
-    //CHECKSTYLE:ON: checkstyle:VisibilityMonitor
+	private static final String WHITESPACE_REGEXP = "\\s+$";
 
-    @Column(name = "nameSpace")
-    @XmlElement(required = true)
-    private String nameSpace;
+	/** The key of the event, unique in the Apex system. */
+	@EmbeddedId
+	@XmlElement(name = "key", required = true)
+	//CHECKSTYLE:OFF: checkstyle:VisibilityMonitor
+	protected AxArtifactKey key;
+	//CHECKSTYLE:ON: checkstyle:VisibilityMonitor
 
-    @Column(name = "source")
-    @XmlElement(required = true)
-    private String source;
+	@Column(name = "nameSpace")
+	@XmlElement(required = true)
+	private String nameSpace;
 
-    @Column(name = "target")
-    @XmlElement(required = true)
-    private String target;
+	@Column(name = "source")
+	@XmlElement(required = true)
+	private String source;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @XmlElement(name = "parameter", required = true)
-    private Map<String, AxField> parameterMap;
+	@Column(name = "target")
+	@XmlElement(required = true)
+	private String target;
 
-    /**
-     * The default constructor creates an event with a null artifact key. The event name space, source, and target are all defined as empty strings and the
-     * parameter map is initialized as an empty map.
-     */
-    public AxEvent() {
-        this(new AxArtifactKey());
-    }
+	@OneToMany(cascade = CascadeType.ALL)
+	@XmlElement(name = "parameter", required = true)
+	private Map<String, AxField> parameterMap;
 
-    /**
-     * The default constructor creates an event with the given artifact key. The event name space, source, and target are all defined as empty strings and the
-     * parameter map is initialized as an empty map.
-     *
-     * @param key the key of the event
-     */
-    public AxEvent(final AxArtifactKey key) {
-        this(key, "", "", "", new TreeMap<String, AxField>());
-    }
+	/**
+	 * The default constructor creates an event with a null artifact key. The event name space, source, and target are all defined as empty strings and the
+	 * parameter map is initialized as an empty map.
+	 */
+	public AxEvent() {
+		this(new AxArtifactKey());
+	}
 
-    /**
-     * This constructor creates an event with the given artifact key and name space. The event source, and target are all defined as empty strings and the
-     * parameter map is initialized as an empty map.
-     *
-     * @param key the key of the event
-     * @param nameSpace the name space of the event
-     */
-    public AxEvent(final AxArtifactKey key, final String nameSpace) {
-        this(key, nameSpace, "", "", new TreeMap<String, AxField>());
-    }
+	/**
+	 * The default constructor creates an event with the given artifact key. The event name space, source, and target are all defined as empty strings and the
+	 * parameter map is initialized as an empty map.
+	 *
+	 * @param key the key of the event
+	 */
+	public AxEvent(final AxArtifactKey key) {
+		this(key, "", "", "", new TreeMap<String, AxField>());
+	}
 
-    /**
-     * This constructor creates an event with the given artifact key, name space, source and target. The parameter map is initialized as an empty map.
-     *
-     * @param key the key of the event
-     * @param nameSpace the name space of the event
-     * @param source the source of the event
-     * @param target the target of the event
-     */
-    public AxEvent(final AxArtifactKey key, final String nameSpace, final String source, final String target) {
-        this(key, nameSpace, source, target, new TreeMap<String, AxField>());
-    }
+	/**
+	 * This constructor creates an event with the given artifact key and name space. The event source, and target are all defined as empty strings and the
+	 * parameter map is initialized as an empty map.
+	 *
+	 * @param key the key of the event
+	 * @param nameSpace the name space of the event
+	 */
+	public AxEvent(final AxArtifactKey key, final String nameSpace) {
+		this(key, nameSpace, "", "", new TreeMap<String, AxField>());
+	}
 
-    /**
-     * This constructor creates an event with all its fields defined.
-     *
-     * @param key the key of the event
-     * @param nameSpace the name space of the event
-     * @param source the source of the event
-     * @param target the target of the event
-     * @param parameterMap the map of parameters that the event has
-     */
-    public AxEvent(final AxArtifactKey key, final String nameSpace, final String source, final String target, final TreeMap<String, AxField> parameterMap) {
-        super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(nameSpace, "nameSpace may not be null");
-        Assertions.argumentNotNull(source, "source may not be null");
-        Assertions.argumentNotNull(target, "target may not be null");
-        Assertions.argumentNotNull(parameterMap, "parameterMap may not be null");
+	/**
+	 * This constructor creates an event with the given artifact key, name space, source and target. The parameter map is initialized as an empty map.
+	 *
+	 * @param key the key of the event
+	 * @param nameSpace the name space of the event
+	 * @param source the source of the event
+	 * @param target the target of the event
+	 */
+	public AxEvent(final AxArtifactKey key, final String nameSpace, final String source, final String target) {
+		this(key, nameSpace, source, target, new TreeMap<String, AxField>());
+	}
 
-        this.key = key;
-        this.nameSpace = nameSpace;
-        this.source = source;
-        this.target = target;
-        this.parameterMap = parameterMap;
-    }
+	/**
+	 * This constructor creates an event with all its fields defined.
+	 *
+	 * @param key the key of the event
+	 * @param nameSpace the name space of the event
+	 * @param source the source of the event
+	 * @param target the target of the event
+	 * @param parameterMap the map of parameters that the event has
+	 */
+	public AxEvent(final AxArtifactKey key, final String nameSpace, final String source, final String target, final SortedMap<String, AxField> parameterMap) {
+		super();
+		Assertions.argumentNotNull(key, "key may not be null");
+		Assertions.argumentNotNull(nameSpace, "nameSpace may not be null");
+		Assertions.argumentNotNull(source, "source may not be null");
+		Assertions.argumentNotNull(target, "target may not be null");
+		Assertions.argumentNotNull(parameterMap, "parameterMap may not be null");
 
-    /**
-     * This method checks that an event has all the fields in the {@code otherFieldSet} set defined on it.
-     *
-     * @param otherFieldSet the set of fields to check for existence on this event
-     * @return true, if all the {@code otherFieldSet} fields are defined on this event
-     */
-    public boolean hasFields(final Set<AxField> otherFieldSet) {
-        return parameterMap.values().containsAll(otherFieldSet);
-    }
+		this.key = key;
+		this.nameSpace = nameSpace;
+		this.source = source;
+		this.target = target;
+		this.parameterMap = parameterMap;
+	}
 
-    /**
-     * When an event is unmarshalled from disk or from the database, the parent key in the reference keys in its parameter map are not set. This method is
-     * called by JAXB after unmarshaling and is used to set the parent key of the {@link AxField} instances in the parameter map to be the key of the event that
-     * contains them.
-     *
-     * @param u the unmarshaler that is unmarshaling the model
-     * @param parent the parent object of this object in the unmarshaler
-     */
-    public void afterUnmarshal(final Unmarshaller u, final Object parent) {
-        for (final AxField parameter : parameterMap.values()) {
-            parameter.getKey().setParentArtifactKey(key);
-        }
-    }
+	/**
+	 * This method checks that an event has all the fields in the {@code otherFieldSet} set defined on it.
+	 *
+	 * @param otherFieldSet the set of fields to check for existence on this event
+	 * @return true, if all the {@code otherFieldSet} fields are defined on this event
+	 */
+	public boolean hasFields(final Set<AxField> otherFieldSet) {
+		return parameterMap.values().containsAll(otherFieldSet);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
-     */
-    @Override
-    public AxArtifactKey getKey() {
-        return key;
-    }
+	/**
+	 * When an event is unmarshalled from disk or from the database, the parent key in the reference keys in its parameter map are not set. This method is
+	 * called by JAXB after unmarshaling and is used to set the parent key of the {@link AxField} instances in the parameter map to be the key of the event that
+	 * contains them.
+	 *
+	 * @param u the unmarshaler that is unmarshaling the model
+	 * @param parent the parent object of this object in the unmarshaler
+	 */
+	public void afterUnmarshal(final Unmarshaller u, final Object parent) {
+		for (final AxField parameter : parameterMap.values()) {
+			parameter.getKey().setParentArtifactKey(key);
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
-     */
-    @Override
-    public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
+	 */
+	@Override
+	public AxArtifactKey getKey() {
+		return key;
+	}
 
-        for (final AxField field : parameterMap.values()) {
-            keyList.addAll(field.getKeys());
-        }
-        return keyList;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
+	 */
+	@Override
+	public List<AxKey> getKeys() {
+		final List<AxKey> keyList = key.getKeys();
 
-    /**
-     * Sets the key of the event.
-     *
-     * @param key the key of the event
-     */
-    public void setKey(final AxArtifactKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
-        this.key = key;
+		for (final AxField field : parameterMap.values()) {
+			keyList.addAll(field.getKeys());
+		}
+		return keyList;
+	}
 
-        for (final AxField parameter : parameterMap.values()) {
-            parameter.getKey().setParentArtifactKey(key);
-        }
-    }
+	/**
+	 * Sets the key of the event.
+	 *
+	 * @param key the key of the event
+	 */
+	public void setKey(final AxArtifactKey key) {
+		Assertions.argumentNotNull(key, "key may not be null");
+		this.key = key;
 
-    /**
-     * Gets the name space of the event.
-     *
-     * @return the name space of the event
-     */
-    public String getNameSpace() {
-        return nameSpace;
-    }
+		for (final AxField parameter : parameterMap.values()) {
+			parameter.getKey().setParentArtifactKey(key);
+		}
+	}
 
-    /**
-     * Sets the name space of the event.
-     *
-     * @param nameSpace the name space of the event
-     */
-    public void setNameSpace(final String nameSpace) {
-        Assertions.argumentNotNull(nameSpace, "nameSpace may not be null");
-        this.nameSpace = nameSpace.trim();
-    }
+	/**
+	 * Gets the name space of the event.
+	 *
+	 * @return the name space of the event
+	 */
+	public String getNameSpace() {
+		return nameSpace;
+	}
 
-    /**
-     * Gets the source of the event.
-     *
-     * @return the source of the event
-     */
-    public String getSource() {
-        return source;
-    }
+	/**
+	 * Sets the name space of the event.
+	 *
+	 * @param nameSpace the name space of the event
+	 */
+	public void setNameSpace(final String nameSpace) {
+		Assertions.argumentNotNull(nameSpace, "nameSpace may not be null");
+		this.nameSpace = nameSpace.trim();
+	}
 
-    /**
-     * Sets the source of the event.
-     *
-     * @param source the source of the event
-     */
-    public void setSource(final String source) {
-        Assertions.argumentNotNull(source, "source may not be null");
-        this.source = source.trim();
-    }
+	/**
+	 * Gets the source of the event.
+	 *
+	 * @return the source of the event
+	 */
+	public String getSource() {
+		return source;
+	}
 
-    /**
-     * Gets the target of the event.
-     *
-     * @return the target of the event
-     */
-    public String getTarget() {
-        return target;
-    }
+	/**
+	 * Sets the source of the event.
+	 *
+	 * @param source the source of the event
+	 */
+	public void setSource(final String source) {
+		Assertions.argumentNotNull(source, "source may not be null");
+		this.source = source.trim();
+	}
 
-    /**
-     * Sets the target of the event.
-     *
-     * @param target the target of the event
-     */
-    public void setTarget(final String target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-        this.target = target.trim();
-    }
+	/**
+	 * Gets the target of the event.
+	 *
+	 * @return the target of the event
+	 */
+	public String getTarget() {
+		return target;
+	}
 
-    /**
-     * Gets the event parameter map.
-     *
-     * @return the event parameter map
-     */
-    public Map<String, AxField> getParameterMap() {
-        return parameterMap;
-    }
+	/**
+	 * Sets the target of the event.
+	 *
+	 * @param target the target of the event
+	 */
+	public void setTarget(final String target) {
+		Assertions.argumentNotNull(target, "target may not be null");
+		this.target = target.trim();
+	}
 
-    /**
-     * Gets the fields defined on the event as a set.
-     *
-     * @return the fields defined on the event as a set
-     */
-    public Set<AxField> getFields() {
-        return new TreeSet<>(parameterMap.values());
-    }
+	/**
+	 * Gets the event parameter map.
+	 *
+	 * @return the event parameter map
+	 */
+	public Map<String, AxField> getParameterMap() {
+		return parameterMap;
+	}
 
-    /**
-     * Sets the event parameter map, containing all the fields of the event.
-     *
-     * @param parameterMap the event parameter map
-     */
-    public void setParameterMap(final Map<String, AxField> parameterMap) {
-        Assertions.argumentNotNull(parameterMap, "parameterMap may not be null");
-        this.parameterMap = parameterMap;
-    }
+	/**
+	 * Gets the fields defined on the event as a set.
+	 *
+	 * @return the fields defined on the event as a set
+	 */
+	public Set<AxField> getFields() {
+		return new TreeSet<>(parameterMap.values());
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
-     */
-    @Override
-    public AxValidationResult validate(final AxValidationResult resultIn) {
-        AxValidationResult result = resultIn;
+	/**
+	 * Sets the event parameter map, containing all the fields of the event.
+	 *
+	 * @param parameterMap the event parameter map
+	 */
+	public void setParameterMap(final Map<String, AxField> parameterMap) {
+		Assertions.argumentNotNull(parameterMap, "parameterMap may not be null");
+		this.parameterMap = parameterMap;
+	}
 
-        if (key.equals(AxArtifactKey.getNullKey())) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
+	 */
+	@Override
+	public AxValidationResult validate(final AxValidationResult resultIn) {
+		AxValidationResult result = resultIn;
 
-        result = key.validate(result);
+		if (key.equals(AxArtifactKey.getNullKey())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
+		}
 
-        if (nameSpace.replaceAll("\\s+$", "").length() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.WARNING, "nameSpace on event is blank"));
-        }
+		result = key.validate(result);
 
-        if (source.replaceAll("\\s+$", "").length() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "source on event is blank"));
-        }
+		if (nameSpace.replaceAll(WHITESPACE_REGEXP, "").length() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.WARNING, "nameSpace on event is blank"));
+		}
 
-        if (target.replaceAll("\\s+$", "").length() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "target on event is blank"));
-        }
+		if (source.replaceAll(WHITESPACE_REGEXP, "").length() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "source on event is blank"));
+		}
 
-        for (final Entry<String, AxField> eventParameterEntry : parameterMap.entrySet()) {
-            if (eventParameterEntry.getKey() == null || eventParameterEntry.getKey().equals(AxKey.NULL_KEY_NAME)) {
-                result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                        "key on parameter " + eventParameterEntry.getKey() + " may not be the null key"));
-                continue;
-            }
+		if (target.replaceAll(WHITESPACE_REGEXP, "").length() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "target on event is blank"));
+		}
 
-            if (eventParameterEntry.getValue() == null) {
-                result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                        "value on parameter " + eventParameterEntry.getKey() + " may not be null"));
-                continue;
-            }
+		for (final Entry<String, AxField> eventParameterEntry : parameterMap.entrySet()) {
+			if (eventParameterEntry.getKey() == null || eventParameterEntry.getKey().equals(AxKey.NULL_KEY_NAME)) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+						"key on parameter " + eventParameterEntry.getKey() + " may not be the null key"));
+			}
+			else if (eventParameterEntry.getValue() == null) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+						"value on parameter " + eventParameterEntry.getKey() + " may not be null"));
+			}
+			else {
+				if (!eventParameterEntry.getKey().equals(eventParameterEntry.getValue().getKey().getLocalName())) {
+					result.addValidationMessage(
+							new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on parameter " + eventParameterEntry.getKey()
+							+ " does not equal parameter field local name " + eventParameterEntry.getValue().getKey().getLocalName()));
+				}
 
-            if (!eventParameterEntry.getKey().equals(eventParameterEntry.getValue().getKey().getLocalName())) {
-                result.addValidationMessage(
-                        new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on parameter " + eventParameterEntry.getKey()
-                                + " does not equal parameter field local name " + eventParameterEntry.getValue().getKey().getLocalName()));
-            }
+				if (!eventParameterEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
+					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+							"parent key on parameter field " + eventParameterEntry.getValue().getKey() + " does not equal event key"));
+				}
 
-            if (!eventParameterEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
-                result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                        "parent key on parameter field " + eventParameterEntry.getValue().getKey() + " does not equal event key"));
-            }
+				result = eventParameterEntry.getValue().validate(result);
+			}
+		}
 
-            result = eventParameterEntry.getValue().validate(result);
-        }
+		return result;
+	}
 
-        return result;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
+	 */
+	@Override
+	public void clean() {
+		key.clean();
+		nameSpace = nameSpace.trim();
+		source = source.trim();
+		target = target.trim();
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
-     */
-    @Override
-    public void clean() {
-        key.clean();
-        nameSpace.trim();
-        source.trim();
-        target.trim();
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(this.getClass().getSimpleName());
+		builder.append(":(");
+		builder.append("key=");
+		builder.append(key);
+		builder.append(",nameSpace=");
+		builder.append(nameSpace);
+		builder.append(",source=");
+		builder.append(source);
+		builder.append(",target=");
+		builder.append(target);
+		builder.append(",parameter=");
+		builder.append(parameterMap);
+		builder.append(")");
+		return builder.toString();
+	}
 
-        for (final Entry<String, AxField> parameterEntry : parameterMap.entrySet()) {
-            parameterEntry.getKey().trim();
-            parameterEntry.getValue().clean();
-        }
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 */
+	@Override
+	public Object clone() {
+		return copyTo(new AxEvent());
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
-     */
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(this.getClass().getSimpleName());
-        builder.append(":(");
-        builder.append("key=");
-        builder.append(key);
-        builder.append(",nameSpace=");
-        builder.append(nameSpace);
-        builder.append(",source=");
-        builder.append(source);
-        builder.append(",target=");
-        builder.append(target);
-        builder.append(",parameter=");
-        builder.append(parameterMap);
-        builder.append(")");
-        return builder.toString();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
+	 */
+	@Override
+	public Object copyTo(final Object targetObject) {
+		Assertions.argumentNotNull(targetObject, "targetObject may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxEvent());
-    }
+		final Object copyObject = targetObject;
+		Assertions.instanceOf(copyObject, AxEvent.class);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object targetObject) {
-        Assertions.argumentNotNull(targetObject, "targetObject may not be null");
+		final AxEvent copy = ((AxEvent) copyObject);
+		copy.setKey((AxArtifactKey) key.clone());
+		copy.setNameSpace(nameSpace);
+		copy.setSource(source);
+		copy.setTarget(target);
 
-        final Object copyObject = targetObject;
-        Assertions.instanceOf(copyObject, AxEvent.class);
+		final Map<String, AxField> newParameterMap = new TreeMap<>();
+		for (final Entry<String, AxField> eventParameterMapEntry : parameterMap.entrySet()) {
+			newParameterMap.put(eventParameterMapEntry.getKey(), (AxField) eventParameterMapEntry.getValue().clone());
+		}
+		copy.setParameterMap(newParameterMap);
 
-        final AxEvent copy = ((AxEvent) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
-        copy.setNameSpace(new String(nameSpace));
-        copy.setSource(new String(source));
-        copy.setTarget(new String(target));
+		return copyObject;
+	}
 
-        final Map<String, AxField> newParameterMap = new TreeMap<>();
-        for (final Entry<String, AxField> eventParameterMapEntry : parameterMap.entrySet()) {
-            newParameterMap.put(new String(eventParameterMapEntry.getKey()), (AxField) eventParameterMapEntry.getValue().clone());
-        }
-        copy.setParameterMap(newParameterMap);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + key.hashCode();
+		result = prime * result + nameSpace.hashCode();
+		result = prime * result + source.hashCode();
+		result = prime * result + target.hashCode();
+		result = prime * result + parameterMap.hashCode();
+		return result;
+	}
 
-        return copyObject;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + key.hashCode();
-        result = prime * result + nameSpace.hashCode();
-        result = prime * result + source.hashCode();
-        result = prime * result + target.hashCode();
-        result = prime * result + parameterMap.hashCode();
-        return result;
-    }
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
+		final AxEvent other = (AxEvent) obj;
+		if (!key.equals(other.key)) {
+			return false;
+		}
+		if (!nameSpace.equals(other.nameSpace)) {
+			return false;
+		}
+		if (!source.equals(other.source)) {
+			return false;
+		}
+		if (!target.equals(other.target)) {
+			return false;
+		}
+		return parameterMap.equals(other.parameterMap);
+	}
 
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final AxConcept otherObj) {
+		if (otherObj == null) {
+			return -1;
+		}
+		if (this == otherObj) {
+			return 0;
+		}
+		if (getClass() != otherObj.getClass()) {
+			return this.hashCode() - otherObj.hashCode();
+		}
 
-        final AxEvent other = (AxEvent) obj;
-        if (!key.equals(other.key)) {
-            return false;
-        }
-        if (!nameSpace.equals(other.nameSpace)) {
-            return false;
-        }
-        if (!source.equals(other.source)) {
-            return false;
-        }
-        if (!target.equals(other.target)) {
-            return false;
-        }
-        return parameterMap.equals(other.parameterMap);
-    }
+		final AxEvent other = (AxEvent) otherObj;
+		if (!key.equals(other.key)) {
+			return key.compareTo(other.key);
+		}
+		if (!nameSpace.equals(other.nameSpace)) {
+			return nameSpace.compareTo(other.nameSpace);
+		}
+		if (!source.equals(other.source)) {
+			return target.compareTo(other.source);
+		}
+		if (!target.equals(other.target)) {
+			return target.compareTo(other.target);
+		}
+		if (!parameterMap.equals(other.parameterMap)) {
+			return (parameterMap.hashCode() - other.parameterMap.hashCode());
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(final AxConcept otherObj) {
-        if (otherObj == null) {
-            return -1;
-        }
-        if (this == otherObj) {
-            return 0;
-        }
-        if (getClass() != otherObj.getClass()) {
-            return this.hashCode() - otherObj.hashCode();
-        }
-
-        final AxEvent other = (AxEvent) otherObj;
-        if (!key.equals(other.key)) {
-            return key.compareTo(other.key);
-        }
-        if (!nameSpace.equals(other.nameSpace)) {
-            return nameSpace.compareTo(other.nameSpace);
-        }
-        if (!source.equals(other.source)) {
-            return target.compareTo(other.source);
-        }
-        if (!target.equals(other.target)) {
-            return target.compareTo(other.target);
-        }
-        if (!parameterMap.equals(other.parameterMap)) {
-            return (parameterMap.hashCode() - other.parameterMap.hashCode());
-        }
-
-        return 0;
-    }
+		return 0;
+	}
 }

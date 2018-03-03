@@ -137,7 +137,7 @@ public class KeyInformationFacade {
     public ApexAPIResult listKeyInformation(final String name, final String version) {
         try {
             Set<AxKeyInfo> keyInfoSet = apexModel.getPolicyModel().getKeyInformation().getAll(name, version);
-            if (name != null && keyInfoSet.size() == 0) {
+            if (name != null && keyInfoSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -174,7 +174,7 @@ public class KeyInformationFacade {
             }
 
             Set<AxKeyInfo> keyInfoSet = apexModel.getPolicyModel().getKeyInformation().getAll(name, version);
-            if (keyInfoSet.size() == 0) {
+            if (keyInfoSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -200,7 +200,7 @@ public class KeyInformationFacade {
     public ApexAPIResult validateKeyInformation(final String name, final String version) {
         try {
             Set<AxKeyInfo> keyInfoSet = apexModel.getPolicyModel().getKeyInformation().getAll(name, version);
-            if (keyInfoSet.size() == 0) {
+            if (keyInfoSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 

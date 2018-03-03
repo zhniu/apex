@@ -28,10 +28,10 @@ public class PropertyUtilsTest {
         
         assertNotNull(PropertyUtils.getAllProperties());
         
-        assertEquals(PropertyUtils.propertySetOrTrue(null), false);
-        assertEquals(PropertyUtils.propertySetOrTrue("ZOOBY"), false);
-        assertEquals(PropertyUtils.propertySetOrTrue("boolean.true"), true);
-        assertEquals(PropertyUtils.propertySetOrTrue("boolean.blank"), true);
-        assertEquals(PropertyUtils.propertySetOrTrue("boolean.false"), false);
+        assertEquals(false, PropertyUtils.propertySetOrTrue(null));
+        assertEquals(false, PropertyUtils.propertySetOrTrue("ZOOBY"));
+        assertEquals(true,  PropertyUtils.propertySetOrTrue("boolean.true"));
+        assertEquals(true,  PropertyUtils.propertySetOrTrue("boolean.blank"));
+        assertEquals(false, PropertyUtils.propertySetOrTrue("boolean.false"));
     }
 }

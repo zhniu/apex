@@ -186,8 +186,7 @@ public class AxReferenceKey extends AxKey {
      * @return a null reference key
      */
     public static AxReferenceKey getNullKey() {
-        return new AxReferenceKey(new String(AxKey.NULL_KEY_NAME), new String(AxKey.NULL_KEY_VERSION), new String(AxKey.NULL_KEY_NAME),
-                new String(AxKey.NULL_KEY_NAME));
+        return new AxReferenceKey(AxKey.NULL_KEY_NAME, AxKey.NULL_KEY_VERSION, AxKey.NULL_KEY_NAME, AxKey.NULL_KEY_NAME);
     }
 
     /*
@@ -464,10 +463,10 @@ public class AxReferenceKey extends AxKey {
         Assertions.instanceOf(copyObject, AxReferenceKey.class);
 
         final AxReferenceKey copy = ((AxReferenceKey) copyObject);
-        copy.setParentKeyName(new String(parentKeyName));
-        copy.setParentKeyVersion(new String(parentKeyVersion));
-        copy.setLocalName(new String(localName));
-        copy.setParentLocalName(new String(parentLocalName));
+        copy.setParentKeyName(parentKeyName);
+        copy.setParentKeyVersion(parentKeyVersion);
+        copy.setLocalName(localName);
+        copy.setParentLocalName(parentLocalName);
 
         return copyObject;
     }

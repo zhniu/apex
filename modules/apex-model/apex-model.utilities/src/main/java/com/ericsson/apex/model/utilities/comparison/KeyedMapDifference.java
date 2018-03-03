@@ -22,22 +22,22 @@ import java.util.TreeMap;
  * values in both maps being compared.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <KEY> the generic type
- * @param <VALUE> the generic type
+ * @param <K> the generic type
+ * @param <V> the generic type
  */
-public class KeyedMapDifference<KEY, VALUE> {
+public class KeyedMapDifference<K, V> {
     // Three maps to hold the comparison result
-    private Map<KEY, VALUE> leftOnly = new TreeMap<KEY, VALUE>();
-    private Map<KEY, VALUE> rightOnly = new TreeMap<KEY, VALUE>();
-    private Map<KEY, VALUE> identicalValues = new TreeMap<KEY, VALUE>();
-    private Map<KEY, List<VALUE>> differentValues = new TreeMap<KEY, List<VALUE>>();
+    private Map<K, V> leftOnly = new TreeMap<>();
+    private Map<K, V> rightOnly = new TreeMap<>();
+    private Map<K, V> identicalValues = new TreeMap<>();
+    private Map<K, List<V>> differentValues = new TreeMap<>();
 
     /**
      * Gets the entries that were found only in the left map.
      *
      * @return the entries only in the left map
      */
-    public Map<KEY, VALUE> getLeftOnly() {
+    public Map<K, V> getLeftOnly() {
         return leftOnly;
     }
 
@@ -46,7 +46,7 @@ public class KeyedMapDifference<KEY, VALUE> {
      *
      * @return the entries only in the right map
      */
-    public Map<KEY, VALUE> getRightOnly() {
+    public Map<K, V> getRightOnly() {
         return rightOnly;
     }
 
@@ -55,7 +55,7 @@ public class KeyedMapDifference<KEY, VALUE> {
      *
      * @return the identical entries
      */
-    public Map<KEY, VALUE> getIdenticalValues() {
+    public Map<K, V> getIdenticalValues() {
         return identicalValues;
     }
 
@@ -65,7 +65,7 @@ public class KeyedMapDifference<KEY, VALUE> {
      * @return the entries that were different. There are two values in the list of values for each entry. The first value is the value that was in the left map
      *         and the second value is the value that was in the right map.
      */
-    public Map<KEY, List<VALUE>> getDifferentValues() {
+    public Map<K, List<V>> getDifferentValues() {
         return differentValues;
     }
 
@@ -86,7 +86,7 @@ public class KeyedMapDifference<KEY, VALUE> {
         }
         else {
             builder.append("*** list of keys on left only\n");
-            for (Entry<KEY, VALUE> leftEntry : leftOnly.entrySet()) {
+            for (Entry<K, V> leftEntry : leftOnly.entrySet()) {
                 builder.append("key=");
                 builder.append(leftEntry.getKey());
                 if (!keysOnly) {
@@ -104,7 +104,7 @@ public class KeyedMapDifference<KEY, VALUE> {
         }
         else {
             builder.append("*** list of keys on right only\n");
-            for (Entry<KEY, VALUE> rightEntry : rightOnly.entrySet()) {
+            for (Entry<K, V> rightEntry : rightOnly.entrySet()) {
                 builder.append("key=");
                 builder.append(rightEntry.getKey());
                 if (!keysOnly) {
@@ -122,13 +122,13 @@ public class KeyedMapDifference<KEY, VALUE> {
         }
         else {
             builder.append("*** list of differing entries between left and right\n");
-            for (Entry<KEY, List<VALUE>> differentEntry : differentValues.entrySet()) {
+            for (Entry<K, List<V>> differentEntry : differentValues.entrySet()) {
                 builder.append("key=");
                 builder.append(differentEntry.getKey());
                 if (!keysOnly) {
                     builder.append(",values={");
                     boolean first = true;
-                    for (VALUE differentEntryValue : differentEntry.getValue()) {
+                    for (V differentEntryValue : differentEntry.getValue()) {
                         builder.append(differentEntryValue);
                         if (first) {
                             first = false;
@@ -145,7 +145,7 @@ public class KeyedMapDifference<KEY, VALUE> {
 
         if (!diffsOnly) {
             builder.append("*** list of identical entries in left and right\n");
-            for (Entry<KEY, VALUE> identicalEntry : identicalValues.entrySet()) {
+            for (Entry<K, V> identicalEntry : identicalValues.entrySet()) {
                 builder.append("key=");
                 builder.append(identicalEntry.getKey());
                 if (!keysOnly) {

@@ -348,11 +348,7 @@ public class AxPolicy extends AxConcept {
     @Override
     public void clean() {
         key.clean();
-        for (final Entry<String, AxState> stateEntry : stateMap.entrySet()) {
-            stateEntry.getKey().trim();
-            stateEntry.getValue().clean();
-        }
-        firstState.trim();
+        firstState = firstState.trim();
     }
 
     /*
@@ -401,15 +397,15 @@ public class AxPolicy extends AxConcept {
 
         final AxPolicy copy = ((AxPolicy) copyObject);
         copy.setKey((AxArtifactKey) key.clone());
-        copy.setTemplate(new String(template));
+        copy.setTemplate(template);
 
         final Map<String, AxState> newStateMap = new TreeMap<>();
         for (final Entry<String, AxState> stateMapEntry : stateMap.entrySet()) {
-            newStateMap.put(new String(stateMapEntry.getKey()), (AxState) stateMapEntry.getValue().clone());
+            newStateMap.put(stateMapEntry.getKey(), (AxState) stateMapEntry.getValue().clone());
         }
         copy.setStateMap(newStateMap);
 
-        copy.setFirstState(new String(firstState));
+        copy.setFirstState(firstState);
 
         return copyObject;
     }

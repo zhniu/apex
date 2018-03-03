@@ -407,7 +407,7 @@ public class ModelHandlerFacade {
      * @return the result of the operation
      */
     public ApexAPIResult split(final String targetModelName, final String splitOutPolicies) {
-        Set<AxArtifactKey> requiredPolicySet = new LinkedHashSet<AxArtifactKey>();
+        Set<AxArtifactKey> requiredPolicySet = new LinkedHashSet<>();
 
         // Split the policy names on comma
         String[] policyNames = splitOutPolicies.split(",");

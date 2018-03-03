@@ -141,7 +141,7 @@ public class ContextSchemaFacade {
     public ApexAPIResult listContextSchemas(final String name, final String version) {
         try {
             Set<AxContextSchema> schemaSet = apexModel.getPolicyModel().getSchemas().getAll(name, version);
-            if (name != null && schemaSet.size() == 0) {
+            if (name != null && schemaSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -178,7 +178,7 @@ public class ContextSchemaFacade {
             }
 
             Set<AxContextSchema> schemaSet = apexModel.getPolicyModel().getSchemas().getAll(name, version);
-            if (schemaSet.size() == 0) {
+            if (schemaSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -205,7 +205,7 @@ public class ContextSchemaFacade {
     public ApexAPIResult validateContextSchemas(final String name, final String version) {
         try {
             Set<AxContextSchema> schemaSet = apexModel.getPolicyModel().getSchemas().getAll(name, version);
-            if (schemaSet.size() == 0) {
+            if (schemaSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 

@@ -152,7 +152,7 @@ public class EventFacade {
     public ApexAPIResult listEvent(final String name, final String version) {
         try {
             Set<AxEvent> eventSet = apexModel.getPolicyModel().getEvents().getAll(name, version);
-            if (name != null && eventSet.size() == 0) {
+            if (name != null && eventSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -189,7 +189,7 @@ public class EventFacade {
             }
 
             Set<AxEvent> eventSet = apexModel.getPolicyModel().getEvents().getAll(name, version);
-            if (eventSet.size() == 0) {
+            if (eventSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -216,7 +216,7 @@ public class EventFacade {
     public ApexAPIResult validateEvent(final String name, final String version) {
         try {
             Set<AxEvent> eventSet = apexModel.getPolicyModel().getEvents().getAll(name, version);
-            if (eventSet.size() == 0) {
+            if (eventSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 

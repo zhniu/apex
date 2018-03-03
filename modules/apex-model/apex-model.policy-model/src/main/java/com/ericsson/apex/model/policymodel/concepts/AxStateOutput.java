@@ -151,7 +151,7 @@ public class AxStateOutput extends AxConcept {
      */
     @Override
     public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
+        final List<AxKey> keyList = key.getKeys();
         keyList.add(new AxKeyUse(outgoingEvent));
 
         if (!nextState.equals(AxReferenceKey.getNullKey())) {

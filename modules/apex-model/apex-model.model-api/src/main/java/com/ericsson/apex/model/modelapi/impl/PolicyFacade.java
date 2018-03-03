@@ -160,7 +160,7 @@ public class PolicyFacade {
     public ApexAPIResult listPolicy(final String name, final String version) {
         try {
             Set<AxPolicy> policySet = apexModel.getPolicyModel().getPolicies().getAll(name, version);
-            if (name != null && policySet.size() == 0) {
+            if (name != null && policySet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -197,7 +197,7 @@ public class PolicyFacade {
             }
 
             Set<AxPolicy> policySet = apexModel.getPolicyModel().getPolicies().getAll(name, version);
-            if (policySet.size() == 0) {
+            if (policySet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -224,7 +224,7 @@ public class PolicyFacade {
     public ApexAPIResult validatePolicy(final String name, final String version) {
         try {
             Set<AxPolicy> policySet = apexModel.getPolicyModel().getPolicies().getAll(name, version);
-            if (policySet.size() == 0) {
+            if (policySet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
             }
 
@@ -614,8 +614,7 @@ public class PolicyFacade {
                         "State concept " + policy.getKey().getID() + ':' + stateName + " does not exist");
             }
 
-            AxReferenceKey refKey = AxReferenceKey.getNullKey();
-            refKey = new AxReferenceKey(state.getKey(), outputName);
+            AxReferenceKey refKey = new AxReferenceKey(state.getKey(), outputName);
             if (state.getStateOutputs().containsKey(refKey.getLocalName())) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "Output concept " + refKey.getID() + " already exists");
             }
@@ -1022,8 +1021,7 @@ public class PolicyFacade {
             }
 
             state.getTaskReferences().put(task.getKey(), new AxStateTaskReference(refKey, stateTaskOutputType, outputRefKey));
-            ApexAPIResult result = new ApexAPIResult();
-            return result;
+            return new ApexAPIResult();
         }
         catch (Exception e) {
             return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, e);
@@ -1118,7 +1116,7 @@ public class PolicyFacade {
                         "concept " + policy.getKey().getID() + ':' + stateName + " does not exist");
             }
 
-            Set<AxArtifactKey> deleteSet = new TreeSet<AxArtifactKey>();
+            Set<AxArtifactKey> deleteSet = new TreeSet<>();
 
             for (AxArtifactKey taskReferenceKey : state.getTaskReferences().keySet()) {
                 if (taskName == null) {
@@ -1134,7 +1132,7 @@ public class PolicyFacade {
                 }
                 deleteSet.add(taskReferenceKey);
             }
-            if (deleteSet.size() == 0) {
+            if (deleteSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST,
                         "concept " + taskName + ':' + taskVersion + " does not exist on state " + state.getKey().getID());
             }
@@ -1277,7 +1275,7 @@ public class PolicyFacade {
                         "concept " + policy.getKey().getID() + ':' + stateName + " does not exist");
             }
 
-            Set<AxArtifactKey> deleteSet = new TreeSet<AxArtifactKey>();
+            Set<AxArtifactKey> deleteSet = new TreeSet<>();
 
             for (AxArtifactKey albumKey : state.getContextAlbumReferences()) {
                 if (contextAlbumName == null) {
@@ -1293,7 +1291,7 @@ public class PolicyFacade {
                     deleteSet.add(albumKey);
                 }
             }
-            if (deleteSet.size() == 0) {
+            if (deleteSet.isEmpty()) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST,
                         "concept " + contextAlbumName + ':' + contextAlbumVersion + " does not exist on state " + state.getKey().getID());
             }

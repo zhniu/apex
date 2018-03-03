@@ -135,7 +135,7 @@ public class AxEngineModel extends AxContextModel {
      */
     @Override
     public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) super.getKeys();
+        final List<AxKey> keyList = super.getKeys();
         keyList.addAll(stats.getKeys());
         return keyList;
     }

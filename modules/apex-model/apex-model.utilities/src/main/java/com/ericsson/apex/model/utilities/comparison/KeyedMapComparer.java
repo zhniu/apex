@@ -22,10 +22,10 @@ import java.util.TreeSet;
  * different values in a {@link KeyedMapDifference} instance.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <KEY> the type of the keys in the maps being compared
- * @param <VALUE> the type of the values in the maps being compared
+ * @param <K> the type of the keys in the maps being compared
+ * @param <V> the type of the values in the maps being compared
  */
-public class KeyedMapComparer<KEY, VALUE> {
+public class KeyedMapComparer<K, V> {
     /**
      * Compare two maps and return their differences in a {@link KeyedMapDifference} instance.
      *
@@ -33,38 +33,38 @@ public class KeyedMapComparer<KEY, VALUE> {
      * @param rightMap The right map to be compared
      * @return The common, left only, and right only maps in a {@link KeyedMapDifference} instance
      */
-    public KeyedMapDifference<KEY, VALUE> compareMaps(final Map<KEY, VALUE> leftMap, final Map<KEY, VALUE> rightMap) {
-        KeyedMapDifference<KEY, VALUE> result = new KeyedMapDifference<KEY, VALUE>();
+    public KeyedMapDifference<K, V> compareMaps(final Map<K, V> leftMap, final Map<K, V> rightMap) {
+        KeyedMapDifference<K, V> result = new KeyedMapDifference<>();
 
         // Get the keys that are only in the left map
-        Set<KEY> leftOnlyKeys = new TreeSet<KEY>(leftMap.keySet());
+        Set<K> leftOnlyKeys = new TreeSet<>(leftMap.keySet());
         leftOnlyKeys.removeAll(rightMap.keySet());
 
         // Get the keys that are only in the right map
-        Set<KEY> rightOnlyKeys = new TreeSet<KEY>(rightMap.keySet());
+        Set<K> rightOnlyKeys = new TreeSet<>(rightMap.keySet());
         rightOnlyKeys.removeAll(leftMap.keySet());
 
         // Find the keys common across both maps
-        Set<KEY> commonKeys = new TreeSet<KEY>(rightMap.keySet());
+        Set<K> commonKeys = new TreeSet<>(rightMap.keySet());
         commonKeys.addAll(leftMap.keySet());
         commonKeys.removeAll(leftOnlyKeys);
         commonKeys.removeAll(rightOnlyKeys);
 
         // Now save the left values
-        for (KEY key : leftOnlyKeys) {
+        for (K key : leftOnlyKeys) {
             result.getLeftOnly().put(key, leftMap.get(key));
         }
 
         // Now save the right values
-        for (KEY key : rightOnlyKeys) {
+        for (K key : rightOnlyKeys) {
             result.getRightOnly().put(key, rightMap.get(key));
         }
 
         // Save the common values to two maps, an identical and different map
-        for (KEY key : commonKeys) {
+        for (K key : commonKeys) {
             // Check if the values are identical in each map
-            VALUE leftValue = leftMap.get(key);
-            VALUE rightValue = rightMap.get(key);
+            V leftValue = leftMap.get(key);
+            V rightValue = rightMap.get(key);
 
             // Store as appropriate
             if (leftValue.equals(rightValue)) {
@@ -72,7 +72,7 @@ public class KeyedMapComparer<KEY, VALUE> {
             }
             else {
                 // Store the two values
-                List<VALUE> valueList = new ArrayList<VALUE>();
+                List<V> valueList = new ArrayList<>();
                 valueList.add(leftValue);
                 valueList.add(rightValue);
 

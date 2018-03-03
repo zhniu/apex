@@ -20,19 +20,19 @@ import com.ericsson.apex.model.utilities.Assertions;
  * Implements concept getting from navigable maps.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <CONCEPT> the type of concept on which the interface implementation is applied.
+ * @param <C> the type of concept on which the interface implementation is applied.
  */
-public class AxConceptGetterImpl<CONCEPT> implements AxConceptGetter<CONCEPT> {
+public class AxConceptGetterImpl<C> implements AxConceptGetter<C> {
 
     // The map from which to get concepts
-    private final NavigableMap<AxArtifactKey, CONCEPT> conceptMap;
+    private final NavigableMap<AxArtifactKey, C> conceptMap;
 
     /**
      * Constructor that sets the concept map on which the getter methods in the interface will operate..
      *
      * @param conceptMap the concept map on which the method will operate
      */
-    public AxConceptGetterImpl(final NavigableMap<AxArtifactKey, CONCEPT> conceptMap) {
+    public AxConceptGetterImpl(final NavigableMap<AxArtifactKey, C> conceptMap) {
         this.conceptMap = conceptMap;
     }
 
@@ -42,7 +42,7 @@ public class AxConceptGetterImpl<CONCEPT> implements AxConceptGetter<CONCEPT> {
      * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(com. ericsson.apex.core.basicmodel.concepts.AxArtifactKey)
      */
     @Override
-    public CONCEPT get(final AxArtifactKey conceptKey) {
+    public C get(final AxArtifactKey conceptKey) {
         return conceptMap.get(conceptKey);
     }
 
@@ -52,7 +52,7 @@ public class AxConceptGetterImpl<CONCEPT> implements AxConceptGetter<CONCEPT> {
      * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(java.lang. String)
      */
     @Override
-    public CONCEPT get(final String conceptKeyName) {
+    public C get(final String conceptKeyName) {
         Assertions.argumentNotNull(conceptKeyName, "conceptKeyName may not be null");
 
         // The very fist key that could have this name
@@ -83,7 +83,7 @@ public class AxConceptGetterImpl<CONCEPT> implements AxConceptGetter<CONCEPT> {
      * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#get(java.lang. String, java.lang.String)
      */
     @Override
-    public CONCEPT get(final String conceptKeyName, final String conceptKeyVersion) {
+    public C get(final String conceptKeyName, final String conceptKeyVersion) {
         Assertions.argumentNotNull(conceptKeyName, "conceptKeyName may not be null");
 
         if (conceptKeyVersion != null) {
@@ -100,7 +100,7 @@ public class AxConceptGetterImpl<CONCEPT> implements AxConceptGetter<CONCEPT> {
      * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#getAll(java. lang.String)
      */
     @Override
-    public Set<CONCEPT> getAll(final String conceptKeyName) {
+    public Set<C> getAll(final String conceptKeyName) {
         return getAll(conceptKeyName, null);
     }
 
@@ -110,8 +110,8 @@ public class AxConceptGetterImpl<CONCEPT> implements AxConceptGetter<CONCEPT> {
      * @see com.ericsson.apex.core.basicmodel.concepts.AxConceptGetter#getAll(java. lang.String, java.lang.String)
      */
     @Override
-    public Set<CONCEPT> getAll(final String conceptKeyName, final String conceptKeyVersion) {
-        final Set<CONCEPT> returnSet = new TreeSet<>();
+    public Set<C> getAll(final String conceptKeyName, final String conceptKeyVersion) {
+        final Set<C> returnSet = new TreeSet<>();
 
         if (conceptKeyName == null) {
             returnSet.addAll(conceptMap.values());

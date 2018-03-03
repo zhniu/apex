@@ -18,35 +18,35 @@ import com.ericsson.apex.model.basicmodel.handling.ApexModelCreator;
  * developers can write test Java programs to create models.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <MODEL> the generic type
+ * @param <M> the generic type
  */
-public interface TestApexModelCreator<MODEL extends AxModel> extends ApexModelCreator<MODEL> {
+public interface TestApexModelCreator<M extends AxModel> extends ApexModelCreator<M> {
 
     /**
      * Gets the malstructured model.
      *
      * @return the malstructured model
      */
-    MODEL getMalstructuredModel();
+    M getMalstructuredModel();
 
     /**
      * Gets the observation model.
      *
      * @return the observation model
      */
-    MODEL getObservationModel();
+    M getObservationModel();
 
     /**
      * Gets the warning model.
      *
      * @return the warning model
      */
-    MODEL getWarningModel();
+    M getWarningModel();
 
     /**
      * Gets the invalid model.
      *
      * @return the invalid model
      */
-    MODEL getInvalidModel();
+    M getInvalidModel();
 }

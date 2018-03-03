@@ -15,9 +15,9 @@ package com.ericsson.apex.model.utilities.comparison;
  * {@link KeyComparer} that is returned does the actual comparison
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <KEY> the type of key being compared
+ * @param <K> the type of key being compared
  */
-public class KeyComparer<KEY> {
+public class KeyComparer<K> {
 
     /**
      * Compare two keys and return their differences.
@@ -26,7 +26,7 @@ public class KeyComparer<KEY> {
      * @param rightKey The right key of the comparison
      * @return The difference between the keys
      */
-    public KeyDifference<KEY> compareKeys(final KEY leftKey, final KEY rightKey) {
-        return new KeyDifference<KEY>(leftKey, rightKey);
+    public KeyDifference<K> compareKeys(final K leftKey, final K rightKey) {
+        return new KeyDifference<>(leftKey, rightKey);
     }
 }

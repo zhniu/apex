@@ -19,9 +19,9 @@ import java.util.Set;
  * second level of referencing to access concepts in the the maps.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
- * @param <CONCEPT> the type of concept on which the interface is applied.
+ * @param <C> the type of concept on which the interface is applied.
  */
-public interface AxConceptGetter<CONCEPT> {
+public interface AxConceptGetter<C> {
 
     /**
      * Get the latest version for a concept with the given key.
@@ -29,7 +29,7 @@ public interface AxConceptGetter<CONCEPT> {
      * @param conceptKey The key of the concept
      * @return The concept
      */
-    CONCEPT get(AxArtifactKey conceptKey);
+    C get(AxArtifactKey conceptKey);
 
     /**
      * Get the latest version for a concept with the given key name.
@@ -37,7 +37,7 @@ public interface AxConceptGetter<CONCEPT> {
      * @param conceptKeyName The name of the concept
      * @return The concept
      */
-    CONCEPT get(String conceptKeyName);
+    C get(String conceptKeyName);
 
     /**
      * Get the latest version for a concept with the given key name and version.
@@ -46,7 +46,7 @@ public interface AxConceptGetter<CONCEPT> {
      * @param conceptKeyVersion The version of the concept
      * @return The concept
      */
-    CONCEPT get(String conceptKeyName, String conceptKeyVersion);
+    C get(String conceptKeyName, String conceptKeyVersion);
 
     /**
      * Get the all versions for a concept with the given key name.
@@ -54,7 +54,7 @@ public interface AxConceptGetter<CONCEPT> {
      * @param conceptKeyName The name of the concept
      * @return The concepts
      */
-    Set<CONCEPT> getAll(String conceptKeyName);
+    Set<C> getAll(String conceptKeyName);
 
     /**
      * Get the all versions for a concept with the given key name and starting version.
@@ -63,5 +63,5 @@ public interface AxConceptGetter<CONCEPT> {
      * @param conceptKeyVersion The first version version of the concept to get
      * @return The concepts
      */
-    Set<CONCEPT> getAll(String conceptKeyName, String conceptKeyVersion);
+    Set<C> getAll(String conceptKeyName, String conceptKeyVersion);
 }

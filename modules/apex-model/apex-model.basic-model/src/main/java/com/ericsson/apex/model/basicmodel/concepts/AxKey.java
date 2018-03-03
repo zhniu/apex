@@ -46,7 +46,7 @@ public abstract class AxKey extends AxConcept {
         PATCH,
         /** The keys match completely. */
         IDENTICAL
-    };
+    }
 
     /*
      * (non-Javadoc)

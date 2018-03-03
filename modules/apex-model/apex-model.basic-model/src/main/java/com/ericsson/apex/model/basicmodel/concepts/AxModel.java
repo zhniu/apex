@@ -124,7 +124,7 @@ public class AxModel extends AxConcept {
      */
     @Override
     public List<AxKey> getKeys() {
-        final List<AxKey> keyList = (List<AxKey>) key.getKeys();
+        final List<AxKey> keyList = key.getKeys();
 
         // We just add the key for the KeyInformation itself. We don't add the
         // keys from key information because

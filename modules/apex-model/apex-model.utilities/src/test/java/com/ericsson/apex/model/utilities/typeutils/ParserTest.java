@@ -70,7 +70,7 @@ public class ParserTest {
             fail("Test should throw exception");
         }
         catch (IllegalArgumentException e) {
-            assertEquals(e.getMessage(), "Blank type string passed to com.ericsson.apex.model.utilities.typeutils.TypeBuilder.build(String type)");
+            assertEquals("Blank type string passed to com.ericsson.apex.model.utilities.typeutils.TypeBuilder.build(String type)", e.getMessage());
         }
 
         try {

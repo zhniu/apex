@@ -74,7 +74,7 @@ public final class ApexModelImpl implements ApexModel {
      * Constructor, prevents this class being sub-classed.
      */
     private ApexModelImpl() {
-    };
+    }
 
     /*
      * (non-Javadoc)
