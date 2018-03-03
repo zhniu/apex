@@ -1,4 +1,4 @@
-model create name=ONAPSCPolicyModel
+model create name=DecisionMakerPolicyModel
 
 schema create name=SimpleStringType  flavour=Java schema=java.lang.String
 schema create name=SimpleIntegerType flavour=Java schema=java.lang.Integer
@@ -112,17 +112,17 @@ policy state create name=AnswerInitPolicy stateName=AnswerInitState triggerName=
 policy state output create name=AnswerInitPolicy stateName=AnswerInitState outputName=AnswerInitOutput eventName=AnswerEvent
 policy state taskref create name=AnswerInitPolicy stateName=AnswerInitState taskName=AnswerInitTask outputType=DIRECT outputName=AnswerInitOutput
 
-policy create name=ONAPSCPolicy template=freestyle firstState=MakeDecisionState
+policy create name=DecisionMakerPolicy template=freestyle firstState=MakeDecisionState
 
-policy state create name=ONAPSCPolicy stateName=MakeDecisionState triggerName=MakeDecisionEvent defaultTaskName=RandomAnswerTask
-policy state output create name=ONAPSCPolicy stateName=MakeDecisionState outputName=DecisionFinalOutput eventName=DecisionEvent
-policy state taskref create name=ONAPSCPolicy stateName=MakeDecisionState taskName=RandomAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
-policy state taskref create name=ONAPSCPolicy stateName=MakeDecisionState taskName=PessimisticAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
-policy state taskref create name=ONAPSCPolicy stateName=MakeDecisionState taskName=OptimisticAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
-policy state taskref create name=ONAPSCPolicy stateName=MakeDecisionState taskName=DitheringAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
-#policy state taskref create name=ONAPSCPolicy stateName=MakeDecisionState taskName=RoundRobinAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
+policy state create name=DecisionMakerPolicy stateName=MakeDecisionState triggerName=MakeDecisionEvent defaultTaskName=RandomAnswerTask
+policy state output create name=DecisionMakerPolicy stateName=MakeDecisionState outputName=DecisionFinalOutput eventName=DecisionEvent
+policy state taskref create name=DecisionMakerPolicy stateName=MakeDecisionState taskName=RandomAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
+policy state taskref create name=DecisionMakerPolicy stateName=MakeDecisionState taskName=PessimisticAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
+policy state taskref create name=DecisionMakerPolicy stateName=MakeDecisionState taskName=OptimisticAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
+policy state taskref create name=DecisionMakerPolicy stateName=MakeDecisionState taskName=DitheringAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
+#policy state taskref create name=DecisionMakerPolicy stateName=MakeDecisionState taskName=RoundRobinAnswerTask outputType=DIRECT outputName=DecisionFinalOutput
 
-policy state selecttasklogic create name=ONAPSCPolicy stateName=MakeDecisionState logicFlavour=JAVASCRIPT logic=LS
+policy state selecttasklogic create name=DecisionMakerPolicy stateName=MakeDecisionState logicFlavour=JAVASCRIPT logic=LS
 #MACROFILE:"src/main/resources/logic/MakeDecisionStateTSL.js"
 LE
 

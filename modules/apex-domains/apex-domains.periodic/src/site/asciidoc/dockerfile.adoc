@@ -1,0 +1,1 @@
+include::{apex-domains-decisionmaker-dir}/docs/asciidoc/fragments/dockerfile.adoc[]

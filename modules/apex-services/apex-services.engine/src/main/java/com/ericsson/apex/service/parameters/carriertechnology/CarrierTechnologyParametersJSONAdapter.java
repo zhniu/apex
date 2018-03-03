@@ -11,10 +11,13 @@
 package com.ericsson.apex.service.parameters.carriertechnology;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
+import com.ericsson.apex.service.engine.event.impl.eventrequestor.EventRequestorCarrierTechnologyParameters;
 import com.ericsson.apex.service.engine.event.impl.filecarrierplugin.FILECarrierTechnologyParameters;
 import com.ericsson.apex.service.parameters.ApexParameterRuntimeException;
 import com.google.gson.JsonDeserializationContext;
@@ -39,8 +42,12 @@ public class CarrierTechnologyParametersJSONAdapter implements JsonSerializer<Ca
     private static final String CARRIER_TECHNOLOGY_TOKEN = "carrierTechnology";
     private static final String CARRIER_TECHNOLOGY_PARAMETERS = "parameters";
 
-    // Default carrier technology parameters
-    private static final String DEFAULT_CARRIER_TECHNOLOGY_PARMETER_CLASS = FILECarrierTechnologyParameters.class.getCanonicalName();
+    // Built in technology parameters
+	private static final Map<String, String> BUILT_IN_CARRIER_TECHNOLOGY_PARMETER_CLASS_MAP = new HashMap<>();
+    static {
+		BUILT_IN_CARRIER_TECHNOLOGY_PARMETER_CLASS_MAP.put("FILE",            FILECarrierTechnologyParameters.class.getCanonicalName());
+		BUILT_IN_CARRIER_TECHNOLOGY_PARMETER_CLASS_MAP.put("EVENT_REQUESTOR", EventRequestorCarrierTechnologyParameters.class.getCanonicalName());
+    }    		
 
     /*
      * (non-Javadoc)
@@ -88,9 +95,9 @@ public class CarrierTechnologyParametersJSONAdapter implements JsonSerializer<Ca
         // Get the technology carrier parameter class for the carrier technology plugin class from the configuration parameters
         JsonPrimitive classNameJsonPrimitive = (JsonPrimitive) jsonObject.get(PARAMETER_CLASS_NAME);
 
-        // If no technology carrier parameter class was specified, we use the default
+        // If no technology carrier parameter class was specified, we try to use a built in carrier technology
         if (classNameJsonPrimitive == null) {
-            carrierTechnologyParameterClassName = DEFAULT_CARRIER_TECHNOLOGY_PARMETER_CLASS;
+            carrierTechnologyParameterClassName = BUILT_IN_CARRIER_TECHNOLOGY_PARMETER_CLASS_MAP.get(carrierTechnologyLabel);
         }
         else {
             // We use the specified one

@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
-import com.ericsson.apex.core.infrastructure.messaging.impl.ws.RawMessageHandler;
 import com.ericsson.apex.core.infrastructure.threading.ApplicationThreadFactory;
 import com.ericsson.apex.core.infrastructure.threading.ThreadUtilities;
 import com.ericsson.apex.model.basicmodel.concepts.ApexException;
@@ -43,7 +42,7 @@ import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
  */
 public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
 	// Get a reference to the logger
-	private static final XLogger LOGGER = XLoggerFactory.getXLogger(RawMessageHandler.class);
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEventMarshaller.class);
 
 	// Interval to wait between thread shutdown checks
 	private static final int UNMARSHALLER_SHUTDOWN_WAIT_INTERVAL = 10;

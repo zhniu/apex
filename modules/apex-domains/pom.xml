@@ -39,6 +39,7 @@
 		<module>apex-domains.aadm</module>
 		<module>apex-domains.myfirstpolicy</module>
 		<module>apex-domains.decisionmaker</module>
+                <module>apex-domains.periodic</module>
 		<module>apex-domains.pcvs</module>
 		<module>apex-domains.onap-vcpe</module>
 	</modules>

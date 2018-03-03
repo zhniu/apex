@@ -41,7 +41,7 @@ import com.ericsson.apex.service.parameters.eventhandler.EventHandlerParameters;
 import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
 
 /**
- * This class implements an Apex event consumer that receives events from a REST server.
+ * This class implements an Apex event consumer that issues a REST request and returns the REST response to APEX as an event.
  *
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
@@ -101,7 +101,7 @@ public class ApexRestRequestorConsumer implements ApexEventConsumer, Runnable {
 		}
 		restConsumerProperties = (RESTRequestorCarrierTechnologyParameters) consumerParameters.getCarrierTechnologyParameters();
 
-		// Check if we are in synchronous mode
+		// Check if we are in peered mode
 		if (!consumerParameters.isPeeredMode(EventHandlerPeeredMode.REQUESTOR)) {
 			String errorMessage = "REST Requestor consumer (" + this.name + ") must run in peered requestor mode with a REST Requestor producer";
 			LOGGER.warn(errorMessage);
@@ -147,7 +147,7 @@ public class ApexRestRequestorConsumer implements ApexEventConsumer, Runnable {
 	}
 
 	/**
-	 * Receive an incoming REST request from the synchronized REST Requestor producer and queue it
+	 * Receive an incoming REST request from the peered REST Requestor producer and queue it
 	 * @param restRequest the incoming rest request to queue
 	 * @throws ApexEventRuntimeException on queueing errors
 	 */
