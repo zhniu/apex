@@ -103,12 +103,6 @@ public class ApexEditorRestResource {
     private ApexModel sessionApexModel = null;
 
     /**
-     * Constructor, a new resource director is created for each request.
-     */
-    public ApexEditorRestResource() {
-    }
-
-    /**
      * This method sets the Apex model for the current editor session. Don't forget to call {@link #commitChanges()} when finished!
      * This makes requests atomic.
      * 

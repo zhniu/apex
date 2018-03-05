@@ -41,7 +41,7 @@ public abstract class CollectionUtils {
         if (leftList != null && rightList == null) {
             return -1;
         }
-        if (leftList == null && rightList != null) {
+        if (leftList == null) {
             return 1;
         }
 
@@ -49,7 +49,20 @@ public abstract class CollectionUtils {
         if (leftList.equals(rightList)) {
             return 0;
         }
+        
+        return compareListEntries(leftList, rightList);
+    }
 
+    /**
+     * Compare two lists for equality on members.
+     *
+     * @param <T> The type of the lists being compared
+     * @param leftList The leftmost List
+     * @param rightList The rightmost list
+     * @return an integer indicating how different the lists are
+     */
+    private static <T> int compareListEntries(final List<? extends Comparable<T>> leftList, final List<? extends Comparable<T>> rightList) {
+        
         // Iterate down the lists till we find a difference
         final ListIterator<?> leftIterator = leftList.listIterator();
         final ListIterator<?> rightIterator = rightList.listIterator();
@@ -81,5 +94,5 @@ public abstract class CollectionUtils {
                 return comparisonResult;
             }
         }
-    }
+	}
 }

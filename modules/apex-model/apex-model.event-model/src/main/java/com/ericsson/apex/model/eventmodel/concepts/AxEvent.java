@@ -342,22 +342,32 @@ public class AxEvent extends AxConcept {
 						"value on parameter " + eventParameterEntry.getKey() + " may not be null"));
 			}
 			else {
-				if (!eventParameterEntry.getKey().equals(eventParameterEntry.getValue().getKey().getLocalName())) {
-					result.addValidationMessage(
-							new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on parameter " + eventParameterEntry.getKey()
-							+ " does not equal parameter field local name " + eventParameterEntry.getValue().getKey().getLocalName()));
-				}
-
-				if (!eventParameterEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
-					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-							"parent key on parameter field " + eventParameterEntry.getValue().getKey() + " does not equal event key"));
-				}
-
-				result = eventParameterEntry.getValue().validate(result);
+				result = vaidateEventParameters(eventParameterEntry, result);
 			}
 		}
 
 		return result;
+	}
+
+	/**
+	 * Validate an event parameter entry
+	 * @param eventParameterEntry the event parameter entry
+	 * @param result the validation result to append to
+	 * @return The validation result
+	 */
+	private AxValidationResult vaidateEventParameters(final Entry<String, AxField> eventParameterEntry, final AxValidationResult result) {
+		if (!eventParameterEntry.getKey().equals(eventParameterEntry.getValue().getKey().getLocalName())) {
+			result.addValidationMessage(
+					new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on parameter " + eventParameterEntry.getKey()
+					+ " does not equal parameter field local name " + eventParameterEntry.getValue().getKey().getLocalName()));
+		}
+
+		if (!eventParameterEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+					"parent key on parameter field " + eventParameterEntry.getValue().getKey() + " does not equal event key"));
+		}
+
+		return eventParameterEntry.getValue().validate(result);
 	}
 
 	/*

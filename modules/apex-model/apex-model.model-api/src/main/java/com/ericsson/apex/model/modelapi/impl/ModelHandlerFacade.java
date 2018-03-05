@@ -17,10 +17,14 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 
 import com.ericsson.apex.model.basicmodel.concepts.ApexException;
 import com.ericsson.apex.model.basicmodel.concepts.ApexRuntimeException;
@@ -57,6 +61,8 @@ public class ModelHandlerFacade {
 	private static final String FILE_NAME_MAY_NOT_BE_NULL = "fileName may not be null";
 	private static final String MODEL = "model ";
 	private static final String ALREADY_LOADED = " already loaded";
+
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(ModelHandlerFacade.class);
 
 	// Apex model we're working towards
     private final ApexModel apexModel;
@@ -183,28 +189,7 @@ public class ModelHandlerFacade {
             }
             // Fishing expedition
             else {
-                AxPolicyModel foundPolicyModel = null;
-
-                List<AxPolicyModel> policyModelList = apexDao.getAll(AxPolicyModel.class);
-                for (AxPolicyModel dbPolicyModel : policyModelList) {
-                    if (dbPolicyModel.getKey().getName().equals(modelName)) {
-                        if (foundPolicyModel == null) {
-                            foundPolicyModel = dbPolicyModel;
-                        }
-                        else {
-                            return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "more than one policy model with name " + modelName + FOUND_IN_DATABASE);
-                        }
-                    }
-                }
-
-                if (foundPolicyModel != null) {
-                    apexModel.setPolicyModel(foundPolicyModel);
-                    return new ApexAPIResult();
-                }
-                else {
-                    apexModel.setPolicyModel(new AxPolicyModel());
-                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "no policy model with name " + modelName + FOUND_IN_DATABASE);
-                }
+            		return searchInDatabase(modelName, apexDao, apexModel);
             }
         }
         catch (ApexException | ApexRuntimeException e) {
@@ -218,6 +203,39 @@ public class ModelHandlerFacade {
     }
 
     /**
+     * Search for an Apex model in the database.
+     *
+     * @param modelName the name of the model to load
+     * @param apexDao the DAO to use to find the model
+     * @param apexModel the APEX model we are loading the found model into
+     * @return the result of the operation
+     */
+    private ApexAPIResult searchInDatabase(String modelName, ApexDao apexDao, ApexModel apexModel) {
+        AxPolicyModel foundPolicyModel = null;
+
+        List<AxPolicyModel> policyModelList = apexDao.getAll(AxPolicyModel.class);
+        for (AxPolicyModel dbPolicyModel : policyModelList) {
+            if (dbPolicyModel.getKey().getName().equals(modelName)) {
+                if (foundPolicyModel == null) {
+                    foundPolicyModel = dbPolicyModel;
+                }
+                else {
+                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "more than one policy model with name " + modelName + FOUND_IN_DATABASE);
+                }
+            }
+        }
+
+        if (foundPolicyModel != null) {
+            apexModel.setPolicyModel(foundPolicyModel);
+            return new ApexAPIResult();
+        }
+        else {
+            apexModel.setPolicyModel(new AxPolicyModel());
+            return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "no policy model with name " + modelName + FOUND_IN_DATABASE);
+        }
+	}
+
+	/**
      * Save an Apex model to a database.
      *
      * @param daoParameters the parameters to use to access the database over JDBC
@@ -473,7 +491,11 @@ public class ModelHandlerFacade {
         }
         finally {
             if (tempSplitPolicyFile != null) {
-                tempSplitPolicyFile.delete();
+                try {
+					Files.delete(tempSplitPolicyFile.toPath());
+				} catch (IOException e) {
+					LOGGER.debug("delete of temporary file failed", e);
+				}
             }
         }
     }

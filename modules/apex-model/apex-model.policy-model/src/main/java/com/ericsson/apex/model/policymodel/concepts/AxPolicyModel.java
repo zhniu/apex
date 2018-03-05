@@ -343,7 +343,7 @@ public class AxPolicyModel extends AxModel {
 
         validateEventKeys(result);
         validateContextAlbumKeys(result);
-        result = validateTaskKeys(result);
+        result = validateAllTaskKeys(result);
         result = validatePolicyKeys(result);
 
         return result;
@@ -389,25 +389,36 @@ public class AxPolicyModel extends AxModel {
      * @param result the validation result to return
      * @return the result
      */
-    private AxValidationResult validateTaskKeys(final AxValidationResult result) {
+    private AxValidationResult validateAllTaskKeys(AxValidationResult result) {
         for (final AxTask task : tasks.getAll(null)) {
-            for (final AxField field : task.getInputFieldSet()) {
-                if (getSchemas().get(field.getSchema()) == null) {
-                    result.addValidationMessage(new AxValidationMessage(task.getKey(), this.getClass(), ValidationResult.INVALID,
-                            "task input field schema " + field.getSchema().getID() + DOES_NOT_EXIST));
-                }
+        		result = validateTaskKeys(task, result);
+        }
+        return result;
+    }
+
+    /**
+     * Validate all fundamental concepts keyed in tasks exist.
+     * @param task The task to validate the keys of
+     * @param result the validation result to return
+     * @return the result
+     */
+    private AxValidationResult validateTaskKeys(final AxTask task, AxValidationResult result) {
+        for (final AxField field : task.getInputFieldSet()) {
+            if (getSchemas().get(field.getSchema()) == null) {
+                result.addValidationMessage(new AxValidationMessage(task.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "task input field schema " + field.getSchema().getID() + DOES_NOT_EXIST));
             }
-            for (final AxField field : task.getOutputFieldSet()) {
-                if (getSchemas().get(field.getSchema()) == null) {
-                    result.addValidationMessage(new AxValidationMessage(task.getKey(), this.getClass(), ValidationResult.INVALID,
-                            "task output field schema " + field.getSchema().getID() + DOES_NOT_EXIST));
-                }
+        }
+        for (final AxField field : task.getOutputFieldSet()) {
+            if (getSchemas().get(field.getSchema()) == null) {
+                result.addValidationMessage(new AxValidationMessage(task.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "task output field schema " + field.getSchema().getID() + DOES_NOT_EXIST));
             }
-            for (final AxArtifactKey contextAlbumKey : task.getContextAlbumReferences()) {
-                if (albums.get(contextAlbumKey) == null) {
-                    result.addValidationMessage(new AxValidationMessage(task.getKey(), this.getClass(), ValidationResult.INVALID,
-                            "task context album " + contextAlbumKey.getID() + DOES_NOT_EXIST));
-                }
+        }
+        for (final AxArtifactKey contextAlbumKey : task.getContextAlbumReferences()) {
+            if (albums.get(contextAlbumKey) == null) {
+                result.addValidationMessage(new AxValidationMessage(task.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "task context album " + contextAlbumKey.getID() + DOES_NOT_EXIST));
             }
         }
         return result;
@@ -422,85 +433,114 @@ public class AxPolicyModel extends AxModel {
     private AxValidationResult validatePolicyKeys(final AxValidationResult result) {
         for (final AxPolicy policy : policies.getAll(null)) {
             for (final AxState state : policy.getStateMap().values()) {
-                for (final AxArtifactKey contextAlbumKey : state.getContextAlbumReferences()) {
-                    if (albums.get(contextAlbumKey) == null) {
-                        result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
-                                "state context album " + contextAlbumKey.getID() + DOES_NOT_EXIST));
-                    }
-                }
-
-                final AxEvent triggerEvent = events.getEventMap().get(state.getTrigger());
-                if (triggerEvent == null) {
-                    result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
-                            "state trigger event " + state.getTrigger().getID() + DOES_NOT_EXIST));
-                }
-
-                final AxTask defaultTask = tasks.getTaskMap().get(state.getDefaultTask());
-                if (defaultTask == null) {
-                    result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
-                            "state default task " + state.getDefaultTask().getID() + DOES_NOT_EXIST));
-                }
-
-                // Check task input fields and event fields are compatible for default tasks with no task selection logic
-                if (state.getTaskSelectionLogic().getKey().equals(AxReferenceKey.getNullKey()) && triggerEvent != null && defaultTask != null) {
-                    final Set<AxField> unhandledTaskInputFields = new TreeSet<>(defaultTask.getInputFieldSet());
-                    unhandledTaskInputFields.removeAll(triggerEvent.getFields());
-                    for (final AxField unhandledTaskInputField : unhandledTaskInputFields) {
-                        result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID, "task input field "
-                                + unhandledTaskInputField + " for task " + defaultTask.getID() + " not in trigger event " + triggerEvent.getID()));
-                    }
-                }
-
-                for (final AxStateOutput stateOutput : state.getStateOutputs().values()) {
-                    if (events.getEventMap().get(stateOutput.getOutgingEvent()) == null) {
-                        result.addValidationMessage(new AxValidationMessage(stateOutput.getKey(), this.getClass(), ValidationResult.INVALID,
-                                "output event " + stateOutput.getOutgingEvent().getID() + " for state output " + stateOutput.getID() + DOES_NOT_EXIST));
-                    }
-                }
-
-                // Check task output fields and event fields are compatible for tasks that directly reference state outputs
-                for (final Entry<AxArtifactKey, AxStateTaskReference> taskRefEntry : state.getTaskReferences().entrySet()) {
-                    if (!taskRefEntry.getValue().getStateTaskOutputType().equals(AxStateTaskOutputType.DIRECT)) {
-                        continue;
-                    }
-
-                    final AxTask usedTask = tasks.getTaskMap().get(taskRefEntry.getKey());
-                    if (usedTask == null) {
-                        result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
-                                "state task " + taskRefEntry.getKey().getID() + DOES_NOT_EXIST));
-                    }
-                    else {
-                        final AxStateOutput stateOutput = state.getStateOutputs().get(taskRefEntry.getValue().getOutput().getKey().getLocalName());
-                        if (stateOutput == null) {
-                            result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
-                                    "state output on task reference for task " + usedTask.getID() + " is null"));
-
-                        }
-                        else {
-                            final AxEvent usedEvent = events.getEventMap().get(stateOutput.getOutgingEvent());
-                            if (usedEvent == null) {
-                                result.addValidationMessage(new AxValidationMessage(stateOutput.getKey(), this.getClass(), ValidationResult.INVALID,
-                                        "output event " + stateOutput.getOutgingEvent().getID() + " for state output " + stateOutput.getID() + DOES_NOT_EXIST));
-                            }
-
-                            if (usedTask != null && usedEvent != null) {
-                                final Set<AxField> unhandledTaskOutputFields = new TreeSet<>(usedTask.getOutputFieldSet());
-                                unhandledTaskOutputFields.removeAll(usedEvent.getFields());
-                                for (final AxField unhandledTaskOutputField : unhandledTaskOutputFields) {
-                                    result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID, "task output field "
-                                            + unhandledTaskOutputField + " for task " + usedTask.getID() + " not in output event " + usedEvent.getID()));
-                                }
-                            }
-                        }
-                    }
-                }
+            		validateStateReferences(state, result); 
             }
         }
 
         return result;
     }
 
-    /*
+	/**
+     * Validate that the references used on a state are valid
+     * @param state The state to check
+     * @param result the validation result to append to
+     */
+    private void validateStateReferences(AxState state, AxValidationResult result) {
+        for (final AxArtifactKey contextAlbumKey : state.getContextAlbumReferences()) {
+            if (albums.get(contextAlbumKey) == null) {
+                result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "state context album " + contextAlbumKey.getID() + DOES_NOT_EXIST));
+            }
+        }
+
+        final AxEvent triggerEvent = events.getEventMap().get(state.getTrigger());
+        if (triggerEvent == null) {
+            result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
+                    "state trigger event " + state.getTrigger().getID() + DOES_NOT_EXIST));
+        }
+
+        final AxTask defaultTask = tasks.getTaskMap().get(state.getDefaultTask());
+        if (defaultTask == null) {
+            result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
+                    "state default task " + state.getDefaultTask().getID() + DOES_NOT_EXIST));
+        }
+
+        // Check task input fields and event fields are compatible for default tasks with no task selection logic
+        if (state.getTaskSelectionLogic().getKey().equals(AxReferenceKey.getNullKey()) && triggerEvent != null && defaultTask != null) {
+            final Set<AxField> unhandledTaskInputFields = new TreeSet<>(defaultTask.getInputFieldSet());
+            unhandledTaskInputFields.removeAll(triggerEvent.getFields());
+            for (final AxField unhandledTaskInputField : unhandledTaskInputFields) {
+                result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID, "task input field "
+                        + unhandledTaskInputField + " for task " + defaultTask.getID() + " not in trigger event " + triggerEvent.getID()));
+            }
+        }
+
+        for (final AxStateOutput stateOutput : state.getStateOutputs().values()) {
+            if (events.getEventMap().get(stateOutput.getOutgingEvent()) == null) {
+                result.addValidationMessage(new AxValidationMessage(stateOutput.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "output event " + stateOutput.getOutgingEvent().getID() + " for state output " + stateOutput.getID() + DOES_NOT_EXIST));
+            }
+        }
+
+        validateEventTaskFieldCompatibilityOnState(state, result);
+	}
+
+	/**
+     * Validate that the fields on tasks and events that trigger them and are output by them are compatible for all tasks used on a state
+     * @param state The state to check
+     * @param result the validation result to append to
+     */
+    private void validateEventTaskFieldCompatibilityOnState(AxState state, AxValidationResult result) {
+        // Check task output fields and event fields are compatible for tasks that directly reference state outputs
+        for (final Entry<AxArtifactKey, AxStateTaskReference> taskRefEntry : state.getTaskReferences().entrySet()) {
+            if (!taskRefEntry.getValue().getStateTaskOutputType().equals(AxStateTaskOutputType.DIRECT)) {
+                continue;
+            }
+
+            final AxTask usedTask = tasks.getTaskMap().get(taskRefEntry.getKey());
+            if (usedTask == null) {
+                result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "state task " + taskRefEntry.getKey().getID() + DOES_NOT_EXIST));
+            }
+            else {
+            		AxStateOutput stateOutput = state.getStateOutputs().get(taskRefEntry.getValue().getOutput().getKey().getLocalName());
+                validateEventTaskFieldCompatibilityOnStateOutput(state, usedTask, stateOutput, result);
+            }
+        }
+	}
+
+    /**
+     * Validate that the fields on a task of a state output and the events that trigger it are compatible
+     * @param state The state to check
+     * @param task The task to check
+     * @param stateOutput The state output to check
+     * @param result the validation result to append to
+     */
+	private void validateEventTaskFieldCompatibilityOnStateOutput(final AxState state, final AxTask task, final AxStateOutput stateOutput, AxValidationResult result) {
+        if (stateOutput == null) {
+            result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID,
+                    "state output on task reference for task " + task.getID() + " is null"));
+
+        }
+        else {
+            final AxEvent usedEvent = events.getEventMap().get(stateOutput.getOutgingEvent());
+            if (usedEvent == null) {
+                result.addValidationMessage(new AxValidationMessage(stateOutput.getKey(), this.getClass(), ValidationResult.INVALID,
+                        "output event " + stateOutput.getOutgingEvent().getID() + " for state output " + stateOutput.getID() + DOES_NOT_EXIST));
+            }
+
+            if (task != null && usedEvent != null) {
+                final Set<AxField> unhandledTaskOutputFields = new TreeSet<>(task.getOutputFieldSet());
+                unhandledTaskOutputFields.removeAll(usedEvent.getFields());
+                for (final AxField unhandledTaskOutputField : unhandledTaskOutputFields) {
+                    result.addValidationMessage(new AxValidationMessage(state.getKey(), this.getClass(), ValidationResult.INVALID, "task output field "
+                            + unhandledTaskOutputField + " for task " + task.getID() + " not in output event " + usedEvent.getID()));
+                }
+            }
+        }
+	}
+
+	/*
      * (non-Javadoc)
      *
      * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#clean()

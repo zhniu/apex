@@ -81,408 +81,430 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxPolicy", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "template", "stateMap", "firstState" })
 
 public class AxPolicy extends AxConcept {
-    private static final long serialVersionUID = -1775614096390365941L;
+	private static final long serialVersionUID = -1775614096390365941L;
 
-    @EmbeddedId
-    @XmlElement(name = "policyKey", required = true)
-    private AxArtifactKey key;
+	@EmbeddedId
+	@XmlElement(name = "policyKey", required = true)
+	private AxArtifactKey key;
 
-    @Column(name = "template")
-    @XmlElement(required = true)
-    private String template;
+	@Column(name = "template")
+	@XmlElement(required = true)
+	private String template;
 
-    // @formatter:off
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = {
-            @JoinColumn(name = "parentKeyName", referencedColumnName = "name"),
-            @JoinColumn(name = "parentKeyVersion", referencedColumnName = "version")
-    })
-    @XmlElement(name = "state", required = true)
-    private Map<String, AxState> stateMap;
-    // @formatter:on
+	// @formatter:off
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(joinColumns = {
+			@JoinColumn(name = "parentKeyName", referencedColumnName = "name"),
+			@JoinColumn(name = "parentKeyVersion", referencedColumnName = "version")
+	})
+	@XmlElement(name = "state", required = true)
+	private Map<String, AxState> stateMap;
+	// @formatter:on
 
-    @Column(name = "firstState")
-    @XmlElement(required = true)
-    private String firstState;
+	@Column(name = "firstState")
+	@XmlElement(required = true)
+	private String firstState;
 
-    /**
-     * The Default Constructor creates a policy instance with a null key, a blank template and undefined first state.
-     */
-    public AxPolicy() {
-        this(new AxArtifactKey());
-    }
+	/**
+	 * The Default Constructor creates a policy instance with a null key, a blank template and undefined first state.
+	 */
+	public AxPolicy() {
+		this(new AxArtifactKey());
+	}
 
-    /**
-     * The Key Constructor creates a policy instance with the given key, a blank template and undefined first state.
-     *
-     * @param key the key of the policy
-     */
-    public AxPolicy(final AxArtifactKey key) {
-        this(key, "", new TreeMap<String, AxState>(), "");
-    }
+	/**
+	 * The Key Constructor creates a policy instance with the given key, a blank template and undefined first state.
+	 *
+	 * @param key the key of the policy
+	 */
+	public AxPolicy(final AxArtifactKey key) {
+		this(key, "", new TreeMap<String, AxState>(), "");
+	}
 
-    /**
-     * This Constructor creates a policy with the given key and all its fields defined.
-     *
-     * @param key the key of the policy
-     * @param template the policy template for policy editor metadata
-     * @param stateMap the state map containing the states of the policy
-     * @param firstState the first state that will execute on this policy
-     */
-    public AxPolicy(final AxArtifactKey key, final String template, final Map<String, AxState> stateMap, final String firstState) {
-        super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(template, "template may not be null");
-        Assertions.argumentNotNull(stateMap, "stateMap may not be null");
-        Assertions.argumentNotNull(firstState, "firstState may not be null");
+	/**
+	 * This Constructor creates a policy with the given key and all its fields defined.
+	 *
+	 * @param key the key of the policy
+	 * @param template the policy template for policy editor metadata
+	 * @param stateMap the state map containing the states of the policy
+	 * @param firstState the first state that will execute on this policy
+	 */
+	public AxPolicy(final AxArtifactKey key, final String template, final Map<String, AxState> stateMap, final String firstState) {
+		super();
+		Assertions.argumentNotNull(key, "key may not be null");
+		Assertions.argumentNotNull(template, "template may not be null");
+		Assertions.argumentNotNull(stateMap, "stateMap may not be null");
+		Assertions.argumentNotNull(firstState, "firstState may not be null");
 
-        this.key = key;
-        this.template = template;
-        this.stateMap = stateMap;
-        this.firstState = firstState;
-    }
+		this.key = key;
+		this.template = template;
+		this.stateMap = stateMap;
+		this.firstState = firstState;
+	}
 
-    /**
-     * Gets a tree that holds all the possible execution paths for this policy. This method may be used for verification of policies, to find the branches of
-     * policy execution and the final states of policies.
-     *
-     * @return the state tree of the policy, a tree representing the execution branches of the policy
-     */
-    public AxStateTree getStateTree() {
-        return new AxStateTree(this, stateMap.get(firstState), null);
-    }
+	/**
+	 * Gets a tree that holds all the possible execution paths for this policy. This method may be used for verification of policies, to find the branches of
+	 * policy execution and the final states of policies.
+	 *
+	 * @return the state tree of the policy, a tree representing the execution branches of the policy
+	 */
+	public AxStateTree getStateTree() {
+		return new AxStateTree(this, stateMap.get(firstState), null);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
-     */
-    @Override
-    public AxArtifactKey getKey() {
-        return key;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKey()
+	 */
+	@Override
+	public AxArtifactKey getKey() {
+		return key;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
-     */
-    @Override
-    public List<AxKey> getKeys() {
-        final List<AxKey> keyList = key.getKeys();
-        for (final AxState state : stateMap.values()) {
-            keyList.addAll(state.getKeys());
-        }
-        return keyList;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getKeys()
+	 */
+	@Override
+	public List<AxKey> getKeys() {
+		final List<AxKey> keyList = key.getKeys();
+		for (final AxState state : stateMap.values()) {
+			keyList.addAll(state.getKeys());
+		}
+		return keyList;
+	}
 
-    /**
-     * Sets the key of the policy.
-     *
-     * @param key the key of the policy
-     */
-    public void setKey(final AxArtifactKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
-        this.key = key;
-    }
+	/**
+	 * Sets the key of the policy.
+	 *
+	 * @param key the key of the policy
+	 */
+	public void setKey(final AxArtifactKey key) {
+		Assertions.argumentNotNull(key, "key may not be null");
+		this.key = key;
+	}
 
-    /**
-     * Gets the policy template for policy editor metadata.
-     *
-     * @return the policy template for policy editor metadata
-     */
-    public String getTemplate() {
-        return template;
-    }
+	/**
+	 * Gets the policy template for policy editor metadata.
+	 *
+	 * @return the policy template for policy editor metadata
+	 */
+	public String getTemplate() {
+		return template;
+	}
 
-    /**
-     * Sets the policy template for policy editor metadata.
-     *
-     * @param template the policy template for policy editor metadata
-     */
-    public void setTemplate(final String template) {
-        Assertions.argumentNotNull(template, "template may not be null");
-        this.template = template;
-    }
+	/**
+	 * Sets the policy template for policy editor metadata.
+	 *
+	 * @param template the policy template for policy editor metadata
+	 */
+	public void setTemplate(final String template) {
+		Assertions.argumentNotNull(template, "template may not be null");
+		this.template = template;
+	}
 
-    /**
-     * Gets a map containing the states of the policy.
-     *
-     * @return the map of states in the policy
-     */
-    public Map<String, AxState> getStateMap() {
-        return stateMap;
-    }
+	/**
+	 * Gets a map containing the states of the policy.
+	 *
+	 * @return the map of states in the policy
+	 */
+	public Map<String, AxState> getStateMap() {
+		return stateMap;
+	}
 
-    /**
-     * Sets a map containing the states of the policy.
-     *
-     * @param stateMap a map of states in the policy
-     */
-    public void setStateMap(final Map<String, AxState> stateMap) {
-        Assertions.argumentNotNull(stateMap, "stateMap may not be null");
-        this.stateMap = stateMap;
-    }
+	/**
+	 * Sets a map containing the states of the policy.
+	 *
+	 * @param stateMap a map of states in the policy
+	 */
+	public void setStateMap(final Map<String, AxState> stateMap) {
+		Assertions.argumentNotNull(stateMap, "stateMap may not be null");
+		this.stateMap = stateMap;
+	}
 
-    /**
-     * Gets the first state of the policy.
-     *
-     * @return the first state of the policy
-     */
-    public String getFirstState() {
-        return firstState;
-    }
+	/**
+	 * Gets the first state of the policy.
+	 *
+	 * @return the first state of the policy
+	 */
+	public String getFirstState() {
+		return firstState;
+	}
 
-    /**
-     * Sets the first state of the policy.
-     *
-     * @param firstState the first state of the policy
-     */
-    public void setFirstState(final String firstState) {
-        Assertions.argumentNotNull(firstState, "firstState may not be null");
-        this.firstState = firstState;
-    }
+	/**
+	 * Sets the first state of the policy.
+	 *
+	 * @param firstState the first state of the policy
+	 */
+	public void setFirstState(final String firstState) {
+		Assertions.argumentNotNull(firstState, "firstState may not be null");
+		this.firstState = firstState;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
-     */
-    @Override
-    public AxValidationResult validate(final AxValidationResult resultIn) {
-        AxValidationResult result = resultIn;
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#validate(com.ericsson.apex.model.basicmodel.concepts.AxValidationResult)
+	 */
+	@Override
+	public AxValidationResult validate(final AxValidationResult resultIn) {
+		AxValidationResult result = resultIn;
 
-        if (key.equals(AxArtifactKey.getNullKey())) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
-        }
+		if (key.equals(AxArtifactKey.getNullKey())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key is a null key"));
+		}
 
-        result = key.validate(result);
+		result = key.validate(result);
 
-        if (template.trim().length() == 0) {
-            result.addValidationMessage(
-                    new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "a policy template has not been specified"));
-        }
+		if (template.trim().length() == 0) {
+			result.addValidationMessage(
+					new AxValidationMessage(key, this.getClass(), ValidationResult.OBSERVATION, "a policy template has not been specified"));
+		}
 
-        if (stateMap.size() == 0) {
-            result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "stateMap may not be empty"));
-        }
-        else {
-            for (final Entry<String, AxState> stateEntry : stateMap.entrySet()) {
-                if (stateEntry.getKey() == null || stateEntry.getKey().equals(AxKey.NULL_KEY_NAME)) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "key on state entry key " + stateEntry.getKey() + " may not be the null key"));
-                    continue;
-                }
+		if (stateMap.size() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "stateMap may not be empty"));
+		}
+		else {
+			for (final Entry<String, AxState> stateEntry : stateMap.entrySet()) {
+				result = validateStateEntry(stateEntry, result);
+			}
+		}
 
-                if (stateEntry.getValue() == null) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "value on state entry value " + stateEntry.getKey() + " may not be null"));
-                    continue;
-                }
+		// Validation continues from this point only if all validation checks this far have been passed
+		if (!result.isOK()) {
+			return result;
+		}
 
-                if (!stateEntry.getKey().equals(stateEntry.getValue().getKey().getLocalName())) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on state entry key "
-                            + stateEntry.getKey() + " does not equal state entry value local name " + stateEntry.getValue().getKey().getLocalName()));
-                }
+		// We only check the unused states on models validated this far
+		if (firstState.trim().length() == 0) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "no first state specified, first state may not be blank"));
+		}
+		else {
+			if (!stateMap.containsKey(firstState)) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "first state not found in stateMap"));
+			}
+			else {
+				validateStateTree(result);
+			}
+		}
 
-                if (!stateEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "parent key on state entry key " + stateEntry.getValue().getKey() + " does not equal policy key"));
-                }
+		return result;
+	}
 
-                result = stateEntry.getValue().validate(result);
+	/**
+	 * Validate a state entry
+	 * @param stateEntry the state entry to validate
+	 * @param result The validation result to append to
+	 * @return The result of the validation
+	 */
+	private AxValidationResult validateStateEntry(final Entry<String, AxState> stateEntry, AxValidationResult result) {
+		if (stateEntry.getKey() == null || stateEntry.getKey().equals(AxKey.NULL_KEY_NAME)) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+					"key on state entry key " + stateEntry.getKey() + " may not be the null key"));
+			return result;
+		}
 
-                for (final AxStateOutput stateOutput : stateEntry.getValue().getStateOutputs().values()) {
-                    if (!stateOutput.getNextState().equals(AxReferenceKey.getNullKey()) && !stateMap.containsKey(stateOutput.getNextState().getLocalName())) {
-                        result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                                " nextState of state " + stateEntry.getKey() + " not found in StateMap: " + stateOutput.getNextState().getID()));
-                    }
-                }
-            }
-        }
+		if (stateEntry.getValue() == null) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+					"value on state entry value " + stateEntry.getKey() + " may not be null"));
+			return result;
+		}
 
-        // Validation continues from this point only if all validation checks this far have been passed
-        if (!result.isOK()) {
-            return result;
-        }
-        
-        // We only check the unused states on models validated this far
-        if (firstState.trim().length() == 0) {
-            result.addValidationMessage(
-                    new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "no first state specified, first state may not be blank"));
-        }
-        else {
-            if (!stateMap.containsKey(firstState)) {
-                result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "first state not found in stateMap"));
-            }
-            else {
-                try {
-                    // COnstructor validates policy state tree
-                    AxStateTree policyStateTree = getStateTree();
+		if (!stateEntry.getKey().equals(stateEntry.getValue().getKey().getLocalName())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key on state entry key "
+					+ stateEntry.getKey() + " does not equal state entry value local name " + stateEntry.getValue().getKey().getLocalName()));
+		}
 
-                    // Check for unused states
-                    final Set<AxState> referencedStateSet = policyStateTree.getReferencedStateSet();
-                    final Set<AxState> unreferencedStateSet = new TreeSet<>(stateMap.values());
-                    unreferencedStateSet.removeAll(referencedStateSet);
+		if (!stateEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+					"parent key on state entry key " + stateEntry.getValue().getKey() + " does not equal policy key"));
+		}
 
-                    for (final AxState unreferencedState : unreferencedStateSet) {
-                        result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.WARNING,
-                                "state " + unreferencedState.getKey() + " is not referenced in the policy execution tree"));
-                    }
-                }
-                catch (PolicyRuntimeException pre) {
-                    result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.WARNING,
-                            "state tree in policy is invalid"));
-                }
-            }
-        }
+		result = stateEntry.getValue().validate(result);
 
-        return result;
-    }
+		for (final AxStateOutput stateOutput : stateEntry.getValue().getStateOutputs().values()) {
+			if (!stateOutput.getNextState().equals(AxReferenceKey.getNullKey()) && !stateMap.containsKey(stateOutput.getNextState().getLocalName())) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+						" nextState of state " + stateEntry.getKey() + " not found in StateMap: " + stateOutput.getNextState().getID()));
+			}
+		}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
-     */
-    @Override
-    public void clean() {
-        key.clean();
-        firstState = firstState.trim();
-    }
+		return result;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
-     */
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(this.getClass().getSimpleName());
-        builder.append(":(");
-        builder.append("key=");
-        builder.append(key);
-        builder.append(",template=");
-        builder.append(template);
-        builder.append(",stateMap=");
-        builder.append(stateMap);
-        builder.append(",firstState=");
-        builder.append(firstState);
-        builder.append(")");
-        return builder.toString();
-    }
+	/**
+	 * Validate a state tree to ensure there are no circular references in it
+	 * @param result The validation result to append to
+	 * @return The result of the validation
+	 */
+	private AxValidationResult validateStateTree(AxValidationResult result) {
+		try {
+			// Cpnstructor validates policy state tree
+			AxStateTree policyStateTree = getStateTree();
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxPolicy());
-    }
+			// Check for unused states
+			final Set<AxState> referencedStateSet = policyStateTree.getReferencedStateSet();
+			final Set<AxState> unreferencedStateSet = new TreeSet<>(stateMap.values());
+			unreferencedStateSet.removeAll(referencedStateSet);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
+			for (final AxState unreferencedState : unreferencedStateSet) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.WARNING,
+						"state " + unreferencedState.getKey() + " is not referenced in the policy execution tree"));
+			}
+		}
+		catch (PolicyRuntimeException pre) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.WARNING,
+					"state tree in policy is invalid"));
+		}
+		
+		return result;
+	}
 
-        final Object copyObject = target;
-        Assertions.instanceOf(copyObject, AxPolicy.class);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clean()
+	 */
+	@Override
+	public void clean() {
+		key.clean();
+		firstState = firstState.trim();
+	}
 
-        final AxPolicy copy = ((AxPolicy) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
-        copy.setTemplate(template);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(this.getClass().getSimpleName());
+		builder.append(":(");
+		builder.append("key=");
+		builder.append(key);
+		builder.append(",template=");
+		builder.append(template);
+		builder.append(",stateMap=");
+		builder.append(stateMap);
+		builder.append(",firstState=");
+		builder.append(firstState);
+		builder.append(")");
+		return builder.toString();
+	}
 
-        final Map<String, AxState> newStateMap = new TreeMap<>();
-        for (final Entry<String, AxState> stateMapEntry : stateMap.entrySet()) {
-            newStateMap.put(stateMapEntry.getKey(), (AxState) stateMapEntry.getValue().clone());
-        }
-        copy.setStateMap(newStateMap);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 */
+	@Override
+	public Object clone() {
+		return copyTo(new AxPolicy());
+	}
 
-        copy.setFirstState(firstState);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
+	 */
+	@Override
+	public Object copyTo(final Object target) {
+		Assertions.argumentNotNull(target, "target may not be null");
 
-        return copyObject;
-    }
+		final Object copyObject = target;
+		Assertions.instanceOf(copyObject, AxPolicy.class);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + key.hashCode();
-        result = prime * result + template.hashCode();
-        result = prime * result + stateMap.hashCode();
-        result = prime * result + firstState.hashCode();
-        return result;
-    }
+		final AxPolicy copy = ((AxPolicy) copyObject);
+		copy.setKey((AxArtifactKey) key.clone());
+		copy.setTemplate(template);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+		final Map<String, AxState> newStateMap = new TreeMap<>();
+		for (final Entry<String, AxState> stateMapEntry : stateMap.entrySet()) {
+			newStateMap.put(stateMapEntry.getKey(), (AxState) stateMapEntry.getValue().clone());
+		}
+		copy.setStateMap(newStateMap);
 
-        final AxPolicy other = (AxPolicy) obj;
-        if (!key.equals(other.key)) {
-            return false;
-        }
-        if (!template.equals(other.template)) {
-            return false;
-        }
-        if (!stateMap.equals(other.stateMap)) {
-            return false;
-        }
-        return firstState.equals(other.firstState);
-    }
+		copy.setFirstState(firstState);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(final AxConcept otherObj) {
-        if (otherObj == null) {
-            return -1;
-        }
-        if (this == otherObj) {
-            return 0;
-        }
-        if (getClass() != otherObj.getClass()) {
-            return this.hashCode() - otherObj.hashCode();
-        }
+		return copyObject;
+	}
 
-        final AxPolicy other = (AxPolicy) otherObj;
-        if (!key.equals(other.key)) {
-            return key.compareTo(other.key);
-        }
-        if (!template.equals(other.template)) {
-            return template.compareTo(other.template);
-        }
-        if (!stateMap.equals(other.stateMap)) {
-            return (stateMap.hashCode() - other.stateMap.hashCode());
-        }
-        return firstState.compareTo(other.firstState);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + key.hashCode();
+		result = prime * result + template.hashCode();
+		result = prime * result + stateMap.hashCode();
+		result = prime * result + firstState.hashCode();
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		final AxPolicy other = (AxPolicy) obj;
+		if (!key.equals(other.key)) {
+			return false;
+		}
+		if (!template.equals(other.template)) {
+			return false;
+		}
+		if (!stateMap.equals(other.stateMap)) {
+			return false;
+		}
+		return firstState.equals(other.firstState);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(final AxConcept otherObj) {
+		if (otherObj == null) {
+			return -1;
+		}
+		if (this == otherObj) {
+			return 0;
+		}
+		if (getClass() != otherObj.getClass()) {
+			return this.hashCode() - otherObj.hashCode();
+		}
+
+		final AxPolicy other = (AxPolicy) otherObj;
+		if (!key.equals(other.key)) {
+			return key.compareTo(other.key);
+		}
+		if (!template.equals(other.template)) {
+			return template.compareTo(other.template);
+		}
+		if (!stateMap.equals(other.stateMap)) {
+			return (stateMap.hashCode() - other.stateMap.hashCode());
+		}
+		return firstState.compareTo(other.firstState);
+	}
 }

@@ -26,7 +26,7 @@ import com.ericsson.apex.model.utilities.Assertions;
 
 @XmlType(name = "AxConcept", namespace = "http://www.ericsson.com/apex")
 
-public abstract class AxConcept implements Serializable, Cloneable, Comparable<AxConcept> {
+public abstract class AxConcept implements Serializable, Comparable<AxConcept> {
     private static final long serialVersionUID = -7434939557282697490L;
 
     /**

@@ -213,33 +213,46 @@ public class AxKeyInformation extends AxConcept implements AxConceptGetter<AxKey
 			final Set<UUID> uuidSet = new TreeSet<>();
 
 			for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoEntry : keyInfoMap.entrySet()) {
-				if (keyInfoEntry.getKey().equals(AxArtifactKey.getNullKey())) {
-					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-							"key on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be the null key"));
-				}
-				else if (keyInfoEntry.getValue() == null) {
-					result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-							"value on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be null"));
-				}
-				else {
-					if (!keyInfoEntry.getKey().equals(keyInfoEntry.getValue().getKey())) {
-						result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-								"key on keyInfoMap entry " + keyInfoEntry.getKey() + " does not equal entry key " + keyInfoEntry.getValue().getKey()));
-					}
-
-					result = keyInfoEntry.getValue().validate(result);
-
-					if (uuidSet.contains(keyInfoEntry.getValue().getUUID())) {
-						result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-								"duplicate UUID found on keyInfoMap entry " + keyInfoEntry.getKey() + ":" + keyInfoEntry.getValue().getUUID()));
-					}
-					else {
-						uuidSet.add(keyInfoEntry.getValue().getUUID());
-					}
-				}
+				result = validateKeyInfoEntry(keyInfoEntry, uuidSet, result);
 			}
 		}
 
+		return result;
+	}
+
+	/**
+	 * Validate an key information entry
+	 * @param keyInfoEntry the key information entry
+	 * @param uuidSet the set of UUIDs encountered in validation so far, the UUID of this entry is added to the set
+	 * @param result the validation result to append to
+	 * @return The validation result
+	 */
+	private AxValidationResult validateKeyInfoEntry(final Entry<AxArtifactKey, AxKeyInfo> keyInfoEntry, Set<UUID> uuidSet, AxValidationResult result) {
+		if (keyInfoEntry.getKey().equals(AxArtifactKey.getNullKey())) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+					"key on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be the null key"));
+		}
+		else if (keyInfoEntry.getValue() == null) {
+			result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+					"value on keyInfoMap entry " + keyInfoEntry.getKey() + " may not be null"));
+		}
+		else {
+			if (!keyInfoEntry.getKey().equals(keyInfoEntry.getValue().getKey())) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+						"key on keyInfoMap entry " + keyInfoEntry.getKey() + " does not equal entry key " + keyInfoEntry.getValue().getKey()));
+			}
+
+			result = keyInfoEntry.getValue().validate(result);
+
+			if (uuidSet.contains(keyInfoEntry.getValue().getUUID())) {
+				result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
+						"duplicate UUID found on keyInfoMap entry " + keyInfoEntry.getKey() + ":" + keyInfoEntry.getValue().getUUID()));
+			}
+			else {
+				uuidSet.add(keyInfoEntry.getValue().getUUID());
+			}
+		}
+		
 		return result;
 	}
 
