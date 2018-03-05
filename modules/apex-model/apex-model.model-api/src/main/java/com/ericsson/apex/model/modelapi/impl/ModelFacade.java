@@ -25,7 +25,12 @@ import com.ericsson.apex.model.utilities.Assertions;
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
 public class ModelFacade {
-    // Apex model we're working towards
+	private static final String CONCEPT = "concept ";
+    private static final String DOES_NOT_EXIST = " does not exist";
+	private static final String ALREADY_CREATED = " already created";
+	private static final String NO_VERSION_SPECIFIED = ", no version specified";
+
+	// Apex model we're working towards
     private final ApexModel apexModel;
 
     // Properties to use for the model
@@ -77,12 +82,12 @@ public class ModelFacade {
                     key.setVersion(defaultVersion);
                 }
                 else {
-                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "concept " + name + ", no version specified");
+                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, CONCEPT + name + NO_VERSION_SPECIFIED);
                 }
             }
 
             if (!apexModel.getPolicyModel().getKey().equals(AxArtifactKey.getNullKey())) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "concept " + apexModel.getPolicyModel().getKey().getID() + " already created");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, CONCEPT + apexModel.getPolicyModel().getKey().getID() + ALREADY_CREATED);
             }
 
             apexModel.setPolicyModel(new AxPolicyModel(key));
@@ -122,13 +127,13 @@ public class ModelFacade {
                     key.setVersion(defaultVersion);
                 }
                 else {
-                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "concept " + apexModel.getPolicyModel().getKey().getID() + ", no version specified");
+                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, CONCEPT + apexModel.getPolicyModel().getKey().getID() + NO_VERSION_SPECIFIED);
                 }
             }
 
             if (apexModel.getPolicyModel().getKey().equals(AxArtifactKey.getNullKey())) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST,
-                        "concept " + apexModel.getPolicyModel().getKey().getID() + " does not exist");
+                        CONCEPT + apexModel.getPolicyModel().getKey().getID() + DOES_NOT_EXIST);
             }
 
             return keyInformationFacade.updateKeyInformation(name, version, uuid, description);

@@ -53,7 +53,12 @@ import com.ericsson.apex.model.utilities.TextFileUtils;
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
 public class ModelHandlerFacade {
-    // Apex model we're working towards
+    private static final String FOUND_IN_DATABASE = " found in database";
+	private static final String FILE_NAME_MAY_NOT_BE_NULL = "fileName may not be null";
+	private static final String MODEL = "model ";
+	private static final String ALREADY_LOADED = " already loaded";
+
+	// Apex model we're working towards
     private final ApexModel apexModel;
 
     // JSON output on list/delete if set
@@ -84,7 +89,7 @@ public class ModelHandlerFacade {
         Assertions.argumentNotNull(modelString, "modelString may not be null");
 
         if (!apexModel.getPolicyModel().getKey().equals(AxArtifactKey.getNullKey())) {
-            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "model " + apexModel.getPolicyModel().getKey().getID() + " already loaded");
+            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, MODEL + apexModel.getPolicyModel().getKey().getID() + ALREADY_LOADED);
         }
 
         ApexAPIResult result = new ApexAPIResult();
@@ -101,10 +106,10 @@ public class ModelHandlerFacade {
      * @return the result of the operation
      */
     public ApexAPIResult loadFromFile(final String fileName) {
-        Assertions.argumentNotNull(fileName, "fileName may not be null");
+        Assertions.argumentNotNull(fileName, FILE_NAME_MAY_NOT_BE_NULL);
 
         if (!apexModel.getPolicyModel().getKey().equals(AxArtifactKey.getNullKey())) {
-            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "model " + apexModel.getPolicyModel().getKey().getID() + " already loaded");
+            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, MODEL + apexModel.getPolicyModel().getKey().getID() + ALREADY_LOADED);
         }
 
         ApexAPIResult result = new ApexAPIResult();
@@ -122,7 +127,7 @@ public class ModelHandlerFacade {
      * @return the result of the operation
      */
     public ApexAPIResult saveToFile(final String fileName, final boolean xmlFlag) {
-        Assertions.argumentNotNull(fileName, "fileName may not be null");
+        Assertions.argumentNotNull(fileName, FILE_NAME_MAY_NOT_BE_NULL);
 
         ApexModelFileWriter<AxPolicyModel> apexModelFileWriter = new ApexModelFileWriter<>(false);
 
@@ -154,7 +159,7 @@ public class ModelHandlerFacade {
         Assertions.argumentNotNull(daoParameters, "daoParameters may not be null");
 
         if (!apexModel.getPolicyModel().getKey().equals(AxArtifactKey.getNullKey())) {
-            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "model " + apexModel.getPolicyModel().getKey().getID() + " already loaded");
+            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, MODEL + apexModel.getPolicyModel().getKey().getID() + ALREADY_LOADED);
         }
 
         ApexDao apexDao = null;
@@ -173,7 +178,7 @@ public class ModelHandlerFacade {
                 else {
                     apexModel.setPolicyModel(new AxPolicyModel());
                     return new ApexAPIResult(ApexAPIResult.RESULT.FAILED,
-                            "no policy model with name " + modelName + " and version " + modelVersion + " found in database");
+                            "no policy model with name " + modelName + " and version " + modelVersion + FOUND_IN_DATABASE);
                 }
             }
             // Fishing expedition
@@ -187,7 +192,7 @@ public class ModelHandlerFacade {
                             foundPolicyModel = dbPolicyModel;
                         }
                         else {
-                            return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "more than one policy model with name " + modelName + " found in database");
+                            return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "more than one policy model with name " + modelName + FOUND_IN_DATABASE);
                         }
                     }
                 }
@@ -198,7 +203,7 @@ public class ModelHandlerFacade {
                 }
                 else {
                     apexModel.setPolicyModel(new AxPolicyModel());
-                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "no policy model with name " + modelName + " found in database");
+                    return new ApexAPIResult(ApexAPIResult.RESULT.FAILED, "no policy model with name " + modelName + FOUND_IN_DATABASE);
                 }
             }
         }
@@ -248,7 +253,7 @@ public class ModelHandlerFacade {
         Assertions.argumentNotNull(urlString, "urlString may not be null");
 
         if (!apexModel.getPolicyModel().getKey().equals(AxArtifactKey.getNullKey())) {
-            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "model " + apexModel.getPolicyModel().getKey().getID() + " already loaded");
+            return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, MODEL + apexModel.getPolicyModel().getKey().getID() + ALREADY_LOADED);
         }
 
         URL apexModelURL;
@@ -533,7 +538,7 @@ public class ModelHandlerFacade {
      * @return the model
      */
     private AxPolicyModel loadModelFromFile(final String fileName, final ApexAPIResult result) {
-        Assertions.argumentNotNull(fileName, "fileName may not be null");
+        Assertions.argumentNotNull(fileName, FILE_NAME_MAY_NOT_BE_NULL);
 
         AxPolicyModel readModel = null;
 

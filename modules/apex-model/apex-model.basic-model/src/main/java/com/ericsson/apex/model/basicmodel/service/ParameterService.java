@@ -41,34 +41,34 @@ public abstract class ParameterService {
     /**
      * Register parameters with the parameter service.
      *
-     * @param <PARAMETERS> the generic type
+     * @param <P> the generic type
      * @param parametersClass the class of the parameter, used to index the parameter
      * @param parameters the parameters
      */
-    public static <PARAMETERS extends AbstractParameters> void registerParameters(final Class<PARAMETERS> parametersClass, final PARAMETERS parameters) {
+    public static <P extends AbstractParameters> void registerParameters(final Class<P> parametersClass, final P parameters) {
         parameterMap.put(parametersClass, parameters);
     }
 
     /**
      * Remove parameters from the parameter service.
      *
-     * @param <PARAMETERS> the generic type
+     * @param <P> the generic type
      * @param parametersClass the class of the parameter, used to index the parameter
      */
-    public static <PARAMETERS extends AbstractParameters> void deregisterParameters(final Class<PARAMETERS> parametersClass) {
+    public static <P extends AbstractParameters> void deregisterParameters(final Class<P> parametersClass) {
         parameterMap.remove(parametersClass);
     }
 
     /**
      * Get parameters from the parameter service.
      *
-     * @param <PARAMETERS> the generic type
+     * @param <P> the generic type
      * @param parametersClass the class of the parameter, used to index the parameter
      * @return The parameter
      */
     @SuppressWarnings("unchecked")
-    public static <PARAMETERS extends AbstractParameters> PARAMETERS getParameters(final Class<PARAMETERS> parametersClass) {
-        final PARAMETERS parameter = (PARAMETERS) parameterMap.get(parametersClass);
+    public static <P extends AbstractParameters> P getParameters(final Class<P> parametersClass) {
+        final P parameter = (P) parameterMap.get(parametersClass);
 
         if (parameter == null) {
             throw new ApexRuntimeException("Parameters for " + parametersClass.getCanonicalName() + " not found in parameter service");
@@ -80,11 +80,11 @@ public abstract class ParameterService {
     /**
      * Check if parameters is defined on the parameter service.
      *
-     * @param <PARAMETERS> the generic type
+     * @param <P> the generic type
      * @param parametersClass the class of the parameter, used to index the parameter
      * @return true if the parameter is defined
      */
-    public static <PARAMETERS extends AbstractParameters> boolean existsParameters(final Class<PARAMETERS> parametersClass) {
+    public static <P extends AbstractParameters> boolean existsParameters(final Class<P> parametersClass) {
         return parameterMap.get(parametersClass) != null;
     }
 

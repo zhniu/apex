@@ -26,7 +26,9 @@ import com.ericsson.apex.model.utilities.ResourceUtils;
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
 public class PolicyLogicReader implements AxLogicReader {
-    private static final XLogger LOGGER = XLoggerFactory.getXLogger(PolicyModelSplitter.class);
+    private static final String DOT_JAVA = ".java.";
+
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(PolicyModelSplitter.class);
 
     // The path of the logic package
     private String logicPackage = "";
@@ -88,15 +90,15 @@ public class PolicyLogicReader implements AxLogicReader {
             // Check if we're using the default logic
             if (defaultLogic != null) {
                 // Return the java class name for the default logic
-                return logicPackage + ".java." + defaultLogic;
+                return logicPackage + DOT_JAVA + defaultLogic;
             }
             else {
                 // Return the java class name for the logic
                 if (axLogic.getKey().getParentLocalName().equals(AxKey.NULL_KEY_NAME)) {
-                    return logicPackage + ".java." + axLogic.getKey().getParentKeyName() + '_' + axLogic.getKey().getLocalName();
+                    return logicPackage + DOT_JAVA + axLogic.getKey().getParentKeyName() + '_' + axLogic.getKey().getLocalName();
                 }
                 else {
-                    return logicPackage + ".java." + axLogic.getKey().getParentKeyName() + '_' + axLogic.getKey().getParentLocalName() + '_'
+                    return logicPackage + DOT_JAVA + axLogic.getKey().getParentKeyName() + '_' + axLogic.getKey().getParentLocalName() + '_'
                             + axLogic.getKey().getLocalName();
                 }
             }

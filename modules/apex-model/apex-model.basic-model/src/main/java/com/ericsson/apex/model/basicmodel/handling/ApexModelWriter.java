@@ -46,7 +46,11 @@ import com.ericsson.apex.model.utilities.Assertions;
  * @param <C> the type of Apex concept to write, must be a sub class of {@link AxConcept}
  */
 public class ApexModelWriter<C extends AxConcept> {
-    // Get a reference to the logger
+	private static final String CONCEPT_MAY_NOT_BE_NULL = "concept may not be null";
+    private static final String CONCEPT_WRITER_MAY_NOT_BE_NULL = "concept writer may not be null";
+	private static final String CONCEPT_STREAM_MAY_NOT_BE_NULL = "concept stream may not be null";
+
+	// Get a reference to the logger
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexModelWriter.class);
 
     // Writing as JSON or XML
@@ -142,8 +146,8 @@ public class ApexModelWriter<C extends AxConcept> {
      * @throws ApexModelException on validation or writing exceptions
      */
     public void write(final C concept, final OutputStream apexConceptStream) throws ApexModelException {
-        Assertions.argumentNotNull(concept, "concept may not be null");
-        Assertions.argumentNotNull(apexConceptStream, "concept stream may not be null");
+        Assertions.argumentNotNull(concept, CONCEPT_MAY_NOT_BE_NULL);
+        Assertions.argumentNotNull(apexConceptStream, CONCEPT_STREAM_MAY_NOT_BE_NULL);
         
         this.write(concept, new OutputStreamWriter(apexConceptStream));
     }
@@ -156,8 +160,8 @@ public class ApexModelWriter<C extends AxConcept> {
      * @throws ApexModelException on validation or writing exceptions
      */
     public void write(final C concept, final Writer apexConceptWriter) throws ApexModelException {
-        Assertions.argumentNotNull(concept, "concept may not be null");
-        Assertions.argumentNotNull(apexConceptWriter, "concept writer may not be null");
+        Assertions.argumentNotNull(concept, CONCEPT_MAY_NOT_BE_NULL);
+        Assertions.argumentNotNull(apexConceptWriter, CONCEPT_WRITER_MAY_NOT_BE_NULL);
 
         // Check if we should validate the concept
         if (validateFlag) {
@@ -186,7 +190,7 @@ public class ApexModelWriter<C extends AxConcept> {
      * @throws ApexModelException on validation or writing exceptions
      */
     private void writeXML(final C concept, final Writer apexConceptWriter) throws ApexModelException {
-        Assertions.argumentNotNull(concept, "concept may not be null");
+        Assertions.argumentNotNull(concept, CONCEPT_MAY_NOT_BE_NULL);
 
         LOGGER.debug("writing Apex concept XML . . .");
 
@@ -231,7 +235,7 @@ public class ApexModelWriter<C extends AxConcept> {
      * @throws ApexModelException on validation or writing exceptions
      */
     private void writeJSON(final C concept, final Writer apexConceptWriter) throws ApexModelException {
-        Assertions.argumentNotNull(concept, "concept may not be null");
+        Assertions.argumentNotNull(concept, CONCEPT_MAY_NOT_BE_NULL);
 
         LOGGER.debug("writing Apex concept JSON . . .");
 

@@ -57,7 +57,10 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxField", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "fieldSchemaKey", "optional" })
 
 public class AxField extends AxConcept {
-    private static final long serialVersionUID = -6443016863162692288L;
+	private static final String KEY_MAY_NOT_BE_NULL = "key may not be null";
+    private static final String FIELD_SCHEMA_KEY_MAY_NOT_BE_NULL = "fieldSchemaKey may not be null";
+
+	private static final long serialVersionUID = -6443016863162692288L;
 
     private static final int HASH_PRIME_0 = 1231;
     private static final int HASH_PRIME_1 = 1237;
@@ -106,8 +109,8 @@ public class AxField extends AxConcept {
      */
     public AxField(final AxReferenceKey key, final AxArtifactKey fieldSchemaKey) {
         super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(fieldSchemaKey, "fieldSchemaKey may not be null");
+        Assertions.argumentNotNull(key, KEY_MAY_NOT_BE_NULL);
+        Assertions.argumentNotNull(fieldSchemaKey, FIELD_SCHEMA_KEY_MAY_NOT_BE_NULL);
 
         this.key = key;
         this.fieldSchemaKey = fieldSchemaKey;
@@ -122,8 +125,8 @@ public class AxField extends AxConcept {
      */
     public AxField(final AxReferenceKey key, final AxArtifactKey fieldSchemaKey, final boolean optional) {
         super();
-        Assertions.argumentNotNull(key, "key may not be null");
-        Assertions.argumentNotNull(fieldSchemaKey, "fieldSchemaKey may not be null");
+        Assertions.argumentNotNull(key, KEY_MAY_NOT_BE_NULL);
+        Assertions.argumentNotNull(fieldSchemaKey, FIELD_SCHEMA_KEY_MAY_NOT_BE_NULL);
 
         this.key = key;
         this.fieldSchemaKey = fieldSchemaKey;
@@ -139,7 +142,7 @@ public class AxField extends AxConcept {
     public AxField(final String localName, final AxArtifactKey fieldSchemaKey) {
         super();
         Assertions.argumentNotNull(localName, "localName may not be null");
-        Assertions.argumentNotNull(fieldSchemaKey, "fieldSchemaKey may not be null");
+        Assertions.argumentNotNull(fieldSchemaKey, FIELD_SCHEMA_KEY_MAY_NOT_BE_NULL);
 
         key = new AxReferenceKey();
         key.setLocalName(localName);
@@ -156,7 +159,7 @@ public class AxField extends AxConcept {
     public AxField(final String localName, final AxArtifactKey fieldSchemaKey, final boolean optional) {
         super();
         Assertions.argumentNotNull(localName, "localName may not be null");
-        Assertions.argumentNotNull(fieldSchemaKey, "fieldSchemaKey may not be null");
+        Assertions.argumentNotNull(fieldSchemaKey, FIELD_SCHEMA_KEY_MAY_NOT_BE_NULL);
 
         key = new AxReferenceKey();
         key.setLocalName(localName);
@@ -192,7 +195,7 @@ public class AxField extends AxConcept {
      * @param key the field reference key
      */
     public void setKey(final AxReferenceKey key) {
-        Assertions.argumentNotNull(key, "key may not be null");
+        Assertions.argumentNotNull(key, KEY_MAY_NOT_BE_NULL);
         this.key = key;
     }
 

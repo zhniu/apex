@@ -27,7 +27,12 @@ import com.ericsson.apex.model.modelapi.ApexModel;
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
 public class ContextAlbumFacade {
-    // Apex model we're working towards
+	private static final String CONCEPT = "concept ";
+	private static final String CONCEPT_S = "concept(s) ";
+	private static final String DOES_NOT_EXIST = " does not exist";
+    private static final String DO_ES_NOT_EXIST = " do(es) not exist";
+
+	// Apex model we're working towards
     private final ApexModel apexModel;
 
     // Properties to use for the model
@@ -81,13 +86,13 @@ public class ContextAlbumFacade {
             }
 
             if (apexModel.getPolicyModel().getAlbums().getAlbumsMap().containsKey(key)) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "concept " + key.getID() + " already exists");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, CONCEPT + key.getID() + " already exists");
             }
 
             AxContextSchema schema = apexModel.getPolicyModel().getSchemas().get(contextSchemaName, contextSchemaVersion);
             if (schema == null) {
                 return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST,
-                        "concept " + contextSchemaName + ':' + contextSchemaVersion + " does not exist");
+                        CONCEPT + contextSchemaName + ':' + contextSchemaVersion + DOES_NOT_EXIST);
             }
 
             AxContextAlbum contextAlbum = new AxContextAlbum(key);
@@ -135,7 +140,7 @@ public class ContextAlbumFacade {
         try {
             AxContextAlbum contextAlbum = apexModel.getPolicyModel().getAlbums().get(name, version);
             if (contextAlbum == null) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept " + name + ':' + version + " does not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT + name + ':' + version + DOES_NOT_EXIST);
             }
 
             if (scope != null) {
@@ -154,7 +159,7 @@ public class ContextAlbumFacade {
                 AxContextSchema schema = apexModel.getPolicyModel().getSchemas().get(contextSchemaName, contextSchemaVersion);
                 if (schema == null) {
                     return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST,
-                            "concept " + contextSchemaName + ':' + contextSchemaVersion + " does not exist");
+                            CONCEPT + contextSchemaName + ':' + contextSchemaVersion + DOES_NOT_EXIST);
                 }
                 contextAlbum.setItemSchema(schema.getKey());
             }
@@ -178,7 +183,7 @@ public class ContextAlbumFacade {
         try {
             Set<AxContextAlbum> contextAlbumSet = apexModel.getPolicyModel().getAlbums().getAll(name, version);
             if (name != null && contextAlbumSet.isEmpty()) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT_S + name + ':' + version + DO_ES_NOT_EXIST);
             }
 
             ApexAPIResult result = new ApexAPIResult();
@@ -207,13 +212,13 @@ public class ContextAlbumFacade {
                     return new ApexAPIResult();
                 }
                 else {
-                    return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept " + key.getID() + " does not exist");
+                    return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT + key.getID() + DOES_NOT_EXIST);
                 }
             }
 
             Set<AxContextAlbum> contextAlbumSet = apexModel.getPolicyModel().getAlbums().getAll(name, version);
             if (contextAlbumSet.isEmpty()) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT_S + name + ':' + version + DO_ES_NOT_EXIST);
             }
 
             ApexAPIResult result = new ApexAPIResult();
@@ -240,7 +245,7 @@ public class ContextAlbumFacade {
         try {
             Set<AxContextAlbum> contextAlbumSet = apexModel.getPolicyModel().getAlbums().getAll(name, version);
             if (contextAlbumSet.isEmpty()) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT_S + name + ':' + version + DO_ES_NOT_EXIST);
             }
 
             ApexAPIResult result = new ApexAPIResult();

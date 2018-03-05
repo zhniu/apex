@@ -45,7 +45,12 @@ import com.ericsson.apex.model.utilities.Assertions;
         "localName" })
 
 public class AxReferenceKey extends AxKey {
-    private static final long serialVersionUID = 8932717618579392561L;
+	private static final String PARENT_KEY_NAME = "parentKeyName";
+	private static final String PARENT_KEY_VERSION = "parentKeyVersion";
+	private static final String PARENT_LOCAL_NAME = "parentLocalName";
+    private static final String LOCAL_NAME = "localName";
+
+	private static final long serialVersionUID = 8932717618579392561L;
 
     /** Regular expression to specify the structure of local names in reference keys.*/
     public static final String LOCAL_NAME_REGEXP = "[A-Za-z0-9\\-_\\.]+|^$";
@@ -58,19 +63,19 @@ public class AxReferenceKey extends AxKey {
     private static final int PARENT_LOCAL_NAME_FIELD = 2;
     private static final int LOCAL_NAME_FIELD = 3;
 
-    @Column(name = "parentKeyName")
+    @Column(name = PARENT_KEY_NAME)
     @XmlElement(required = true)
     private String parentKeyName;
 
-    @Column(name = "parentKeyVersion")
+    @Column(name = PARENT_KEY_VERSION)
     @XmlElement(required = true)
     private String parentKeyVersion;
 
-    @Column(name = "parentLocalName")
+    @Column(name = PARENT_LOCAL_NAME)
     @XmlElement(required = true)
     private String parentLocalName;
 
-    @Column(name = "localName")
+    @Column(name = LOCAL_NAME)
     @XmlElement(required = true)
     private String localName;
 
@@ -153,10 +158,10 @@ public class AxReferenceKey extends AxKey {
      */
     public AxReferenceKey(final String parentKeyName, final String parentKeyVersion, final String parentLocalName, final String localName) {
         super();
-        this.parentKeyName = Assertions.validateStringParameter("parentKeyName", parentKeyName, NAME_REGEXP);
-        this.parentKeyVersion = Assertions.validateStringParameter("parentKeyVersion", parentKeyVersion, VERSION_REGEXP);
-        this.parentLocalName = Assertions.validateStringParameter("parentLocalName", parentLocalName, LOCAL_NAME_REGEXP);
-        this.localName = Assertions.validateStringParameter("localName", localName, LOCAL_NAME_REGEXP);
+        this.parentKeyName = Assertions.validateStringParameter(PARENT_KEY_NAME, parentKeyName, NAME_REGEXP);
+        this.parentKeyVersion = Assertions.validateStringParameter(PARENT_KEY_VERSION, parentKeyVersion, VERSION_REGEXP);
+        this.parentLocalName = Assertions.validateStringParameter(PARENT_LOCAL_NAME, parentLocalName, LOCAL_NAME_REGEXP);
+        this.localName = Assertions.validateStringParameter(LOCAL_NAME, localName, LOCAL_NAME_REGEXP);
     }
 
     /**
@@ -174,10 +179,10 @@ public class AxReferenceKey extends AxKey {
         final String[] nameVersionNameArray = conditionedId.split(":");
 
         // Initiate the new key
-        parentKeyName = Assertions.validateStringParameter("parentKeyName", nameVersionNameArray[PARENT_NAME_FIELD], NAME_REGEXP);
-        parentKeyVersion = Assertions.validateStringParameter("parentKeyVersion", nameVersionNameArray[PARENT_VERSION_FIELD], VERSION_REGEXP);
-        parentLocalName = Assertions.validateStringParameter("parentLocalName", nameVersionNameArray[PARENT_LOCAL_NAME_FIELD], LOCAL_NAME_REGEXP);
-        localName = Assertions.validateStringParameter("localName", nameVersionNameArray[LOCAL_NAME_FIELD], LOCAL_NAME_REGEXP);
+        parentKeyName = Assertions.validateStringParameter(PARENT_KEY_NAME, nameVersionNameArray[PARENT_NAME_FIELD], NAME_REGEXP);
+        parentKeyVersion = Assertions.validateStringParameter(PARENT_KEY_VERSION, nameVersionNameArray[PARENT_VERSION_FIELD], VERSION_REGEXP);
+        parentLocalName = Assertions.validateStringParameter(PARENT_LOCAL_NAME, nameVersionNameArray[PARENT_LOCAL_NAME_FIELD], LOCAL_NAME_REGEXP);
+        localName = Assertions.validateStringParameter(LOCAL_NAME, nameVersionNameArray[LOCAL_NAME_FIELD], LOCAL_NAME_REGEXP);
     }
 
     /**
@@ -280,7 +285,7 @@ public class AxReferenceKey extends AxKey {
      * @param parentKeyName the parent key name of this reference key
      */
     public void setParentKeyName(final String parentKeyName) {
-        this.parentKeyName = Assertions.validateStringParameter("parentKeyName", parentKeyName, NAME_REGEXP);
+        this.parentKeyName = Assertions.validateStringParameter(PARENT_KEY_NAME, parentKeyName, NAME_REGEXP);
     }
 
     /**
@@ -298,7 +303,7 @@ public class AxReferenceKey extends AxKey {
      * @param parentKeyVersion the parent key version of this reference key
      */
     public void setParentKeyVersion(final String parentKeyVersion) {
-        this.parentKeyVersion = Assertions.validateStringParameter("parentKeyVersion", parentKeyVersion, VERSION_REGEXP);
+        this.parentKeyVersion = Assertions.validateStringParameter(PARENT_KEY_VERSION, parentKeyVersion, VERSION_REGEXP);
     }
 
     /**
@@ -316,7 +321,7 @@ public class AxReferenceKey extends AxKey {
      * @param parentLocalName the parent local name of this reference key
      */
     public void setParentLocalName(final String parentLocalName) {
-        this.parentLocalName = Assertions.validateStringParameter("parentLocalName", parentLocalName, LOCAL_NAME_REGEXP);
+        this.parentLocalName = Assertions.validateStringParameter(PARENT_LOCAL_NAME, parentLocalName, LOCAL_NAME_REGEXP);
     }
 
     /**
@@ -334,7 +339,7 @@ public class AxReferenceKey extends AxKey {
      * @param localName the local name of this reference key
      */
     public void setLocalName(final String localName) {
-        this.localName = Assertions.validateStringParameter("localName", localName, LOCAL_NAME_REGEXP);
+        this.localName = Assertions.validateStringParameter(LOCAL_NAME, localName, LOCAL_NAME_REGEXP);
     }
 
     /*
@@ -375,28 +380,28 @@ public class AxReferenceKey extends AxKey {
     @Override
     public AxValidationResult validate(final AxValidationResult result) {
         try {
-            Assertions.validateStringParameter("parentKeyName", parentKeyName, NAME_REGEXP);
+            Assertions.validateStringParameter(PARENT_KEY_NAME, parentKeyName, NAME_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(this, this.getClass(), ValidationResult.INVALID, "parentKeyName invalid-" + e.getMessage()));
         }
 
         try {
-            Assertions.validateStringParameter("parentKeyVersion", parentKeyVersion, VERSION_REGEXP);
+            Assertions.validateStringParameter(PARENT_KEY_VERSION, parentKeyVersion, VERSION_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(this, this.getClass(), ValidationResult.INVALID, "parentKeyVersion invalid-" + e.getMessage()));
         }
 
         try {
-            Assertions.validateStringParameter("parentLocalName", parentLocalName, LOCAL_NAME_REGEXP);
+            Assertions.validateStringParameter(PARENT_LOCAL_NAME, parentLocalName, LOCAL_NAME_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(this, this.getClass(), ValidationResult.INVALID, "parentLocalName invalid-" + e.getMessage()));
         }
 
         try {
-            Assertions.validateStringParameter("localName", localName, LOCAL_NAME_REGEXP);
+            Assertions.validateStringParameter(LOCAL_NAME, localName, LOCAL_NAME_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(this, this.getClass(), ValidationResult.INVALID, "localName invalid-" + e.getMessage()));
@@ -412,10 +417,10 @@ public class AxReferenceKey extends AxKey {
      */
     @Override
     public void clean() {
-        parentKeyName = Assertions.validateStringParameter("parentKeyName", parentKeyName, NAME_REGEXP);
-        parentKeyVersion = Assertions.validateStringParameter("parentKeyVersion", parentKeyVersion, VERSION_REGEXP);
-        parentLocalName = Assertions.validateStringParameter("parentLocalName", parentLocalName, LOCAL_NAME_REGEXP);
-        localName = Assertions.validateStringParameter("localName", localName, LOCAL_NAME_REGEXP);
+        parentKeyName = Assertions.validateStringParameter(PARENT_KEY_NAME, parentKeyName, NAME_REGEXP);
+        parentKeyVersion = Assertions.validateStringParameter(PARENT_KEY_VERSION, parentKeyVersion, VERSION_REGEXP);
+        parentLocalName = Assertions.validateStringParameter(PARENT_LOCAL_NAME, parentLocalName, LOCAL_NAME_REGEXP);
+        localName = Assertions.validateStringParameter(LOCAL_NAME, localName, LOCAL_NAME_REGEXP);
     }
 
     /*
@@ -494,7 +499,9 @@ public class AxReferenceKey extends AxKey {
      */
     @Override
     public boolean equals(final Object obj) {
-        Assertions.argumentNotNull(obj, "comparison object may not be null");
+        if (obj == null) {
+            throw new IllegalArgumentException("comparison object may not be null");
+        }
 
         if (this == obj) {
             return true;

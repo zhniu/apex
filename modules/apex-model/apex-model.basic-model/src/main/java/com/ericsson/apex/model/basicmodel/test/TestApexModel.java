@@ -37,7 +37,12 @@ import com.ericsson.apex.model.utilities.ResourceUtils;
  * @param <M> the generic type
  */
 public class TestApexModel<M extends AxModel> {
-    private static final XLogger LOGGER = XLoggerFactory.getXLogger(TestApexModel.class);
+    private static final String MODEL_IS_INVALID = "model is invalid ";
+	private static final String ERROR_PROCESSING_FILE = "error processing file ";
+	private static final String TEST_MODEL_DOES_NOT_EQUAL_MODEL_READ_FROM_XML_FILE = "test model does not equal model read from XML file ";
+	private static final String ERROR_CREATING_TEMPORARY_FILE_FOR_APEX_MODEL = "error creating temporary file for Apex model";
+
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(TestApexModel.class);
 
     // The root model class that specifies the root to import and export from
     private final Class<M> rootModelClass;
@@ -84,8 +89,8 @@ public class TestApexModel<M extends AxModel> {
             xmlFile.deleteOnExit();
         }
         catch (final Exception e) {
-            LOGGER.warn("error creating temporary file for Apex model", e);
-            throw new ApexException("error creating temporary file for Apex model", e);
+            LOGGER.warn(ERROR_CREATING_TEMPORARY_FILE_FOR_APEX_MODEL, e);
+            throw new ApexException(ERROR_CREATING_TEMPORARY_FILE_FOR_APEX_MODEL, e);
         }
         new ApexModelFileWriter<M>(true).apexModelWriteXMLFile(model, rootModelClass, xmlFile.getPath());
 
@@ -96,13 +101,13 @@ public class TestApexModel<M extends AxModel> {
             final URL apexModelURL = ResourceUtils.getLocalFile(xmlFile.getAbsolutePath());
             final M fileModel = modelReader.read(apexModelURL.openStream());
             if (!model.equals(fileModel)) {
-                LOGGER.warn("test model does not equal model read from XML file " + xmlFile.getAbsolutePath());
-                throw new ApexException("test model does not equal model read from XML file " + xmlFile.getAbsolutePath());
+                LOGGER.warn(TEST_MODEL_DOES_NOT_EQUAL_MODEL_READ_FROM_XML_FILE + xmlFile.getAbsolutePath());
+                throw new ApexException(TEST_MODEL_DOES_NOT_EQUAL_MODEL_READ_FROM_XML_FILE + xmlFile.getAbsolutePath());
             }
         }
         catch (final Exception e) {
-            LOGGER.warn("error processing file " + xmlFile.getAbsolutePath(), e);
-            throw new ApexException("error processing file " + xmlFile.getAbsolutePath(), e);
+            LOGGER.warn(ERROR_PROCESSING_FILE + xmlFile.getAbsolutePath(), e);
+            throw new ApexException(ERROR_PROCESSING_FILE + xmlFile.getAbsolutePath(), e);
         }
 
         final ApexModelWriter<M> modelWriter = new ApexModelWriter<>(rootModelClass);
@@ -139,8 +144,8 @@ public class TestApexModel<M extends AxModel> {
             jsonFile.deleteOnExit();
         }
         catch (final Exception e) {
-            LOGGER.warn("error creating temporary file for Apex model", e);
-            throw new ApexException("error creating temporary file for Apex model", e);
+            LOGGER.warn(ERROR_CREATING_TEMPORARY_FILE_FOR_APEX_MODEL, e);
+            throw new ApexException(ERROR_CREATING_TEMPORARY_FILE_FOR_APEX_MODEL, e);
         }
         new ApexModelFileWriter<M>(true).apexModelWriteJSONFile(model, rootModelClass, jsonFile.getPath());
 
@@ -151,13 +156,13 @@ public class TestApexModel<M extends AxModel> {
             final URL apexModelURL = ResourceUtils.getLocalFile(jsonFile.getAbsolutePath());
             final M fileModel = modelReader.read(apexModelURL.openStream());
             if (!model.equals(fileModel)) {
-                LOGGER.warn("test model does not equal model read from XML file " + jsonFile.getAbsolutePath());
-                throw new ApexException("test model does not equal model read from XML file " + jsonFile.getAbsolutePath());
+                LOGGER.warn(TEST_MODEL_DOES_NOT_EQUAL_MODEL_READ_FROM_XML_FILE + jsonFile.getAbsolutePath());
+                throw new ApexException(TEST_MODEL_DOES_NOT_EQUAL_MODEL_READ_FROM_XML_FILE + jsonFile.getAbsolutePath());
             }
         }
         catch (final Exception e) {
-            LOGGER.warn("error processing file " + jsonFile.getAbsolutePath(), e);
-            throw new ApexException("error processing file " + jsonFile.getAbsolutePath(), e);
+            LOGGER.warn(ERROR_PROCESSING_FILE + jsonFile.getAbsolutePath(), e);
+            throw new ApexException(ERROR_PROCESSING_FILE + jsonFile.getAbsolutePath(), e);
         }
 
         final ApexModelWriter<M> modelWriter = new ApexModelWriter<>(rootModelClass);
@@ -214,8 +219,8 @@ public class TestApexModel<M extends AxModel> {
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (!result.isValid()) {
-            LOGGER.warn("model is invalid " + result.toString());
-            throw new ApexException("model is invalid " + result.toString());
+            LOGGER.warn(MODEL_IS_INVALID + result.toString());
+            throw new ApexException(MODEL_IS_INVALID + result.toString());
         }
 
         LOGGER.debug("ran testApexModelVaid");
@@ -256,8 +261,8 @@ public class TestApexModel<M extends AxModel> {
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (!result.isValid()) {
-            LOGGER.warn("model is invalid " + result.toString());
-            throw new ApexException("model is invalid " + result.toString());
+            LOGGER.warn(MODEL_IS_INVALID + result.toString());
+            throw new ApexException(MODEL_IS_INVALID + result.toString());
         }
 
         if (!result.getValidationResult().equals(AxValidationResult.ValidationResult.OBSERVATION)) {
@@ -282,8 +287,8 @@ public class TestApexModel<M extends AxModel> {
         final AxValidationResult result = model.validate(new AxValidationResult());
 
         if (!result.isValid()) {
-            LOGGER.warn("model is invalid " + result.toString());
-            throw new ApexException("model is invalid " + result.toString());
+            LOGGER.warn(MODEL_IS_INVALID + result.toString());
+            throw new ApexException(MODEL_IS_INVALID + result.toString());
         }
 
         if (!result.getValidationResult().equals(AxValidationResult.ValidationResult.WARNING)) {

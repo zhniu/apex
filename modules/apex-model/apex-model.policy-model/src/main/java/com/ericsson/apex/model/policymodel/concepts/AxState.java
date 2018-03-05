@@ -116,7 +116,9 @@ import com.ericsson.apex.model.utilities.Assertions;
         "taskSelectionLogic", "stateFinalizerLogicMap", "defaultTask", "taskReferenceMap" })
 
 public class AxState extends AxConcept {
-    private static final long serialVersionUID = 8041771382337655535L;
+    private static final String DOES_NOT_EQUAL_STATE_KEY = " does not equal state key";
+
+	private static final long serialVersionUID = 8041771382337655535L;
 
     @EmbeddedId
     @XmlElement(name = "stateKey", required = true)
@@ -539,7 +541,7 @@ public class AxState extends AxConcept {
                 else { 
                     if (!stateOutputEntry.getValue().getKey().getParentReferenceKey().equals(key)) {
                         result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                                "parent key on state output " + stateOutputEntry.getKey() + " does not equal state key"));
+                                "parent key on state output " + stateOutputEntry.getKey() + DOES_NOT_EQUAL_STATE_KEY));
                     }
 
                     if (stateOutputEntry.getValue().getNextState().getLocalName().equals(key.getLocalName())) {
@@ -572,7 +574,7 @@ public class AxState extends AxConcept {
         if (!taskSelectionLogic.getKey().equals(AxReferenceKey.getNullKey())) {
             if (!taskSelectionLogic.getKey().getParentReferenceKey().equals(key)) {
                 result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                        "taskSelectionLogic key " + taskSelectionLogic.getKey().getID() + " does not equal state key"));
+                        "taskSelectionLogic key " + taskSelectionLogic.getKey().getID() + DOES_NOT_EQUAL_STATE_KEY));
             }
             result = taskSelectionLogic.validate(result);
         }
@@ -585,7 +587,7 @@ public class AxState extends AxConcept {
             else {
                 if (!stateFinalizerLogicEntry.getValue().getKey().getParentReferenceKey().equals(key)) {
                     result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "stateFinalizerLogic parent key " + stateFinalizerLogicEntry.getValue().getKey().getID() + " does not equal state key"));
+                            "stateFinalizerLogic parent key " + stateFinalizerLogicEntry.getValue().getKey().getID() + DOES_NOT_EQUAL_STATE_KEY));
                 }
 
                 result = stateFinalizerLogicEntry.getValue().validate(result);
@@ -618,7 +620,7 @@ public class AxState extends AxConcept {
                 else {
                     if (!taskRefEntry.getValue().getKey().getParentReferenceKey().equals(key)) {
                         result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                                "stateTaskReference parent key " + taskRefEntry.getValue().getKey().getID() + " does not equal state key"));
+                                "stateTaskReference parent key " + taskRefEntry.getValue().getKey().getID() + DOES_NOT_EQUAL_STATE_KEY));
                     }
 
                     if (taskRefEntry.getValue().getStateTaskOutputType().equals(AxStateTaskOutputType.DIRECT)) {

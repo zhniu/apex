@@ -81,7 +81,9 @@ import com.ericsson.apex.model.utilities.Assertions;
         "contextAlbumReferenceSet", "taskLogic" })
 
 public class AxTask extends AxConcept {
-    private static final long serialVersionUID = 5374237330697362762L;
+    private static final String DOES_NOT_EQUAL_TASK_KEY = " does not equal task key";
+
+	private static final long serialVersionUID = 5374237330697362762L;
 
     @EmbeddedId
     @XmlElement(name = "key", required = true)
@@ -430,7 +432,7 @@ public class AxTask extends AxConcept {
                 else {
                     if (!inputFieldEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
                         result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                                "parent key on input field " + inputFieldEntry.getKey() + " does not equal task key"));
+                                "parent key on input field " + inputFieldEntry.getKey() + DOES_NOT_EQUAL_TASK_KEY));
                     }
 
                     result = inputFieldEntry.getValue().validate(result);
@@ -450,7 +452,7 @@ public class AxTask extends AxConcept {
                 else {
                     if (!outputFieldEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
                         result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                                "parent key on output field " + outputFieldEntry.getKey() + " does not equal task key"));
+                                "parent key on output field " + outputFieldEntry.getKey() + DOES_NOT_EQUAL_TASK_KEY));
                     }
 
                     result = outputFieldEntry.getValue().validate(result);
@@ -466,7 +468,7 @@ public class AxTask extends AxConcept {
             else {
                 if (!taskParameterEntry.getValue().getKey().getParentArtifactKey().equals(key)) {
                     result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "parent key on task parameter " + taskParameterEntry.getKey() + " does not equal task key"));
+                            "parent key on task parameter " + taskParameterEntry.getKey() + DOES_NOT_EQUAL_TASK_KEY));
                 }
 
                 result = taskParameterEntry.getValue().validate(result);
@@ -484,7 +486,7 @@ public class AxTask extends AxConcept {
 
         if (!taskLogic.getKey().getParentArtifactKey().equals(key)) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                    "taskLogic parent key " + taskLogic.getKey().getID() + " does not equal task key"));
+                    "taskLogic parent key " + taskLogic.getKey().getID() + DOES_NOT_EQUAL_TASK_KEY));
         }
 
         return taskLogic.validate(result);

@@ -55,7 +55,10 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxContextSchema", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "schemaFlavour", "schemaDefinition" })
 
 public class AxContextSchema extends AxConcept {
-    private static final long serialVersionUID = -6443016863162692288L;
+    private static final String SCHEMA_FLAVOUR = "schemaFlavour";
+	private static final String WHITESPACE_REGEXP = "\\s+$";
+
+	private static final long serialVersionUID = -6443016863162692288L;
 
     /** Regular expression that constrains what values a schema flavour can have. */
     public static final String SCHEMA_FLAVOUR_REGEXP = "[A-Za-z0-9\\-_]+";
@@ -70,7 +73,7 @@ public class AxContextSchema extends AxConcept {
     @XmlElement(name = "key", required = true)
     private AxArtifactKey key;
 
-    @Column(name = "schemaFlavour")
+    @Column(name = SCHEMA_FLAVOUR)
     @XmlElement(required = true)
     private String schemaFlavour = SCHEMA_FLAVOUR_UNDEFINED;
 
@@ -112,8 +115,8 @@ public class AxContextSchema extends AxConcept {
         Assertions.argumentNotNull(schemaDefinition, "schemaDefinition may not be null");
 
         this.key = key;
-        this.schemaFlavour = Assertions.validateStringParameter("schemaFlavour", schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
-        this.schemaDefinition = schemaDefinition.replaceAll("\\s+$", "");
+        this.schemaFlavour = Assertions.validateStringParameter(SCHEMA_FLAVOUR, schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
+        this.schemaDefinition = schemaDefinition.replaceAll(WHITESPACE_REGEXP, "");
     }
 
     /*
@@ -161,7 +164,7 @@ public class AxContextSchema extends AxConcept {
      * @param schemaFlavour the schema flavour
      */
     public void setSchemaFlavour(final String schemaFlavour) {
-        this.schemaFlavour = Assertions.validateStringParameter("schemaFlavour", schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
+        this.schemaFlavour = Assertions.validateStringParameter(SCHEMA_FLAVOUR, schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
     }
 
     /**
@@ -180,7 +183,7 @@ public class AxContextSchema extends AxConcept {
      */
     public void setSchema(final String schema) {
         Assertions.argumentNotNull(schema, "schema may not be null");
-        this.schemaDefinition = schema.replaceAll("\\s+$", "");
+        this.schemaDefinition = schema.replaceAll(WHITESPACE_REGEXP, "");
     }
 
     /*
@@ -198,18 +201,18 @@ public class AxContextSchema extends AxConcept {
 
         result = key.validate(result);
 
-        if (schemaFlavour.replaceAll("\\s+$", "").length() == 0 || schemaFlavour.equals(SCHEMA_FLAVOUR_UNDEFINED)) {
+        if (schemaFlavour.replaceAll(WHITESPACE_REGEXP, "").length() == 0 || schemaFlavour.equals(SCHEMA_FLAVOUR_UNDEFINED)) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "schema flavour is not defined"));
         }
 
         try {
-            Assertions.validateStringParameter("schemaFlavour", schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
+            Assertions.validateStringParameter(SCHEMA_FLAVOUR, schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "schema flavour invalid-" + e.getMessage()));
         }
 
-        if (schemaDefinition.replaceAll("\\s+$", "").length() == 0) {
+        if (schemaDefinition.replaceAll(WHITESPACE_REGEXP, "").length() == 0) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
                     "no schemaDefinition specified, schemaDefinition may not be blank"));
         }
@@ -225,8 +228,8 @@ public class AxContextSchema extends AxConcept {
     @Override
     public void clean() {
         key.clean();
-        schemaFlavour = Assertions.validateStringParameter("schemaFlavour", schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
-        schemaDefinition = schemaDefinition.replaceAll("\\s+$", "");
+        schemaFlavour = Assertions.validateStringParameter(SCHEMA_FLAVOUR, schemaFlavour, SCHEMA_FLAVOUR_REGEXP);
+        schemaDefinition = schemaDefinition.replaceAll(WHITESPACE_REGEXP, "");
     }
 
     /*

@@ -193,7 +193,9 @@ public class AxKeyUse extends AxKey {
      */
     @Override
     public boolean equals(final Object obj) {
-        Assertions.argumentNotNull(obj, "comparison object may not be null");
+        if (obj == null) {
+            throw new IllegalArgumentException("comparison object may not be null");
+        }
 
         if (this == obj) {
             return true;

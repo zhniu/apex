@@ -27,7 +27,13 @@ import com.ericsson.apex.model.utilities.Assertions;
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
 public class ContextSchemaFacade {
-    // Apex model we're working towards
+	private static final String CONCEPT = "concept ";
+	private static final String CONCEPT_S = "concept(s) ";
+    private static final String DOES_NOT_EXIST = " does not exist";
+	private static final String DO_ES_NOT_EXIST = " do(es) not exist";
+	private static final String ALREADY_EXISTS = " already exists";
+
+	// Apex model we're working towards
     private final ApexModel apexModel;
 
     // Properties to use for the model
@@ -80,7 +86,7 @@ public class ContextSchemaFacade {
             }
 
             if (apexModel.getPolicyModel().getSchemas().getSchemasMap().containsKey(key)) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, "concept " + key.getID() + " already exists");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_EXISTS, CONCEPT + key.getID() + ALREADY_EXISTS);
             }
 
             apexModel.getPolicyModel().getSchemas().getSchemasMap().put(key, new AxContextSchema(key, schemaFlavour, schemaDefinition));
@@ -113,7 +119,7 @@ public class ContextSchemaFacade {
         try {
             AxContextSchema schema = apexModel.getPolicyModel().getSchemas().get(name, version);
             if (schema == null) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept " + name + ':' + version + " does not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT + name + ':' + version + DOES_NOT_EXIST);
             }
 
             if (schemaFlavour != null) {
@@ -142,7 +148,7 @@ public class ContextSchemaFacade {
         try {
             Set<AxContextSchema> schemaSet = apexModel.getPolicyModel().getSchemas().getAll(name, version);
             if (name != null && schemaSet.isEmpty()) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT_S + name + ':' + version + DO_ES_NOT_EXIST);
             }
 
             ApexAPIResult result = new ApexAPIResult();
@@ -173,13 +179,13 @@ public class ContextSchemaFacade {
                             new ApexModelStringWriter<AxContextSchema>(false).writeString(removedSchema, AxContextSchema.class, jsonMode));
                 }
                 else {
-                    return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept " + key.getID() + " does not exist");
+                    return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT + key.getID() + DOES_NOT_EXIST);
                 }
             }
 
             Set<AxContextSchema> schemaSet = apexModel.getPolicyModel().getSchemas().getAll(name, version);
             if (schemaSet.isEmpty()) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT_S + name + ':' + version + DO_ES_NOT_EXIST);
             }
 
             ApexAPIResult result = new ApexAPIResult();
@@ -206,7 +212,7 @@ public class ContextSchemaFacade {
         try {
             Set<AxContextSchema> schemaSet = apexModel.getPolicyModel().getSchemas().getAll(name, version);
             if (schemaSet.isEmpty()) {
-                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, "concept(s) " + name + ':' + version + " do(es) not exist");
+                return new ApexAPIResult(ApexAPIResult.RESULT.CONCEPT_DOES_NOT_EXIST, CONCEPT_S + name + ':' + version + DO_ES_NOT_EXIST);
             }
 
             ApexAPIResult result = new ApexAPIResult();

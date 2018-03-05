@@ -52,7 +52,9 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxModel", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "keyInformation" })
 
 public class AxModel extends AxConcept {
-    private static final long serialVersionUID = -771659065637205430L;
+    private static final String IS_A_NULL_KEY = " is a null key";
+
+	private static final long serialVersionUID = -771659065637205430L;
 
     @EmbeddedId
     @XmlElement(name = "key", required = true)
@@ -192,7 +194,7 @@ public class AxModel extends AxConcept {
                 // Null key check
                 if (artifactKey.equals(AxArtifactKey.getNullKey())) {
                     result.addValidationMessage(
-                            new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key " + artifactKey + " is a null key"));
+                            new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key " + artifactKey + IS_A_NULL_KEY));
                 }
 
                 // Null key name start check
@@ -222,13 +224,13 @@ public class AxModel extends AxConcept {
                 // Null key check
                 if (referenceKey.equals(AxReferenceKey.getNullKey())) {
                     result.addValidationMessage(
-                            new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key " + referenceKey + " is a null key"));
+                            new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "key " + referenceKey + IS_A_NULL_KEY));
                 }
 
                 // Null parent key check
                 if (referenceKey.getParentArtifactKey().equals(AxArtifactKey.getNullKey())) {
                     result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID,
-                            "parent artifact key of key " + referenceKey + " is a null key"));
+                            "parent artifact key of key " + referenceKey + IS_A_NULL_KEY));
                 }
 
                 // Null local name check

@@ -59,7 +59,9 @@ import com.ericsson.apex.model.utilities.Assertions;
 @XmlType(name = "AxContextAlbum", namespace = "http://www.ericsson.com/apex", propOrder = { "key", "scope", "isWritable", "itemSchema" })
 
 public class AxContextAlbum extends AxConcept {
-    private static final long serialVersionUID = 4290442590545820316L;
+    private static final String SCOPE_STRING = "scope";
+
+	private static final long serialVersionUID = 4290442590545820316L;
 
     /** The legal values for the scope of a context album is constrained by this regular expression. */
     public static final String SCOPE_REGEXP = "[A-Za-z0-9\\-_]+";
@@ -74,8 +76,8 @@ public class AxContextAlbum extends AxConcept {
     @XmlElement(name = "key", required = true)
     private AxArtifactKey key;
 
-    @Column(name = "scope")
-    @XmlElement(name = "scope", required = true)
+    @Column(name = SCOPE_STRING)
+    @XmlElement(name = SCOPE_STRING, required = true)
     private String scope = SCOPE_UNDEFINED;
 
     @Column(name = "isWritable")
@@ -126,7 +128,7 @@ public class AxContextAlbum extends AxConcept {
         Assertions.argumentNotNull(itemSchema, "itemSchema may not be null");
 
         this.key = key;
-        this.scope = Assertions.validateStringParameter("scope", scope, SCOPE_REGEXP);
+        this.scope = Assertions.validateStringParameter(SCOPE_STRING, scope, SCOPE_REGEXP);
         this.isWritable = isWritable;
         this.itemSchema = itemSchema;
     }
@@ -180,7 +182,7 @@ public class AxContextAlbum extends AxConcept {
      */
     public void setScope(final String scope) {
         Assertions.argumentNotNull(scope, "scope may not be null");
-        this.scope = Assertions.validateStringParameter("scope", scope, SCOPE_REGEXP);
+        this.scope = Assertions.validateStringParameter(SCOPE_STRING, scope, SCOPE_REGEXP);
     }
 
     /**
@@ -239,7 +241,7 @@ public class AxContextAlbum extends AxConcept {
         }
 
         try {
-            Assertions.validateStringParameter("scope", scope, SCOPE_REGEXP);
+            Assertions.validateStringParameter(SCOPE_STRING, scope, SCOPE_REGEXP);
         }
         catch (final IllegalArgumentException e) {
             result.addValidationMessage(new AxValidationMessage(key, this.getClass(), ValidationResult.INVALID, "scope invalid-" + e.getMessage()));
@@ -262,7 +264,7 @@ public class AxContextAlbum extends AxConcept {
     @Override
     public void clean() {
         key.clean();
-        scope = Assertions.validateStringParameter("scope", scope, SCOPE_REGEXP);
+        scope = Assertions.validateStringParameter(SCOPE_STRING, scope, SCOPE_REGEXP);
         itemSchema.clean();
     }
 

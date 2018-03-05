@@ -26,7 +26,10 @@ import java.util.TreeMap;
  * @param <V> the generic type
  */
 public class KeyedMapDifference<K, V> {
-    // Three maps to hold the comparison result
+	private static final String KEY = "key=";
+    private static final String VALUE = ",value=";
+	
+	// Three maps to hold the comparison result
     private Map<K, V> leftOnly = new TreeMap<>();
     private Map<K, V> rightOnly = new TreeMap<>();
     private Map<K, V> identicalValues = new TreeMap<>();
@@ -87,10 +90,10 @@ public class KeyedMapDifference<K, V> {
         else {
             builder.append("*** list of keys on left only\n");
             for (Entry<K, V> leftEntry : leftOnly.entrySet()) {
-                builder.append("key=");
+                builder.append(KEY);
                 builder.append(leftEntry.getKey());
                 if (!keysOnly) {
-                    builder.append(",value=");
+                    builder.append(VALUE);
                     builder.append(leftEntry.getValue());
                 }
                 builder.append('\n');
@@ -105,10 +108,10 @@ public class KeyedMapDifference<K, V> {
         else {
             builder.append("*** list of keys on right only\n");
             for (Entry<K, V> rightEntry : rightOnly.entrySet()) {
-                builder.append("key=");
+                builder.append(KEY);
                 builder.append(rightEntry.getKey());
                 if (!keysOnly) {
-                    builder.append(",value=");
+                    builder.append(VALUE);
                     builder.append(rightEntry.getValue());
                 }
                 builder.append('\n');
@@ -123,7 +126,7 @@ public class KeyedMapDifference<K, V> {
         else {
             builder.append("*** list of differing entries between left and right\n");
             for (Entry<K, List<V>> differentEntry : differentValues.entrySet()) {
-                builder.append("key=");
+                builder.append(KEY);
                 builder.append(differentEntry.getKey());
                 if (!keysOnly) {
                     builder.append(",values={");
@@ -146,10 +149,10 @@ public class KeyedMapDifference<K, V> {
         if (!diffsOnly) {
             builder.append("*** list of identical entries in left and right\n");
             for (Entry<K, V> identicalEntry : identicalValues.entrySet()) {
-                builder.append("key=");
+                builder.append(KEY);
                 builder.append(identicalEntry.getKey());
                 if (!keysOnly) {
-                    builder.append(",value=");
+                    builder.append(VALUE);
                     builder.append(identicalEntry.getValue());
                 }
                 builder.append('\n');
