@@ -108,7 +108,7 @@ public class AxTask extends AxConcept {
 			@JoinColumn(name = "contextAlbumVersion", referencedColumnName = "version")
 	})
 	@XmlElement(name = "contextAlbumReference")
-	private Set<AxArtifactKey> contextAlbumReferenceSet = new TreeSet<>();
+	private Set<AxArtifactKey> contextAlbumReferenceSet;
 	// @formatter:on
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -120,7 +120,16 @@ public class AxTask extends AxConcept {
 	 */
 	public AxTask() {
 		this(new AxArtifactKey());
+		contextAlbumReferenceSet = new TreeSet<>();
 	}
+
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxTask(final AxTask copyConcept) {
+    		super(copyConcept);
+    }
 
 	/**
 	 * The Keyed Constructor creates a task with the given key no input or output fields, no task parameters, no context album references and no logic.
@@ -569,23 +578,13 @@ public class AxTask extends AxConcept {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxTask());
-	}
+	public AxConcept copyTo(final AxConcept targetObject) {
+		Assertions.argumentNotNull(targetObject, "target may not be null");
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
-		Assertions.argumentNotNull(target, "target may not be null");
-
-		final Object copyObject = target;
+		final Object copyObject = targetObject;
 		Assertions.instanceOf(copyObject, AxTask.class);
 
 		final AxTask copy = ((AxTask) copyObject);
@@ -605,19 +604,19 @@ public class AxTask extends AxConcept {
 
 		final Map<String, AxTaskParameter> newTaskParameter = new TreeMap<>();
 		for (final Entry<String, AxTaskParameter> taskParameterEntry : taskParameters.entrySet()) {
-			newTaskParameter.put(taskParameterEntry.getKey(), (AxTaskParameter) taskParameterEntry.getValue().clone());
+			newTaskParameter.put(taskParameterEntry.getKey(), new AxTaskParameter(taskParameterEntry.getValue()));
 		}
 		copy.setTaskParameters(newTaskParameter);
 
 		final Set<AxArtifactKey> newContextUsage = new TreeSet<>();
 		for (final AxArtifactKey contextAlbumReference : contextAlbumReferenceSet) {
-			newContextUsage.add((AxArtifactKey) contextAlbumReference.clone());
+			newContextUsage.add(new AxArtifactKey(contextAlbumReference));
 		}
 		copy.setContextAlbumReferences(newContextUsage);
 
-		copy.setTaskLogic(new AxTaskLogic((AxLogic) taskLogic.clone()));
+		copy.setTaskLogic(new AxTaskLogic((AxLogic) taskLogic));
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

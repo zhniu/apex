@@ -95,6 +95,14 @@ public class AxStateTaskReference extends AxConcept {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxStateTaskReference(final AxStateTaskReference copyConcept) {
+    		super(copyConcept);
+    }
+
+    /**
      * The Keyed Constructor creates a state task reference with the given reference key, an undefined output type and a null output reference key.
      *
      * @param key the key
@@ -270,34 +278,24 @@ public class AxStateTaskReference extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxStateTaskReference());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxStateTaskReference.class);
 
         final AxStateTaskReference copy = ((AxStateTaskReference) copyObject);
-        copy.setKey((AxReferenceKey) key.clone());
+        copy.setKey(new AxReferenceKey(key));
         copy.setStateTaskOutputType(AxStateTaskOutputType.valueOf(outputType.name()));
         copy.setOutput(output);
 
-        return copyObject;
+        return copy;
     }
 
     /*

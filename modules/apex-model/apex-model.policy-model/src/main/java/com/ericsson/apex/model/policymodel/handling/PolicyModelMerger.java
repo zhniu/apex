@@ -84,7 +84,7 @@ public final class PolicyModelMerger {
         }
 
         // The new policy model uses the favoured copy side as its base
-        final AxPolicyModel mergedPolicyModel = (AxPolicyModel) (useLeftOnMatches ? leftPolicyModel.clone() : rightPolicyModel.clone());
+        final AxPolicyModel mergedPolicyModel = (AxPolicyModel) (useLeftOnMatches ? new AxPolicyModel(leftPolicyModel) : new AxPolicyModel(rightPolicyModel));
 
         // The Compared to policy model is the unfavoured side
         final AxPolicyModel copyFromPolicyModel = (useLeftOnMatches ? rightPolicyModel : leftPolicyModel);

@@ -44,7 +44,7 @@ public class TestContextModel {
         assertNotNull(model);
         assertEquals("AxContextModel:(AxContextModel:(key=AxArtifactKey:", model.toString().substring(0, 50));
         
-        AxContextModel clonedModel = (AxContextModel) model.clone();
+        AxContextModel clonedModel = new AxContextModel(model);
 
         assertFalse(model.hashCode() == 0);
 

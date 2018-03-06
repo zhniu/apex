@@ -83,7 +83,7 @@ public class AxKeyTest {
         aKey0.clean();
         assertNotNull(aKey0.toString());
         
-        AxArtifactKey aKey7 = (AxArtifactKey)aKey1.clone();
+        AxArtifactKey aKey7 = new AxArtifactKey(aKey1);
         assertEquals(150332875, aKey7.hashCode());
         assertEquals(0, aKey7.compareTo(aKey1));
         assertEquals(-12, aKey7.compareTo(aKey0));

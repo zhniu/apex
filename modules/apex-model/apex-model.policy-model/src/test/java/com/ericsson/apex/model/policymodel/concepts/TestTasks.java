@@ -205,7 +205,7 @@ public class TestTasks {
 
         task.clean();
 
-        AxTask clonedTask = (AxTask) task.clone();
+        AxTask clonedTask = new AxTask(task);
         assertEquals("AxTask:(key=AxArtifactKey:(name=TaskName", clonedTask.toString().substring(0, 40));
 
         assertFalse(task.hashCode() == 0);
@@ -287,7 +287,7 @@ public class TestTasks {
         tasks.clean();
         tasks.afterUnmarshal(null, null);
 
-        AxTasks clonedTasks = (AxTasks) tasks.clone();
+        AxTasks clonedTasks = new AxTasks(tasks);
         assertEquals("AxTasks:(key=AxArtifactKey:(name=TasksKey,version=0.0.1),tas", clonedTasks.toString().substring(0, 60));
 
         assertFalse(tasks.hashCode() == 0);

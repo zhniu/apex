@@ -112,6 +112,14 @@ public class AxPolicy extends AxConcept {
 		this(new AxArtifactKey());
 	}
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxPolicy(final AxPolicy copyConcept) {
+    		super(copyConcept);
+    }
+
 	/**
 	 * The Key Constructor creates a policy instance with the given key, a blank template and undefined first state.
 	 *
@@ -398,38 +406,28 @@ public class AxPolicy extends AxConcept {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxPolicy());
-	}
+	public AxConcept copyTo(final AxConcept targetObject) {
+		Assertions.argumentNotNull(targetObject, "target may not be null");
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
-		Assertions.argumentNotNull(target, "target may not be null");
-
-		final Object copyObject = target;
+		final Object copyObject = targetObject;
 		Assertions.instanceOf(copyObject, AxPolicy.class);
 
 		final AxPolicy copy = ((AxPolicy) copyObject);
-		copy.setKey((AxArtifactKey) key.clone());
+		copy.setKey(new AxArtifactKey(key));
 		copy.setTemplate(template);
 
 		final Map<String, AxState> newStateMap = new TreeMap<>();
 		for (final Entry<String, AxState> stateMapEntry : stateMap.entrySet()) {
-			newStateMap.put(stateMapEntry.getKey(), (AxState) stateMapEntry.getValue().clone());
+			newStateMap.put(stateMapEntry.getKey(), new AxState(stateMapEntry.getValue()));
 		}
 		copy.setStateMap(newStateMap);
 
 		copy.setFirstState(firstState);
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

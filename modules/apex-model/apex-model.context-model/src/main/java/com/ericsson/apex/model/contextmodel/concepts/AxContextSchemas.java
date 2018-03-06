@@ -82,6 +82,14 @@ public class AxContextSchemas extends AxConcept implements AxConceptGetter<AxCon
 		this(new AxArtifactKey());
 	}
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxContextSchemas(final AxContextSchemas copyConcept) {
+    		super(copyConcept);
+    }
+
 	/**
 	 * The Key Constructor creates a {@link AxContextSchemas} object with the given artifact key and creates an empty context schemas map.
 	 *
@@ -252,35 +260,25 @@ public class AxContextSchemas extends AxConcept implements AxConceptGetter<AxCon
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxContextSchemas());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
+	public AxConcept copyTo(final AxConcept target) {
 		Assertions.argumentNotNull(target, "target may not be null");
 
 		final Object copyObject = target;
 		Assertions.instanceOf(copyObject, AxContextSchemas.class);
 
 		final AxContextSchemas copy = ((AxContextSchemas) copyObject);
-		copy.setKey((AxArtifactKey) key.clone());
+		copy.setKey(new AxArtifactKey(key));
 
 		final Map<AxArtifactKey, AxContextSchema> newcontextSchemas = new TreeMap<>();
 		for (final Entry<AxArtifactKey, AxContextSchema> contextSchemasEntry : schemas.entrySet()) {
-			newcontextSchemas.put(contextSchemasEntry.getKey(), (AxContextSchema) contextSchemasEntry.getValue().clone());
+			newcontextSchemas.put(new AxArtifactKey(contextSchemasEntry.getKey()), new AxContextSchema(contextSchemasEntry.getValue()));
 		}
 		copy.setSchemasMap(newcontextSchemas);
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

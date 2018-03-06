@@ -62,6 +62,14 @@ public class AxTaskParameter extends AxConcept {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxTaskParameter(final AxTaskParameter copyConcept) {
+    		super(copyConcept);
+    }
+
+    /**
      * The Keyed Constructor creates a task parameter with the given reference key and a null default value.
      *
      * @param taskParameterKey the task parameter key
@@ -186,33 +194,23 @@ public class AxTaskParameter extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxTaskParameter());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxTaskParameter.class);
 
         final AxTaskParameter copy = ((AxTaskParameter) copyObject);
-        copy.setKey((AxReferenceKey) key.clone());
+        copy.setKey(new AxReferenceKey(key));
         copy.setDefaultValue(defaultValue);
 
-        return copyObject;
+        return copy;
     }
 
     /*

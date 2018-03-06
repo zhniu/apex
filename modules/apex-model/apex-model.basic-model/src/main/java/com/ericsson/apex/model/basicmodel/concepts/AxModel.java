@@ -78,6 +78,14 @@ public class AxModel extends AxConcept {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxModel(final AxModel copyConcept) {
+    		super(copyConcept);
+    }
+    
+    /**
      * Constructor to create this concept with the specified key.
      *
      * @param key the key of this concept
@@ -370,33 +378,23 @@ public class AxModel extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxModel());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept target) {
         Assertions.argumentNotNull(target, "target may not be null");
 
         final Object copyObject = target;
         Assertions.instanceOf(copyObject, AxModel.class);
 
         final AxModel copy = ((AxModel) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
-        copy.setKeyInformation((AxKeyInformation) keyInformation.clone());
+        copy.setKey(new AxArtifactKey(key));
+        copy.setKeyInformation(new AxKeyInformation(keyInformation));
 
-        return copyObject;
+        return copy;
     }
 
     /*

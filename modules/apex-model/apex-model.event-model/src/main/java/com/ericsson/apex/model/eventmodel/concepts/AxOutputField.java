@@ -89,6 +89,6 @@ public class AxOutputField extends AxField {
      * @param field the output field to copy from
      */
     public AxOutputField(final AxOutputField field) {
-        super((AxReferenceKey) field.getKey().clone(), (AxArtifactKey) field.getSchema().clone());
+        super(new AxReferenceKey(field.getKey()), new AxArtifactKey(field.getSchema()));
     }
 }

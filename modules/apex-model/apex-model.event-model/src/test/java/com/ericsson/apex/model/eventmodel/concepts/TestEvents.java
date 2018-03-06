@@ -168,7 +168,7 @@ public class TestEvents {
         event.clean();
         event.afterUnmarshal(null, null);
 
-        AxEvent clonedEvent = (AxEvent) event.clone();
+        AxEvent clonedEvent = new AxEvent(event);
         assertEquals("AxEvent:(key=AxArtifactKey:(name=EventName,version=0.0.1),nameSpace=namespace", clonedEvent.toString().substring(0, 77));
 
         assertFalse(event.hashCode() == 0);
@@ -248,7 +248,7 @@ public class TestEvents {
         events.clean();
         events.afterUnmarshal(null, null);
 
-        AxEvents clonedEvents = (AxEvents) events.clone();
+        AxEvents clonedEvents = new AxEvents(events);
         assertEquals("AxEvents:(key=AxArtifactKey:(name=EventsKey,version=0.0.1),e", clonedEvents.toString().substring(0, 60));
 
         assertFalse(events.hashCode() == 0);

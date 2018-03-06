@@ -59,7 +59,7 @@ public class AxEngineModel extends AxContextModel {
     private static final int HASH_CODE_PRIME = 32;
 
     @Column(name = "timestamp")
-    private long timestamp = -1;
+    private long timestamp;
 
     @Enumerated
     @Column(name = "state")
@@ -81,9 +81,18 @@ public class AxEngineModel extends AxContextModel {
      */
     public AxEngineModel() {
         this(new AxArtifactKey());
+        timestamp = -1;
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxEngineModel(final AxEngineModel copyConcept) {
+    		super(copyConcept);
+    }
+    
+   /**
      * The Keyed Constructor creates an engine model with the given key and all its fields undefined.
      *
      * @param key the engine model key
@@ -261,35 +270,25 @@ public class AxEngineModel extends AxContextModel {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.contextmodel.concepts.AxContextModel#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxEngineModel());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.contextmodel.concepts.AxContextModel#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxEngineModel.class);
 
         final AxEngineModel copy = ((AxEngineModel) copyObject);
-        super.copyTo(target);
+        super.copyTo(targetObject);
         copy.timestamp = timestamp;
         copy.setState(state);
-        copy.setStats((AxEngineStats) stats.clone());
+        copy.setStats(new AxEngineStats(stats));
 
-        return copyObject;
+        return copy;
     }
 
     /*

@@ -139,7 +139,7 @@ public class TestLogic {
 
         logic.clean();
 
-        AxLogic clonedLogic = (AxLogic) logic.clone();
+        AxLogic clonedLogic = new AxLogic(logic);
         assertEquals("AxLogic:(key=AxReferenceKey:(parentKeyName=LogicParentName,parentKeyVersion=0.0.1,parentLocalName=PLN,localName=LN),logicFlavour=LogicFlavour,logic=Logic)", clonedLogic.toString());
 
         assertFalse(logic.hashCode() == 0);

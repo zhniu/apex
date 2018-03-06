@@ -406,7 +406,7 @@ public class TestState {
 
         state.clean();
 
-        AxState clonedState = (AxState) state.clone();
+        AxState clonedState = new AxState(state);
         assertEquals("AxState:(stateKey=AxReferenceKey:(parent", clonedState.toString().substring(0, 40));
 
         assertFalse(state.hashCode() == 0);

@@ -78,11 +78,11 @@ public class AxContextAlbum extends AxConcept {
 
     @Column(name = SCOPE_STRING)
     @XmlElement(name = SCOPE_STRING, required = true)
-    private String scope = SCOPE_UNDEFINED;
+    private String scope;
 
     @Column(name = "isWritable")
     @XmlElement(name = "isWritable", required = true)
-    private boolean isWritable = true;
+    private boolean isWritable;
 
     // @formatter:off
     @Embedded
@@ -92,7 +92,7 @@ public class AxContextAlbum extends AxConcept {
     })
     @Column(name = "itemSchema")
     @XmlElement(name = "itemSchema", required = true)
-    private AxArtifactKey itemSchema = AxArtifactKey.getNullKey();
+    private AxArtifactKey itemSchema;
     // @formatter:on
 
     /**
@@ -101,8 +101,19 @@ public class AxContextAlbum extends AxConcept {
      */
     public AxContextAlbum() {
         this(new AxArtifactKey());
+        scope = SCOPE_UNDEFINED;
+        isWritable = true;
+        itemSchema = AxArtifactKey.getNullKey();
     }
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxContextAlbum(final AxContextAlbum copyConcept) {
+    		super(copyConcept);
+    }
+    
     /**
      * The keyed constructor creates a context album with the specified artifact key. The scope of the context album is set as {@link SCOPE_UNDEFINED}, the
      * album is writable, and the artifact key of the context schema is set to the null artifact key.
@@ -290,35 +301,25 @@ public class AxContextAlbum extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxContextAlbum());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept target) {
         Assertions.argumentNotNull(target, "targetObject may not be null");
 
         final Object copyObject = target;
         Assertions.instanceOf(copyObject, AxContextAlbum.class);
 
         final AxContextAlbum copy = ((AxContextAlbum) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
+        copy.setKey(new AxArtifactKey(key));
         copy.setScope(scope);
         copy.setWritable(isWritable);
-        copy.setItemSchema((AxArtifactKey) itemSchema.clone());
+        copy.setItemSchema(new AxArtifactKey(itemSchema));
 
-        return copyObject;
+        return copy;
     }
 
     /*

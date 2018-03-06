@@ -115,7 +115,7 @@ public class TestStateTaskReference {
 
         stRef.clean();
 
-        AxStateTaskReference clonedStRef = (AxStateTaskReference) stRef.clone();
+        AxStateTaskReference clonedStRef = new AxStateTaskReference(stRef);
         assertEquals("AxStateTaskReference:(stateKey=AxReferenceKey:(par", clonedStRef.toString().substring(0, 50));
 
         assertFalse(stRef.hashCode() == 0);

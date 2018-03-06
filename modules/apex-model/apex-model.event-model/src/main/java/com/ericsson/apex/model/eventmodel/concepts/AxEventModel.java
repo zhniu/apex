@@ -78,6 +78,14 @@ public class AxEventModel extends AxModel {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxEventModel(final AxEventModel copyConcept) {
+    		super(copyConcept);
+    }
+    
+    /**
      * The Key Constructor creates a {@link AxEventModel} object with the given artifact key and creates an empty event model.
      *
      * @param key the event model key
@@ -214,34 +222,24 @@ public class AxEventModel extends AxModel {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxEventModel());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxEventModel.class);
 
         final AxEventModel copy = ((AxEventModel) copyObject);
-        super.copyTo(target);
-        copy.setSchemas((AxContextSchemas) schemas.clone());
-        copy.setEvents((AxEvents) events.clone());
+        super.copyTo(targetObject);
+        copy.setSchemas(new AxContextSchemas(schemas));
+        copy.setEvents(new AxEvents(events));
 
-        return copyObject;
+        return copy;
     }
 
     /*

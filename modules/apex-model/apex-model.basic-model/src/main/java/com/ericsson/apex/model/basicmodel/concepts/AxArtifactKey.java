@@ -58,15 +58,14 @@ public class AxArtifactKey extends AxKey {
 		this(NULL_KEY_NAME, NULL_KEY_VERSION);
 	}
 
-	/**
-	 * The Copy Constructor creates a key by copying another key.
-	 *
-	 * @param artifactKey the artifact key to copy from
-	 */
-	public AxArtifactKey(final AxArtifactKey artifactKey) {
-		this(artifactKey.getName(), artifactKey.getVersion());
-	}
-
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxArtifactKey(final AxArtifactKey copyConcept) {
+    		super(copyConcept);
+    }
+    
 	/**
 	 * Constructor to create a key with the specified name and version.
 	 *
@@ -286,23 +285,13 @@ public class AxArtifactKey extends AxKey {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxArtifactKey());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
+	public AxConcept copyTo(final AxConcept target) {
 		Assertions.argumentNotNull(target, "target may not be null");
 
-		final Object copyObject = target;
+		final AxConcept copyObject = target;
 		Assertions.instanceOf(copyObject, AxArtifactKey.class);
 
 		final AxArtifactKey copy = ((AxArtifactKey) copyObject);

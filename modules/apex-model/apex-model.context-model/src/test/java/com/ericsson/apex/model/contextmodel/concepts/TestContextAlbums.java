@@ -102,7 +102,7 @@ public class TestContextAlbums {
 
         album.clean();
 
-        AxContextAlbum clonedAlbum = (AxContextAlbum) album.clone();
+        AxContextAlbum clonedAlbum = new AxContextAlbum(album);
         assertEquals("AxContextAlbum:(key=AxArtifactKey:(name=NewAlbumName,version=0.0.1),scope=NewAlbumScope,isWritable=true,itemSchema=AxArtifactKey:(name=AlbumSchemaName,version=0.0.1))", clonedAlbum.toString());
 
         assertFalse(album.hashCode() == 0);
@@ -165,7 +165,7 @@ public class TestContextAlbums {
 
         albums.clean();
 
-        AxContextAlbums clonedAlbums = (AxContextAlbums) albums.clone();
+        AxContextAlbums clonedAlbums = new AxContextAlbums(albums);
         assertTrue(clonedAlbums.toString().startsWith("AxContextAlbums:(AxContextAlbums:(key=AxArtifactKey:(name=AlbumsKey,version=0.0.1)"));
 
         assertFalse(albums.hashCode() == 0);

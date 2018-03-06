@@ -93,6 +93,14 @@ public class AxStateOutput extends AxConcept {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxStateOutput(final AxStateOutput copyConcept) {
+    		super(copyConcept);
+    }
+
+    /**
      * The Keyed Constructor creates a state output instance with the given reference key, outgoing event key and next state reference key.
      *
      * @param key the reference key for the state output
@@ -268,34 +276,24 @@ public class AxStateOutput extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxStateOutput());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxStateOutput.class);
 
         final AxStateOutput copy = ((AxStateOutput) copyObject);
-        copy.setKey((AxReferenceKey) key.clone());
-        copy.setOutgoingEvent((AxArtifactKey) outgoingEvent.clone());
+        copy.setKey(new AxReferenceKey(key));
+        copy.setOutgoingEvent(new AxArtifactKey(outgoingEvent));
         copy.setNextState(nextState);
 
-        return copyObject;
+        return copy;
     }
 
     /*

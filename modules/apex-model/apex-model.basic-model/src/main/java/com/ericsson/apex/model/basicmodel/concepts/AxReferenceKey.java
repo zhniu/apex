@@ -445,23 +445,13 @@ public class AxReferenceKey extends AxKey {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxReferenceKey());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept target) {
         Assertions.argumentNotNull(target, "target may not be null");
 
         final Object copyObject = target;
@@ -473,7 +463,7 @@ public class AxReferenceKey extends AxKey {
         copy.setLocalName(localName);
         copy.setParentLocalName(parentLocalName);
 
-        return copyObject;
+        return copy;
     }
 
     /*

@@ -85,7 +85,7 @@ public final class ApexModelImpl implements ApexModel {
     public ApexModel clone() {
         ApexModelImpl ret = new ApexModelImpl();
         // @formatter:off
-        ret.policyModel          = (AxPolicyModel) this.policyModel.clone();
+        ret.policyModel          = new AxPolicyModel(policyModel);
         ret.fileName             = this.fileName;
         ret.apexProperties       = this.apexProperties;
         ret.jsonMode             = this.jsonMode;

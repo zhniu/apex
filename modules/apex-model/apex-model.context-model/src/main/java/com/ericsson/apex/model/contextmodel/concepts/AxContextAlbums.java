@@ -80,7 +80,15 @@ public final class AxContextAlbums extends AxConcept implements AxConceptGetter<
 		this(new AxArtifactKey());
 	}
 
-	/**
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxContextAlbums(final AxContextAlbums copyConcept) {
+    		super(copyConcept);
+    }
+
+    /**
 	 * The Key Constructor creates a {@link AxContextAlbums} object with the given artifact key and creates an empty context album map.
 	 *
 	 * @param key the key of the context album container
@@ -170,7 +178,7 @@ public final class AxContextAlbums extends AxConcept implements AxConceptGetter<
 	 * @param albumsMap the map of context albums to place in the container
 	 */
 	public void setAlbumsMap(final Map<AxArtifactKey, AxContextAlbum> albumsMap) {
-		Assertions.argumentNotNull(albums, "albums may not be null");
+		Assertions.argumentNotNull(albumsMap, "albums may not be null");
 		this.albums = new TreeMap<>();
 		this.albums.putAll(albumsMap);
 	}
@@ -254,20 +262,10 @@ public final class AxContextAlbums extends AxConcept implements AxConceptGetter<
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxContextAlbums());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
+	public AxConcept copyTo(final AxConcept target) {
 		Assertions.argumentNotNull(target, "target may not be null");
 
 		final Object copyObject = target;
@@ -277,11 +275,11 @@ public final class AxContextAlbums extends AxConcept implements AxConceptGetter<
 		copy.setKey(key);
 		final Map<AxArtifactKey, AxContextAlbum> newContextAlbum = new TreeMap<>();
 		for (final Entry<AxArtifactKey, AxContextAlbum> contextAlbumEntry : albums.entrySet()) {
-			newContextAlbum.put((AxArtifactKey) contextAlbumEntry.getKey().clone(), (AxContextAlbum) contextAlbumEntry.getValue().clone());
+			newContextAlbum.put(new AxArtifactKey(contextAlbumEntry.getKey()), new AxContextAlbum(contextAlbumEntry.getValue()));
 		}
 		copy.setAlbumsMap(newContextAlbum);
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

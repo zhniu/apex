@@ -93,7 +93,7 @@ public class TestField {
 
         field.clean();
 
-        AxField clonedField = (AxField) field.clone();
+        AxField clonedField = new AxField(field);
         assertEquals("AxField:(key=AxReferenceKey:(parentKeyName=FieldName,parentKeyVersion=0.0.1,parentLocalName=PLN,localName=LN),fieldSchemaKey=AxArtifactKey:(name=SchemaName,version=0.0.1),optional=true)", clonedField.toString());
 
         assertFalse(field.hashCode() == 0);

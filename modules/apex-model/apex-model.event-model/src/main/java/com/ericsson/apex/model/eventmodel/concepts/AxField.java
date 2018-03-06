@@ -83,13 +83,14 @@ public class AxField extends AxConcept {
 
     @Column(name = "optional")
     @XmlElement(required = false)
-    private boolean optional = false;
+    private boolean optional;
 
     /**
      * The default constructor creates a field with a null artifact and schema key.
      */
     public AxField() {
         this(new AxReferenceKey());
+        optional = false;
     }
 
     /**
@@ -101,6 +102,14 @@ public class AxField extends AxConcept {
         this(key, new AxArtifactKey());
     }
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxField(final AxField copyConcept) {
+    		super(copyConcept);
+    }
+    
     /**
      * Constructor to create the field with both its keys defined.
      *
@@ -289,33 +298,23 @@ public class AxField extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxField());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxField.class);
 
         final AxField copy = ((AxField) copyObject);
-        copy.setKey((AxReferenceKey) key.clone());
-        copy.setSchema((AxArtifactKey) fieldSchemaKey.clone());
+        copy.setKey(new AxReferenceKey(key));
+        copy.setSchema(new AxArtifactKey(fieldSchemaKey));
         copy.setOptional(optional);
-        return copyObject;
+        return copy;
     }
 
     /*

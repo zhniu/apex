@@ -100,6 +100,14 @@ public class AxEvent extends AxConcept {
 		this(new AxArtifactKey());
 	}
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxEvent(final AxEvent copyConcept) {
+    		super(copyConcept);
+    }
+    
 	/**
 	 * The default constructor creates an event with the given artifact key. The event name space, source, and target are all defined as empty strings and the
 	 * parameter map is initialized as an empty map.
@@ -410,38 +418,29 @@ public class AxEvent extends AxConcept {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxEvent());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object targetObject) {
+	public AxConcept copyTo(final AxConcept targetObject) {
 		Assertions.argumentNotNull(targetObject, "targetObject may not be null");
 
 		final Object copyObject = targetObject;
 		Assertions.instanceOf(copyObject, AxEvent.class);
 
-		final AxEvent copy = ((AxEvent) copyObject);
-		copy.setKey((AxArtifactKey) key.clone());
+		final AxEvent copy = (AxEvent) copyObject;
+
+		final Map<String, AxField> newParameterMap = new TreeMap<>();
+		for (final Entry<String, AxField> eventParameterMapEntry : parameterMap.entrySet()) {
+			newParameterMap.put(eventParameterMapEntry.getKey(), new AxField(eventParameterMapEntry.getValue()));
+		}
+		copy.setParameterMap(newParameterMap);
+
+		copy.setKey(new AxArtifactKey(key));
 		copy.setNameSpace(nameSpace);
 		copy.setSource(source);
 		copy.setTarget(target);
 
-		final Map<String, AxField> newParameterMap = new TreeMap<>();
-		for (final Entry<String, AxField> eventParameterMapEntry : parameterMap.entrySet()) {
-			newParameterMap.put(eventParameterMapEntry.getKey(), (AxField) eventParameterMapEntry.getValue().clone());
-		}
-		copy.setParameterMap(newParameterMap);
-
-		return copyObject;
+		return copy;
 	}
 
 	/*

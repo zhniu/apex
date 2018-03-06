@@ -145,6 +145,14 @@ public class AxPolicyModel extends AxModel {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxPolicyModel(final AxPolicyModel copyConcept) {
+    		super(copyConcept);
+    }
+
+   /**
      * The Keyed Constructor creates a policy model with the given key and empty containers for schemas, key information, events, context albums, tasks and
      * policies.
      *
@@ -344,7 +352,7 @@ public class AxPolicyModel extends AxModel {
         validateEventKeys(result);
         validateContextAlbumKeys(result);
         result = validateAllTaskKeys(result);
-        result = validatePolicyKeys(result);
+        validatePolicyKeys(result);
 
         return result;
     }
@@ -580,37 +588,27 @@ public class AxPolicyModel extends AxModel {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxPolicyModel());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxPolicyModel.class);
 
         final AxPolicyModel copy = ((AxPolicyModel) copyObject);
-        super.copyTo(target);
-        copy.setPolicies((AxPolicies) policies.clone());
-        copy.setTasks((AxTasks) tasks.clone());
-        copy.setEvents((AxEvents) events.clone());
-        copy.setAlbums((AxContextAlbums) albums.clone());
-        copy.setSchemas((AxContextSchemas) schemas.clone());
+        super.copyTo(targetObject);
+        copy.setPolicies(new AxPolicies(policies));
+        copy.setTasks(new AxTasks(tasks));
+        copy.setEvents(new AxEvents(events));
+        copy.setAlbums(new AxContextAlbums(albums));
+        copy.setSchemas(new AxContextSchemas(schemas));
 
-        return copyObject;
+        return copy;
     }
 
     /*

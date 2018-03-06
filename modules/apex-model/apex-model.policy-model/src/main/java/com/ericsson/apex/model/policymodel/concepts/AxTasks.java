@@ -81,6 +81,14 @@ public class AxTasks extends AxConcept implements AxConceptGetter<AxTask> {
 		this(new AxArtifactKey());
 	}
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxTasks(final AxTasks copyConcept) {
+    		super(copyConcept);
+    }
+
 	/**
 	 * The Keyed Constructor creates a {@link AxTasks} object with the given artifact key and creates an empty event map.
 	 *
@@ -253,35 +261,25 @@ public class AxTasks extends AxConcept implements AxConceptGetter<AxTask> {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxTasks());
-	}
+	public AxConcept copyTo(final AxConcept targetObject) {
+		Assertions.argumentNotNull(targetObject, "target may not be null");
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
-		Assertions.argumentNotNull(target, "target may not be null");
-
-		final Object copyObject = target;
+		final Object copyObject = targetObject;
 		Assertions.instanceOf(copyObject, AxTasks.class);
 
 		final AxTasks copy = ((AxTasks) copyObject);
-		copy.setKey((AxArtifactKey) key.clone());
+		copy.setKey(new AxArtifactKey(key));
 
 		final Map<AxArtifactKey, AxTask> newTaskMap = new TreeMap<>();
 		for (final Entry<AxArtifactKey, AxTask> taskMapEntry : taskMap.entrySet()) {
-			newTaskMap.put((AxArtifactKey) taskMapEntry.getKey().clone(), (AxTask) taskMapEntry.getValue().clone());
+			newTaskMap.put(new AxArtifactKey(taskMapEntry.getKey()), new AxTask(taskMapEntry.getValue()));
 		}
 		copy.setTaskMap(newTaskMap);
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

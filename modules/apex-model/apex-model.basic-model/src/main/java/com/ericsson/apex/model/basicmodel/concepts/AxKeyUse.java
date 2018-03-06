@@ -36,6 +36,14 @@ public class AxKeyUse extends AxKey {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxKeyUse(final AxKeyUse copyConcept) {
+    		super(copyConcept);
+    }
+    
+    /**
      * This constructor creates an instance of this class, and holds a reference to a used key.
      *
      * @param usedKey a used key
@@ -145,32 +153,22 @@ public class AxKeyUse extends AxKey {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxKeyUse());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept target) {
         Assertions.argumentNotNull(target, "target may not be null");
 
         final Object copyObject = target;
         Assertions.instanceOf(copyObject, AxKeyUse.class);
 
         final AxKeyUse copy = ((AxKeyUse) copyObject);
-        copy.setKey((AxKey) usedKey.clone());
-
-        return copyObject;
+        usedKey.copyTo(copy);
+        
+        return copy;
     }
 
     /*

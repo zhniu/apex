@@ -77,6 +77,14 @@ public class AxKeyInformation extends AxConcept implements AxConceptGetter<AxKey
 		this(new AxArtifactKey());
 	}
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxKeyInformation(final AxKeyInformation copyConcept) {
+    		super(copyConcept);
+    }
+    
 	/**
 	 * Constructor to create this concept with the specified key.
 	 *
@@ -291,34 +299,24 @@ public class AxKeyInformation extends AxConcept implements AxConceptGetter<AxKey
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxKeyInformation());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang. Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
+	public AxConcept copyTo(final AxConcept target) {
 		Assertions.argumentNotNull(target, "target may not be null");
 
 		final Object copyObject = target;
 		Assertions.instanceOf(copyObject, AxKeyInformation.class);
 
 		final AxKeyInformation copy = ((AxKeyInformation) copyObject);
-		copy.setKey((AxArtifactKey) key.clone());
+		copy.setKey(new AxArtifactKey(key));
 		final Map<AxArtifactKey, AxKeyInfo> newKeyInfoMap = new TreeMap<>();
 		for (final Entry<AxArtifactKey, AxKeyInfo> keyInfoMapEntry : keyInfoMap.entrySet()) {
-			newKeyInfoMap.put((AxArtifactKey) keyInfoMapEntry.getKey().clone(), (AxKeyInfo) keyInfoMapEntry.getValue().clone());
+			newKeyInfoMap.put(new AxArtifactKey(keyInfoMapEntry.getKey()), new AxKeyInfo(keyInfoMapEntry.getValue()));
 		}
 		copy.setKeyInfoMap(newKeyInfoMap);
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

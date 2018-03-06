@@ -96,24 +96,22 @@ public class TestEntity extends AxConcept {
     }
 
     @Override
-    public Object clone() {
-        return copyTo(new TestEntity());
-    }
-
-    @Override
-    public Object copyTo(Object target) {
+    public AxConcept copyTo(AxConcept target) {
         final Object copyObject = ((target == null) ? new TestEntity(): target);
         if (copyObject instanceof TestEntity) {
             final TestEntity copy = ((TestEntity) copyObject);
             if (this.checkSetKey()) {
-                copy.setKey((AxReferenceKey)key.clone());
+                copy.setKey(new AxReferenceKey(key));
             }
             else {
                 copy.key = null;
             }
             copy.doubleValue = doubleValue;
+            return copy;
         }
-        return copyObject;
+        else {
+        		return null;
+        }
     }
 
     @Override

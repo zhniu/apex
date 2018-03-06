@@ -102,7 +102,7 @@ public class TestStateOutput {
 
         so.clean();
 
-        AxStateOutput clonedPar = (AxStateOutput) so.clone();
+        AxStateOutput clonedPar = new AxStateOutput(so);
         assertEquals("AxStateOutput:(stateKey=AxReferenceKey:(parentKeyN", clonedPar.toString().substring(0, 50));
 
         assertFalse(so.hashCode() == 0);

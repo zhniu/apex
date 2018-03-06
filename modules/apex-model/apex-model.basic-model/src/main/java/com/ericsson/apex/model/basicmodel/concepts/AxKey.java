@@ -48,7 +48,23 @@ public abstract class AxKey extends AxConcept {
         IDENTICAL
     }
 
-    /*
+    /**
+     * Default constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxKey() {
+    		super();
+    }
+    
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxKey(final AxKey copyConcept) {
+    		super(copyConcept);
+    }
+    
+   /*
      * (non-Javadoc)
      *
      * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#getID()

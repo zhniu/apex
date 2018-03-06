@@ -202,7 +202,7 @@ public class TestPolicies {
         result = policy.validate(result);
         assertEquals(ValidationResult.VALID, result.getValidationResult());
         
-        AxState clonedState = (AxState) policy.getStateMap().get("state").clone();
+        AxState clonedState = new AxState(policy.getStateMap().get("state"));
         clonedState.getKey().setLocalName("ClonedState");
         clonedState.afterUnmarshal(null, null);
         
@@ -218,7 +218,7 @@ public class TestPolicies {
         
         policy.clean();
 
-        AxPolicy clonedPolicy = (AxPolicy) policy.clone();
+        AxPolicy clonedPolicy = new AxPolicy(policy);
         assertEquals("AxPolicy:(key=AxArtifactKey:(name=policy,version=0.0.1),template=FREEFORM,sta", clonedPolicy.toString().substring(0, 77));
 
         assertFalse(policy.hashCode() == 0);
@@ -296,7 +296,7 @@ public class TestPolicies {
         policies.clean();
         policies.afterUnmarshal(null, null);
 
-        AxPolicies clonedPolicies = (AxPolicies) policies.clone();
+        AxPolicies clonedPolicies = new AxPolicies(policies);
         assertEquals("AxPolicies:(key=AxArtifactKey:(name=PoliciesKey,version=0.0.", clonedPolicies.toString().substring(0, 60));
 
         assertFalse(policies.hashCode() == 0);
@@ -328,7 +328,7 @@ public class TestPolicies {
         assertNotNull(stateTree.getReferencedStateList());
         assertNotNull(stateTree.getReferencedStateSet());
 
-        AxState secondState = (AxState) policy.getStateMap().get("state").clone();
+        AxState secondState = new AxState(policy.getStateMap().get("state"));
         secondState.getKey().setLocalName("SecondState");
         secondState.afterUnmarshal(null, null);
         policy.getStateMap().put("SecondState", secondState);
@@ -351,7 +351,7 @@ public class TestPolicies {
 
         policy.getStateMap().get("SecondState").getStateOutputs().get("stateOutput0").setNextState(AxReferenceKey.getNullKey());
         
-        AxState thirdState = (AxState) policy.getStateMap().get("state").clone();
+        AxState thirdState = new AxState(policy.getStateMap().get("state"));
         thirdState.getKey().setLocalName("ThirdState");
         thirdState.afterUnmarshal(null, null);
         policy.getStateMap().put("ThirdState", thirdState);
@@ -360,7 +360,7 @@ public class TestPolicies {
         
         stateTree = policy.getStateTree();
 
-        AxStateOutput ssS0Clone = (AxStateOutput) policy.getStateMap().get("SecondState").getStateOutputs().get("stateOutput0").clone();
+        AxStateOutput ssS0Clone = new AxStateOutput(policy.getStateMap().get("SecondState").getStateOutputs().get("stateOutput0"));
         ssS0Clone.getKey().setLocalName("ssS0Clone");
         policy.getStateMap().get("SecondState").getStateOutputs().put("ssS0Clone", ssS0Clone);
 

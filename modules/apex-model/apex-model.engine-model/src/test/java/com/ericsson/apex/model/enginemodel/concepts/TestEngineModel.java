@@ -100,7 +100,7 @@ public class TestEngineModel {
         assertNotNull(model);
         assertEquals("AxEngineModel:(AxEngineModel:(AxEngineModel:(key=A", model.toString().substring(0, 50));
         
-        AxEngineModel clonedModel = (AxEngineModel) model.clone();
+        AxEngineModel clonedModel = new AxEngineModel(model);
 
         assertFalse(model.hashCode() == 0);
 
@@ -123,10 +123,11 @@ public class TestEngineModel {
         model.setTimestamp(timestamp);
         assertFalse(model.equals(new AxEngineModel(modelKey, new AxContextSchemas(schemasKey), new AxKeyInformation(keyInfoKey),
                 new AxContextAlbums(albumKey), AxEngineState.READY, stats)));
-        model.setTimestamp(-1);
+        model.setTimestamp(0);
         assertTrue(model.equals(new AxEngineModel(modelKey, new AxContextSchemas(schemasKey), new AxKeyInformation(keyInfoKey),
                 new AxContextAlbums(albumKey), AxEngineState.READY, stats)));
 
+        model.setTimestamp(-1);
         assertEquals(0, model.compareTo(model));
         assertEquals(0, model.compareTo(clonedModel));
         assertNotEquals(0, model.compareTo(new AxArtifactKey()));
@@ -146,7 +147,7 @@ public class TestEngineModel {
         model.setTimestamp(timestamp);
         assertNotEquals(0, model.compareTo(new AxEngineModel(modelKey, new AxContextSchemas(schemasKey), new AxKeyInformation(keyInfoKey),
                 new AxContextAlbums(albumKey), AxEngineState.READY, stats)));
-        model.setTimestamp(-1);
+        model.setTimestamp(0);
         assertEquals(0, model.compareTo(new AxEngineModel(modelKey, new AxContextSchemas(schemasKey), new AxKeyInformation(keyInfoKey),
                 new AxContextAlbums(albumKey), AxEngineState.READY, stats)));
         

@@ -29,7 +29,7 @@ public class TestPolicyModelComparer {
     @Test
     public void testPolicyComparer() throws IOException {
         AxPolicyModel leftApexModel = new TestApexPolicyModelCreator().getModel();
-        AxPolicyModel rightApexModel = (AxPolicyModel) leftApexModel.clone();
+        AxPolicyModel rightApexModel = new AxPolicyModel(leftApexModel);
 
         PolicyModelComparer policyModelComparer = new PolicyModelComparer(leftApexModel, rightApexModel);
 

@@ -56,7 +56,7 @@ public class TestApexBasicModelConcepts {
         model.register();
         assertEquals(model.getKeyInformation(), ModelService.getModel(AxKeyInformation.class));
 
-        AxModel clonedModel = (AxModel) model.clone();
+        AxModel clonedModel = new AxModel(model);
         assertTrue(clonedModel.toString().startsWith("AxModel:(key=AxArtifactKey:(name=BasicModel"));
 
         assertFalse(model.hashCode() == 0);
@@ -83,7 +83,7 @@ public class TestApexBasicModelConcepts {
         assertNotNull(model.getKeyInformation());
 
         AxKeyInformation keyI = model.getKeyInformation();
-        AxKeyInformation clonedKeyI = (AxKeyInformation) keyI.clone();
+        AxKeyInformation clonedKeyI = new AxKeyInformation(keyI);
 
         assertFalse(keyI.equals(null));
         assertFalse(keyI.equals(new AxArtifactKey()));

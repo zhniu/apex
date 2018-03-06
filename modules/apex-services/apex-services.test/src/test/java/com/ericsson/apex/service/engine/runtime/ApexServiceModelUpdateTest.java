@@ -172,7 +172,7 @@ public class ApexServiceModelUpdateTest {
         assertEquals(apexSamplePolicyModel.getKey(), ModelService.getModel(AxPolicyModel.class).getKey());
 
         // Different model name, incompatible
-        AxPolicyModel incoPolicyModel0 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel incoPolicyModel0 = new AxPolicyModel(apexSamplePolicyModel);
         incoPolicyModel0.getKey().setName("INCOMPATIBLE");
 
         try {
@@ -189,7 +189,7 @@ public class ApexServiceModelUpdateTest {
         sendEvents();
 
         // Different major version, incompatible
-        AxPolicyModel incoPolicyModel1 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel incoPolicyModel1 = new AxPolicyModel(apexSamplePolicyModel);
         incoPolicyModel1.getKey().setVersion("1.0.1");
 
         try {
@@ -207,7 +207,7 @@ public class ApexServiceModelUpdateTest {
         sendEvents();
 
         // Different minor version, compatible
-        AxPolicyModel coPolicyModel0 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel coPolicyModel0 = new AxPolicyModel(apexSamplePolicyModel);
         coPolicyModel0.getKey().setVersion("0.1.0");
         service.updateModel(parameters.getEngineKey(), coPolicyModel0, false);
 
@@ -215,7 +215,7 @@ public class ApexServiceModelUpdateTest {
         sendEvents();
 
         // Different patch version, compatible
-        AxPolicyModel coPolicyModel1 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel coPolicyModel1 = new AxPolicyModel(apexSamplePolicyModel);
         coPolicyModel1.getKey().setVersion("0.0.2");
         service.updateModel(parameters.getEngineKey(), coPolicyModel1, false);
 
@@ -236,7 +236,7 @@ public class ApexServiceModelUpdateTest {
         assertEquals(apexSamplePolicyModel.getKey(), ModelService.getModel(AxPolicyModel.class).getKey());
 
         // Different model name, incompatible
-        AxPolicyModel incoPolicyModel0 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel incoPolicyModel0 = new AxPolicyModel(apexSamplePolicyModel);
         incoPolicyModel0.getKey().setName("INCOMPATIBLE");
         service.updateModel(parameters.getEngineKey(), incoPolicyModel0, true);
 
@@ -244,7 +244,7 @@ public class ApexServiceModelUpdateTest {
         sendEvents();
 
         // Different major version, incompatible
-        AxPolicyModel incoPolicyModel1 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel incoPolicyModel1 = new AxPolicyModel(apexSamplePolicyModel);
         incoPolicyModel1.getKey().setVersion("1.0.1");
         service.updateModel(parameters.getEngineKey(), incoPolicyModel1, true);
 
@@ -252,7 +252,7 @@ public class ApexServiceModelUpdateTest {
         sendEvents();
 
         // Different minor version, compatible
-        AxPolicyModel coPolicyModel0 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel coPolicyModel0 = new AxPolicyModel(apexSamplePolicyModel);
         coPolicyModel0.getKey().setVersion("0.1.0");
         service.updateModel(parameters.getEngineKey(), coPolicyModel0, true);
 
@@ -260,7 +260,7 @@ public class ApexServiceModelUpdateTest {
         sendEvents();
 
         // Different patch version, compatible
-        AxPolicyModel coPolicyModel1 = (AxPolicyModel) apexSamplePolicyModel.clone();
+        AxPolicyModel coPolicyModel1 = new AxPolicyModel(apexSamplePolicyModel);
         coPolicyModel1.getKey().setVersion("0.0.2");
         service.updateModel(parameters.getEngineKey(), coPolicyModel1, true);
 

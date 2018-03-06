@@ -71,39 +71,54 @@ public class AxEngineStats extends AxConcept {
 
     @Column
     @XmlElement(required = true)
-    private long timeStamp = 0;
+    private long timeStamp;
 
     @Column
     @XmlElement(required = true)
-    private long eventCount = 0;
+    private long eventCount;
 
     @Column
     @XmlElement(required = true)
-    private long lastExecutionTime = 0;
+    private long lastExecutionTime;
 
     @Column
     @XmlElement(required = true)
-    private double averageExecutionTime = 0;
+    private double averageExecutionTime;
 
     @Column
     @XmlElement(required = true)
-    private long upTime = 0;
+    private long upTime;
 
     @Transient
-    private transient long lastEnterTime = 0;
+    private transient long lastEnterTime;
 
     @Column
     @XmlElement(required = true)
-    private long lastStart = 0;
+    private long lastStart;
 
     /**
      * The Default Constructor creates an engine statistics instance with a null key and with all values cleared.
      */
     public AxEngineStats() {
         this(new AxReferenceKey());
+        timeStamp = 0;
+        eventCount = 0;
+        lastExecutionTime = 0;
+        averageExecutionTime = 0;
+        upTime = 0;
+        lastEnterTime = 0;
+        lastStart = 0;
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxEngineStats(final AxEngineStats copyConcept) {
+    		super(copyConcept);
+    }
+    
+   /**
      * The Keyed Constructor creates an engine statistics instance with the given key and all values cleared.
      *
      * @param key the key
@@ -396,30 +411,20 @@ public class AxEngineStats extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxEngineStats());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxEngineStats.class);
 
         final AxEngineStats copy = ((AxEngineStats) copyObject);
-        copy.setKey((AxReferenceKey) key.clone());
+        copy.setKey(new AxReferenceKey(key));
         copy.setTimeStamp(timeStamp);
         copy.setEventCount(eventCount);
         copy.setLastExecutionTime(lastExecutionTime);
@@ -427,7 +432,7 @@ public class AxEngineStats extends AxConcept {
         copy.setUpTime(upTime);
         copy.setLastStart(lastStart);
 
-        return copyObject;
+        return copy;
     }
 
     /*

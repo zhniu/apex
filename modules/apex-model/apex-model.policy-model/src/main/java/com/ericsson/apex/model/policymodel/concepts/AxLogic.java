@@ -81,7 +81,7 @@ public class AxLogic extends AxConcept {
 
     @Column(name = LOGIC_FLAVOUR_TOKEN)
     @XmlElement(required = true)
-    private String logicFlavour = LOGIC_FLAVOUR_UNDEFINED;
+    private String logicFlavour;
 
     @Column(name = "logic", length = MAX_LOGIC_SIZE)
     @Convert(converter = CDATAConditioner.class)
@@ -94,8 +94,17 @@ public class AxLogic extends AxConcept {
      */
     public AxLogic() {
         this(new AxReferenceKey());
+        logicFlavour = LOGIC_FLAVOUR_UNDEFINED;
     }
 
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxLogic(final AxLogic copyConcept) {
+    		super(copyConcept);
+    }
+    
     /**
      * The Key Constructor creates a logic instance with the given reference key, undefined logic flavour and a null logic string.
      *
@@ -287,34 +296,24 @@ public class AxLogic extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxLogic());
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept targetObject) {
+        Assertions.argumentNotNull(targetObject, "target may not be null");
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
-        Assertions.argumentNotNull(target, "target may not be null");
-
-        final Object copyObject = target;
+        final Object copyObject = targetObject;
         Assertions.instanceOf(copyObject, AxLogic.class);
 
         final AxLogic copy = ((AxLogic) copyObject);
-        copy.setKey((AxReferenceKey) key.clone());
+        copy.setKey(new AxReferenceKey(key));
         copy.setLogicFlavour(logicFlavour);
         copy.setLogic(logic);
 
-        return copyObject;
+        return copy;
     }
 
     /*

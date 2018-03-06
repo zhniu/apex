@@ -63,7 +63,7 @@ public class TestPolicyModel {
         assertNotNull(model);
         assertEquals("AxPolicyModel:(AxPolicyModel:(key=AxArtifactKey:(n", model.toString().substring(0, 50));
         
-        AxPolicyModel clonedModel = (AxPolicyModel) model.clone();
+        AxPolicyModel clonedModel = new AxPolicyModel(model);
 
         assertFalse(model.hashCode() == 0);
 

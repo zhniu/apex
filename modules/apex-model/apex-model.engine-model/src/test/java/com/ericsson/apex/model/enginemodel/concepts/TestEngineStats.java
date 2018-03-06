@@ -118,7 +118,7 @@ public class TestEngineStats {
         stats.clean();
         stats.reset();
 
-        AxEngineStats clonedStats = (AxEngineStats) stats.clone();
+        AxEngineStats clonedStats = new AxEngineStats(stats);
         assertEquals("AxEngineStats:(engineKey=AxReferenceKey:(parentKey", clonedStats.toString().substring(0, 50));
 
         assertNotNull(stats.getKeys());

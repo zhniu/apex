@@ -45,7 +45,7 @@ public class TestAxKeyInfo {
         testKeyInfo.setDescription("Key Description");
         assertEquals("Key Description", testKeyInfo.getDescription());
         
-        AxKeyInfo clonedReferenceKey = (AxKeyInfo) testKeyInfo.clone();
+        AxKeyInfo clonedReferenceKey = new AxKeyInfo(testKeyInfo);
         assertTrue(clonedReferenceKey.toString().startsWith("AxKeyInfo:(artifactId=AxArtifactKey:(name=key,version=0.0.1),uuid="));
         
         assertFalse(testKeyInfo.hashCode() == 0);

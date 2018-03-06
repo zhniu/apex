@@ -17,6 +17,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+
 import com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey;
 import com.ericsson.apex.model.basicmodel.concepts.AxConcept;
 import com.ericsson.apex.model.basicmodel.concepts.AxReferenceKey;
@@ -28,8 +31,17 @@ import com.ericsson.apex.model.basicmodel.dao.impl.DefaultApexDao;
  * @author Sergey Sachkov (sergey.sachkov@ericsson.com)
  */
 public class HibernateApexDao extends DefaultApexDao {
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(HibernateApexDao.class);
+	
+	private static final String FROM = "FROM ";
+	private static final String DELETE_FROM = "DELETE FROM ";
+	private static final String WHERE_KEY_NAME = " WHERE key.name='";
+    private static final String AND_KEY_VERSION = "' AND key.version='";
+	private static final String WHERE_KEY_PARENT_KEY_NAME = " WHERE key.parentKeyName='";
+	private static final String AND_KEY_PARENT_KEY_VERSION = "' AND key.parentKeyVersion='";
+	private static final String AND_KEY_LOCAL_NAME = "' AND key.localName='";
 
-    /*
+	/*
      * (non-Javadoc)
      *
      * @see com.ericsson.apex.model.basicmodel.dao.impl.DefaultApexDao#delete(java.lang.Class, com.ericsson.apex.model.basicmodel.concepts.AxArtifactKey)
@@ -42,7 +54,7 @@ public class HibernateApexDao extends DefaultApexDao {
         final EntityManager mg = getEntityManager();
         try {
             mg.getTransaction().begin();
-            mg.createQuery("DELETE FROM " + aClass.getSimpleName() + " WHERE key.name='" + key.getName() + "' AND key.version='" + key.getVersion() + "'")
+            mg.createQuery(DELETE_FROM + aClass.getSimpleName() + WHERE_KEY_NAME + key.getName() + AND_KEY_VERSION + key.getVersion() + "'")
                     .executeUpdate();
             mg.getTransaction().commit();
         }
@@ -64,8 +76,8 @@ public class HibernateApexDao extends DefaultApexDao {
         final EntityManager mg = getEntityManager();
         try {
             mg.getTransaction().begin();
-            mg.createQuery("DELETE FROM " + aClass.getSimpleName() + " WHERE key.parentKeyName='" + key.getParentKeyName() + "' AND key.parentKeyVersion='"
-                    + key.getParentKeyVersion() + "' AND key.localName='" + key.getLocalName() + "'").executeUpdate();
+            mg.createQuery(DELETE_FROM + aClass.getSimpleName() + WHERE_KEY_PARENT_KEY_NAME + key.getParentKeyName() + AND_KEY_PARENT_KEY_VERSION
+                    + key.getParentKeyVersion() + AND_KEY_LOCAL_NAME + key.getLocalName() + "'").executeUpdate();
             mg.getTransaction().commit();
         }
         finally {
@@ -90,7 +102,7 @@ public class HibernateApexDao extends DefaultApexDao {
             for (final AxArtifactKey key : keys) {
                 deletedCount += mg
                         .createQuery(
-                                "DELETE FROM " + aClass.getSimpleName() + " WHERE key.name='" + key.getName() + "' AND key.version='" + key.getVersion() + "'")
+                                DELETE_FROM + aClass.getSimpleName() + WHERE_KEY_NAME + key.getName() + AND_KEY_VERSION + key.getVersion() + "'")
                         .executeUpdate();
             }
             mg.getTransaction().commit();
@@ -117,8 +129,8 @@ public class HibernateApexDao extends DefaultApexDao {
             mg.getTransaction().begin();
             for (final AxReferenceKey key : keys) {
                 deletedCount += mg
-                        .createQuery("DELETE FROM " + aClass.getSimpleName() + " WHERE key.parentKeyName='" + key.getParentKeyName()
-                                + "' AND key.parentKeyVersion='" + key.getParentKeyVersion() + "' AND key.localName='" + key.getLocalName() + "'")
+                        .createQuery(DELETE_FROM + aClass.getSimpleName() + WHERE_KEY_PARENT_KEY_NAME + key.getParentKeyName()
+                                + AND_KEY_PARENT_KEY_VERSION + key.getParentKeyVersion() + AND_KEY_LOCAL_NAME + key.getLocalName() + "'")
                         .executeUpdate();
             }
             mg.getTransaction().commit();
@@ -139,7 +151,7 @@ public class HibernateApexDao extends DefaultApexDao {
         final EntityManager mg = getEntityManager();
         try {
             mg.getTransaction().begin();
-            mg.createQuery("DELETE FROM " + aClass.getSimpleName()).executeUpdate();
+            mg.createQuery(DELETE_FROM + aClass.getSimpleName()).executeUpdate();
             mg.getTransaction().commit();
         }
         finally {
@@ -159,12 +171,18 @@ public class HibernateApexDao extends DefaultApexDao {
         }
         final EntityManager mg = getEntityManager();
         try {
-            final List<T> result = mg.createQuery("FROM " + aClass.getSimpleName(), aClass).getResultList();
+            final List<T> result = mg.createQuery(FROM + aClass.getSimpleName(), aClass).getResultList();
             final List<T> cloneResult = new ArrayList<>();
             for (final T t : result) {
-                @SuppressWarnings("unchecked")
-                final T clonedT = (T) t.clone();
-                cloneResult.add(clonedT);
+				try { 
+					T clonedT = aClass.newInstance();
+					t.copyTo(clonedT);
+	                cloneResult.add(clonedT);
+				}
+				catch (Exception e) {
+					LOGGER.warn("Could not clone object of class \"" + aClass.getCanonicalName() + "\"", e);
+					return cloneResult;
+				}
             }
             return cloneResult;
         }
@@ -185,7 +203,7 @@ public class HibernateApexDao extends DefaultApexDao {
         }
         final EntityManager mg = getEntityManager();
         try {
-            return mg.createQuery("FROM " + aClass.getSimpleName() + " WHERE key.parentKeyName='" + parentKey.getName() + "' AND key.parentKeyVersion='"
+            return mg.createQuery(FROM + aClass.getSimpleName() + WHERE_KEY_PARENT_KEY_NAME + parentKey.getName() + AND_KEY_PARENT_KEY_VERSION
                     + parentKey.getVersion() + "'", aClass).getResultList();
         }
         finally {
@@ -206,7 +224,7 @@ public class HibernateApexDao extends DefaultApexDao {
         final EntityManager mg = getEntityManager();
         List<T> ret;
         try {
-            ret = mg.createQuery("FROM " + aClass.getSimpleName() + " WHERE key.name='" + key.getName() + "' AND key.version='" + key.getVersion() + "'",
+            ret = mg.createQuery(FROM + aClass.getSimpleName() + WHERE_KEY_NAME + key.getName() + AND_KEY_VERSION + key.getVersion() + "'",
                     aClass).getResultList();
         }
         finally {
@@ -234,8 +252,8 @@ public class HibernateApexDao extends DefaultApexDao {
         final EntityManager mg = getEntityManager();
         List<T> ret;
         try {
-            ret = mg.createQuery("FROM " + aClass.getSimpleName() + " WHERE key.parentKeyName='" + key.getParentKeyName() + "' AND key.parentKeyVersion='"
-                    + key.getParentKeyVersion() + "' AND key.localName='" + key.getLocalName() + "'", aClass).getResultList();
+            ret = mg.createQuery(FROM + aClass.getSimpleName() + WHERE_KEY_PARENT_KEY_NAME + key.getParentKeyName() + AND_KEY_PARENT_KEY_VERSION
+                    + key.getParentKeyVersion() + AND_KEY_LOCAL_NAME + key.getLocalName() + "'", aClass).getResultList();
         }
         finally {
             mg.close();

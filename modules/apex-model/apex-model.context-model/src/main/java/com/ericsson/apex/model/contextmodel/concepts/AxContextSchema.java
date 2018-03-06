@@ -75,7 +75,7 @@ public class AxContextSchema extends AxConcept {
 
     @Column(name = SCHEMA_FLAVOUR)
     @XmlElement(required = true)
-    private String schemaFlavour = SCHEMA_FLAVOUR_UNDEFINED;
+    private String schemaFlavour;
 
     @Column(name = "schemaDefinition", length = MAX_SCHEMA_SIZE)
     @Convert(converter = CDATAConditioner.class)
@@ -89,6 +89,15 @@ public class AxContextSchema extends AxConcept {
      */
     public AxContextSchema() {
         this(new AxArtifactKey());
+        schemaFlavour = SCHEMA_FLAVOUR_UNDEFINED;
+    }
+
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxContextSchema(final AxContextSchema copyConcept) {
+    		super(copyConcept);
     }
 
     /**
@@ -252,34 +261,24 @@ public class AxContextSchema extends AxConcept {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxContextSchema());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept target) {
         Assertions.argumentNotNull(target, "target may not be null");
 
         final Object copyObject = target;
         Assertions.instanceOf(copyObject, AxContextSchema.class);
 
         final AxContextSchema copy = ((AxContextSchema) copyObject);
-        copy.setKey((AxArtifactKey) key.clone());
+        copy.setKey(new AxArtifactKey(key));
         copy.setSchemaFlavour(schemaFlavour);
         copy.setSchema(schemaDefinition);
 
-        return copyObject;
+        return copy;
     }
 
     /*

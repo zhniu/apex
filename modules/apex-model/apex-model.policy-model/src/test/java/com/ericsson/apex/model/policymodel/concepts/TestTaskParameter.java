@@ -79,7 +79,7 @@ public class TestTaskParameter {
 
         par.clean();
 
-        AxTaskParameter clonedPar = (AxTaskParameter) par.clone();
+        AxTaskParameter clonedPar = new AxTaskParameter(par);
         assertEquals("AxTaskParameter:(key=AxReferenceKey:(parentKeyName=ParParentName,parentKeyVersion=0.0.1,parentLocalName=PLN,localName=LN),defaultValue=DefaultValue)", clonedPar.toString());
 
         assertFalse(par.hashCode() == 0);

@@ -91,7 +91,7 @@ public class TestContextSchemas {
 
         schema.clean();
 
-        AxContextSchema clonedSchema = (AxContextSchema) schema.clone();
+        AxContextSchema clonedSchema = new AxContextSchema(schema);
         assertEquals("AxContextSchema:(key=AxArtifactKey:(name=NewSchemaName,version=0.0.1),schemaFlavour=NewSchemaFlavour,schemaDefinition=NewSchemaDefinition)", clonedSchema.toString());
 
         assertFalse(schema.hashCode() == 0);
@@ -152,7 +152,7 @@ public class TestContextSchemas {
 
         schemas.clean();
 
-        AxContextSchemas clonedSchemas = (AxContextSchemas) schemas.clone();
+        AxContextSchemas clonedSchemas = new AxContextSchemas(schemas);
         assertTrue(clonedSchemas.toString().startsWith("AxContextSchemas:(key=AxArtifactKey:(name=SchemasKey,version=0.0.1),"));
 
         assertFalse(schemas.hashCode() == 0);

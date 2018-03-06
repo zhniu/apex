@@ -30,6 +30,22 @@ public abstract class AxConcept implements Serializable, Comparable<AxConcept> {
     private static final long serialVersionUID = -7434939557282697490L;
 
     /**
+     * Default constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxConcept() {
+    }
+    
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxConcept(final AxConcept copyConcept) {
+        Assertions.argumentNotNull(copyConcept, "copy concept may not be null");
+    		copyConcept.copyTo(this);
+    }
+    
+    /**
      * Gets the key of this concept.
      *
      * @return the concept key
@@ -55,14 +71,6 @@ public abstract class AxConcept implements Serializable, Comparable<AxConcept> {
      * Clean this concept, tidy up any superfluous information such as leading and trailing white space.
      */
     public abstract void clean();
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#clone()
-     */
-    @Override
-    public abstract Object clone();
 
     /*
      * (non-Javadoc)
@@ -94,7 +102,7 @@ public abstract class AxConcept implements Serializable, Comparable<AxConcept> {
      * @param target the target object to which this object is copied
      * @return the copied object
      */
-    public abstract Object copyTo(Object target);
+    public abstract AxConcept copyTo(AxConcept target);
 
     /**
      * Gets the ID string of this concept.

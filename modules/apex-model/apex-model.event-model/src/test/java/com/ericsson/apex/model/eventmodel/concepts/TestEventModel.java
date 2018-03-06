@@ -44,7 +44,7 @@ public class TestEventModel {
         assertNotNull(model);
         assertEquals("AxEventModel:(AxEventModel:(key=AxArtifactKey:(nam", model.toString().substring(0, 50));
         
-        AxEventModel clonedModel = (AxEventModel) model.clone();
+        AxEventModel clonedModel = new AxEventModel(model);
 
         assertFalse(model.hashCode() == 0);
 

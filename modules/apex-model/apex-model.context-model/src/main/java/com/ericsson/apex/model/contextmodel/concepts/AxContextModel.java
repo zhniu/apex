@@ -88,6 +88,14 @@ public class AxContextModel extends AxModel {
     }
 
     /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxContextModel(final AxContextModel copyConcept) {
+    		super(copyConcept);
+    }
+    
+   /**
      * Constructor that initiates a {@link AxContextModel} with schemas and keys for those schemas. An empty {@link AxContextAlbums} container is created.
      *
      * @param key the key of the context model
@@ -224,23 +232,13 @@ public class AxContextModel extends AxModel {
         return builder.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#clone()
-     */
-    @Override
-    public Object clone() {
-        return copyTo(new AxContextModel());
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.ericsson.apex.model.basicmodel.concepts.AxModel#copyTo(java.lang.Object)
-     */
-    @Override
-    public Object copyTo(final Object target) {
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
+	 */
+	@Override
+	public AxConcept copyTo(final AxConcept target) {
         Assertions.argumentNotNull(target, "target may not be null");
 
         final Object copyObject = target;
@@ -248,10 +246,10 @@ public class AxContextModel extends AxModel {
 
         final AxContextModel copy = ((AxContextModel) copyObject);
         super.copyTo(target);
-        copy.setSchemas((AxContextSchemas) schemas.clone());
-        copy.setAlbums((AxContextAlbums) albums.clone());
+        copy.setSchemas(new AxContextSchemas(schemas));
+        copy.setAlbums(new AxContextAlbums(albums));
 
-        return copyObject;
+        return copy;
     }
 
     /*

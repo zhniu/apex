@@ -19,7 +19,6 @@ import com.ericsson.apex.model.policymodel.concepts.AxPolicyModel;
  * @author Liam Fallon (liam.fallon@ericsson.com)
  */
 public interface ApexModel extends ApexEditorAPI {
-
     /**
      * Make a deep copy of the Model.
      *

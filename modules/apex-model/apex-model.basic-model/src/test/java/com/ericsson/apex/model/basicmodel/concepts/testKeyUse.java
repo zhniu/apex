@@ -47,7 +47,7 @@ public class testKeyUse {
         
         assertNotEquals(0, keyUse.hashCode());
         
-        AxKeyUse clonedKeyUse = (AxKeyUse) keyUse.clone();
+        AxKeyUse clonedKeyUse = new AxKeyUse(keyUse);
         assertEquals("AxKeyUse:(usedKey=AxArtifactKey:(name=Key,version=0.0.1))", clonedKeyUse.toString());
         
         assertFalse(keyUse.hashCode() == 0);

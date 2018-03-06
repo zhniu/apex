@@ -19,7 +19,7 @@ public class ApexRuntimeException extends RuntimeException {
     private static final long serialVersionUID = -8507246953751956974L;
 
     // The object on which the exception was thrown
-    private Object object = null;
+    private transient Object object = null;
 
     /**
      * Instantiates a new apex runtime exception.

@@ -89,6 +89,6 @@ public class AxInputField extends AxField {
      * @param field the input field to copy from
      */
     public AxInputField(final AxInputField field) {
-        super((AxReferenceKey) field.getKey().clone(), (AxArtifactKey) field.getSchema().clone());
+        super(new AxReferenceKey(field.getKey()), new AxArtifactKey(field.getSchema()));
     }
 }

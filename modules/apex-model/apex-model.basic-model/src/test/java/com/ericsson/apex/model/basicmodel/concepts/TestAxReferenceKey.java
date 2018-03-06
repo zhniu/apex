@@ -70,7 +70,7 @@ public class TestAxReferenceKey {
         
         testReferenceKey.clean();
         
-        AxReferenceKey clonedReferenceKey = (AxReferenceKey) testReferenceKey.clone();
+        AxReferenceKey clonedReferenceKey = new AxReferenceKey(testReferenceKey);
         assertEquals("AxReferenceKey:(parentKeyName=NPKN,parentKeyVersion=0.0.1,parentLocalName=NPKLN,localName=NLN)", clonedReferenceKey.toString());
         
         assertFalse(testReferenceKey.hashCode() == 0);

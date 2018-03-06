@@ -86,7 +86,7 @@ public class AxTaskSelectionLogic extends AxLogic {
      * @param logic the logic instance to clone from
      */
     public AxTaskSelectionLogic(final AxLogic logic) {
-        super((AxReferenceKey) logic.getKey().clone(), logic.getLogicFlavour(), logic.getLogic());
+        super(new AxReferenceKey(logic.getKey()), logic.getLogicFlavour(), logic.getLogic());
     }
 
     /**

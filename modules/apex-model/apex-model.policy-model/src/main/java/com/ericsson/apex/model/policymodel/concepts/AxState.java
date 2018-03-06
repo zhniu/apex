@@ -157,7 +157,7 @@ public class AxState extends AxConcept {
 			@JoinColumn(name = "stateLocalName", referencedColumnName = "localName")
 	})
 	@XmlElement(name = "contextAlbumReference")
-	private Set<AxArtifactKey> contextAlbumReferenceSet = new TreeSet<>();
+	private Set<AxArtifactKey> contextAlbumReferenceSet;
 
 	@OneToOne
 	@JoinTable(name = "STATE_TSL_JT", joinColumns = {
@@ -204,7 +204,7 @@ public class AxState extends AxConcept {
 			@JoinColumn(name = "stateLocalName", referencedColumnName = "localName")
 	})
 	@XmlElement(name = "taskReferences", required = true)
-	private Map<AxArtifactKey, AxStateTaskReference> taskReferenceMap = new TreeMap<>();
+	private Map<AxArtifactKey, AxStateTaskReference> taskReferenceMap;
 	// @formatter:on
 
 	/**
@@ -212,7 +212,17 @@ public class AxState extends AxConcept {
 	 */
 	public AxState() {
 		this(new AxReferenceKey());
+		contextAlbumReferenceSet = new TreeSet<>();
+		taskReferenceMap = new TreeMap<>();
 	}
+
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxState(final AxState copyConcept) {
+    		super(copyConcept);
+    }
 
 	/**
 	 * The Keyed Constructor creates a state with the given reference key and with default values for all other fields.
@@ -785,38 +795,28 @@ public class AxState extends AxConcept {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxState());
-	}
+	public AxConcept copyTo(final AxConcept targetObject) {
+		Assertions.argumentNotNull(targetObject, "target may not be null");
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
-		Assertions.argumentNotNull(target, "target may not be null");
-
-		final Object copyObject = target;
+		final Object copyObject = targetObject;
 		Assertions.instanceOf(copyObject, AxState.class);
 
 		final AxState copy = ((AxState) copyObject);
-		copy.setKey((AxReferenceKey) key.clone());
-		copy.setTrigger((AxArtifactKey) trigger.clone());
+		copy.setKey(new AxReferenceKey(key));
+		copy.setTrigger(new AxArtifactKey(trigger));
 
 		final Map<String, AxStateOutput> newStateOutputs = new TreeMap<>();
 		for (final Entry<String, AxStateOutput> stateOutputEntry : stateOutputs.entrySet()) {
-			newStateOutputs.put(stateOutputEntry.getKey(), (AxStateOutput) stateOutputEntry.getValue().clone());
+			newStateOutputs.put(stateOutputEntry.getKey(), new AxStateOutput(stateOutputEntry.getValue()));
 		}
 		copy.setStateOutputs(newStateOutputs);
 
 		final Set<AxArtifactKey> newContextUsage = new TreeSet<>();
 		for (final AxArtifactKey contextAlbumReferenceItem : contextAlbumReferenceSet) {
-			newContextUsage.add((AxArtifactKey) contextAlbumReferenceItem.clone());
+			newContextUsage.add(new AxArtifactKey(contextAlbumReferenceItem));
 		}
 		copy.setContextAlbumReferences(newContextUsage);
 
@@ -828,15 +828,15 @@ public class AxState extends AxConcept {
 		}
 		copy.setStateFinalizerLogicMap(newStateFinalizerLogicMap);
 
-		copy.setDefaultTask((AxArtifactKey) defaultTask.clone());
+		copy.setDefaultTask(new AxArtifactKey(defaultTask));
 
 		final Map<AxArtifactKey, AxStateTaskReference> newTaskReferenceMap = new TreeMap<>();
 		for (final Entry<AxArtifactKey, AxStateTaskReference> taskReferenceEntry : taskReferenceMap.entrySet()) {
-			newTaskReferenceMap.put((AxArtifactKey) taskReferenceEntry.getKey().clone(), (AxStateTaskReference) taskReferenceEntry.getValue().clone());
+			newTaskReferenceMap.put(new AxArtifactKey(taskReferenceEntry.getKey()), new AxStateTaskReference(taskReferenceEntry.getValue()));
 		}
 		copy.setTaskReferences(newTaskReferenceMap);
 
-		return copyObject;
+		return copy;
 	}
 
 	/*

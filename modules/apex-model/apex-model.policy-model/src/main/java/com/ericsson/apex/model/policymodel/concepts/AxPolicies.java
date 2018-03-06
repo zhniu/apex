@@ -90,7 +90,15 @@ public class AxPolicies extends AxConcept implements AxConceptGetter<AxPolicy> {
 		this(key, new TreeMap<AxArtifactKey, AxPolicy>());
 	}
 
-	/**
+    /**
+     * Copy constructor
+     * @param copyConcept the concept to copy from
+     */
+    public AxPolicies(final AxPolicies copyConcept) {
+    		super(copyConcept);
+    }
+
+    /**
 	 * This Constructor creates a policy container with all of its fields defined.
 	 *
 	 * @param key the policy container key
@@ -240,34 +248,28 @@ public class AxPolicies extends AxConcept implements AxConceptGetter<AxPolicy> {
 		return builder.toString();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#clone()
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(com.ericsson.apex.model.basicmodel.concepts.AxConcept)
 	 */
 	@Override
-	public Object clone() {
-		return copyTo(new AxPolicies());
-	}
+	public AxConcept copyTo(final AxConcept targetObject) {
+		Assertions.argumentNotNull(targetObject, "target may not be null");
 
-	/* (non-Javadoc)
-	 * @see com.ericsson.apex.model.basicmodel.concepts.AxConcept#copyTo(java.lang.Object)
-	 */
-	@Override
-	public Object copyTo(final Object target) {
-		Assertions.argumentNotNull(target, "target may not be null");
-
-		final Object copyObject = target;
+		final Object copyObject = targetObject;
 		Assertions.instanceOf(copyObject, AxPolicies.class);
 
 		final AxPolicies copy = ((AxPolicies) copyObject);
-		copy.setKey((AxArtifactKey) key.clone());
+		copy.setKey(new AxArtifactKey(key));
 
 		final Map<AxArtifactKey, AxPolicy> newPolicyMap = new TreeMap<>();
 		for (final Entry<AxArtifactKey, AxPolicy> policyMapEntry : policyMap.entrySet()) {
-			newPolicyMap.put((AxArtifactKey) policyMapEntry.getKey().clone(), (AxPolicy) policyMapEntry.getValue().clone());
+			newPolicyMap.put(new AxArtifactKey(policyMapEntry.getKey()), new AxPolicy(policyMapEntry.getValue()));
 		}
 		copy.setPolicyMap(newPolicyMap);
 
-		return copyObject;
+		return copy;
 	}
 
 	/* (non-Javadoc)
