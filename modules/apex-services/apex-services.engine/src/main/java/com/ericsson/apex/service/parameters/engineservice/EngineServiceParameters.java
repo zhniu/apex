@@ -211,7 +211,8 @@ public class EngineServiceParameters extends AbstractParameters implements ApexP
     }
 
     /**
-     * Get the period in milliseconds at which periodic events are sent, zero means no periodic events are being sent
+     * Get the period in milliseconds at which periodic events are sent, zero means no periodic events are being sent.
+     * 
      * @return the periodic period
      */
     public long getPeriodicEventPeriod() {
@@ -219,8 +220,9 @@ public class EngineServiceParameters extends AbstractParameters implements ApexP
 	}
 
     /**
-     * Set the period in milliseconds at which periodic events are sent, zero means no periodic events are to be sent, negative values are illegal
-     * @return the periodic period
+     * Set the period in milliseconds at which periodic events are sent, zero means no periodic events are to be sent, negative values are illegal.
+     * 
+     * @param periodicEventPeriod the periodic period
      */
 	public void setPeriodicEventPeriod(long periodicEventPeriod) {
 		this.periodicEventPeriod = periodicEventPeriod;

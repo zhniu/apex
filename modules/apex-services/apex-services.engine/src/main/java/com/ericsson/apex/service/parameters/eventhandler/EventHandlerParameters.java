@@ -136,6 +136,7 @@ public class EventHandlerParameters extends AbstractParameters implements ApexPa
 	/**
 	 * Checks if the event handler is in the given peered mode.
 	 *
+	 * @param peeredMode the peer mode
 	 * @return true, if the event handler is in the peered mode
 	 */
 	public boolean isPeeredMode(final EventHandlerPeeredMode peeredMode) {
@@ -189,7 +190,7 @@ public class EventHandlerParameters extends AbstractParameters implements ApexPa
 	 * Sets the peer for the event handler in this peered mode.
 	 *
 	 * @param peeredMode the peered mode to set the peer for
-	 * @param the peer
+	 * @param peer the peer
 	 */
 	public void setPeer(final EventHandlerPeeredMode peeredMode, final String peer) {
 		switch (peeredMode) {
@@ -261,7 +262,7 @@ public class EventHandlerParameters extends AbstractParameters implements ApexPa
 	/**
 	 * Sets the event name for this event handler.
 	 *
-	 * @param eventNameFilter the event name
+	 * @param eventName the event name
 	 */
 	public void setEventName(final String eventName) {
 		this.eventName = eventName;

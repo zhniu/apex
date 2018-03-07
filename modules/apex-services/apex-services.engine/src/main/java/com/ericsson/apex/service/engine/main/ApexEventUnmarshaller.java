@@ -88,7 +88,6 @@ public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
 	 * Configure the consumer and initialize the thread for event sending.
 	 *
 	 * @param incomingEngineServiceHandler the Apex engine service handler for passing events to Apex
-	 * @throws ApexActivatorException on errors initializing the producer
 	 * @throws ApexEventException on errors initializing event handling
 	 */
 	public void init(final ApexEngineServiceHandler incomingEngineServiceHandler) throws ApexEventException {

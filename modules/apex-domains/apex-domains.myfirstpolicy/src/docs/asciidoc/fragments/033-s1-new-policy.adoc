@@ -60,7 +60,14 @@ include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/models/MyFirst
 .Add Task Logic the Task
 image::mfp/MyFirstPolicy_P1_newTask3.png["Add task logic the task"]
 
-_An alternative version of the same logic is available in JavaScript_ link:files/mfp-files/1/MorningBoozeCheck.js[MorningBoozeCheck.js]_. Just use "JAVASCRIPT" as the 'Task Logic Type / Flavour' instead._
+An alternative version of the same logic is available in JavaScript.
+Just use "JAVASCRIPT" as the 'Task Logic Type / Flavour' instead.
+
+.Javascript alternative for the `MorningBoozeCheck` task
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/models/MyFirstPolicy/1/MorningBoozeCheck.js[`MorningBoozeCheck` task logic (`Javascript`)]
+----
 
 
 The task definition is now complete so click the 'Submit' button to save the task. The task can now be seen on the 'Tasks' tab, and can be updated at any time by right-clicking on the task on the 'Task' tab. Now that we have created our task, we can can create a policy that uses that task.
@@ -112,7 +119,9 @@ The `MyFirstPolicyModel`, including our `MyFirstPolicy` policy can now be checke
 .Validate a Policy Model
 image::mfp/MyFirstPolicy_P1_validatePolicyModel.png["Validate the policy model for error using the 'Model' > 'Validate' menu item"]
 
-Congratulations, you have now completed your first APEX policy. The policy model containing our new policy can now be exported from the editor and saved. Click on the 'File' menu and select 'Download' to save the policy model in JSON format.  The exported policy model is then available in the directory you selected, as link:files/mfp-files/1/MyFirstPolicyModel_0.0.1.json[_MyFirstPolicyModel_0.0.1.json_]. The exported policy can now be loaded into the APEX Policy Engine, or can be re-loaded and edited by the APEX Policy Editor.
+Congratulations, you have now completed your first APEX policy. The policy model containing our new policy can now be exported from the editor and saved. Click on the 'File' menu and select 'Download' to save the policy model in JSON format.
+The exported policy model is then available in the directory you selected, for instance `$APEX_HOME/examples/models/MyFirstPolicy/1/MyFirstPolicyModel_0.0.1.json`.
+The exported policy can now be loaded into the APEX Policy Engine, or can be re-loaded and edited by the APEX Policy Editor.
 
 .Export a Policy Model
 image::mfp/MyFirstPolicy_P1_exportPolicyModel1.png["Download the completed policy model using the 'File' > 'Download' menu item"]

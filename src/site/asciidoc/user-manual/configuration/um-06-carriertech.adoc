@@ -4,6 +4,8 @@ include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-standard-io
 
 include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-file-io.adoc[leveloffset=+1]
 
+include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-eventrequestor-io.adoc[leveloffset=+1]
+
 include::{apex-plugins-event-carrier-kafka-dir}/docs/asciidoc/fragments/ct-kafka-io.adoc[leveloffset=+1]
 
 include::{apex-plugins-event-carrier-jms-dir}/docs/asciidoc/fragments/ct-jms-io.adoc[leveloffset=+1]
@@ -13,3 +15,5 @@ include::{apex-plugins-event-carrier-websocket-dir}/docs/asciidoc/fragments/ct-w
 include::{apex-plugins-event-carrier-restclient-dir}/docs/asciidoc/fragments/ct-restclient-io.adoc[leveloffset=+1]
 
 include::{apex-plugins-event-carrier-restserver-dir}/docs/asciidoc/fragments/ct-restserver-io.adoc[leveloffset=+1]
+
+include::{apex-plugins-event-carrier-restrequestor-dir}/docs/asciidoc/fragments/ct-restrequestor-io.adoc[leveloffset=+1]

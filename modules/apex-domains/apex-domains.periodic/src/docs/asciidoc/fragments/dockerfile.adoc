@@ -3,5 +3,5 @@
 .Decision Maker Dockerfile
 [source,bash,options="nowrap"]
 ----
-include::{apex-domains-decisionmaker-dir}/../Dockerfile[Decision Maker Dockerfile]
+include::{apex-domains-periodic-dir}/../Dockerfile[Periodic Policy Dockerfile]
 ----

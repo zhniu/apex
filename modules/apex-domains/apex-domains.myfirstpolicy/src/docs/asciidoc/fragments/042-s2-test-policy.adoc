@@ -28,12 +28,10 @@ include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/events/MyFirst
 ----
 | Request to buy alcohol item (`item_ID=1249`) at _08:41:06 GMT_ on _Monday, 02 January 2017_.
 
-Sale is not authorised. Uses the `MorningBoozeCheck` task.
+Sale is not authorized. Uses the `MorningBoozeCheck` task.
 
 Note this test is copied from Step 1 above, and demonstrates that the original `MorningBoozeCheck` task is executed.
 
-link:files/mfp-files/1/EventIn_BoozeItem_084106GMT.json[Input (`JSON`)]
-link:files/mfp-files/1/EventOut_BoozeItem_084106GMT.json[Output (`JSON`)]
 |
 [source,json,options="nowrap"]
 ----
@@ -46,10 +44,8 @@ include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/events/MyFirst
 ----
 | Request to buy alcohol (`item_ID=1047`) at _10:14:33_ on _Thursday, 22 December 2016_.
 
-Sale is not authorised. Uses the `MorningBoozeCheckAlt1` task.
+Sale is not authorized. Uses the `MorningBoozeCheckAlt1` task.
 
-link:files/mfp-files/2/EventIn_BoozeItem_101433CET_thurs.json[Input (`JSON`)]
-link:files/mfp-files/2/EventOut_BoozeItem_101433CET_thurs.json[Output (`JSON`)]
 |
 [source,json,options="nowrap"]
 ----
@@ -62,10 +58,8 @@ include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/events/MyFirst
 ----
 | Request to buy alcohol (`item_ID=1443`) at _17:19:37_ on _Sunday, 18 December 2016_.
 
-Sale is not authorised. Uses the `MorningBoozeCheckAlt1` task.
+Sale is not authorized. Uses the `MorningBoozeCheckAlt1` task.
 
-link:files/mfp-files/2/EventIn_BoozeItem_171937CET_sun.json[Input (`JSON`)]
-link:files/mfp-files/2/EventOut_BoozeItem_171937CET_sun.json[Output (`JSON`)]
 |
 [source,json,options="nowrap"]
 ----
@@ -78,9 +72,7 @@ include::{apex-domains-myfirstpolicy-dir}/main/resources/examples/events/MyFirst
 ----
 | Request to buy non-alcoholic item (`item_ID=5321`) at _11:13:09_ on _Monday, 2 January 2017_.
 
-Sale is authorised. Uses the `MorningBoozeCheckAlt1` task.
+Sale is authorized. Uses the `MorningBoozeCheckAlt1` task.
 
-link:files/mfp-files/2/EventIn_NonBoozeItem_111309CET_mon.json[Input (`JSON`)]
-link:files/mfp-files/2/EventOut_NonBoozeItem_111309CET_mon.json[Output (`JSON`)]
 |====================
 

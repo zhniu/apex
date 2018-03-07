@@ -47,6 +47,7 @@
 		<apex-plugins-event-carrier-jms-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-jms/src</apex-plugins-event-carrier-jms-dir>
 		<apex-plugins-event-carrier-restclient-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-restclient/src</apex-plugins-event-carrier-restclient-dir>
 		<apex-plugins-event-carrier-restserver-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-restserver/src</apex-plugins-event-carrier-restserver-dir>
+		<apex-plugins-event-carrier-restrequestor-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-restrequestor/src</apex-plugins-event-carrier-restrequestor-dir>
 		<apex-plugins-event-carrier-kafka-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-kafka/src</apex-plugins-event-carrier-kafka-dir>
 		<apex-plugins-event-carrier-websocket-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-websocket/src</apex-plugins-event-carrier-websocket-dir>
 		<apex-plugins-context-dir>${project.basedir}/modules/apex-plugins/apex-plugins.context/src</apex-plugins-context-dir>
@@ -60,6 +61,8 @@
 		<apex-domains-myfirstpolicy-dir>${project.basedir}/modules/apex-domains/apex-domains.myfirstpolicy/src</apex-domains-myfirstpolicy-dir>
 		<apex-domains-decisionmaker-dir>${project.basedir}/modules/apex-domains/apex-domains.decisionmaker/src</apex-domains-decisionmaker-dir>
 		<apex-domains-pcvs-dir>${project.basedir}/modules/apex-domains/apex-domains.pcvs/src</apex-domains-pcvs-dir>
+		<apex-domains-periodic-dir>${project.basedir}/modules/apex-domains/apex-domains.periodic/src</apex-domains-periodic-dir>
+		<apex-domains-onap-vcpe-dir>${project.basedir}/modules/apex-domains/apex-domains.onap-vcpe/src</apex-domains-onap-vcpe-dir>
 		<apex-services-engine-dir>${project.basedir}/modules/apex-services/apex-services.engine/src</apex-services-engine-dir>
 	</properties>
 
@@ -537,6 +540,7 @@
 								<apex-plugins-event-carrier-jms-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-jms/src</apex-plugins-event-carrier-jms-dir>
 								<apex-plugins-event-carrier-restclient-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-restclient/src</apex-plugins-event-carrier-restclient-dir>
 								<apex-plugins-event-carrier-restserver-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-restserver/src</apex-plugins-event-carrier-restserver-dir>
+								<apex-plugins-event-carrier-restrequestor-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-restrequestor/src</apex-plugins-event-carrier-restrequestor-dir>
 								<apex-plugins-event-carrier-kafka-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-kafka/src</apex-plugins-event-carrier-kafka-dir>
 								<apex-plugins-event-carrier-websocket-dir>${project.basedir}/modules/apex-plugins/apex-plugins.event/apex-plugins.event-carrier/apex-plugins.event-carrier-websocket/src</apex-plugins-event-carrier-websocket-dir>
 								<apex-plugins-context-dir>${project.basedir}/modules/apex-plugins/apex-plugins.context/src</apex-plugins-context-dir>
@@ -550,6 +554,8 @@
 								<apex-domains-myfirstpolicy-dir>${project.basedir}/modules/apex-domains/apex-domains.myfirstpolicy/src</apex-domains-myfirstpolicy-dir>
 								<apex-domains-decisionmaker-dir>${project.basedir}/modules/apex-domains/apex-domains.decisionmaker/src</apex-domains-decisionmaker-dir>
 								<apex-domains-pcvs-dir>${project.basedir}/modules/apex-domains/apex-domains.pcvs/src</apex-domains-pcvs-dir>
+								<apex-domains-periodic-dir>${project.basedir}/modules/apex-domains/apex-domains.periodic/src</apex-domains-periodic-dir>
+								<apex-domains-onap-vcpe-dir>${project.basedir}/modules/apex-domains/apex-domains.onap-vcpe/src</apex-domains-onap-vcpe-dir>
 								<apex-services-engine-dir>${project.basedir}/modules/apex-services/apex-services.engine/src</apex-services-engine-dir>
 							</attributes>
 						</configuration>

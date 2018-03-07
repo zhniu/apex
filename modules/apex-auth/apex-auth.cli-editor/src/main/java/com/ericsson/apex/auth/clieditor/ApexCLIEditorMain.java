@@ -157,8 +157,9 @@ public class ApexCLIEditorMain {
 	}
 
 	/**
-	 * Set the number of errors encountered in command processing 
-	 * @param the number of errors
+	 * Sets the number of errors encountered in command processing.
+	 * 
+	 * @param errorCount the number of errors
 	 */
 	public void setErrorCount(int errorCount) {
 		this.errorCount = errorCount;

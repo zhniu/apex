@@ -24,7 +24,7 @@
 	<url>${apex.site.prefix}/modules/apex-plugins/apex-plugins.event/${project.parent.artifactId}/${project.artifactId}/</url>
 
 	<properties>
-		<apex-plugins-event-carrier-restclient-dir>${project.basedir}/src</apex-plugins-event-carrier-restclient-dir>
+		<apex-plugins-event-carrier-restrequestor-dir>${project.basedir}/src</apex-plugins-event-carrier-restrequestor-dir>
 	</properties>
 
 	<distributionManagement>

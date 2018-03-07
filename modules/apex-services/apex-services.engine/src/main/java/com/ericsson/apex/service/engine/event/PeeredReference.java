@@ -43,7 +43,6 @@ public class PeeredReference {
     /**
      * Gets the synchronous consumer putting events into the cache.
      *
-     * @param peeredMode the peered mode for which to return the reference
      * @return the source synchronous consumer
      */
     public ApexEventConsumer getPeeredConsumer() {

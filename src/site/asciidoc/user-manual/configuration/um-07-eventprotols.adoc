@@ -2,6 +2,8 @@ include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/event-protoco
 
 include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/ep-json.adoc[leveloffset=+1]
 
-include::{apex-plugins-event-protocol-xml-dir}/docs/asciidoc/fragments/ep-xml.adoc[leveloffset=+1]
+include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/ep-apex.adoc[leveloffset=+1]
 
 include::{apex-plugins-event-protocol-jms-dir}/docs/asciidoc/fragments/ep-jms.adoc[leveloffset=+1]
+
+include::{apex-plugins-event-protocol-xml-dir}/docs/asciidoc/fragments/ep-xml.adoc[leveloffset=+1]

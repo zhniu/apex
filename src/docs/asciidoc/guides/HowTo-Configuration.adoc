@@ -51,6 +51,8 @@ include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-standard-io
 
 include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-file-io.adoc[leveloffset=+1]
 
+include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-eventrequestor-io.adoc[leveloffset=+1]
+
 include::{apex-plugins-event-carrier-kafka-dir}/docs/asciidoc/fragments/ct-kafka-io.adoc[leveloffset=+1]
 
 include::{apex-plugins-event-carrier-jms-dir}/docs/asciidoc/fragments/ct-jms-io.adoc[leveloffset=+1]
@@ -61,14 +63,18 @@ include::{apex-plugins-event-carrier-restclient-dir}/docs/asciidoc/fragments/ct-
 
 include::{apex-plugins-event-carrier-restserver-dir}/docs/asciidoc/fragments/ct-restserver-io.adoc[leveloffset=+1]
 
+include::{apex-plugins-event-carrier-restrequestor-dir}/docs/asciidoc/fragments/ct-restrequestor-io.adoc[leveloffset=+1]
+
 
 include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/event-protocols.adoc[]
 
 include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/ep-json.adoc[leveloffset=+1]
 
-include::{apex-plugins-event-protocol-xml-dir}/docs/asciidoc/fragments/ep-xml.adoc[leveloffset=+1]
+include::{apex-plugins-event-protocol-dir}/docs/asciidoc/fragments/ep-apex.adoc[leveloffset=+1]
 
 include::{apex-plugins-event-protocol-jms-dir}/docs/asciidoc/fragments/ep-jms.adoc[leveloffset=+1]
+
+include::{apex-plugins-event-protocol-xml-dir}/docs/asciidoc/fragments/ep-xml.adoc[leveloffset=+1]
 
 
 include::{apex-services-engine-dir}/docs/asciidoc/fragments/config-example.adoc[]

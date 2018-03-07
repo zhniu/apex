@@ -156,18 +156,18 @@ public class StateFinalizerExecutionContext {
     }
 
     /**
-     * Get the user message
+     * Gets the user message.
      * 
-     * @return the message
+     * @return the user message
      */
 	public String getMessage() {
 		return message;
 	}
 
     /**
-     * Set the user message
+     * Sets the user message.
      * 
-     * @param the message
+     * @param message the message
      */
 	public void setMessage(String message) {
 		this.message = message;

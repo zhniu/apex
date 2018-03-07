@@ -12,9 +12,10 @@ An example configuration with explanations of all options is shown below.
   "instanceCount"  : 4,  // <4>
   "deploymentPort" : 12345,  // <5>
   "policyModelFileName" : "examples/models/VPN/VPNPolicyModelJava.json", // <6>
-  "engineParameters":{ <7>
-    "engineParameters":{...}, <8>
-    "contextParameters":{...} <9>
+  "periodicEventPeriod": 1000, <7>
+  "engineParameters":{ <8>
+    "engineParameters":{...}, <9>
+    "contextParameters":{...} <10>
   }
 }
 ----
@@ -24,9 +25,10 @@ An example configuration with explanations of all options is shown below.
 <4> the number of threads (policy instances executed in parallel) the engine should use, use `1` for single threaded engines
 <5> the port for the deployment Websocket connection to the engine
 <6> the model file to load into the engine on startup (optional)
-<7> engine parameters for plugin configurations (execution environments and context handling)
-<8> engine specific parameters, mainly for executor plugins
-<9> context specific parameters, e.g. for context schemas, persistence, etc.
+<7> an optional timer for periodic policies, in milliseconds (a defined periodic policy will be executed every `X` milliseconds), not used of not set or `0`
+<8> engine parameters for plugin configurations (execution environments and context handling)
+<9> engine specific parameters, mainly for executor plugins
+<10> context specific parameters, e.g. for context schemas, persistence, etc.
 
 The model file is optional, it can also be specified via command line.
 In any case, make sure all execution and other required plug-ins for the loaded model are loaded as rrequired.

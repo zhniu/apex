@@ -502,15 +502,17 @@ public class CLIParameters {
 	}
 
 	/**
-	 * Check if the command failures flag is set
-	 * @param true if the command failures flag has been set
+	 * Checks if the command failures flag is set.
+	 * 
+	 * @param ignoreCommandFailuresSet true if the command failures flag has been set
 	 */
 	public void setIgnoreCommandFailuresSet(boolean ignoreCommandFailuresSet) {
 		this.ignoreCommandFailuresSet = ignoreCommandFailuresSet;
 	}
 
 	/**
-	 * Check if command failures should be ignored and command execution continue
+	 * Checks if command failures should be ignored and command execution continue.
+	 * 
 	 * @return true if command failures should be ignored
 	 */
 	public boolean isIgnoreCommandFailures() {
@@ -518,8 +520,9 @@ public class CLIParameters {
 	}
 
 	/**
-	 * Set if command errors should be ignored and command execution continue
-	 * @param true if command errors should be ignored
+	 * Sets if command errors should be ignored and command execution continue.
+	 * 
+	 * @param ignoreCommandFailures true if command errors should be ignored
 	 */
 	public void setIgnoreCommandFailures(boolean ignoreCommandFailures) {
 		this.ignoreCommandFailures = ignoreCommandFailures;

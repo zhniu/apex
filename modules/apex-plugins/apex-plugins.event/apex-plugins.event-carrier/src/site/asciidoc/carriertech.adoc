@@ -3,3 +3,5 @@ include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/carriertech.ad
 include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-standard-io.adoc[]
 
 include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-file-io.adoc[]
+
+include::{apex-plugins-event-carrier-dir}/docs/asciidoc/fragments/ct-eventrequestor-io.adoc[]

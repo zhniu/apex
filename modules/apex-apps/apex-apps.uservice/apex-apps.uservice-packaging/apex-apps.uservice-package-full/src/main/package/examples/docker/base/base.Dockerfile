@@ -16,9 +16,9 @@ RUN apt-get update && \
 	apt-get clean
 
 RUN mkdir /packages
-COPY apex-apps.uservice-package-full-0.7.0.deb /packages
-RUN dpkg -i packages/apex-apps.uservice-package-full-0.7.0.deb  && \
-	rm /packages/apex-apps.uservice-package-full-0.7.0.deb
+COPY apex-apps.uservice-packages-full-0.7.0.deb /packages
+RUN dpkg -i packages/apex-apps.uservice-packages-full-0.7.0.deb  && \
+	rm /packages/apex-apps.uservice-packages-full-0.7.0.deb
 
 ENV PATH /opt/ericsson/apex/apex/bin:$PATH
 

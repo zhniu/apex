@@ -12,6 +12,7 @@ Supported _input_ technologies are:
 - Websockets, read events from a Websocket
 - JMS,
 - REST (synchronous and asynchronous), additionally as client or server
+- Event Requestor, allows reading of events that have been looped back into APEX
 
 
 Supported _output_ technologies are:
@@ -22,5 +23,6 @@ Supported _output_ technologies are:
 - Websockets, write events to a Websocket
 - JMS
 - REST (synchronous and asynchronous), additionally as client or server
+- Event Requestor, allows events to be looped back into APEX
 
 New carrier technologies can be added as plugins to APEX or developed outside APEX and added to an APEX deployment.

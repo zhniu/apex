@@ -50,7 +50,6 @@ public abstract class AxKey extends AxConcept {
 
     /**
      * Default constructor
-     * @param copyConcept the concept to copy from
      */
     public AxKey() {
     		super();

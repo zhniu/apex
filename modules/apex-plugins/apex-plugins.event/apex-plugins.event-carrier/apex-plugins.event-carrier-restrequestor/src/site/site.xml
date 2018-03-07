@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<project name="APEX Plugins Event Carrier REST-Client">
+<project name="APEX Plugins Event Carrier REST-Requestor">
 	<body>
-		<menu name="APEX Plugins Event Carrier REST-Client">
+		<menu name="APEX Plugins Event Carrier REST-Requestor">
 			<item href="engine-config.html" name="Engine Configuration" />
 			<item href="javadocs/index.html" name="API Doc" />
 		</menu>
@@ -10,7 +10,7 @@
 		<menu ref="modules"/> 
 
 		<breadcrumbs>
-			<item name="REST-Client" href="index.html"/>
+			<item name="REST-Requestor" href="index.html"/>
 		</breadcrumbs>
 	</body>
 </project>
