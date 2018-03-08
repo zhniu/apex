@@ -1,0 +1,7 @@
+== APEX Model (Policies)
+
+.APEX Model, Policies
+[source,bash,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/policy/DecisionMakerPolicyModel.apex[APEX Model, Policies]
+----

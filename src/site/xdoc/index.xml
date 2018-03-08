@@ -148,8 +148,8 @@
 								<li><a href="modules/apex-domains/apex-domains.decisionmaker/index.html">apex-domains.decisionmaker</a> - A simple decision maker demo, with REST interface for interactions deployed in a Docker container</li>
 								<li><a href="modules/apex-domains/apex-domains.myfirstpolicy/index.html">apex-domains.myfirstpolicy</a> - My First Policy, a step-by-step tutorial for defining a policy</li>
 								<li><a href="modules/apex-domains/apex-domains.pcvs/index.html">apex-domains.pcvs</a> - An example policy for managing customers and link failures showing video streaming for a simple VPN scenario</li>
-								<li><a href="modules/apex-domains/apex-domains.onap-vcpe/index.html">apex-domains.pcvs</a> - An example policy for managing vCPE's in ONAP</li>
-								<li><a href="modules/apex-domains/apex-domains.periodic/index.html">apex-domains.pcvs</a> - An example periodic policy</li>
+								<li><a href="modules/apex-domains/apex-domains.onap-vcpe/index.html">apex-domains.onap-vcpe</a> - An example policy for managing vCPE's in ONAP</li>
+								<li><a href="modules/apex-domains/apex-domains.periodic/index.html">apex-domains.periodic</a> - An example periodic policy</li>
 								<li><a href="modules/apex-domains/apex-domains.adaptive/index.html">apex-domains.adaptive</a> - A simple adaptive policy</li>
 								<li><a href="modules/apex-domains/apex-domains.aadm/index.html">apex-domains.aadm</a> - A policy realizing a complex scenario for Autonomic Anomaly Detection and Mitigation (AADM)</li>
 							</ul>

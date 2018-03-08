@@ -1,0 +1,7 @@
+== Task Logic: Random Answer
+
+.Task Logic, Random Answer
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/logic/RandomAnswerTask.js[Task Logic: Random Answer]
+----

@@ -1,0 +1,7 @@
+== APEX Configuration: Rest Client
+
+.Config REst Client
+[source,json,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/config/ApexConfigRESTClient.json[Config Rest Client]
+----

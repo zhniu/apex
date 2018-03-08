@@ -1,0 +1,7 @@
+== Task Logic: Optimistic Answer
+
+.Task Logic, Optimistic Answer
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/logic/OptimisticAnswerTask.js[Task Logic: Optimistic Answer]
+----

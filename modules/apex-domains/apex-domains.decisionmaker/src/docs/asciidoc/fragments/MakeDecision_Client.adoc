@@ -1,0 +1,7 @@
+== HTML Client
+
+.HTML Client
+[source,html,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/html/MakeDecision_Client.html[HTML Client]
+----

@@ -1,0 +1,1 @@
+include::{apex-domains-periodic-dir}/docs/asciidoc/fragments/logic-task-output.adoc[]

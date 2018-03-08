@@ -1,0 +1,7 @@
+== APEX Configuration
+
+.APEX Model
+[source,bash,options="nowrap"]
+----
+include::{apex-domains-periodic-dir}/main/resources/policy/PeriodicPolicyModel.apex[APEX Model]
+----

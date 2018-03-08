@@ -1,0 +1,7 @@
+== APEX Configuration
+
+.APEX configuration
+[source,json,options="nowrap"]
+----
+include::{apex-domains-periodic-dir}/main/resources/config/ApexConfigPeriodic.json[APEX configuration]
+----

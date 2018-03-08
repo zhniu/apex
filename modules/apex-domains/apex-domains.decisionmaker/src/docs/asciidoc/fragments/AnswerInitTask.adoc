@@ -1,0 +1,7 @@
+== Task Logic: Answer Init
+
+.Task Logic, Answer Init
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/logic/AnswerInitTask.js[Task Logic: Answer Init]
+----

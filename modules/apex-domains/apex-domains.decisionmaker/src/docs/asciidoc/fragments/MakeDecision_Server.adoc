@@ -1,0 +1,7 @@
+== HTML Server
+
+.HTML Server
+[source,html,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/html/MakeDecision_Server.html[HTML Server]
+----

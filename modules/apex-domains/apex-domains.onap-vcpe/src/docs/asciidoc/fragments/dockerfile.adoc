@@ -1,7 +1,7 @@
 == Dockerfile
 
-.vCPE Dockerfile
+.Dockerfile
 [source,bash,options="nowrap"]
 ----
-include::{apex-domains.onap-vcpe}/../Dockerfile[vCPE Dockerfile]
+include::{apex-domains-onap-vcpe-dir}/../Dockerfile[Dockerfile]
 ----

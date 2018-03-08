@@ -1,0 +1,7 @@
+== Task Selection Logic: Make Decision State
+
+.Task Selection Logic, Make Decision State
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/logic/MakeDecisionStateTSL.js[Task Selection Logic: Make Decision State]
+----

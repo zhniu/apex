@@ -1,0 +1,7 @@
+== Logic: Periodic Task
+
+.Periodic Task Logic
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-periodic-dir}/main/resources/logic/PeriodicTask.js[Periodic Task Logic]
+----

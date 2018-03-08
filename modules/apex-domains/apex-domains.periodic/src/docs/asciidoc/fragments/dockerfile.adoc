@@ -1,7 +1,7 @@
 == Dockerfile
 
-.Decision Maker Dockerfile
+.Dockerfile
 [source,bash,options="nowrap"]
 ----
-include::{apex-domains-periodic-dir}/../Dockerfile[Periodic Policy Dockerfile]
+include::{apex-domains-periodic-dir}/../Dockerfile[Dockerfile]
 ----

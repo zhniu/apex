@@ -1,0 +1,7 @@
+== Task Logic: Dithering Answer
+
+.Task Logic, Dithering Answer
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/logic/DitheringAnswerTask.js[Task Logic: Dithering Answer]
+----

@@ -1,0 +1,7 @@
+== Task Logic: Pessimistic Answer
+
+.Task Logic, Pessimistic Answer
+[source,javascript,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/logic/PessimisticAnswerTask.js[Task Logic: Pessimistic Answer]
+----

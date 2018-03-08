@@ -1,0 +1,7 @@
+== Initiation Events
+
+.Initiation Events
+[source,json,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/config/AnswerInitiationEvents.txt[Initiation Events]
+----

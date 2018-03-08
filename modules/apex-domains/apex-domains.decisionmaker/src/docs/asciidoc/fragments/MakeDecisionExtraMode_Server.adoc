@@ -1,0 +1,7 @@
+== HTML Server: Extra Mode
+
+.HTML Server, Extra Mode
+[source,html,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/html/MakeDecisionExtraMode_Server.html[HTML Server, Extra Mode]
+----

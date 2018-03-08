@@ -1,0 +1,7 @@
+== HTML Client: Extra Mode
+
+.HTML Client, Extra Mode
+[source,html,options="nowrap"]
+----
+include::{apex-domains-decisionmaker-dir}/main/resources/html/MakeDecisionExtraMode_Client.html[HTML Client, Extra Mode]
+----
