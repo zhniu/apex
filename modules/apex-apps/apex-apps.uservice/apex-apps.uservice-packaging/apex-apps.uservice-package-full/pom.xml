@@ -164,6 +164,11 @@
 			<artifactId>apex-plugins.event-carrier-restserver</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.ericsson.apex</groupId>
+			<artifactId>apex-plugins.event-carrier-restrequestor</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<!-- Plugins for event protocols -->
 		<dependency>
