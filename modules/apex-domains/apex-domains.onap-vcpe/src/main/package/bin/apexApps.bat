@@ -1,10 +1,11 @@
 ::
-:: (C) Copyright LM Ericsson System Expertise AT/LMI, 2017
+:: COPYRIGHT (C) Ericsson 2016-2018
 :: 
-:: The copyright to the computer program(s) herein is the property of Ericsson System Expertise EEI, Sweden. The
-:: program(s) may be used and/or copied only with the written permission from Ericsson System Expertise AT/LMI or in
-:: accordance with the terms and conditions stipulated in the agreement/contract under which the program(s) have been
-:: supplied.
+:: The copyright to the computer program(s) herein is the property of
+:: Ericsson Inc. The programs may be used and/or copied only with written
+:: permission from Ericsson Inc. or in accordance with the terms and
+:: conditions stipulated in the agreement/contract under which the
+:: program(s) have been supplied.
 ::
 
 ::
@@ -14,9 +15,9 @@
 ::
 :: @package    com.ericsson.apex.apex
 :: @author     Sven van der Meer <sven.van.der.meer@ericsson.com>
-:: @copyright  LM Ericsson
+:: @copyright  Ericsson
 :: @license    proprietary
-:: @version    v0.5.6
+:: @version    v0.7.0
 
 
 ::
@@ -52,6 +53,9 @@ set MOD_SCRIPT_NAME=apexApps
 :: config for CP apps
 SET _CONFIG=-Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -Dhazelcast.config=%APEX_HOME%\etc\hazelcast.xml -Dhazelcast.mancenter.enabled=false
 
+:: Maven/APEX version
+set /p _VERSION=<%APEX_HOME%\etc\app-version.txt
+
 
 :: CP separator
 set cpsep=;
@@ -63,11 +67,29 @@ set CLASSPATH=%APEX_HOME%\etc%cpsep%%APEX_HOME%\etc\hazelcast%cpsep%%APEX_HOME%\
 
 :: array of applications with name=command
 :: declare -A APEX_APP_MAP
-set APEX_APP_MAP[engine]=java -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.service.engine.main.ApexMain
+set APEX_APP_MAP[ws-console]=java -jar %APEX_HOME%\lib\applications\apex-apps.wsclients-simple-%_VERSION%-jar-with-dependencies.jar -c
+set APEX_APP_MAP[ws-echo]=java -jar %APEX_HOME%\lib\applications\apex-apps.wsclients-simple-%_VERSION%-jar-with-dependencies.jar
+set APEX_APP_MAP[tpl-event-json]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.apps.generators.model.model2event.Application
+set APEX_APP_MAP[model-2-cli]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.apps.generators.model.model2cli.Application
+set APEX_APP_MAP[rest-editor]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-editor-%_VERSION%-editor.jar
+set APEX_APP_MAP[cli-editor]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.auth.clieditor.ApexCLIEditorMain
+set APEX_APP_MAP[engine]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.service.engine.main.ApexMain
+set APEX_APP_MAP[eng-deployment]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-deployment-%_VERSION%-deployment.jar
+set APEX_APP_MAP[eng-monitoring]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-monitoring-%_VERSION%-monitoring.jar
+set APEX_APP_MAP[full-client]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-full-%_VERSION%-full.jar
 
 :: array of applications with name=description
 :: declare -A APEX_APP_DESCR_MAP
+set APEX_APP_DESCR_MAP[ws-console]=a simple console sending events to APEX, connect to APEX consumer port
+set APEX_APP_DESCR_MAP[ws-echo]=a simple echo client printing events received from APEX, connect to APEX producer port
+set APEX_APP_DESCR_MAP[tpl-event-json]=provides JSON templates for events generated from a policy model
+set APEX_APP_DESCR_MAP[model-2-cli]=generates CLI Editor Commands from a policy model
+set APEX_APP_DESCR_MAP[rest-editor]=starts the APEX REST Editor inside a simple webserver
+set APEX_APP_DESCR_MAP[cli-editor]=runs the APEX CLI Editor
 set APEX_APP_DESCR_MAP[engine]=starts the APEX engine
+set APEX_APP_DESCR_MAP[eng-deployment]=starts the APEX deployment client in a simple webserver
+set APEX_APP_DESCR_MAP[eng-monitoring]=starts the APEX engine monitoring client in a simple webserver
+set APEX_APP_DESCR_MAP[full-client]=starts the full APEX client (rest editor, deployment, monitoring) in a simple webserver
 
 
 :: no command line means help, -h means help

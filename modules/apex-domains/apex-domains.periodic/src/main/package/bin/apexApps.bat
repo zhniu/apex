@@ -69,11 +69,11 @@ set CLASSPATH=%APEX_HOME%\etc%cpsep%%APEX_HOME%\etc\hazelcast%cpsep%%APEX_HOME%\
 :: declare -A APEX_APP_MAP
 set APEX_APP_MAP[ws-console]=java -jar %APEX_HOME%\lib\applications\apex-apps.wsclients-simple-%_VERSION%-jar-with-dependencies.jar -c
 set APEX_APP_MAP[ws-echo]=java -jar %APEX_HOME%\lib\applications\apex-apps.wsclients-simple-%_VERSION%-jar-with-dependencies.jar
-set APEX_APP_MAP[tpl-event-json]=java -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.apps.generators.model.model2event.Application
-set APEX_APP_MAP[model-2-cli]=java -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.apps.generators.model.model2cli.Application
+set APEX_APP_MAP[tpl-event-json]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.apps.generators.model.model2event.Application
+set APEX_APP_MAP[model-2-cli]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.apps.generators.model.model2cli.Application
 set APEX_APP_MAP[rest-editor]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-editor-%_VERSION%-editor.jar
-set APEX_APP_MAP[cli-editor]=java -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.auth.clieditor.ApexCLIEditorMain
-set APEX_APP_MAP[engine]=java -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.service.engine.main.ApexMain
+set APEX_APP_MAP[cli-editor]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.auth.clieditor.ApexCLIEditorMain
+set APEX_APP_MAP[engine]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -cp %CLASSPATH% %_CONFIG% com.ericsson.apex.service.engine.main.ApexMain
 set APEX_APP_MAP[eng-deployment]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-deployment-%_VERSION%-deployment.jar
 set APEX_APP_MAP[eng-monitoring]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-monitoring-%_VERSION%-monitoring.jar
 set APEX_APP_MAP[full-client]=java -Dlogback.configurationFile=%APEX_HOME%\etc\logback.xml -jar %APEX_HOME%\lib\applications\apex-services.client-full-%_VERSION%-full.jar
