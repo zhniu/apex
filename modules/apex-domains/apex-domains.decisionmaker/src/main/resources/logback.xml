@@ -1,0 +1,73 @@
+<configuration debug="false">
+	<statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+	<contextName>Apex</contextName>
+	<property name="LOG_DIR" value="log/" />
+
+	<!-- USE FOR STD OUT ONLY -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %contextName [%t] %level %logger{36} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>${VAR_LOG}/apex.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CTXT_LOG_FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR}/apex_ctxt.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="EVENT_IN_LOG_FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR}/apex_ctxt.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="EVENT_OUT_LOG_FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR}/apex_ctxt.log</file>
+		<encoder>
+			<pattern>%d %-5relative [procId=${processId}] [%thread] %-5level
+				%logger{26} - %msg %n %ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.ericsson.apex" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="com.ericsson.apex.core.context.monitoring" level="TRACE" additivity="false">
+		<appender-ref ref="CTXT_LOG_FILE" />
+	</logger>
+	
+
+	<logger name="com.ericsson.apex.service.engine.main.ApexEventUnmarshaller" level="TRACE" additivity="false">
+		<appender-ref ref="EVENT_IN_LOG_FILE" />
+	</logger>
+	
+
+	<logger name="com.ericsson.apex.service.engine.main.ApexEventMarshaller" level="TRACE" additivity="false">
+		<appender-ref ref="EVENT_OUT_LOG_FILE" />
+	</logger>
+	
+</configuration>

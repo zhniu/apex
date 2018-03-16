@@ -42,7 +42,7 @@ import com.ericsson.apex.service.parameters.eventhandler.EventHandlerPeeredMode;
  */
 public class ApexEventUnmarshaller implements ApexEventReceiver, Runnable {
 	// Get a reference to the logger
-	private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEventMarshaller.class);
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(ApexEventUnmarshaller.class);
 
 	// Interval to wait between thread shutdown checks
 	private static final int UNMARSHALLER_SHUTDOWN_WAIT_INTERVAL = 10;
