@@ -49,11 +49,11 @@ public final class AvroSchemaKeyTranslationUtilities {
         }
 
         // Create a JSON element for the incoming JSON string
-        JsonElement jsonElement = new GsonBuilder().create().fromJson(jsonString,  JsonElement.class);
+        JsonElement jsonElement = new GsonBuilder().serializeNulls().create().fromJson(jsonString,  JsonElement.class);
 
         JsonElement translatedJsonElement = translateIllegalKeys(jsonElement, revert);
 
-        return new GsonBuilder().create().toJson(translatedJsonElement);
+        return new GsonBuilder().serializeNulls().create().toJson(translatedJsonElement);
     }
 
     /**

@@ -13,6 +13,7 @@ package com.ericsson.apex.context.test.concepts;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * The Class TestContextItem008.
@@ -157,6 +158,7 @@ public class TestContextItem008 implements Serializable {
         this.time = dateValue;
 
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
         calendar.setTimeInMillis(time);
 
         year        = calendar.get(Calendar.YEAR);

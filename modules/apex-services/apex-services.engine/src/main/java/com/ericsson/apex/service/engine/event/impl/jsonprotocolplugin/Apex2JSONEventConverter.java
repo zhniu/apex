@@ -89,7 +89,7 @@ public class Apex2JSONEventConverter implements ApexEventProtocolConverter {
 
 		try {
 			// We may have a single JSON object with a single event or an array of JSON objects
-			Object decodedJsonObject = new GsonBuilder().create().fromJson(jsonEventString, Object.class);
+			Object decodedJsonObject = new GsonBuilder().serializeNulls().create().fromJson(jsonEventString, Object.class);
 
 			// Check if we have a list of objects
 			if (decodedJsonObject instanceof List) {
@@ -142,7 +142,7 @@ public class Apex2JSONEventConverter implements ApexEventProtocolConverter {
 		final AxEvent eventDefinition = ModelService.getModel(AxEvents.class).get(apexEvent.getName(), apexEvent.getVersion());
 
 		// Use a GSON Json object to marshal the Apex event to JSON
-		final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+		final Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 		final JsonObject jsonObject = new JsonObject();
 
 		jsonObject.addProperty(ApexEvent.NAME_HEADER_FIELD, apexEvent.getName());
@@ -189,7 +189,7 @@ public class Apex2JSONEventConverter implements ApexEventProtocolConverter {
 	 */
 	private ApexEvent jsonStringApexEvent(final String eventName, final String jsonEventString) throws ApexEventException {
 		// Use GSON to read the event string
-		final JsonObject jsonObject = new GsonBuilder().create().fromJson(jsonEventString, JsonObject.class);
+		final JsonObject jsonObject = new GsonBuilder().serializeNulls().create().fromJson(jsonEventString, JsonObject.class);
 
 		if (jsonObject == null || !jsonObject.isJsonObject()) {
 			throw new ApexEventException("incoming event (" + jsonEventString + ") is not a JSON object or an JSON object array");

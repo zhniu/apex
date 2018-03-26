@@ -36,7 +36,7 @@ public class JSONHandler<TYPE> {
         // Register the adapters for our carrier technologies and event protocols with GSON
         final GsonBuilder gsonBuilder = new GsonBuilder();
 
-        final Gson gson = gsonBuilder.create();
+        final Gson gson = gsonBuilder.serializeNulls().create();
         final Reader jsonResourceReader = new InputStreamReader(inputStream);
         return gson.fromJson(jsonResourceReader, inputClass);
     }
